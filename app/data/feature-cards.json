@@ -145,7 +145,7 @@
           "state": "merged"
         },
         "zynthian": {
-          "state": "coming"
+          "state": "merged"
         },
         "console": {
           "state": "none"
@@ -156,12 +156,12 @@
         "en": {
           "title": "The same gestures on every panel",
           "line": "One table says what a tap, a long press, a double tap and a drag do on each control.",
-          "text": "The table covers every standard widget, a bar and a curve handle, with nine gesture words and their timings. A palm guard and a safety hold protect a value from a stray touch. It is merged in omx-panel and not in a release yet. The Zynthian side is on a branch and not merged."
+          "text": "The table covers every standard widget, a bar and a curve handle, with nine gesture words and their timings. A palm guard and a safety hold protect a value from a stray touch. It is merged in omx-panel and in the Zynthian interface, and in no release or omx-track tag yet. Pinch works through a touch layer; it was proven with injected events, not on a real screen yet."
         },
         "ca": {
           "title": "Els mateixos gestos a cada panell",
           "line": "Una taula diu què fan un toc, una pulsació llarga, un doble toc i un arrossegament a cada control.",
-          "text": "La taula cobreix tots els ginys estàndard, una barra i una nansa de corba, amb nou paraules de gest i els seus temps. Una guarda de palmell i una retenció de seguretat protegeixen un valor d'un toc accidental. Està integrada a omx-panel i encara no és en cap versió. La part de Zynthian és en una branca i no està integrada."
+          "text": "La taula cobreix tots els ginys estàndard, una barra i una nansa de corba, amb nou paraules de gest i els seus temps. Una guarda de palmell i una retenció de seguretat protegeixen un valor d'un toc accidental. Està integrada a omx-panel i a la interfície de Zynthian, i encara no és en cap versió ni etiqueta omx-track. El pessic funciona per una capa tàctil; s'ha provat amb esdeveniments injectats, encara no en una pantalla real."
         }
       },
       "proof": [
@@ -610,6 +610,43 @@
       "proof": []
     },
     {
+      "id": "panel-pages",
+      "title": "Pages from one cut",
+      "row": false,
+      "surfaces": {
+        "libraries": {
+          "state": "merged"
+        },
+        "zynthian": {
+          "state": "merged"
+        },
+        "console": {
+          "state": "none"
+        }
+      },
+      "detail": "/docs/plugins-panels",
+      "card": {
+        "en": {
+          "title": "The same pages on every screen",
+          "line": "The Zynthian screen shows a plugin's controls four to a page, and a Mackie surface shows eight.",
+          "text": "Both take their pages from the one cut that omx-panel makes, so a plugin has the same sections everywhere. It is merged in the Zynthian interface and in no release or omx-track tag yet."
+        },
+        "ca": {
+          "title": "Les mateixes pàgines a cada pantalla",
+          "line": "La pantalla de Zynthian mostra els controls d'un plugin de quatre en quatre, i una superfície Mackie de vuit en vuit.",
+          "text": "Totes dues prenen les pàgines del tall únic que fa omx-panel, de manera que un plugin té les mateixes seccions arreu. Està integrat a la interfície de Zynthian i encara no és en cap versió ni etiqueta omx-track."
+        }
+      },
+      "proof": [
+        {
+          "kind": "test",
+          "with": "zynthian-ui vangelis (PR 79), omx-panel main after 0.11.0",
+          "en": "The LSP parametric equalizer x8 gives 27 screens and 27 pages, and Surge XT as a CLAP plugin gives 11 and 11.",
+          "ca": "L'equalitzador paramètric LSP x8 dóna 27 pantalles i 27 pàgines, i Surge XT com a plugin CLAP en dóna 11 i 11."
+        }
+      ]
+    },
+    {
       "id": "pi-bench",
       "title": "Lighter than mod-host and jalv",
       "row": false,
@@ -1056,7 +1093,7 @@
           "state": "merged"
         },
         "zynthian": {
-          "state": "coming"
+          "state": "merged"
         },
         "console": {
           "state": "none"
@@ -1067,12 +1104,12 @@
         "en": {
           "title": "A sampler loads its own sample",
           "line": "A sample-based plugin such as samplv1 takes its sample file from the host and plays it.",
-          "text": "The host now writes a plugin's file and text properties through patch_set and reads them back with patch_get, so a path with spaces in it works too. It is merged in omx-clap-core and is not in a release yet."
+          "text": "The host now writes a plugin's file and text properties through patch_set and reads them back with patch_get, so a path with spaces in it works too. It is merged in omx-clap-core and in the Zynthian interface, and in no release or omx-track tag yet. sfizz is not covered: Zynthian runs sfizz_jack, not an LV2 plugin."
         },
         "ca": {
           "title": "Un sampler carrega la seva mostra",
           "line": "Un plugin basat en mostres, com samplv1, rep el fitxer de mostra de l'amfitrió i el reprodueix.",
-          "text": "L'amfitrió ara escriu les propietats de fitxer i de text d'un plugin amb patch_set i les llegeix amb patch_get, de manera que també funciona un camí amb espais. Està integrat a omx-clap-core i encara no és en cap versió."
+          "text": "L'amfitrió ara escriu les propietats de fitxer i de text d'un plugin amb patch_set i les llegeix amb patch_get, de manera que també funciona un camí amb espais. Està integrat a omx-clap-core i a la interfície de Zynthian, i encara no és en cap versió ni etiqueta omx-track. sfizz no hi és: Zynthian fa servir sfizz_jack, no un plugin LV2."
         }
       },
       "proof": [
@@ -1083,6 +1120,14 @@
           "with": "omx-clap-core 0.30.4 (main, 234813ad8e), plugin-hostd 0.19.1, samplv1 1.3.1, mod-host v0.10.6-595-g6c1cdd8 (Zynthian's build)",
           "en": "On a Raspberry Pi 5, measured digitally, samplv1 goes from silence to -9.6 dBFS after a note on once its sample is set with patch_set, at 48000 and at 96000 Hz with 128 frames. mod-host v0.10.6-595-g6c1cdd8 (Zynthian's build) gives -9.6 dBFS for the same file at 48000 Hz. jalv was not measured for this figure. The installed omx-clap-core 0.30.2 answers the verb with -902 and stays silent.",
           "ca": "En una Raspberry Pi 5, mesurat digitalment, samplv1 passa del silenci a -9,6 dBFS després d'una nota un cop la mostra s'ha posat amb patch_set, a 48000 i a 96000 Hz amb 128 mostres. mod-host v0.10.6-595-g6c1cdd8 (compilació de Zynthian) dóna -9,6 dBFS amb el mateix fitxer a 48000 Hz. jalv no s'ha mesurat per a aquesta xifra. L'omx-clap-core 0.30.2 instal·lat respon el verb amb -902 i es queda en silenci."
+        },
+        {
+          "kind": "bench",
+          "rate": "48000 and 96000 Hz, 128 frames",
+          "figure": true,
+          "with": "zynthian-ui vangelis (PR 78), plugin-hostd 0.19.1, samplv1 1.3.1, drumkv1",
+          "en": "Through the Zynthian interface's own engine on a Raspberry Pi 5, measured digitally, samplv1 plays at -9.6 dBFS at 48000 and at 96000 Hz with 128 frames, also after a snapshot reload and with a user preset. drumkv1 plays at -20.9 dBFS.",
+          "ca": "Pel motor propi de la interfície de Zynthian en una Raspberry Pi 5, mesurat digitalment, samplv1 sona a -9,6 dBFS a 48000 i a 96000 Hz amb 128 mostres, també després de tornar a carregar un snapshot i amb un preset d'usuari. drumkv1 sona a -20,9 dBFS."
         }
       ]
     },
