@@ -11,9 +11,10 @@ const sitePath = useSitePath();
 const SHOTS = '/technical-notes/from-a-plugin-file-to-a-page';
 
 const onExisting = [
-  'curl -fsSLO https://www.openmixer.org/deb/openmixer-release.deb',
+  'cd /tmp && curl -fsSLO https://www.openmixer.org/deb/openmixer-release.deb',
   'sudo apt install ./openmixer-release.deb',
-  'sudo apt install plugin-hostd omx-clap-host omx-clap-scan omx-panel',
+  'sudo apt update',
+  'sudo apt install plugin-hostd omx-clap-host omx-panel',
 ];
 const switches = [
   '# the plugin engine: in /zynthian/config/zynthian_envars.sh, then restart the UI',
