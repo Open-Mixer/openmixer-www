@@ -14,7 +14,7 @@ const onExisting = [
   'cd /tmp && curl -fsSLO https://www.openmixer.org/deb/openmixer-release.deb',
   'sudo apt install ./openmixer-release.deb',
   'sudo apt update',
-  'sudo apt install plugin-hostd omx-clap-host omx-panel plugin-qualify plugin-db-qualification-rpi5-zynthian-vangelis',
+  'sudo apt install plugin-hostd omx-clap-host omx-panel plugin-qualify plugin-qualification-records',
 ];
 const switches = [
   '# the plugin engine: in /zynthian/config/zynthian_envars.sh, then restart the UI',
