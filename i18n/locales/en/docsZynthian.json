@@ -29,7 +29,8 @@
       },
       "existing": {
         "title": "On an existing Vangelis",
-        "p1": "A Vangelis system already running needs no new image. As root, add the OpenMixer repository and install the packages:",
+        "p1": "A Vangelis system already running needs no new image. As root, add the OpenMixer repository and install plugin-hostd-full, the whole plugin host stack with its panel:",
+        "headless": "With no screen attached, the same stack without the panel:",
         "p2": "openmixer-release carries the signing key and the apt source of the running Debian release. This enables no service: mod-host, MOD-UI, jalv and the menus stay as they were until you switch them."
       },
       "switch": {

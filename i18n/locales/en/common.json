@@ -56,6 +56,8 @@
     "install": {
       "fedora": "Fedora 44, x86_64 or aarch64.",
       "debian": "Debian bookworm or trixie, amd64 or arm64. The same packages install on Raspberry Pi OS and Zynthian.",
+      "headless": "On a machine with no screen, the same stack without the panel:",
+      "pkgFull": "The whole plugin host stack in one install: plugin-hostd, omx-clap-host, the OpenMixer plugins, plugin-qualify, the qualification records of your machine's class, and omx-panel.",
       "pkgClapHost": "The CLAP and LV2 host and omx-clap-scan, with the omx-clap-core library.",
       "pkgHostd": "The plugin supervisor and its manual page.",
       "pkgDevel": "Headers and pkg-config files, to build your own host against the same libraries.",

@@ -4,12 +4,17 @@
 const { t } = useI18n();
 const fedora = [
   'sudo dnf install https://www.openmixer.org/rpm/openmixer-release.noarch.rpm',
-  'sudo dnf install omx-clap-host plugin-hostd',
+  'sudo dnf install plugin-hostd-full',
 ];
 const debian = [
-  'curl -fsSLO https://www.openmixer.org/deb/openmixer-release.deb && sudo apt install ./openmixer-release.deb',
-  'sudo apt update && sudo apt install omx-clap-host plugin-hostd',
+  'curl -fsSL -o /tmp/openmixer-release.deb https://www.openmixer.org/deb/openmixer-release.deb',
+  'sudo apt install /tmp/openmixer-release.deb',
+  'sudo apt update',
+  'sudo apt install plugin-hostd-full',
 ];
+/** The same stack on a machine with no screen: the panel is a recommended package, left out by the standard switch. */
+const fedoraHeadless = ['sudo dnf install --setopt=install_weak_deps=False plugin-hostd-full'];
+const debianHeadless = ['sudo apt install --no-install-recommends plugin-hostd-full'];
 const tryIt = computed(() => [
   `# ${t('common.install.tryScan')}`,
   'omx-clap-scan',
@@ -22,6 +27,7 @@ const tabs = [
   { label: 'Debian · Raspberry Pi OS · Zynthian', value: 'debian', slot: 'debian' as const },
 ];
 const packages = computed(() => [
+  ['plugin-hostd-full', t('common.install.pkgFull')],
   ['omx-clap-host', t('common.install.pkgClapHost')],
   ['plugin-hostd', t('common.install.pkgHostd')],
   ['-devel · -dev', t('common.install.pkgDevel')],
@@ -47,15 +53,19 @@ onMounted(() => {
         <template #fedora>
           <p class="mb-4 text-sm text-ink-dim">{{ t('common.install.fedora') }}</p>
           <CodeBlock :lines="fedora" />
+          <p class="mb-2 mt-4 text-sm text-ink-dim">{{ t('common.install.headless') }}</p>
+          <CodeBlock :lines="fedoraHeadless" />
         </template>
         <template #debian>
           <p class="mb-4 text-sm text-ink-dim">{{ t('common.install.debian') }}</p>
           <CodeBlock :lines="debian" />
+          <p class="mb-2 mt-4 text-sm text-ink-dim">{{ t('common.install.headless') }}</p>
+          <CodeBlock :lines="debianHeadless" />
         </template>
       </UTabs>
     </div>
 
-    <div class="mt-5 grid gap-3 md:grid-cols-3">
+    <div class="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
       <div v-for="[name, what] in packages" :key="name" class="rounded-lg border border-edge bg-surface p-4">
         <p class="font-mono text-sm text-ink">{{ name }}</p>
         <p class="mt-1 text-sm text-ink-dim">{{ what }}</p>

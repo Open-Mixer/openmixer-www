@@ -14,8 +14,9 @@ const onExisting = [
   'cd /tmp && curl -fsSLO https://www.openmixer.org/deb/openmixer-release.deb',
   'sudo apt install ./openmixer-release.deb',
   'sudo apt update',
-  'sudo apt install plugin-hostd omx-clap-host omx-panel',
+  'sudo apt install plugin-hostd-full',
 ];
+const onExistingHeadless = ['sudo apt install --no-install-recommends plugin-hostd-full'];
 const switches = [
   '# the plugin engine: in /zynthian/config/zynthian_envars.sh, then restart the UI',
   'ZYNTHIAN_PLUGIN_ENGINE=plugin-hostd',
@@ -95,6 +96,8 @@ useSeoMeta({
           <h3 class="pt-4 font-display text-lg font-semibold text-ink">{{ t('docsZynthian.install.existing.title') }}</h3>
           <p>{{ t('docsZynthian.install.existing.p1') }}</p>
           <CodeBlock :lines="onExisting" />
+          <p>{{ t('docsZynthian.install.existing.headless') }}</p>
+          <CodeBlock :lines="onExistingHeadless" />
           <p>{{ t('docsZynthian.install.existing.p2') }}</p>
           <h3 class="pt-4 font-display text-lg font-semibold text-ink">{{ t('docsZynthian.install.switch.title') }}</h3>
           <p>{{ t('docsZynthian.install.switch.p1') }}</p>

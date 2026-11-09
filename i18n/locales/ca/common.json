@@ -56,6 +56,8 @@
     "install": {
       "fedora": "Fedora 44, x86_64 o aarch64.",
       "debian": "Debian bookworm o trixie, amd64 o arm64. Els mateixos paquets s'instal·len a Raspberry Pi OS i a Zynthian.",
+      "headless": "En una màquina sense pantalla, el mateix entorn sense el panell:",
+      "pkgFull": "Tot l'entorn d'amfitrió de plugins en una sola instal·lació: plugin-hostd, omx-clap-host, els plugins d'OpenMixer, plugin-qualify, els registres de qualificació de la classe de la vostra màquina i omx-panel.",
       "pkgClapHost": "L'amfitrió CLAP i LV2 i omx-clap-scan, amb la biblioteca omx-clap-core.",
       "pkgHostd": "El supervisor de plugins i la seva pàgina de manual.",
       "pkgDevel": "Capçaleres i fitxers pkg-config, per compilar el vostre propi amfitrió amb les mateixes biblioteques.",

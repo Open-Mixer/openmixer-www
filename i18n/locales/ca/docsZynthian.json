@@ -29,7 +29,8 @@
       },
       "existing": {
         "title": "En un Vangelis que ja funciona",
-        "p1": "Un sistema Vangelis que ja funciona no necessita cap imatge nova. Com a root, afegiu el repositori d'OpenMixer i instal·leu-ne els paquets:",
+        "p1": "Un sistema Vangelis que ja funciona no necessita cap imatge nova. Com a root, afegiu el repositori d'OpenMixer i instal·leu plugin-hostd-full, tot l'entorn d'amfitrió de plugins amb el seu panell:",
+        "headless": "Sense cap pantalla connectada, el mateix entorn sense el panell:",
         "p2": "openmixer-release porta la clau de signatura i la font apt de la versió de Debian en marxa. No activa cap servei: mod-host, MOD-UI, jalv i els menús es queden com estaven fins que els canvieu."
       },
       "switch": {
