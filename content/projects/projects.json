@@ -74,10 +74,13 @@
     },
     {
       "repo": "plugin-hostd",
-      "commit": "f526f03",
+      "commit": "a73969e2d024bab73a955c3f260154bdd241255f",
       "pages": [
         {
           "src": "README.md"
+        },
+        {
+          "src": "docs/groupings.md"
         },
         {
           "src": "docs/formats.md"
