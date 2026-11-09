@@ -17,6 +17,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { stampFor } from './reproducible.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const wwwRoot = resolve(here, '..');
@@ -118,7 +119,7 @@ function main() {
 
   const out = {
     meta: {
-      generatedAt: new Date().toISOString(),
+      generatedAt: stampFor(src),
       generatedCount: generated.length,
       documentedCount: generated.length - gaps.length,
     },

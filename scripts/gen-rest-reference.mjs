@@ -25,6 +25,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { stampFor } from './reproducible.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const wwwRoot = resolve(here, '..');
@@ -389,7 +390,7 @@ function main() {
   // never a fact this site's reader needs, and published content carries no trace
   // of the operator's own filesystem.
   const meta = {
-    generatedAt: new Date().toISOString(),
+    generatedAt: stampFor(src),
     sourceRowCount: rowsDoc.rows.length,
     sourceTravelCount: Object.keys(travelSheet.travels).length,
   };

@@ -19,6 +19,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { resolve, dirname, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { stampFor } from './reproducible.mjs';
 import { loadPrivateList } from './private-list.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -186,6 +187,6 @@ if (leaks.length > 0) {
 const families = [...new Set(rows.map((r) => r.family))];
 writeFileSync(
   OUT,
-  `${JSON.stringify({ meta: { generatedAt: new Date().toISOString(), toolCount: rows.length }, tools: rows, env }, null, 2)}\n`,
+  `${JSON.stringify({ meta: { generatedAt: stampFor(src), toolCount: rows.length }, tools: rows, env }, null, 2)}\n`,
 );
 console.log(`[gen-mcp-tools] ${rows.length} tools in ${families.length} families (${families.join(', ')}), ${env.length} environment variables → ${relative(wwwRoot, OUT)}`);
