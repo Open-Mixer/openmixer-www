@@ -1,0 +1,287 @@
+{
+  "groupings": {
+    "seo": {
+      "title": "Agrupacions dels amfitrions de plugins {'|'} plugin-hostd {'|'} OpenMixer",
+      "description": "Com plugin-hostd i els altres amfitrions reparteixen els mateixos plugins en programes, què hi guanya i què hi perd cada disposició i què en mesura el banc de proves."
+    },
+    "hero": {
+      "eyebrow": "OpenMixer · banc de proves de plugin-hostd",
+      "title": "Agrupacions dels amfitrions de plugins",
+      "lede": "Quan la taula executa efectes i instruments, els mateixos plugins es poden repartir en programes de maneres diferents. Cada manera canvia CPU i memòria per seguretat: quantes coses més s'enduu un plugin quan peta. El banc de proves mesura totes les maneres una al costat de l'altra. Aquesta pàgina explica les paraules i dibuixa cada disposició."
+    },
+    "words": {
+      "eyebrow": "Les paraules",
+      "title": "Sis peces que van una dins l'altra",
+      "intro": "Totes les disposicions d'aquesta pàgina es fan amb les mateixes peces, sempre encaixades en el mateix ordre. Els colors són els mateixos a tots els dibuixos.",
+      "jack": {
+        "name": "Graf de JACK",
+        "body": "El motor d'àudio que mou el so entre programes, un bloc de mostres cada vegada, a una sola freqüència de mostratge (48000, 96000…) i a una sola mida de bloc, el quantum (64, 128, 256, 512 frames).",
+        "eg": "Cada programa del graf és un client JACK amb els seus propis ports. A cada bloc JACK desperta els clients per ordre; un client que arriba tard provoca un xrun, un clic que se sent."
+      },
+      "plugin": {
+        "name": "Plugin",
+        "body": "Un efecte o un instrument: un compressor, un delay, un sintetitzador. És una biblioteca (CLAP o LV2), no un programa: només funciona dins d'un amfitrió.",
+        "eg": "CLAP i LV2 són els dos formats de plugin. Alguns plugins es distribueixen en tots dos."
+      },
+      "proc": {
+        "name": "Procés",
+        "body": "Un programa en marxa amb la seva pròpia memòria. Si un plugin de dins peta, mor tot el procés i tots els altres plugins que hi ha.",
+        "eg": "Més processos: més aïllament, més memòria i més canvis d'un a l'altre a cada bloc."
+      },
+      "worker": {
+        "name": "Worker",
+        "body": "Un procés que plugin-hostd engega per executar plugins. plugin-hostd mateix (el dimoni) només rep ordres; el so passa pels seus workers.",
+        "eg": "El dimoni decideix quants workers hi ha i quins plugins porta cadascun."
+      },
+      "chain": {
+        "name": "Cadena",
+        "body": "Plugins connectats en sèrie dins d'un sol worker: la sortida d'un alimenta directament el següent, en memòria, sense tornar a sortir per JACK entre l'un i l'altre.",
+        "eg": "La manera més barata d'executar diversos plugins; si un peta s'atura tota la cadena."
+      },
+      "pool": {
+        "name": "Pool",
+        "body": "Un worker compartit que acull els plugins que poden compartir procés, siguin on siguin del camí del senyal, perquè no calgui un worker per a cadascun.",
+        "eg": "Els plugins marcats com a \"isolated\" no entren mai en un pool."
+      },
+      "more": "Dues paraules més compten. Un <b>amfitrió</b> és el programa que carrega els plugins: se'n comparen quatre (més avall). Un <b>pin</b> és el veredicte de qualificació que es desa per a cada plugin: <code>in-process</code> vol dir que pot compartir un procés, <code>isolated</code> vol dir que ha de funcionar sol perquè es va comportar malament quan es va mesurar (va petar, es va penjar o va trencar les regles de temps real)."
+    },
+    "hosts": {
+      "eyebrow": "Els quatre amfitrions",
+      "title": "Qui carrega els plugins",
+      "cols": {
+        "bench": "Al banc",
+        "host": "Amfitrió",
+        "what": "Què és",
+        "formats": "Formats"
+      },
+      "h1": {
+        "what": "L'amfitrió propi d'OpenMixer: un procés que porta molts plugins.",
+        "formats": "CLAP i també LV2 amb el seu adaptador"
+      },
+      "h2": {
+        "what": "El supervisor d'OpenMixer: un dimoni que executa plugins en workers i els pot agrupar (cadenes, plans, pools). Els seus workers són processos omx-clap-host.",
+        "formats": "CLAP i LV2"
+      },
+      "h3": {
+        "what": "L'amfitrió de referència del projecte MOD: un procés que porta molts plugins.",
+        "formats": "LV2"
+      },
+      "h4": {
+        "what": "L'amfitrió mínim de referència: un procés per plugin, sempre.",
+        "formats": "LV2"
+      }
+    },
+    "kinds": {
+      "jack": "graf de JACK",
+      "proc": "procés",
+      "worker": "worker",
+      "chain": "cadena",
+      "pool": "pool",
+      "iso": "aïllat"
+    },
+    "fig": {
+      "jack": "graf de JACK",
+      "sine": "sinus",
+      "in": "entrada",
+      "out": "sortida",
+      "worker": "worker",
+      "workerN": "worker {n}",
+      "segmentN": "segment {n}",
+      "isolated": "aïllat",
+      "chain1": "cadena 1",
+      "hostProcess": "procés de l'amfitrió",
+      "daemon": "dimoni plugin-hostd",
+      "daemonNote": "només ordres, sense so",
+      "clients3": "3 clients",
+      "oneHost": "1 amfitrió",
+      "segments5": "5 segments",
+      "addTo": "afegir {p} → cadena 1",
+      "pool": "pool g1",
+      "poolNote": "plugins que poden compartir",
+      "poolGraphNote": "a grp8: 5 workers amb el pool, 7 amb el pla, 8 un per plugin",
+      "poolFlow": "El senyal continua passant per comp → drive → delay → drive → comp a través de JACK; el pool només canvia quin worker porta cada plugin.",
+      "segments3": "3 segments",
+      "chain": "cadena"
+    },
+    "modes": {
+      "eyebrow": "Les disposicions",
+      "title": "Sis maneres d'executar els mateixos plugins",
+      "intro": "Cada dibuix executa els mateixos tres plugins, A → B → C, entre un senyal de prova (una sinusoide o bé acords per als instruments) i la sortida.",
+      "individual": {
+        "title": "Individual",
+        "tags": {
+          "a": "H2 plugin-hostd · placement own",
+          "b": "H4 jalv, sempre"
+        },
+        "body": "Cada plugin té un procés propi. El so surt per JACK i hi torna a entrar entre un plugin i el següent.",
+        "tally": {
+          "a": "processos <b>3</b>",
+          "b": "clients JACK <b>3</b>",
+          "c": "una petada atura <b>1 plugin</b>"
+        },
+        "tradeoff": "La més segura i la més cara: tres programes en memòria i JACK canviant entre tres processos a cada bloc."
+      },
+      "shared": {
+        "title": "Procés compartit",
+        "tags": {
+          "a": "H1 omx-clap-host",
+          "b": "H3 mod-host"
+        },
+        "body": "Un sol programa amfitrió porta tots els plugins i els connecta ell mateix.",
+        "tally": {
+          "a": "processos <b>1</b>",
+          "b": "clients JACK <b>3</b> (un per plugin, enllaçats per JACK)",
+          "c": "una petada atura <b>tots 3</b>"
+        },
+        "tradeoff": "La més barata en memòria. Cada plugin continua sent un client JACK propi dins de l'amfitrió, així que el so passa per JACK entre l'un i l'altre. Un sol plugin defectuós fa caure tot l'amfitrió."
+      },
+      "chain": {
+        "title": "Cadena",
+        "tags": {
+          "a": "H2 plugin-hostd · <code>chain 1 A B C</code>"
+        },
+        "body": "plugin-hostd primer afegeix cada plugin i després els mou tots a un sol worker com a cadena. El dimoni es queda fora del camí del so i només dona ordres.",
+        "tally": {
+          "a": "workers <b>1</b>",
+          "b": "clients JACK <b>1</b> (omx-clap-host executa una cadena CLAP com un sol client)",
+          "c": "una petada atura <b>la cadena</b>; el culpable queda en quarantena i la resta continua"
+        },
+        "tradeoff": "El so passa d'un plugin a l'altre en memòria quan el worker executa la cadena com un sol client JACK (omx-clap-host); un worker mod-host manté un client per plugin."
+      },
+      "chainAdd": {
+        "title": "Cadena, afegida directament",
+        "tags": {
+          "a": "H2 plugin-hostd · placement <code>chain:1</code>"
+        },
+        "body": "El mateix resultat que una cadena, construït d'una altra manera: cada plugin s'afegeix directament al worker de la cadena i mai no té abans un worker propi. Aquesta fila mesura què costa construir la cadena, no només fer-la funcionar.",
+        "tally": {
+          "a": "workers <b>1</b>",
+          "b": "workers engegats pel camí <b>0</b>"
+        }
+      },
+      "plan": {
+        "title": "Pla",
+        "tags": {
+          "a": "H2 plugin-hostd · grouping on"
+        },
+        "body": "El planificador de plugin-hostd llegeix el pin de cada plugin, el seu cost i el seu historial d'execució. Una seqüència de dos o més veïns que poden compartir es converteix en una cadena (<code>chain:1.&lt;k&gt;</code>); un plugin amb el pin <code>isolated</code> té un worker propi i talla el canal en aquell punt. Amb <code>grouping</code> desactivat, que és el valor per defecte, el pla només es respon i no es mou res. La prova d'agrupació del banc repeteix comp, drive, delay, drive, comp, amb cada drive marcat com a aïllat: a <code>grp8</code> en surten 7 segments i a <code>grp16</code> 13.",
+        "small": "Amb seqüències més llargues de plugins que poden compartir, cada segment entre dos plugins aïllats en porta uns quants com a cadena. El banc rebutja un pla que torna un sol segment, perquè només repetiria la fila de la cadena.",
+        "tradeoff": "L'aïllament que demanen els pins i compartir a tot arreu més."
+      },
+      "pool": {
+        "title": "Pool",
+        "tags": {
+          "a": "H2 plugin-hostd · pla, després pool g1"
+        },
+        "body": "Es parteix del pla. Després cada plugin que el pla ha deixat en un worker propi però que el seu pin deixa compartir es mou a un sol worker de pool compartit. Els plugins aïllats es queden sols.",
+        "tradeoff": "Els mínims processos que encara respecten tots els pins."
+      }
+    },
+    "compare": {
+      "eyebrow": "La comparació",
+      "title": "Cinc files, dues famílies de proves",
+      "intro": "El banc de proves compara cinc files. Quatre amfitrions donen cinc files perquè omx-clap-host es mesura amb els seus dos formats i plugin-hostd es mesura sol i agrupat.",
+      "cols": {
+        "row": "Fila",
+        "host": "Amfitrió",
+        "arrangement": "Disposició",
+        "scenarios": "Escenaris"
+      },
+      "rows": {
+        "jalv": {
+          "row": "1 · jalv",
+          "arrangement": "individual",
+          "scenarios": "cvc i cvl (sempre les versions LV2)"
+        },
+        "modhost": {
+          "row": "2 · mod-host",
+          "arrangement": "procés compartit",
+          "scenarios": "cvc i cvl (sempre les versions LV2)"
+        },
+        "clap": {
+          "row": "3 · omx-clap-host, CLAP",
+          "arrangement": "procés compartit",
+          "scenarios": "cvc3…cvc48"
+        },
+        "lv2": {
+          "row": "4 · omx-clap-host, adaptador LV2",
+          "arrangement": "procés compartit",
+          "scenarios": "cvl3…cvl48"
+        },
+        "hostd": {
+          "row": "5 · plugin-hostd, sol i agrupat",
+          "arrangement": "sol: individual<br>agrupat: cadena, cadena afegida directament, pla, pool",
+          "scenarios": "cvc, cvl<br>grp8, grp16"
+        }
+      },
+      "chains": {
+        "title": "Cadenes contra processos",
+        "body": "<code>cvc3…cvc48</code> (versions CLAP) i <code>cvl3…cvl48</code> (versions LV2): 3, 8, 16, 24, 32 i 48 plugins.",
+        "eg": "Files: plugin-hostd individual, cadena i cadena afegida directament; omx-clap-host i mod-host compartits; jalv individual. La pregunta: quant estalvia agrupar i com es comparen els amfitrions amb els mateixos plugins?"
+      },
+      "grouping": {
+        "title": "Agrupació contra processos",
+        "body": "<code>grp8</code> i <code>grp16</code>: 8 i 16 plugins (comp, drive, delay, drive, comp, repetits), amb cada drive marcat com a aïllat.",
+        "eg": "Files: plugin-hostd individual, cadena, pla i pool. La pregunta: el planificador manté l'aïllament que demanen els pins amb un cost proper al d'una cadena completa?"
+      }
+    },
+    "measured": {
+      "eyebrow": "Què es mesura",
+      "title": "Cada fila, en xifres",
+      "intro": "Les quatre primeres xifres són les que cal comparar primer; les altres les expliquen.",
+      "cols": {
+        "figure": "Xifra",
+        "meaning": "Què vol dir"
+      },
+      "rows": {
+        "dsp": {
+          "figure": "dsp %",
+          "meaning": "Quina part del temps de cada bloc d'àudio passa JACK processant. Més alt vol dir menys marge abans dels clics."
+        },
+        "rss": {
+          "figure": "rss MB",
+          "meaning": "La memòria que ocupen tots els processos de la fila junts."
+        },
+        "add": {
+          "figure": "add ms",
+          "meaning": "Des del primer add fins a l'última resposta: per a les dues files de cadena fins que la cadena funciona, per a jalv fins que l'últim client és al graf. Quant espera algú que munta un canal."
+        },
+        "xruns": {
+          "figure": "xruns",
+          "meaning": "Blocs que han arribat massa tard: clics que se senten durant la finestra de mesura."
+        },
+        "latency": {
+          "figure": "latència en frames",
+          "meaning": "El retard de la font a la sortida, en frames, tal com JACK l'informa al port de sortida: la suma del que declara cada client del camí. Dividiu-lo per la freqüència de mostratge per tenir mil·lisegons (256 frames a 48000 Hz són 5,3 ms). És la latència declarada del camí; plugin-qualify mesura la latència real de cada plugin per separat i desa totes dues als seus registres."
+        },
+        "processes": {
+          "figure": "processos · clients JACK",
+          "meaning": "Quants programes executa la fila i quants surten al graf de JACK. És on les disposicions es diferencien més a la vista."
+        },
+        "pss": {
+          "figure": "rss · pss MB",
+          "meaning": "La memòria de tots els processos de la fila junts: rss compta les biblioteques compartides a cada procés, pss les reparteix de manera justa entre processos."
+        },
+        "cpu": {
+          "figure": "cpu %",
+          "meaning": "El temps de CPU que han fet servir els processos de la fila durant la finestra, al costat de la càrrega DSP de JACK."
+        },
+        "ctx": {
+          "figure": "canvis de context",
+          "meaning": "Quantes vegades han estat desplaçats els processos i el mateix jackd; els canvis involuntaris són els que roben temps a l'àudio."
+        },
+        "recover": {
+          "figure": "recover ms",
+          "meaning": "A la prova de matar: quant triga plugin-hostd a tornar a posar un worker després que el maten."
+        },
+        "level": {
+          "figure": "nivell de sortida",
+          "meaning": "La sortida s'enregistra durant un segon i se'n comprova el nivell, de manera que una fila que ha funcionat però ha donat silenci no compta mai com a correcta."
+        }
+      },
+      "runs": "Cada fila s'executa dues vegades: en una màquina tranquil·la i al costat d'una càrrega d'estrès (nuclis de CPU ocupats i pressió de memòria), a cada freqüència de mostratge i mida de bloc. Una fila les tres repeticions de la qual difereixen en càrrega DSP més d'un 10% (i més de 0,3 punts) es torna a executar un cop tota sola i després es marca com a inestable. Una fila en silenci també és inestable, com ho és un nivell de sortida que s'aparta més d'1 dB de la fila d'un plugin per worker.",
+      "callout": "Les xifres de referència surten d'un servidor JACK privat amb el driver dummy i prioritat de temps real, igual en un contenidor a cada màquina. Una execució amb una interfície d'àudio real (<code>--alsa hw:X</code>) és el nivell de maquinari: mostra la latència i els xruns d'aquella interfície i no es compara amb la referència.",
+      "docs": "La pàgina completa, amb dibuixos, és a la documentació de plugin-hostd: {link}."
+    }
+  }
+}

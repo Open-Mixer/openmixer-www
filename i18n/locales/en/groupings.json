@@ -1,0 +1,287 @@
+{
+  "groupings": {
+    "seo": {
+      "title": "Plugin Hosting Groupings {'|'} plugin-hostd {'|'} OpenMixer",
+      "description": "How plugin-hostd and the other hosts pack the same plugins into programs, what each arrangement trades, and what the benchmark measures for each."
+    },
+    "hero": {
+      "eyebrow": "OpenMixer · plugin-hostd bench",
+      "title": "Plugin Hosting Groupings",
+      "lede": "When the console runs effects and instruments, the same plugins can be packed into programs in different ways. Each way trades CPU and memory against safety: how much else a crashing plugin takes down with it. The benchmark measures each way side by side. This page explains the words and draws every arrangement."
+    },
+    "words": {
+      "eyebrow": "The words",
+      "title": "Six things nest inside each other",
+      "intro": "Every arrangement below is built from the same pieces, always nested in the same order. The colours stay the same in every drawing on this page.",
+      "jack": {
+        "name": "JACK graph",
+        "body": "The audio engine that moves sound between programs, one block of samples at a time, at one sample rate (48000, 96000…) and one block size, the quantum (64, 128, 256, 512 frames).",
+        "eg": "Each program in the graph is a JACK client with its own ports. Every block, JACK wakes each client in order; a client that is late causes an xrun, an audible click."
+      },
+      "plugin": {
+        "name": "Plugin",
+        "body": "One effect or instrument: a compressor, a delay, a synth. It is a library (CLAP or LV2), not a program: it only runs inside a host.",
+        "eg": "CLAP and LV2 are the two plugin formats. Some plugins ship in both."
+      },
+      "proc": {
+        "name": "Process",
+        "body": "A running program with its own memory. If a plugin inside it crashes, the whole process dies, along with every other plugin in it.",
+        "eg": "More processes: more isolation, more memory, more switching between them every block."
+      },
+      "worker": {
+        "name": "Worker",
+        "body": "A process that plugin-hostd starts to run plugins. plugin-hostd itself (the daemon) only takes commands; the sound runs in its workers.",
+        "eg": "The daemon decides how many workers there are and which plugins each one holds."
+      },
+      "chain": {
+        "name": "Chain",
+        "body": "Plugins joined in series inside one worker: the output of one feeds the next directly, in memory, without going back out through JACK between them.",
+        "eg": "Cheapest way to run several plugins; one crash stops the whole chain."
+      },
+      "pool": {
+        "name": "Pool",
+        "body": "One shared worker that takes in the plugins that are allowed to share, wherever they sit in the signal path, so they do not each need a worker of their own.",
+        "eg": "Plugins marked \"isolated\" never enter a pool."
+      },
+      "more": "Two more words matter. A <b>host</b> is the program that loads plugins: four are compared (below). A <b>pin</b> is the qualification verdict stored for each plugin: <code>in-process</code> means it may share a process, <code>isolated</code> means it must run alone because it misbehaved when measured (it crashed, hung, or broke real-time rules)."
+    },
+    "hosts": {
+      "eyebrow": "The four hosts",
+      "title": "Who loads the plugins",
+      "cols": {
+        "bench": "In the bench",
+        "host": "Host",
+        "what": "What it is",
+        "formats": "Formats"
+      },
+      "h1": {
+        "what": "OpenMixer's own host: one process holding many plugins.",
+        "formats": "CLAP, and LV2 through its adapter"
+      },
+      "h2": {
+        "what": "OpenMixer's supervisor: a daemon that runs plugins in workers and can group them (chains, plans, pools). Its workers are omx-clap-host processes.",
+        "formats": "CLAP and LV2"
+      },
+      "h3": {
+        "what": "The reference host from the MOD project: one process holding many plugins.",
+        "formats": "LV2"
+      },
+      "h4": {
+        "what": "The reference minimal host: one process per plugin, always.",
+        "formats": "LV2"
+      }
+    },
+    "kinds": {
+      "jack": "JACK graph",
+      "proc": "process",
+      "worker": "worker",
+      "chain": "chain",
+      "pool": "pool",
+      "iso": "isolated"
+    },
+    "fig": {
+      "jack": "JACK graph",
+      "sine": "sine",
+      "in": "in",
+      "out": "out",
+      "worker": "worker",
+      "workerN": "worker {n}",
+      "segmentN": "segment {n}",
+      "isolated": "isolated",
+      "chain1": "chain 1",
+      "hostProcess": "host process",
+      "daemon": "plugin-hostd daemon",
+      "daemonNote": "commands only, no sound",
+      "clients3": "3 clients",
+      "oneHost": "1 host",
+      "segments5": "5 segments",
+      "addTo": "add {p} → chain 1",
+      "pool": "pool g1",
+      "poolNote": "shareable plugins",
+      "poolGraphNote": "on grp8: 5 workers with the pool, 7 with the plan, 8 one per plugin",
+      "poolFlow": "The signal still flows comp → drive → delay → drive → comp through JACK; the pool only changes which worker holds each plugin.",
+      "segments3": "3 segments",
+      "chain": "chain"
+    },
+    "modes": {
+      "eyebrow": "The arrangements",
+      "title": "Six ways to run the same plugins",
+      "intro": "Each drawing runs the same three plugins, A → B → C, between a test signal (a sine wave, or chords for instruments) and the output.",
+      "individual": {
+        "title": "Individual",
+        "tags": {
+          "a": "H2 plugin-hostd · placement own",
+          "b": "H4 jalv, always"
+        },
+        "body": "Every plugin gets a process of its own. Sound goes out through JACK and back in between each plugin.",
+        "tally": {
+          "a": "processes <b>3</b>",
+          "b": "JACK clients <b>3</b>",
+          "c": "a crash stops <b>1 plugin</b>"
+        },
+        "tradeoff": "Safest, and the most expensive: three programs in memory, and JACK switches between three processes every block."
+      },
+      "shared": {
+        "title": "Shared process",
+        "tags": {
+          "a": "H1 omx-clap-host",
+          "b": "H3 mod-host"
+        },
+        "body": "One host program holds every plugin and connects them itself.",
+        "tally": {
+          "a": "processes <b>1</b>",
+          "b": "JACK clients <b>3</b> (one per plugin, linked through JACK)",
+          "c": "a crash stops <b>all 3</b>"
+        },
+        "tradeoff": "Cheapest in memory. Each plugin is still a JACK client of its own inside the host, so sound goes through JACK between them. A single faulty plugin takes the whole host down."
+      },
+      "chain": {
+        "title": "Chain",
+        "tags": {
+          "a": "H2 plugin-hostd · <code>chain 1 A B C</code>"
+        },
+        "body": "plugin-hostd first adds each plugin, then moves them all into one worker as a chain. The daemon stays outside the sound path and only gives orders.",
+        "tally": {
+          "a": "workers <b>1</b>",
+          "b": "JACK clients <b>1</b> (omx-clap-host runs a CLAP chain as one client)",
+          "c": "a crash stops <b>the chain</b>; the culprit is quarantined and the rest go on"
+        },
+        "tradeoff": "The sound passes from plugin to plugin in memory when the worker runs the chain as one JACK client (omx-clap-host); a mod-host worker keeps one client per plugin."
+      },
+      "chainAdd": {
+        "title": "Chain, added in place",
+        "tags": {
+          "a": "H2 plugin-hostd · placement <code>chain:1</code>"
+        },
+        "body": "The same result as a chain, built differently: each plugin is added straight into the chain's worker and never gets a worker of its own first. This row measures what it costs to build the chain, not only to run it.",
+        "tally": {
+          "a": "workers <b>1</b>",
+          "b": "workers started on the way <b>0</b>"
+        }
+      },
+      "plan": {
+        "title": "Plan",
+        "tags": {
+          "a": "H2 plugin-hostd · grouping on"
+        },
+        "body": "plugin-hostd's planner reads every plugin's pin, its cost and its running history. A run of two or more neighbours that may share becomes a chain (<code>chain:1.&lt;k&gt;</code>); a plugin pinned <code>isolated</code> gets a worker of its own and cuts the strip there. With <code>grouping</code> off, the default, the plan is only answered and nothing moves. The bench's grouping test repeats comp, drive, delay, drive, comp, with every drive pinned isolated: on <code>grp8</code> that comes to 7 segments, on <code>grp16</code> to 13.",
+        "small": "With longer runs of shareable plugins, each segment between two isolated plugins holds several of them as a chain. The bench refuses a plan that comes back as one single segment, since that would just repeat the chain row.",
+        "tradeoff": "The isolation the pins ask for, and sharing everywhere else."
+      },
+      "pool": {
+        "title": "Pool",
+        "tags": {
+          "a": "H2 plugin-hostd · plan, then pool g1"
+        },
+        "body": "Start from the plan. Then every plugin the plan left in a worker of its own, but that its pin allows to share, moves into one shared pool worker. Isolated plugins stay alone.",
+        "tradeoff": "The fewest processes that still respect every pin."
+      }
+    },
+    "compare": {
+      "eyebrow": "The comparison",
+      "title": "Five rows, two test families",
+      "intro": "The benchmark compares five rows. Four hosts make five rows because omx-clap-host is measured on both of its formats, and plugin-hostd is measured both single and grouped.",
+      "cols": {
+        "row": "Row",
+        "host": "Host",
+        "arrangement": "Arrangement",
+        "scenarios": "Scenarios"
+      },
+      "rows": {
+        "jalv": {
+          "row": "1 · jalv",
+          "arrangement": "individual",
+          "scenarios": "cvc and cvl (always the LV2 builds)"
+        },
+        "modhost": {
+          "row": "2 · mod-host",
+          "arrangement": "shared process",
+          "scenarios": "cvc and cvl (always the LV2 builds)"
+        },
+        "clap": {
+          "row": "3 · omx-clap-host, CLAP",
+          "arrangement": "shared process",
+          "scenarios": "cvc3…cvc48"
+        },
+        "lv2": {
+          "row": "4 · omx-clap-host, LV2 adapter",
+          "arrangement": "shared process",
+          "scenarios": "cvl3…cvl48"
+        },
+        "hostd": {
+          "row": "5 · plugin-hostd, single and grouped",
+          "arrangement": "single: individual<br>grouped: chain, chain added in place, plan, pool",
+          "scenarios": "cvc, cvl<br>grp8, grp16"
+        }
+      },
+      "chains": {
+        "title": "Chains vs processes",
+        "body": "<code>cvc3…cvc48</code> (CLAP builds) and <code>cvl3…cvl48</code> (LV2 builds): 3, 8, 16, 24, 32 and 48 plugins.",
+        "eg": "Rows: plugin-hostd individual, chain and chain added in place; omx-clap-host and mod-host shared; jalv individual. It asks: how much does grouping save, and how do the hosts compare on the same plugins?"
+      },
+      "grouping": {
+        "title": "Grouping vs processes",
+        "body": "<code>grp8</code> and <code>grp16</code>: 8 and 16 plugins (comp, drive, delay, drive, comp, repeated), every drive pinned isolated.",
+        "eg": "Rows: plugin-hostd individual, chain, plan and pool. It asks: does the planner keep the isolation the pins ask for while costing close to a full chain?"
+      }
+    },
+    "measured": {
+      "eyebrow": "What is measured",
+      "title": "Each row, in numbers",
+      "intro": "The first four figures are the ones to compare first; the rest explain them.",
+      "cols": {
+        "figure": "Figure",
+        "meaning": "Meaning"
+      },
+      "rows": {
+        "dsp": {
+          "figure": "dsp %",
+          "meaning": "How much of each audio block's time JACK spends processing. Higher means less room before clicks."
+        },
+        "rss": {
+          "figure": "rss MB",
+          "meaning": "Memory held by every process of the row together."
+        },
+        "add": {
+          "figure": "add ms",
+          "meaning": "From the first add to the last reply: for the two chain rows until the chain runs, for jalv until the last client is in the graph. How long a user waits when building a strip."
+        },
+        "xruns": {
+          "figure": "xruns",
+          "meaning": "Blocks that came too late: audible clicks during the measuring window."
+        },
+        "latency": {
+          "figure": "latency frames",
+          "meaning": "The delay from the source to the output, in frames, as JACK reports it at the output port: the sum of what every client on the path declares. Divide by the sample rate for milliseconds (256 frames at 48000 Hz is 5.3 ms). This is the declared path latency; plugin-qualify measures each plugin's real latency separately and keeps both in its records."
+        },
+        "processes": {
+          "figure": "processes · JACK clients",
+          "meaning": "How many programs the row runs, and how many of them appear in the JACK graph. This is where the arrangements differ most visibly."
+        },
+        "pss": {
+          "figure": "rss · pss MB",
+          "meaning": "Memory of all the row's processes together: rss counts shared libraries in every process, pss splits them fairly between processes."
+        },
+        "cpu": {
+          "figure": "cpu %",
+          "meaning": "CPU time the row's processes used over the window, beside JACK's own DSP load."
+        },
+        "ctx": {
+          "figure": "context switches",
+          "meaning": "How often the processes, and jackd itself, were switched out; involuntary switches are the ones that steal time from audio."
+        },
+        "recover": {
+          "figure": "recover ms",
+          "meaning": "In the kill test: how long plugin-hostd takes to put a worker back after it is killed."
+        },
+        "level": {
+          "figure": "output level",
+          "meaning": "The output is recorded for a second and its level checked, so a row that ran but produced silence never counts as a pass."
+        }
+      },
+      "runs": "Every row runs twice: on a quiet machine, and beside a stress load (busy CPU cores and memory pressure), at each sample rate and block size. A row whose three repeats differ in DSP load by more than 10% (and more than 0.3 points) is run again once on its own, then marked unstable. A silent row is unstable too, and so is an output level more than 1 dB off the one-per-worker row.",
+      "callout": "The reference figures come from a private JACK server on the dummy driver with real-time priority, the same in a container on every machine. A run on a real audio interface (<code>--alsa hw:X</code>) is the hardware tier: it shows that interface's latency and xruns and is not compared with the reference.",
+      "docs": "The full page, with drawings, is in plugin-hostd's documentation: {link}."
+    }
+  }
+}
