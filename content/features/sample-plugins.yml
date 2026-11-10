@@ -8,7 +8,8 @@ surfaces:
     state: released
     version: omx-clap-host 0.31.0
   zynthian:
-    state: merged
+    state: released
+    version: zynthian-ui omx-track 2026110701
   console:
     state: none
 detail: /docs/zynthian#use
@@ -16,11 +17,11 @@ card:
   en:
     title: A sampler loads its own sample
     line: A sample-based plugin such as samplv1 takes its sample file from the host and plays it.
-    text: "The host now writes a plugin's file and text properties through patch_set and reads them back with patch_get, so a path with spaces in it works too. It is released in omx-clap-core and merged in the Zynthian interface. sfizz is not covered: Zynthian runs sfizz_jack, not an LV2 plugin."
+    text: "The host writes a plugin's file and text properties through patch_set and reads them back with patch_get, so a path with spaces in it works too. sfizz is not covered: Zynthian runs sfizz_jack, not an LV2 plugin."
   ca:
     title: Un sampler carrega la seva mostra
     line: Un plugin basat en mostres, com samplv1, rep el fitxer de mostra de l'amfitrió i el reprodueix.
-    text: "L'amfitrió ara escriu les propietats de fitxer i de text d'un plugin amb patch_set i les llegeix amb patch_get, de manera que també funciona un camí amb espais. Està publicat a omx-clap-core i integrat a la interfície de Zynthian. sfizz no hi és: Zynthian fa servir sfizz_jack, no un plugin LV2."
+    text: "L'amfitrió escriu les propietats de fitxer i de text d'un plugin amb patch_set i les llegeix amb patch_get, de manera que també funciona un camí amb espais. sfizz no hi és: Zynthian fa servir sfizz_jack, no un plugin LV2."
 proof:
   - kind: bench
     rate: 48000 and 96000 Hz, 128 frames

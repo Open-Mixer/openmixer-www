@@ -8,7 +8,8 @@ surfaces:
     state: released
     version: omx-panel 0.12.0
   zynthian:
-    state: merged
+    state: released
+    version: zynthian-ui omx-track 2026110701
   console:
     state: none
 detail: /notes/from-a-plugin-file-to-a-page

@@ -8,9 +8,11 @@ surfaces:
     state: released
     version: omx-plugins 0.19.1
   zynthian:
-    state: merged
+    state: released
+    version: omx-plugins 0.19.1
   console:
-    state: merged
+    state: released
+    version: omx-plugins 0.18.0
 detail: /docs/plugins-shipped
 card:
   en:

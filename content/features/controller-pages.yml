@@ -7,7 +7,8 @@ surfaces:
   libraries:
     state: none
   zynthian:
-    state: merged
+    state: released
+    version: zynthian-ui omx-track 2026110701
   console:
     state: none
 detail: /notes/why-lv2-plugins-on-zynthian-need-inferred-port-groups

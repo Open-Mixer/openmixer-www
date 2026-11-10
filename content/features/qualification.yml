@@ -8,9 +8,11 @@ surfaces:
     state: released
     version: plugin-qualify 0.20.0, plugin-qualification-records 2026110901
   zynthian:
-    state: merged
+    state: released
+    version: zynthian-ui omx-track 2026110701, zynthian-sys omx-track 2026110701
   console:
-    state: merged
+    state: released
+    version: plugin-qualify 0.18.5
 detail: /notes/from-a-plugin-file-to-a-page
 card:
   en:
