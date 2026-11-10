@@ -3,6 +3,7 @@ id: image
 title: The Zynthian image
 manual: []
 public: false
+shelved: true
 surfaces:
   libraries:
     state: none

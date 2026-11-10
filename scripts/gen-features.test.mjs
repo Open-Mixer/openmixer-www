@@ -148,6 +148,13 @@ test('the cards file carries the cards only', () => {
   assert.deepEqual(out.cards.map((c) => c.id), ['b']);
 });
 
+test('a shelved card stays in its record and leaves the cards file', () => {
+  assert.equal(probs(card({ shelved: true })), '');
+  assert.match(probs(card({ shelved: 'yes' })), /shelved must be true or false/);
+  const out = JSON.parse(cardsJson([{ ...card(), id: 'a', shelved: true }, { ...card(), id: 'b', shelved: false }, { ...card(), id: 'c' }]));
+  assert.deepEqual(out.cards.map((c) => c.id), ['b', 'c']);
+});
+
 test('--verify on the tree: hand-written card text in a page or a message file is red, a hand edit of the cards file is red', () => {
   const dir = tree();
   assert.equal(verify(dir).status, 0, verify(dir).stderr);

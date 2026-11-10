@@ -9,9 +9,10 @@ public: true
 surfaces:
   libraries:
     state: released
-    version: omx-clap-host 0.30.0
+    version: omx-clap-host 0.31.0
   zynthian:
-    state: merged
+    state: released
+    version: zynthian-sys omx-track 2026110701
   console:
     state: coming
 detail: /notes/the-lv2-adapter-against-mod-host-and-jalv

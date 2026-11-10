@@ -6,10 +6,10 @@ public: false
 surfaces:
   libraries:
     state: released
-    version: plugin-hostd 0.19.0
+    version: plugin-hostd 0.20.0
   zynthian:
     state: released
-    version: zynthian-sys omx-track 2026110102
+    version: zynthian-sys omx-track 2026110701
   console:
     state: released
     version: plugin-hostd 0.16.0

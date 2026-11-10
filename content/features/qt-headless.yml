@@ -6,7 +6,7 @@ public: false
 surfaces:
   libraries:
     state: released
-    version: omx-clap-core 0.30.2, plugin-hostd 0.19.1
+    version: omx-clap-core 0.31.0, plugin-hostd 0.20.0
   zynthian:
     state: none
   console:

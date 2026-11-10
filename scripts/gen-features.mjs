@@ -22,6 +22,7 @@
 //   proof     [{ kind: bench | test, with, rate?, figure?, en, ca }]   `with` names the versions the figure was
 //             read with; a bench names its rate; a text that names mod-host or jalv names both
 //   detail    the page that explains it: /notes/<slug>, /docs/<page>[#id] or /benchmarks
+//   shelved   true: the card is kept in its record but shown on no page (work that is not planned yet)
 //
 // A record that has a card and no `state` is a card only: manual [] and public false.
 //
@@ -49,7 +50,7 @@ export const STATES = ['building', 'measured', 'live'];
 export const LANGS = ['en', 'ca'];
 const KEYS = ['id', 'title', 'state', 'manual', 'public'];
 /** The keys that carry the selling points. `--sync` copies KEYS from the console and keeps these as they are. */
-export const EXT = ['confirmed', 'surfaces', 'detail', 'card', 'proof'];
+export const EXT = ['confirmed', 'surfaces', 'detail', 'card', 'proof', 'shelved'];
 export const SURFACES = ['console', 'zynthian', 'libraries'];
 export const SURFACE_STATES = ['released', 'merged', 'coming', 'to-confirm', 'none'];
 const CARD_KEYS = ['title', 'line', 'text'];
@@ -118,6 +119,7 @@ const VERSION = /\b\d+\.\d+(?:\.\d+)?\b|\b\d{10}\b/;
 export function cardProblems(file, r) {
   const out = [];
   const bad = (m) => out.push(`${file}: ${m}`);
+  if ('shelved' in r && typeof r.shelved !== 'boolean') bad('shelved must be true or false');
   if (typeof r.card !== 'object' || r.card === null) bad('no card');
   else {
     for (const lang of LANGS) {
@@ -172,7 +174,7 @@ export function cardProblems(file, r) {
 /** The sold features: every record with a card, in the order the site shows them. */
 export function cardsJson(records) {
   const cards = records
-    .filter((r) => r.card)
+    .filter((r) => r.card && r.shelved !== true)
     .map(({ id, title, surfaces, detail, card, proof, state, public: pub }) => ({ id, title, row: Boolean(state && pub), surfaces, detail, card, proof }));
   return `${JSON.stringify({ generated: 'scripts/gen-features.mjs from content/features; do not edit', cards }, null, 2)}\n`;
 }
