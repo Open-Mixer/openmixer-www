@@ -7,6 +7,7 @@
  * and the last line links to it at the recorded commit.
  */
 const { t } = useI18n();
+const sitePath = useSitePath();
 
 useSeoMeta({
   title: () => t('groupings.seo.title'),
@@ -40,13 +41,13 @@ const hostRows = computed(() =>
 );
 
 type ModeKey = 'individual' | 'shared' | 'chain' | 'chainAdd' | 'plan' | 'pool';
-const MODES: { key: ModeKey; figure: 'individual' | 'shared' | 'chain' | 'chain-add' | 'plan' | 'pool'; tags: string[]; tally: string[]; small?: boolean; tradeoff: boolean }[] = [
+const MODES: { key: ModeKey; figure: 'individual' | 'shared' | 'chain' | 'chain-add' | 'plan' | 'pool'; tags: string[]; tally: string[]; small?: boolean; tradeoff: boolean; more?: string }[] = [
   { key: 'individual', figure: 'individual', tags: ['a', 'b'], tally: ['a', 'b', 'c'], tradeoff: true },
   { key: 'shared', figure: 'shared', tags: ['a', 'b'], tally: ['a', 'b', 'c'], tradeoff: true },
   { key: 'chain', figure: 'chain', tags: ['a'], tally: ['a', 'b', 'c'], tradeoff: true },
   { key: 'chainAdd', figure: 'chain-add', tags: ['a'], tally: ['a', 'b'], tradeoff: false },
-  { key: 'plan', figure: 'plan', tags: ['a'], tally: [], small: true, tradeoff: true },
-  { key: 'pool', figure: 'pool', tags: ['a'], tally: [], tradeoff: true },
+  { key: 'plan', figure: 'plan', tags: ['a'], tally: [], small: true, tradeoff: true, more: '/notes/the-grouping-planner' },
+  { key: 'pool', figure: 'pool', tags: ['a'], tally: [], tradeoff: true, more: '/projects/plugin-hostd/placement' },
 ];
 
 const compareColumns = computed(() => [
@@ -150,6 +151,7 @@ const cardUi = { root: 'rounded-xl border border-edge bg-surface ring-0 divide-y
             </div>
             <p v-if="m.small" class="text-sm leading-relaxed text-ink-dim">{{ t(`groupings.modes.${m.key}.small`) }}</p>
             <p v-if="m.tradeoff" class="text-[15px] leading-relaxed text-ink">{{ t(`groupings.modes.${m.key}.tradeoff`) }}</p>
+            <p v-if="m.more" class="text-[15px]"><NuxtLink :to="sitePath(m.more)" class="text-accent hover:underline">{{ t(`groupings.modes.${m.key}.more`) }}</NuxtLink></p>
           </UCard>
         </div>
       </div>

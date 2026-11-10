@@ -166,7 +166,8 @@
         },
         "body": "plugin-hostd's planner reads every plugin's pin, its cost and its running history. A run of two or more neighbours that may share becomes a chain (<code>chain:1.&lt;k&gt;</code>); a plugin pinned <code>isolated</code> gets a worker of its own and cuts the strip there. With <code>grouping</code> off, the default, the plan is only answered and nothing moves. The bench's grouping test repeats comp, drive, delay, drive, comp, with every drive pinned isolated: on <code>grp8</code> that comes to 7 segments, on <code>grp16</code> to 13.",
         "small": "With longer runs of shareable plugins, each segment between two isolated plugins holds several of them as a chain. The bench refuses a plan that comes back as one single segment, since that would just repeat the chain row.",
-        "tradeoff": "The isolation the pins ask for, and sharing everywhere else."
+        "tradeoff": "The isolation the pins ask for, and sharing everywhere else.",
+        "more": "How the planner chooses the segments: the grouping planner"
       },
       "pool": {
         "title": "Pool",
@@ -174,7 +175,8 @@
           "a": "H2 plugin-hostd · plan, then pool g1"
         },
         "body": "Start from the plan. Then every plugin the plan left in a worker of its own, but that its pin allows to share, moves into one shared pool worker. Isolated plugins stay alone.",
-        "tradeoff": "The fewest processes that still respect every pin."
+        "tradeoff": "The fewest processes that still respect every pin.",
+        "more": "How pools are placed and reported: plugin-hostd placement"
       }
     },
     "compare": {

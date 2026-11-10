@@ -166,7 +166,8 @@
         },
         "body": "El planificador de plugin-hostd llegeix el pin de cada plugin, el seu cost i el seu historial d'execució. Una seqüència de dos o més veïns que poden compartir es converteix en una cadena (<code>chain:1.&lt;k&gt;</code>); un plugin amb el pin <code>isolated</code> té un worker propi i talla el canal en aquell punt. Amb <code>grouping</code> desactivat, que és el valor per defecte, el pla només es respon i no es mou res. La prova d'agrupació del banc repeteix comp, drive, delay, drive, comp, amb cada drive marcat com a aïllat: a <code>grp8</code> en surten 7 segments i a <code>grp16</code> 13.",
         "small": "Amb seqüències més llargues de plugins que poden compartir, cada segment entre dos plugins aïllats en porta uns quants com a cadena. El banc rebutja un pla que torna un sol segment, perquè només repetiria la fila de la cadena.",
-        "tradeoff": "L'aïllament que demanen els pins i compartir a tot arreu més."
+        "tradeoff": "L'aïllament que demanen els pins i compartir a tot arreu més.",
+        "more": "Com el planificador tria els segments: el planificador d'agrupacions"
       },
       "pool": {
         "title": "Pool",
@@ -174,7 +175,8 @@
           "a": "H2 plugin-hostd · pla, després pool g1"
         },
         "body": "Es parteix del pla. Després cada plugin que el pla ha deixat en un worker propi però que el seu pin deixa compartir es mou a un sol worker de pool compartit. Els plugins aïllats es queden sols.",
-        "tradeoff": "Els mínims processos que encara respecten tots els pins."
+        "tradeoff": "Els mínims processos que encara respecten tots els pins.",
+        "more": "Com es col·loquen i es descriuen els pools: la col·locació de plugin-hostd"
       }
     },
     "compare": {
