@@ -31,6 +31,10 @@ worker replays it like a respawn: the add, the state, the verb ledger and the co
 again gives it the new order; a member left out goes back to a worker of its own. `chain_clear` gives every member a
 worker of its own and forgets the chain.
 
+```figure
+chain
+```
+
 `chain_get` reads a chain back: its worker, its members in the declared order, and the members its worker runs now. A
 quarantined member is in the declared list and not in the running one. It is the controller's check that an add, a move
 or a remove landed.

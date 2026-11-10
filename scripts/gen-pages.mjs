@@ -76,8 +76,33 @@ export function noteRefusals(text) {
   return out;
 }
 
+/**
+ * The drawings a note may place with a fenced block whose info string is `figure` and whose one line names the drawing:
+ *
+ *     ```figure
+ *     segments
+ *     ```
+ *
+ * It renders as an empty `<div data-figure="segments">`, and the note page draws app/components/GroupingFigure.vue
+ * there, in the page's language. Must match GroupingFigureName in that component.
+ */
+export const GROUPING_FIGURES = ['individual', 'shared', 'chain', 'chain-add', 'plan', 'pool', 'segments'];
+
+/** The drawings a markdown body names, in order: the two languages of a note must place the same ones. */
+export function figuresOf(body) {
+  return [...body.matchAll(/^```figure\n([^\n]*)\n```$/gm)].map((x) => x[1].trim());
+}
+
 function md() {
   const m = new MarkdownIt({ html: false, linkify: false, typographer: false });
+  const defaultFence = m.renderer.rules.fence;
+  m.renderer.rules.fence = (tokens, idx, opts, env, self) => {
+    const t = tokens[idx];
+    if (t.info.trim() !== 'figure') return defaultFence(tokens, idx, opts, env, self);
+    const name = t.content.trim();
+    if (!GROUPING_FIGURES.includes(name)) throw new Error(`a figure named "${name}" (known: ${GROUPING_FIGURES.join(', ')})`);
+    return `<div data-figure="${name}"></div>\n`;
+  };
   const slugs = new Map();
   m.core.ruler.push('anchors', (state) => {
     for (let i = 0; i < state.tokens.length; i++) {
@@ -139,11 +164,17 @@ function renderNotes() {
     const shape = JSON.stringify(headingShape(byLang.en.body));
     for (const l of LANGS.slice(1)) {
       if (JSON.stringify(headingShape(byLang[l].body)) !== shape) errors.push(`note ${slug}: the ${l} headings are not the en headings`);
+      if (JSON.stringify(figuresOf(byLang[l].body)) !== JSON.stringify(figuresOf(byLang.en.body))) errors.push(`note ${slug}: the ${l} figures are not the en figures`);
     }
     for (const l of LANGS) {
       const { meta, body } = byLang[l];
       m.resetSlugs();
-      const html = m.render(body);
+      let html = '';
+      try {
+        html = m.render(body);
+      } catch (e) {
+        errors.push(`content/technical-notes/${slug}.${l}.md: ${e.message}`);
+      }
       m.resetSlugs();
       out[l].push({ slug, order: Number(meta.order ?? 99), title: meta.title, summary: meta.summary, measured: meta.measured, topic: meta.topic ?? '', toc: toc(m, body), html });
     }
@@ -262,6 +293,29 @@ function selfTest() {
       console.log(`FAIL ${what}: ${JSON.stringify(got)}`);
       fail = 1;
     }
+  }
+  const fm = md();
+  const drawn = fm.render('```figure\nplan\n```\n');
+  if (drawn.trim() === '<div data-figure="plan"></div>') console.log('ok   a figure block renders as its placeholder');
+  else {
+    console.log(`FAIL a figure block rendered as ${JSON.stringify(drawn)}`);
+    fail = 1;
+  }
+  let refused = false;
+  try {
+    fm.render('```figure\nnonesuch\n```\n');
+  } catch {
+    refused = true;
+  }
+  if (refused) console.log('ok   an unknown figure is refused');
+  else {
+    console.log('FAIL an unknown figure rendered');
+    fail = 1;
+  }
+  if (JSON.stringify(figuresOf('x\n```figure\npool\n```\n')) === '["pool"]') console.log('ok   the figures of a body are read');
+  else {
+    console.log('FAIL the figures of a body are not read');
+    fail = 1;
   }
   const a = headingShape('## A\n### B\n## C');
   const b = headingShape('## A\n## C');

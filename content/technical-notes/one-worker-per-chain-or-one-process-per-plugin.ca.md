@@ -11,6 +11,18 @@ mateix Zynthian són als dos extrems: jalv fa córrer un procés per plugin, mod
 xifres són a [plugin-hostd en una Raspberry Pi 5](/ca/notes/plugin-hostd-on-a-raspberry-pi-5) i a la [pàgina de bancs de
 proves](/ca/benchmarks); mesuren el dimoni directament en un graf JACK privat, no a través del motor de Zynthian.
 
+```figure
+chain
+```
+
+```figure
+individual
+```
+
+```figure
+shared
+```
+
 ## Què hi guanyes agrupant
 
 - **Memòria.** 24 plugins en una sola cadena ocupen 64,1 MB de memòria proporcional, contra 183,1 MB amb un worker per
