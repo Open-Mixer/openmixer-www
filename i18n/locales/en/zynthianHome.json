@@ -17,5 +17,6 @@
     "figuresTitle": "The figures",
     "figuresIntro": "Each figure names the versions it was read with, and every comparison names mod-host and jalv.",
     "notes": "All the notes and benchmarks"
-  }
+  },
+  "interim": "Interim Zynthian figures (preliminary)"
 }
