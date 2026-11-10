@@ -34,6 +34,10 @@ left alone gets one reason code.
 Segments are runs of consecutive members because a chain is one callback in the declared order, and a member left out of
 the middle must keep its place in the signal path. So `A B C D E` with `C` unfit becomes `[A B] [C] [D E]`.
 
+```figure
+segments
+```
+
 **Rules, in this order; the first that matches a member decides it.**
 
 | reason | when | the member |
@@ -57,6 +61,10 @@ known), and the reasons say `cost-assumed`.
 
 A member left alone only because it was next to an unfit one may share a pool with such members of other chains. A pool
 saves resident memory, not wake-ups: each member stays a JACK client. Two chains never share a chain worker.
+
+```figure
+pool
+```
 
 ## The verbs
 

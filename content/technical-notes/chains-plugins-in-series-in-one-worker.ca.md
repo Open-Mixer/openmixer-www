@@ -32,6 +32,10 @@ el reprodueix com en un reinici: l'addició, l'estat, el registre de verbs i les
 declarar una cadena li dona l'ordre nou; un membre que hi queda fora torna a un worker propi. `chain_clear` dona a cada
 membre un worker propi i oblida la cadena.
 
+```figure
+chain
+```
+
 `chain_get` llegeix una cadena: el seu worker, els membres en l'ordre declarat i els que el worker fa córrer ara. Un membre
 en quarantena és a la llista declarada i no a la que corre. És la comprovació del controlador que una addició, un moviment
 o una retirada han arribat.
