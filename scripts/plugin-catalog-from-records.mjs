@@ -30,7 +30,12 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const here = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const TARBALL = 'https://codeload.github.com/FreeMixer';
+/** The organization that hosts the record repositories: the workflow's own owner, never a default. */
+const tarball = () => {
+  const o = process.env.GITHUB_REPOSITORY_OWNER;
+  if (!o) throw new Error('plugin-catalog: GITHUB_REPOSITORY_OWNER is not set (the organization the records live in)');
+  return `https://codeload.github.com/${o}`;
+};
 export const SCHEMA_VERSION = 2;
 
 const RECORD = '.qualification.json';
@@ -234,8 +239,8 @@ function checkout(pin, commit, local) {
     return { dir: local, cleanup: () => {} };
   }
   const tmp = mkdtempSync(join(tmpdir(), 'omx-records-'));
-  return fetch(`${TARBALL}/${pin.repo}/tar.gz/${commit}`).then(async (res) => {
-    if (!res.ok) fail(`${TARBALL}/${pin.repo}/tar.gz/${commit}`, `HTTP ${res.status}`);
+  return fetch(`${tarball()}/${pin.repo}/tar.gz/${commit}`).then(async (res) => {
+    if (!res.ok) fail(`${tarball()}/${pin.repo}/tar.gz/${commit}`, `HTTP ${res.status}`);
     const file = join(tmp, 'records.tar.gz');
     writeFileSync(file, Buffer.from(await res.arrayBuffer()));
     execFileSync('tar', ['-xzf', file, '-C', tmp, '--strip-components=1', '--wildcards', '*/records/*', '*/README.md'], { stdio: 'ignore' });

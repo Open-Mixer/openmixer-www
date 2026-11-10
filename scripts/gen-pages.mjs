@@ -33,8 +33,14 @@ const NOTES = join(root, 'content/technical-notes');
 const PROJECTS = join(root, 'content/projects');
 const PROJECTS_LIST = join(PROJECTS, 'projects.json');
 export const LANGS = ['en', 'ca'];
-const GITHUB = 'https://github.com/FreeMixer';
-const RAW = 'https://raw.githubusercontent.com/FreeMixer';
+/** The GitHub organization that hosts the projects: the workflow's own owner, never a default. */
+export function org() {
+  const o = process.env.GITHUB_REPOSITORY_OWNER;
+  if (!o) throw new Error('gen-pages: GITHUB_REPOSITORY_OWNER is not set (the organization the project repositories live in)');
+  return o;
+}
+const github = () => `https://github.com/${org()}`;
+const raw = () => `https://raw.githubusercontent.com/${org()}`;
 
 /** What a note may not carry: process references that mean nothing to a reader. */
 export const NOTE_REFUSALS = [
@@ -214,7 +220,7 @@ function renderProjects() {
           const s = published.get(target);
           return `/projects/${p.repo}${s ? `/${s}` : ''}${suffix}`;
         }
-        return image ? `${RAW}/${p.repo}/${p.commit}/${target}` : `${GITHUB}/${p.repo}/blob/${p.commit}/${target}${suffix}`;
+        return image ? `${raw()}/${p.repo}/${p.commit}/${target}` : `${github()}/${p.repo}/blob/${p.commit}/${target}${suffix}`;
       };
       const defaultLink = m.renderer.rules.link_open ?? ((t, i, o, e, s) => s.renderToken(t, i, o));
       m.renderer.rules.link_open = (tokens, idx, opts, env, self) => {
@@ -230,7 +236,7 @@ function renderProjects() {
       };
       const body = stripHtmlComments(readFileSync(file, 'utf8'));
       const title = (/^# (.+)$/m.exec(body)?.[1] ?? pg.title ?? pg.src).trim();
-      pages.push({ slug: pageSlug(pg.src), src: pg.src, title: pg.title ?? title, source: `${GITHUB}/${p.repo}/blob/${p.commit}/${pg.src}`, toc: toc(m, body), html: m.render(body) });
+      pages.push({ slug: pageSlug(pg.src), src: pg.src, title: pg.title ?? title, source: `${github()}/${p.repo}/blob/${p.commit}/${pg.src}`, toc: toc(m, body), html: m.render(body) });
     }
     out.push({ repo: p.repo, commit: p.commit, pages });
   }
@@ -248,7 +254,7 @@ async function sync(repo, commit) {
   const p = list.projects.find((x) => x.repo === repo);
   if (!p) throw new Error(`${repo}: not in content/projects/projects.json`);
   for (const pg of p.pages) {
-    const text = await fetchText(`${RAW}/${repo}/${commit}/${pg.src}`);
+    const text = await fetchText(`${raw()}/${repo}/${commit}/${pg.src}`);
     const file = join(PROJECTS, repo, pg.src);
     mkdirSync(dirname(file), { recursive: true });
     writeFileSync(file, text);
@@ -262,7 +268,7 @@ async function verify() {
   let bad = 0;
   for (const p of readProjects()) {
     for (const pg of p.pages) {
-      const want = await fetchText(`${RAW}/${p.repo}/${p.commit}/${pg.src}`);
+      const want = await fetchText(`${raw()}/${p.repo}/${p.commit}/${pg.src}`);
       const file = join(PROJECTS, p.repo, pg.src);
       if (!existsSync(file) || readFileSync(file, 'utf8') !== want) {
         console.error(`[gen-pages] content/projects/${p.repo}/${pg.src} is not ${p.repo}'s file at ${p.commit}`);
