@@ -6,10 +6,9 @@ public: false
 surfaces:
   libraries:
     state: released
-    version: omx-clap-host 0.30.0
+    version: omx-clap-host 0.31.0
   zynthian:
-    state: released
-    version: zynthian-ui omx-track 2026110201
+    state: merged
   console:
     state: none
 detail: /notes/audio-layouts-and-how-the-host-judges-the-fit

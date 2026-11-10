@@ -6,13 +6,11 @@ public: false
 surfaces:
   libraries:
     state: released
-    version: plugin-qualify 0.19.1, plugin-db-qualification 2026110101
+    version: plugin-qualify 0.20.0, plugin-qualification-records 2026110901
   zynthian:
-    state: released
-    version: zynthian-ui omx-track 2026110201, zynthian-sys omx-track 2026110102
+    state: merged
   console:
-    state: released
-    version: plugin-qualify 0.18.5
+    state: merged
 detail: /notes/from-a-plugin-file-to-a-page
 card:
   en:

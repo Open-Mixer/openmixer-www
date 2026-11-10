@@ -8,11 +8,10 @@
       "surfaces": {
         "libraries": {
           "state": "released",
-          "version": "plugin-hostd 0.19.0"
+          "version": "plugin-hostd 0.20.0"
         },
         "zynthian": {
-          "state": "released",
-          "version": "zynthian-ui omx-track 2026110201"
+          "state": "merged"
         },
         "console": {
           "state": "none"
@@ -42,8 +41,7 @@
           "state": "none"
         },
         "zynthian": {
-          "state": "released",
-          "version": "zynthian-ui omx-track 2026110201"
+          "state": "merged"
         },
         "console": {
           "state": "none"
@@ -71,15 +69,13 @@
       "surfaces": {
         "libraries": {
           "state": "released",
-          "version": "plugin-hostd 0.19.0"
+          "version": "plugin-hostd 0.20.0"
         },
         "zynthian": {
-          "state": "released",
-          "version": "zynthian-ui omx-track 2026110201"
+          "state": "merged"
         },
         "console": {
-          "state": "released",
-          "version": "plugin-hostd 0.16.0"
+          "state": "merged"
         }
       },
       "detail": "/notes/one-worker-per-chain-or-one-process-per-plugin",
@@ -111,11 +107,10 @@
       "surfaces": {
         "libraries": {
           "state": "released",
-          "version": "omx-panel 0.10.2"
+          "version": "omx-panel 0.12.0"
         },
         "zynthian": {
-          "state": "released",
-          "version": "zynthian-ui omx-track 2026110201"
+          "state": "merged"
         },
         "console": {
           "state": "none"
@@ -142,7 +137,8 @@
       "row": false,
       "surfaces": {
         "libraries": {
-          "state": "merged"
+          "state": "released",
+          "version": "omx-panel 0.12.0"
         },
         "zynthian": {
           "state": "merged"
@@ -156,12 +152,12 @@
         "en": {
           "title": "The same gestures on every panel",
           "line": "One table says what a tap, a long press, a double tap and a drag do on each control.",
-          "text": "The table covers every standard widget, a bar and a curve handle, with nine gesture words and their timings. A palm guard and a safety hold protect a value from a stray touch. It is merged in omx-panel and in the Zynthian interface, and in no release or omx-track tag yet. Pinch works through a touch layer; it was proven with injected events, not on a real screen yet."
+          "text": "The table covers every standard widget, a bar and a curve handle, with nine gesture words and their timings. A palm guard and a safety hold protect a value from a stray touch. It is released in omx-panel and merged in the Zynthian interface. Pinch works through a touch layer; it was proven with injected events, not on a real screen yet."
         },
         "ca": {
           "title": "Els mateixos gestos a cada panell",
           "line": "Una taula diu què fan un toc, una pulsació llarga, un doble toc i un arrossegament a cada control.",
-          "text": "La taula cobreix tots els ginys estàndard, una barra i una nansa de corba, amb nou paraules de gest i els seus temps. Una guarda de palmell i una retenció de seguretat protegeixen un valor d'un toc accidental. Està integrada a omx-panel i a la interfície de Zynthian, i encara no és en cap versió ni etiqueta omx-track. El pessic funciona per una capa tàctil; s'ha provat amb esdeveniments injectats, encara no en una pantalla real."
+          "text": "La taula cobreix tots els ginys estàndard, una barra i una nansa de corba, amb nou paraules de gest i els seus temps. Una guarda de palmell i una retenció de seguretat protegeixen un valor d'un toc accidental. Està publicada a omx-panel i integrada a la interfície de Zynthian. El pessic funciona per una capa tàctil; s'ha provat amb esdeveniments injectats, encara no en una pantalla real."
         }
       },
       "proof": [
@@ -180,15 +176,13 @@
       "surfaces": {
         "libraries": {
           "state": "released",
-          "version": "plugin-hostd 0.19.0"
+          "version": "plugin-hostd 0.20.0"
         },
         "zynthian": {
-          "state": "released",
-          "version": "zynthian-ui omx-track 2026110201"
+          "state": "merged"
         },
         "console": {
-          "state": "released",
-          "version": "plugin-hostd 0.16.0"
+          "state": "merged"
         }
       },
       "detail": "/notes/the-grouping-planner",
@@ -260,11 +254,11 @@
       "surfaces": {
         "libraries": {
           "state": "released",
-          "version": "plugin-hostd 0.19.0"
+          "version": "plugin-hostd 0.20.0"
         },
         "zynthian": {
           "state": "released",
-          "version": "zynthian-sys omx-track 2026110102"
+          "version": "plugin-hostd 0.20.0, omx-clap-host 0.31.0, omx-panel 0.12.0, plugin-qualify 0.20.0"
         },
         "console": {
           "state": "none"
@@ -292,7 +286,7 @@
       "surfaces": {
         "libraries": {
           "state": "released",
-          "version": "omx-clap-host 0.30.0"
+          "version": "omx-clap-host 0.31.0"
         },
         "zynthian": {
           "state": "merged"
@@ -325,8 +319,7 @@
           "state": "none"
         },
         "zynthian": {
-          "state": "released",
-          "version": "zynthian-ui omx-track 2026110201"
+          "state": "merged"
         },
         "console": {
           "state": "none"
@@ -354,11 +347,10 @@
       "surfaces": {
         "libraries": {
           "state": "released",
-          "version": "plugin-hostd 0.19.0"
+          "version": "plugin-hostd 0.20.0"
         },
         "zynthian": {
-          "state": "released",
-          "version": "zynthian-sys omx-track 2026110102"
+          "state": "merged"
         },
         "console": {
           "state": "none"
@@ -386,15 +378,13 @@
       "surfaces": {
         "libraries": {
           "state": "released",
-          "version": "omx-panel 0.10.2"
+          "version": "omx-panel 0.12.0"
         },
         "zynthian": {
-          "state": "released",
-          "version": "zynthian-sys omx-track 2026110102"
+          "state": "merged"
         },
         "console": {
-          "state": "released",
-          "version": "omx-panel 0.9.1"
+          "state": "merged"
         }
       },
       "detail": "/docs/plugins-panels",
@@ -419,11 +409,10 @@
       "surfaces": {
         "libraries": {
           "state": "released",
-          "version": "omx-clap-host 0.30.0"
+          "version": "omx-clap-host 0.31.0"
         },
         "zynthian": {
-          "state": "released",
-          "version": "zynthian-ui omx-track 2026110201"
+          "state": "merged"
         },
         "console": {
           "state": "none"
@@ -481,11 +470,10 @@
       "surfaces": {
         "libraries": {
           "state": "released",
-          "version": "omx-plugins 0.19.0"
+          "version": "omx-plugins 0.19.1"
         },
         "zynthian": {
-          "state": "released",
-          "version": "omx-plugins 0.19.0"
+          "state": "merged"
         },
         "console": {
           "state": "coming"
@@ -513,7 +501,7 @@
       "surfaces": {
         "libraries": {
           "state": "released",
-          "version": "plugin-hostd 0.19.0"
+          "version": "plugin-hostd 0.20.0"
         },
         "zynthian": {
           "state": "merged"
@@ -544,15 +532,13 @@
       "surfaces": {
         "libraries": {
           "state": "released",
-          "version": "omx-plugins 0.18.0"
+          "version": "omx-plugins 0.19.1"
         },
         "zynthian": {
-          "state": "released",
-          "version": "omx-plugins 0.18.0"
+          "state": "merged"
         },
         "console": {
-          "state": "released",
-          "version": "omx-plugins 0.18.0"
+          "state": "merged"
         }
       },
       "detail": "/docs/plugins-shipped",
@@ -585,7 +571,7 @@
       "row": false,
       "surfaces": {
         "libraries": {
-          "state": "coming"
+          "state": "merged"
         },
         "zynthian": {
           "state": "coming"
@@ -615,7 +601,8 @@
       "row": false,
       "surfaces": {
         "libraries": {
-          "state": "merged"
+          "state": "released",
+          "version": "omx-panel 0.12.0"
         },
         "zynthian": {
           "state": "merged"
@@ -629,12 +616,12 @@
         "en": {
           "title": "The same pages on every screen",
           "line": "The Zynthian screen shows a plugin's controls four to a page, and a Mackie surface shows eight.",
-          "text": "Both take their pages from the one cut that omx-panel makes, so a plugin has the same sections everywhere. It is merged in the Zynthian interface and in no release or omx-track tag yet."
+          "text": "Both take their pages from the one cut that omx-panel makes, so a plugin has the same sections everywhere. The cut is released in omx-panel and merged in the Zynthian interface."
         },
         "ca": {
           "title": "Les mateixes pàgines a cada pantalla",
           "line": "La pantalla de Zynthian mostra els controls d'un plugin de quatre en quatre, i una superfície Mackie de vuit en vuit.",
-          "text": "Totes dues prenen les pàgines del tall únic que fa omx-panel, de manera que un plugin té les mateixes seccions arreu. Està integrat a la interfície de Zynthian i encara no és en cap versió ni etiqueta omx-track."
+          "text": "Totes dues prenen les pàgines del tall únic que fa omx-panel, de manera que un plugin té les mateixes seccions arreu. El tall està publicat a omx-panel i integrat a la interfície de Zynthian."
         }
       },
       "proof": [
@@ -748,15 +735,13 @@
       "surfaces": {
         "libraries": {
           "state": "released",
-          "version": "plugin-hostd 0.19.0"
+          "version": "plugin-hostd 0.20.0"
         },
         "zynthian": {
-          "state": "released",
-          "version": "zynthian-sys omx-track 2026110102"
+          "state": "merged"
         },
         "console": {
-          "state": "released",
-          "version": "plugin-hostd 0.16.0"
+          "state": "merged"
         }
       },
       "detail": "/notes/pins-on-first-use",
@@ -781,7 +766,7 @@
       "surfaces": {
         "libraries": {
           "state": "released",
-          "version": "plugin-hostd 0.19.0"
+          "version": "plugin-hostd 0.20.0"
         },
         "zynthian": {
           "state": "merged"
@@ -821,8 +806,7 @@
           "state": "none"
         },
         "zynthian": {
-          "state": "released",
-          "version": "zynthian-ui omx-track 2026110201"
+          "state": "merged"
         },
         "console": {
           "state": "none"
@@ -852,8 +836,7 @@
           "state": "none"
         },
         "zynthian": {
-          "state": "released",
-          "version": "zynthian-ui omx-track 2026110201"
+          "state": "merged"
         },
         "console": {
           "state": "none"
@@ -880,10 +863,11 @@
       "row": false,
       "surfaces": {
         "libraries": {
-          "state": "coming"
+          "state": "released",
+          "version": "plugin-hostd 0.20.0, omx-clap-host 0.31.0"
         },
         "zynthian": {
-          "state": "coming"
+          "state": "merged"
         },
         "console": {
           "state": "none"
@@ -894,12 +878,12 @@
         "en": {
           "title": "The plugin's own window, when you ask",
           "line": "A plugin hosted by plugin-hostd can show its own window and hide it again, as jalv and mod-host do.",
-          "text": "Two new verbs, show_external_ui and hide_external_ui, go from the controller through the daemon to the worker that holds the plugin. A daemon with no display refuses them by name. A window you showed comes back after a worker restart, and one you hid stays hidden. Both changes are open for review and are not in a release yet."
+          "text": "Two new verbs, show_external_ui and hide_external_ui, go from the controller through the daemon to the worker that holds the plugin. A daemon with no display refuses them by name. A window you showed comes back after a worker restart, and one you hid stays hidden. Both are released in plugin-hostd and omx-clap-host, and merged in the Zynthian interface."
         },
         "ca": {
           "title": "La finestra del plugin, quan la demanes",
           "line": "Un plugin allotjat per plugin-hostd pot mostrar la seva finestra i amagar-la, com fan jalv i mod-host.",
-          "text": "Dos verbs nous, show_external_ui i hide_external_ui, van del controlador, a través del dimoni, al worker que té el plugin. Un dimoni sense pantalla els refusa pel seu nom. Una finestra que has mostrat torna després de reiniciar un worker, i una que has amagat continua amagada. Tots dos canvis són en revisió i encara no són en cap versió."
+          "text": "Dos verbs nous, show_external_ui i hide_external_ui, van del controlador, a través del dimoni, al worker que té el plugin. Un dimoni sense pantalla els refusa pel seu nom. Una finestra que has mostrat torna després de reiniciar un worker, i una que has amagat continua amagada. Tots dos estan publicats a plugin-hostd i omx-clap-host, i integrats a la interfície de Zynthian."
         }
       },
       "proof": []
@@ -948,11 +932,10 @@
       "surfaces": {
         "libraries": {
           "state": "released",
-          "version": "plugin-hostd 0.19.0"
+          "version": "plugin-hostd 0.20.0"
         },
         "zynthian": {
-          "state": "released",
-          "version": "zynthian-ui omx-track 2026110201"
+          "state": "merged"
         },
         "console": {
           "state": "none"
@@ -987,7 +970,7 @@
       "surfaces": {
         "libraries": {
           "state": "released",
-          "version": "omx-clap-core 0.30.2, plugin-hostd 0.19.1"
+          "version": "omx-clap-core 0.31.0, plugin-hostd 0.20.0"
         },
         "zynthian": {
           "state": "none"
@@ -1018,15 +1001,13 @@
       "surfaces": {
         "libraries": {
           "state": "released",
-          "version": "plugin-qualify 0.19.1, plugin-db-qualification 2026110101"
+          "version": "plugin-qualify 0.20.0, plugin-qualification-records 2026110901"
         },
         "zynthian": {
-          "state": "released",
-          "version": "zynthian-ui omx-track 2026110201, zynthian-sys omx-track 2026110102"
+          "state": "merged"
         },
         "console": {
-          "state": "released",
-          "version": "plugin-qualify 0.18.5"
+          "state": "merged"
         }
       },
       "detail": "/notes/from-a-plugin-file-to-a-page",
@@ -1058,15 +1039,13 @@
       "surfaces": {
         "libraries": {
           "state": "released",
-          "version": "plugin-hostd 0.19.0"
+          "version": "plugin-hostd 0.20.0"
         },
         "zynthian": {
-          "state": "released",
-          "version": "plugin-hostd 0.19.0"
+          "state": "merged"
         },
         "console": {
-          "state": "released",
-          "version": "plugin-hostd 0.16.0"
+          "state": "merged"
         }
       },
       "detail": "/notes/plugins-that-change-a-callee-saved-register",
@@ -1090,7 +1069,8 @@
       "row": false,
       "surfaces": {
         "libraries": {
-          "state": "merged"
+          "state": "released",
+          "version": "omx-clap-host 0.31.0"
         },
         "zynthian": {
           "state": "merged"
@@ -1104,12 +1084,12 @@
         "en": {
           "title": "A sampler loads its own sample",
           "line": "A sample-based plugin such as samplv1 takes its sample file from the host and plays it.",
-          "text": "The host now writes a plugin's file and text properties through patch_set and reads them back with patch_get, so a path with spaces in it works too. It is merged in omx-clap-core and in the Zynthian interface, and in no release or omx-track tag yet. sfizz is not covered: Zynthian runs sfizz_jack, not an LV2 plugin."
+          "text": "The host now writes a plugin's file and text properties through patch_set and reads them back with patch_get, so a path with spaces in it works too. It is released in omx-clap-core and merged in the Zynthian interface. sfizz is not covered: Zynthian runs sfizz_jack, not an LV2 plugin."
         },
         "ca": {
           "title": "Un sampler carrega la seva mostra",
           "line": "Un plugin basat en mostres, com samplv1, rep el fitxer de mostra de l'amfitrió i el reprodueix.",
-          "text": "L'amfitrió ara escriu les propietats de fitxer i de text d'un plugin amb patch_set i les llegeix amb patch_get, de manera que també funciona un camí amb espais. Està integrat a omx-clap-core i a la interfície de Zynthian, i encara no és en cap versió ni etiqueta omx-track. sfizz no hi és: Zynthian fa servir sfizz_jack, no un plugin LV2."
+          "text": "L'amfitrió ara escriu les propietats de fitxer i de text d'un plugin amb patch_set i les llegeix amb patch_get, de manera que també funciona un camí amb espais. Està publicat a omx-clap-core i integrat a la interfície de Zynthian. sfizz no hi és: Zynthian fa servir sfizz_jack, no un plugin LV2."
         }
       },
       "proof": [
@@ -1140,8 +1120,7 @@
           "state": "none"
         },
         "zynthian": {
-          "state": "released",
-          "version": "zynthian-ui omx-track 2026110201"
+          "state": "merged"
         },
         "console": {
           "state": "none"
@@ -1169,15 +1148,13 @@
       "surfaces": {
         "libraries": {
           "state": "released",
-          "version": "omx-clap-host 0.30.0, plugin-qualify 0.19.1"
+          "version": "omx-clap-host 0.31.0, plugin-qualify 0.20.0"
         },
         "zynthian": {
-          "state": "released",
-          "version": "omx-clap-host 0.30.0"
+          "state": "merged"
         },
         "console": {
-          "state": "released",
-          "version": "omx-clap-host 0.27.0"
+          "state": "merged"
         }
       },
       "detail": "/notes/instruments-on-a-pi-5",
@@ -1213,8 +1190,7 @@
           "state": "none"
         },
         "zynthian": {
-          "state": "released",
-          "version": "zynthian-sys omx-track 2026110102"
+          "state": "merged"
         },
         "console": {
           "state": "none"

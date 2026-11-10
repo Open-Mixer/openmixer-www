@@ -6,10 +6,9 @@ public: false
 surfaces:
   libraries:
     state: released
-    version: omx-plugins 0.19.0
+    version: omx-plugins 0.19.1
   zynthian:
-    state: released
-    version: omx-plugins 0.19.0
+    state: merged
   console:
     state: coming
 detail: /docs/plugins-shipped

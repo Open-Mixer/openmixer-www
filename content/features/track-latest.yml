@@ -7,8 +7,7 @@ surfaces:
   libraries:
     state: none
   zynthian:
-    state: released
-    version: zynthian-sys omx-track 2026110102
+    state: merged
   console:
     state: none
 detail: /docs/zynthian#install

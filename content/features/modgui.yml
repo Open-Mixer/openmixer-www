@@ -6,13 +6,11 @@ public: false
 surfaces:
   libraries:
     state: released
-    version: omx-panel 0.10.2
+    version: omx-panel 0.12.0
   zynthian:
-    state: released
-    version: zynthian-sys omx-track 2026110102
+    state: merged
   console:
-    state: released
-    version: omx-panel 0.9.1
+    state: merged
 detail: /docs/plugins-panels
 card:
   en:
