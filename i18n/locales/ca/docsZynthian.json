@@ -30,6 +30,7 @@
       "existing": {
         "title": "En un Vangelis que ja funciona",
         "p1": "Un sistema Vangelis que ja funciona no necessita cap imatge nova. Com a root, afegiu el repositori d'OpenMixer i instal·leu-ne els paquets:",
+        "records": "plugin-qualification-records conté les xifres mesurades per a aquests plugins en una Raspberry Pi 5, de manera que ja estan qualificats des del principi; plugin-qualify qualifica en segon pla qualsevol plugin que instal·leu més endavant.",
         "p2": "openmixer-release porta la clau de signatura i la font apt de la versió de Debian en marxa. No activa cap servei: mod-host, MOD-UI, jalv i els menús es queden com estaven fins que els canvieu."
       },
       "switch": {
