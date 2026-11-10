@@ -44,7 +44,8 @@
       "group": {
         "title": "A group: plugins in series in one worker",
         "p1": "With grouping on, a run of plugins in series in a chain shares one worker process and one JACK client instead of one process each. A group is what the chain has in series with nothing between: a parallel slot, the mixer strip or a jalv plugin ends it. A processor that runs alone has a Grouping entry in its options saying why.",
-        "p2": "Grouping is off unless you set it. It saves most of the memory of one process per plugin: 24 plugins in one chain take about 64 MB, against about 110 MB under mod-host."
+        "p2": "Grouping is off unless you set it. It saves most of the memory of one process per plugin: 24 plugins in one chain take about 64 MB, against about 110 MB under mod-host.",
+        "more": "Every way plugin-hostd can group plugins, drawn: Plugin Hosting Groupings."
       },
       "strip": {
         "title": "A channel strip as plugins",

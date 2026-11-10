@@ -44,7 +44,8 @@
       "group": {
         "title": "Un grup: plugins en sèrie en un sol worker",
         "p1": "Amb l'agrupació activada, una tirada de plugins en sèrie dins d'una cadena comparteix un sol procés worker i un sol client JACK en lloc d'un procés cadascun. Un grup és el que la cadena té en sèrie sense res entremig: un espai en paral·lel, el canal del mesclador o un plugin de jalv l'acaba. Un processador que corre sol té una entrada Grouping a les seves opcions que en diu el motiu.",
-        "p2": "L'agrupació està desactivada si no l'activeu. Estalvia la major part de la memòria d'un procés per plugin: 24 plugins en una cadena ocupen uns 64 MB, contra uns 110 MB amb mod-host."
+        "p2": "L'agrupació està desactivada si no l'activeu. Estalvia la major part de la memòria d'un procés per plugin: 24 plugins en una cadena ocupen uns 64 MB, contra uns 110 MB amb mod-host.",
+        "more": "Totes les maneres com plugin-hostd pot agrupar els plugins, dibuixades: Agrupacions dels amfitrions de plugins."
       },
       "strip": {
         "title": "Un canal fet de plugins",
