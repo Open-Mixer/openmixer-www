@@ -20,6 +20,7 @@ Needs a C11 compiler, GNU make, binutils, awk, sed, grep and diffutils.
 | `make copy-check` | `tools/omx-dsp-copy-check.sh --self-test`: planted copies in a scratch consumer (an exact copy, a renamed one, a TypeScript twin, a literal copy, inline kernels) must be found, a legitimate caller, boilerplate, tests and fakes must pass, and a stale or reasonless allowlist entry must fail; then each rule is broken in turn and the self-test must go red (part of `make test`, which runs it alone before everything else, so no parallel job runs beside it) |
 | `make lint` | the doc check, the source scan, the log10f guard, tools/contract-single-source.sh (no name omx-contract defines is defined again here), tools/face-conformance.sh (every instance face's resolve takes its kernel's contract controls by name, order and kind), tools/travel-grid-check.sh (a travel's step reaches its maximum and default, a choice names its ids) and tools/clone-check.sh (a second copy of a body inside the library goes red); each checks its own sabotage |
 | `make test-tsan` | the thread arm under ThreadSanitizer, where the toolchain has it |
+| `make rt-gate` | omx-rt-gate, the one static real-time gate (`omx-rt-gate(1)`): its class table measured by the externals arm, its planted fixtures read red at their place and path and their clean twins green, its load refusals, the `@thread` tag of every function of the shipped headers under three sets of flags, the self-run (every tagged audio and worker function a root, joined to the compiled units' graphs, nothing red), and the installed gate judging a consumer joined to the shipped graphs; `make rt-gate-sabotage` breaks each guard in turn (part of `make test`) |
 | `make engine-kernels-identity OPENMIXER=<checkout>` | renders those digests again through the copies OpenMixer's engine still carries (`mix_src.h`, `mix_dsp.h`), and checks that each of its sabotages goes red; a desk check, not run in CI |
 | `make test-mix` | the mix module's golden digests at the nine oracle rates (`test/golden/mix.sha256`, written by the engine's own copies), and a break in each kernel and in each of the bus stages' contract checks that must turn its arm red; alone |
 | `make mix-engine-identity OPENMIXER=<checkout>` | renders the mix digests again through each set of copies OpenMixer's engine still carries (the bus stages' `omx_mix_strip`, `omx_bus_out_gain` and `omx_bus_out_stage` in `mix_dsp.h`, under the same names as `mix/omx_bus_stage.h`), and checks that each of its sabotages goes red; a desk check, not run in CI |
@@ -305,7 +306,7 @@ The facts no single package implements (the declared sample rates, the parameter
 FreeMixer/omx-contract, read through `<omxcontract/omx_contract_limits.h>`, which the definitions
 header includes. That dependency is declared once, in the packaging: `packaging/omx-dsp.spec`
 (`BuildRequires`, `Requires`) and `debian/control` (`Build-Depends`, `Depends`) carry the same floor
-and no upper bound (`>= 3.1.0`), and `omxdsp.pc` requires the same floor. Install
+and the same ceiling, the next major (`>= 3.9.0` and `< 4`), and `omxdsp.pc` requires the same range. Install
 it from the FreeMixer channel with the rest of the build dependencies:
 
     dnf builddep packaging/omx-dsp.spec     # Fedora, with the FreeMixer repository added
@@ -313,10 +314,10 @@ it from the FreeMixer channel with the rest of the build dependencies:
 
 `tools/contract-include.sh` finds the installed `omx-contract` with `pkg-config`: at or above the
 floor the spec declares, it prints the package's include directory; otherwise the build stops, naming
-the package, the floor and the version installed. The dependency is a floor only, never a ceiling.
+the package, the floor and the version installed. The script reads the floor; the ceiling is held by the package managers and pkg-config.
 Nothing is downloaded and no version is pinned anywhere else. `tools/contract-include-selftest.sh`
-(`make checks`) holds the script to that floor, `debian/control` and `omxdsp.pc.in` to the spec's, and
-refuses an upper bound in any of them.
+(`make checks`) holds the script to that floor, and the spec, `debian/control` and `omxdsp.pc.in` to the same
+floor and the ceiling `< 4`; a ceiling missing from any of them is red.
 
 `OMX_CONTRACT_INC=<dir>` names another include directory (one that holds `omxcontract/`) and skips the
 version check. The perturbation arms use it, and so can you: render a contract with one value moved
