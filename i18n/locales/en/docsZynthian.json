@@ -92,16 +92,16 @@
         "caption": "The plugin menu, sorted by qualification tier"
       },
       "page": {
-        "alt": "The controller page of an instrument in Zynthian",
+        "alt": "The controller page of an instrument in Zynthian, with the sections of its effects",
         "caption": "A controller page, from the plugin's own sections"
       },
       "modgui": {
         "alt": "An instrument's MOD GUI on a MOD-UI pedalboard",
-        "caption": "The same instrument's MOD GUI, from the same layout"
+        "caption": "An instrument's MOD GUI, from its layout"
       },
       "chain": {
-        "alt": "A Zynthian chain with an instrument and a compressor",
-        "caption": "A chain with an instrument and an effect"
+        "alt": "Zynthian chains, one with an instrument, an equaliser and a compressor",
+        "caption": "A chain with an instrument and two effects"
       }
     },
     "voices": {

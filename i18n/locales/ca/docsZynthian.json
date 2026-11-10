@@ -92,16 +92,16 @@
         "caption": "El menú de plugins, ordenat pel nivell de qualificació"
       },
       "page": {
-        "alt": "La pàgina de controls d'un instrument a Zynthian",
+        "alt": "La pàgina de controls d'un instrument a Zynthian, amb les seccions dels seus efectes",
         "caption": "Una pàgina de controls, a partir de les seccions del mateix plugin"
       },
       "modgui": {
         "alt": "La MOD GUI d'un instrument en un pedalboard de MOD-UI",
-        "caption": "La MOD GUI del mateix instrument, a partir de la mateixa disposició"
+        "caption": "La MOD GUI d'un instrument, a partir de la seva disposició"
       },
       "chain": {
-        "alt": "Una cadena de Zynthian amb un instrument i un compressor",
-        "caption": "Una cadena amb un instrument i un efecte"
+        "alt": "Cadenes de Zynthian, una amb un instrument, un equalitzador i un compressor",
+        "caption": "Una cadena amb un instrument i dos efectes"
       }
     },
     "voices": {

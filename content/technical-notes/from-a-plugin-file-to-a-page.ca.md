@@ -87,22 +87,22 @@ cost de cada fila i la disposició per a les pàgines. Abans d'inserir un plugin
 costarà la cadena. Res no es calcula dues vegades: el descriptor per als paràmetres, el registre per a les xifres,
 l'empremta per al permís, la disposició per a les pàgines.
 
-A l'aparell, per a Kars, la fila del menú de plugins amb el seu nivell, la latència (mostres mesurades i declarades) i la
-seguretat en temps real:
+A l'aparell, el menú de plugins: cada fila amb el seu nivell, la latència (mostres mesurades i declarades), la seguretat
+en temps real i el cost:
 
-![El menú de plugins, ordenat per nivell](/technical-notes/from-a-plugin-file-to-a-page/list-by-tier.png)
+![El menú de plugins, ordenat per nivell](/technical-notes/from-a-plugin-file-to-a-page/plugin-menu-by-tier.png)
 
-la pàgina de controls del motor:
+la pàgina de controls d'un instrument, amb les seccions de l'omx eq8 i l'omx comp de la seva cadena:
 
-![La pàgina de controls de Kars](/technical-notes/from-a-plugin-file-to-a-page/controller-page-1-controls.png)
+![La pàgina de controls de MDA Piano](/technical-notes/from-a-plugin-file-to-a-page/controller-page-mda-piano.png)
 
-la MOD GUI a partir de la mateixa disposició:
+la MOD GUI de Kars, a partir de la seva disposició:
 
 ![La MOD GUI de Kars en un pedalboard](/technical-notes/from-a-plugin-file-to-a-page/modgui-pedalboard.png)
 
-i la cadena amb l'instrument:
+i les cadenes, amb l'instrument, l'equalitzador i el compressor:
 
-![Una cadena amb Kars i un compressor](/technical-notes/from-a-plugin-file-to-a-page/chain-view-kars-zamcomp.png)
+![Una cadena amb MDA Piano, omx eq8 i omx comp](/technical-notes/from-a-plugin-file-to-a-page/chain-view-mda-piano-eq8-comp.png)
 
 Un aparell nou no repeteix l'etapa llarga. Un paquet porta els registres i les empremtes d'un conjunt de plugins conegut,
 indexats per resums, de manera que un aparell nou els aplica i només sondeja el que és diferent.
