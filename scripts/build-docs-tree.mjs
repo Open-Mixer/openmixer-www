@@ -80,6 +80,7 @@ import { fileURLToPath } from 'node:url';
 import { loadPrivateList } from './private-list.mjs';
 import { scrubBranchNames } from './branch-names.mjs';
 import { BINARY } from './check-public.mjs';
+import { stampFor, tarReproducible } from './reproducible.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const wwwRoot = resolve(here, '..');
@@ -337,7 +338,7 @@ function readTree(dir) {
         '  A change to the list is a new tree: build it again from the checkout (--emit) and pin it in deploy/docs-tree.txt.',
     );
   }
-  return { built: join(dir, 'public'), revision: meta.revision };
+  return { built: join(dir, 'public'), revision: meta.revision, builtAt: meta.builtAt };
 }
 
 /** Writes the tree for --emit: docs-tree.json and public/, as one tarball. */
@@ -348,15 +349,16 @@ function emitTree({ built, revision }) {
   } catch {
     die('the public guard refused the built docs tree; nothing was written');
   }
+  const stamp = stampFor(src);
   const out = mkdtempSync(join(tmpdir(), 'docs-tree-'));
   try {
     cpSync(built, join(out, 'public'), { recursive: true });
     writeFileSync(
       join(out, TREE_META),
-      `${JSON.stringify({ repository: 'FreeMixer/openmixer', revision, baseURL, listHash, pages: allow.pages.length, builtAt: new Date().toISOString() }, null, 2)}\n`,
+      `${JSON.stringify({ repository: 'FreeMixer/openmixer', revision, baseURL, listHash, pages: allow.pages.length, builtAt: stamp }, null, 2)}\n`,
     );
     mkdirSync(dirname(emitTo), { recursive: true });
-    execFileSync('tar', ['-czf', emitTo, '-C', out, TREE_META, 'public']);
+    tarReproducible(emitTo, out, [TREE_META, 'public'], stamp);
   } finally {
     rmSync(out, { recursive: true, force: true });
   }
@@ -458,7 +460,7 @@ writeFileSync(
       repository: 'FreeMixer/openmixer',
       revision,
       from: treeDir ? 'docs tree' : 'checkout',
-      publishedAt: new Date().toISOString(),
+      publishedAt: tree.builtAt ?? stampFor(src),
       files: copied,
       docPages: publishedDocs,
       manualPages: publishedManual,

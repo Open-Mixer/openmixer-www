@@ -1,6 +1,14 @@
 <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
 <script setup lang="ts">
+import featuresData from '~/data/features.json';
+
 const { t } = useI18n();
+/** A feature's state is its record's (content/features, through scripts/gen-features.mjs); the page types none. */
+const states = new Map(featuresData.features.map((f) => [f.id, f.state as 'live' | 'measured' | 'building']));
+const stateOf = (id: string) => states.get(id) ?? 'building';
+/** False until the owner confirms the console state of a feature; the row then says "to confirm". */
+const confirmed = new Map(featuresData.features.map((f) => [f.id, f.confirmed]));
+const confirmedOf = (id: string) => confirmed.get(id);
 const sitePath = useSitePath();
 useSeoMeta({
   title: () => t('features.seo.title'),
@@ -27,7 +35,7 @@ const alignRows = [
 
     <section class="border-b border-edge">
       <div class="mx-auto max-w-6xl px-6 py-16">
-        <FeatureRow :title="t('features.desk.title')" state="live">
+        <FeatureRow :title="t('features.desk.title')" :state="stateOf('desk')" :confirmed="confirmedOf('desk')">
           <div class="space-y-3">
             <p>{{ t('features.desk.p1') }}</p>
             <p>{{ t('features.desk.p2') }}</p>
@@ -38,7 +46,7 @@ const alignRows = [
           </div>
         </FeatureRow>
 
-        <FeatureRow :title="t('features.native.title')" state="measured">
+        <FeatureRow :title="t('features.native.title')" :state="stateOf('native')" :confirmed="confirmedOf('native')">
           <div class="space-y-3">
             <p>{{ t('features.native.p1') }}</p>
           </div>
@@ -47,7 +55,7 @@ const alignRows = [
           </div>
         </FeatureRow>
 
-        <FeatureRow :title="t('features.rta.title')" state="live">
+        <FeatureRow :title="t('features.rta.title')" :state="stateOf('rta')" :confirmed="confirmedOf('rta')">
           <div class="space-y-3">
             <p>{{ t('features.rta.p1') }}</p>
           </div>
@@ -64,7 +72,7 @@ const alignRows = [
           />
         </div>
 
-        <FeatureRow :title="t('features.feedback.title')" state="live">
+        <FeatureRow :title="t('features.feedback.title')" :state="stateOf('feedback')" :confirmed="confirmedOf('feedback')">
           <div class="space-y-3">
             <p>{{ t('features.feedback.p1') }}</p>
           </div>
@@ -74,7 +82,7 @@ const alignRows = [
           </div>
         </FeatureRow>
 
-        <FeatureRow :title="t('features.align.title')" state="live">
+        <FeatureRow :title="t('features.align.title')" :state="stateOf('align')" :confirmed="confirmedOf('align')">
           <div class="space-y-3">
             <p>{{ t('features.align.p1') }}</p>
             <p v-html="t('features.align.p2')" />
@@ -108,7 +116,7 @@ const alignRows = [
           </div>
         </FeatureRow>
 
-        <FeatureRow :title="t('features.lv2.title')" state="measured">
+        <FeatureRow :title="t('features.lv2.title')" :state="stateOf('lv2')" :confirmed="confirmedOf('lv2')">
           <div class="space-y-3">
             <p v-html="t('features.lv2.p1')" />
             <p v-html="t('features.lv2.p2')" />
@@ -119,7 +127,7 @@ const alignRows = [
           </div>
         </FeatureRow>
 
-        <FeatureRow :title="t('features.reac.title')" state="live">
+        <FeatureRow :title="t('features.reac.title')" :state="stateOf('reac')" :confirmed="confirmedOf('reac')">
           <div class="space-y-3">
             <p>{{ t('features.reac.p1') }}</p>
             <p>{{ t('features.reac.p2') }}</p>
@@ -138,7 +146,7 @@ const alignRows = [
           />
         </div>
 
-        <FeatureRow :title="t('features.surface.title')" state="live">
+        <FeatureRow :title="t('features.surface.title')" :state="stateOf('surface')" :confirmed="confirmedOf('surface')">
           <div class="space-y-3">
             <p>{{ t('features.surface.p1') }}</p>
             <p>{{ t('features.surface.p2') }}</p>
@@ -150,7 +158,7 @@ const alignRows = [
           </div>
         </FeatureRow>
 
-        <FeatureRow :title="t('features.surfaces.title')" state="live">
+        <FeatureRow :title="t('features.surfaces.title')" :state="stateOf('surfaces')" :confirmed="confirmedOf('surfaces')">
           <div class="space-y-3">
             <p>{{ t('features.surfaces.p1') }}</p>
           </div>
@@ -164,7 +172,7 @@ const alignRows = [
           </div>
         </FeatureRow>
 
-        <FeatureRow :title="t('features.recorder.title')" state="live">
+        <FeatureRow :title="t('features.recorder.title')" :state="stateOf('recorder')" :confirmed="confirmedOf('recorder')">
           <div class="space-y-3">
             <p>{{ t('features.recorder.p1') }}</p>
           </div>
@@ -173,6 +181,14 @@ const alignRows = [
             <p class="text-ink-faint">{{ t('features.recorder.p3') }}</p>
           </div>
         </FeatureRow>
+      </div>
+    </section>
+
+    <section class="border-b border-edge">
+      <div class="mx-auto max-w-6xl px-6 py-16">
+        <SectionHead :eyebrow="t('features.hosting.eyebrow')" :title="t('features.hosting.title')" />
+        <p class="mb-8 max-w-3xl text-base leading-relaxed text-ink-dim">{{ t('features.hosting.intro') }}</p>
+        <FeatureCards surface="console" full except-rows />
       </div>
     </section>
 

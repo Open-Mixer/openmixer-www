@@ -35,6 +35,10 @@ Els segments són tirades de membres consecutius perquè una cadena és una sola
 queda fora al mig ha de conservar el seu lloc en el camí del senyal. Així, `A B C D E` amb `C` no apte esdevé
 `[A B] [C] [D E]`.
 
+```figure
+segments
+```
+
 **Regles, en aquest ordre; la primera que coincideix amb un membre en decideix.**
 
 | motiu | quan | el membre |
@@ -60,6 +64,10 @@ desconegut compta com la mediana dels costos coneguts del segment (zero si no se
 Un membre que queda sol només perquè era al costat d'un de no apte pot compartir un grup de workers amb membres així
 d'altres cadenes. Un grup estalvia memòria resident, no despertars: cada membre continua sent un client JACK. Dues cadenes
 no comparteixen mai un worker de cadena.
+
+```figure
+pool
+```
 
 ## Els verbs
 

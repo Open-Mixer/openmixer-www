@@ -11,6 +11,18 @@ either end: jalv runs one process per plugin, mod-host every plugin in one proce
 [plugin-hostd on a Raspberry Pi 5](/notes/plugin-hostd-on-a-raspberry-pi-5) and on the [benchmarks page](/benchmarks); they
 measure the daemon directly on a private JACK graph, not through Zynthian's engine.
 
+```figure
+chain
+```
+
+```figure
+individual
+```
+
+```figure
+shared
+```
+
 ## What grouping buys
 
 - **Memory.** 24 plugins in one chain take 64.1 MB of proportional memory, against 183.1 MB with one worker per plugin and

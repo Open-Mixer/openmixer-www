@@ -46,7 +46,9 @@ so on the page.
 ## Scenarios of the Pi 5 matrix
 
 `cvp24` is 24 plugins with CLAP builds (Calf as LV2), `cvp24-lv2` the same 24 as LV2 builds, `tp10` ten
-third-party LV2 effects. `mode` names how a host ran them:
+third-party LV2 effects; `cvp8` and `cvp16` the first 8 and 16 of the 24, `cvc3`, `cvc8` and `cvc16` omx comp, delay
+and drive in turn (CLAP builds), `pianoteq` one Pianoteq 9 instance playing five-note chords, `idle` the host with no
+plugin. `mode` names how a host ran them:
 
 | Mode | Host | What runs |
 | --- | --- | --- |
@@ -54,6 +56,7 @@ third-party LV2 effects. `mode` names how a host ran them:
 | `chain` | H2 | the chain built after the adds |
 | `individual` | H2 | no chain, each instance in its own worker |
 | `shared-process` | H1, H3 | every instance inside the one process |
+| `individual` | H4 | one jalv process per plugin |
 
 Per row: `processes`, `rss_mb_total`, `pss_mb_total` (sums over the host's processes of `VmRSS` and of the
 `Pss` field of `/proc/<pid>/smaps_rollup`), `cpu_pct`, `ctx_switches`, `jack_clients`, `latency_frames`,
@@ -75,10 +78,23 @@ rows that did not pass in the other runs of that day.
 
 `rpi5-20261102-1.json` is the document the harness wrote for every host on omx-clap-core 0.26.3. `rpi5-20261102-2.json`
 is composed from the device runs of the same day: its H1 and H3 rows are the first run's, its H2 rows the same bench
-rerun on 0.26.4, each row unedited. The method and every table are in the technical note
+rerun on 0.26.4, each row unedited. `rpi5-20261105-1.json` is composed from the device runs on the audio interface of that day, at plugin-hostd 0.18.0
+and omx-clap-host 0.29.0: every row at real-time priority 70 with 3 periods per buffer (Zynthian's own setting), at 48 and
+96 kHz, each row unedited; where a row was run again alone because the shared run's spread was too wide, the row run alone
+is the one kept (Pianoteq on plugin-hostd and jalv at 48 kHz and 256 frames, the 16-plugin CLAP set on omx-clap-host and
+plugin-hostd at 48 kHz and 128 frames). Its `jack` field names the server's driver, device, priority and periods. The method and every table are in the technical note
 [plugin-hostd on a Raspberry Pi 5](https://openmixer.org/notes/plugin-hostd-on-a-raspberry-pi-5).
 
 ## Versioning
 
 `schema` is the string `omx-bench/1`. Adding an optional field keeps the version; renaming or removing a
 field or changing its meaning is a new version with its own schema file.
+
+## Interim figures of the hardware tier
+
+`/benchmarks/zynthian-interim` shows what the Raspberry Pi 5 with its RME interface measured before the matrix is
+complete, labelled preliminary until the reference-tier matrix replaces it at the next release. Its data,
+`app/data/zynthian-interim.json`, is written by `scripts/zynthian-interim.mjs` from the harness's runs as written, the
+bench gate's report and the qualification grid's log; the runs themselves stay out of `runs/`, so the main page's
+tables and host comparisons never read a partial matrix. 192 kHz is not shown (unsupported on the Pi), and only
+plugin-hostd's own rows carry figures. The file names each run and its sha256.

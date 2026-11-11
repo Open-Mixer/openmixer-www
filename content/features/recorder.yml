@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+id: recorder
+title: Recorder and virtual soundcard
+state: live
+confirmed: true
+manual:
+  - docs/manual/recording.md
+public: true

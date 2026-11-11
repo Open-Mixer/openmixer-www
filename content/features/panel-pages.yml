@@ -1,0 +1,29 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+id: panel-pages
+title: Pages from one cut
+manual: []
+public: false
+surfaces:
+  libraries:
+    state: released
+    version: omx-panel 0.12.0
+  zynthian:
+    state: released
+    version: zynthian-ui omx-track 2026110701
+  console:
+    state: none
+detail: /docs/plugins-panels
+card:
+  en:
+    title: The same pages on every screen
+    line: The Zynthian screen shows a plugin's controls four to a page, and a Mackie surface shows eight.
+    text: Both take their pages from the one cut that omx-panel makes, so a plugin has the same sections everywhere.
+  ca:
+    title: Les mateixes pàgines a cada pantalla
+    line: La pantalla de Zynthian mostra els controls d'un plugin de quatre en quatre, i una superfície Mackie de vuit en vuit.
+    text: Totes dues prenen les pàgines del tall únic que fa omx-panel, de manera que un plugin té les mateixes seccions arreu.
+proof:
+  - kind: test
+    with: zynthian-ui vangelis (PR 79), omx-panel main after 0.11.0
+    en: The LSP parametric equalizer x8 gives 27 screens and 27 pages, and Surge XT as a CLAP plugin gives 11 and 11.
+    ca: L'equalitzador paramètric LSP x8 dóna 27 pantalles i 27 pàgines, i Surge XT com a plugin CLAP en dóna 11 i 11.

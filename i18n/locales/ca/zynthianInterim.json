@@ -1,0 +1,51 @@
+{
+  "seo": {
+    "title": "Zynthian: xifres provisionals",
+    "description": "Xifres provisionals del nivell de maquinari, d'una Raspberry Pi 5 amb una interfície d'àudio RME, publicades abans que la matriu sigui completa."
+  },
+  "hero": {
+    "eyebrow": "Nivell de maquinari · provisional",
+    "title": "Zynthian: xifres provisionals",
+    "lede": "El que ha mesurat fins ara una Raspberry Pi 5 amb una interfície d'àudio RME, publicat abans que la seva matriu sigui completa. Aquestes xifres són provisionals: la matriu del nivell de referència substitueix aquesta pàgina a la propera versió."
+  },
+  "scope": {
+    "title": "Què són aquestes xifres",
+    "tier": "Nivell de maquinari: {model}, {cores} nuclis, {ram} MB, amb una {iface} per USB.",
+    "covered": "Freqüències cobertes: {rates}. Quanta coberts: {frames} mostres.",
+    "unsupported": "{rates} no és compatible amb la Pi i no es mostra.",
+    "cells": "Banc de proves: {cells} cel·les mesurades a les freqüències mostrades; {ok} s'han executat, {failed} han fallat i continuen a la llista; la comprovació d'estabilitat n'ha marcat {unstable} de les {ok} com a inestables.",
+    "grid": "Graella de qualificació: {done} de {total} cel·les acabades; la graella encara s'està executant.",
+    "preliminary": "Provisional: la matriu del nivell de referència substitueix aquestes xifres a la propera versió.",
+    "noRanking": "Cap amfitrió no es classifica davant d'un altre a partir d'una matriu parcial: només es mostren les xifres pròpies de plugin-hostd.",
+    "digital": "Cada xifra es mesura digitalment dins de l'amfitrió; res d'aquí no és una afirmació sobre el camí analògic."
+  },
+  "coverage": {
+    "title": "Cobertura",
+    "intro": "Cada passada del banc de proves, a cada freqüència: les cel·les que ha mesurat, quantes s'han executat, quantes han fallat i quantes la comprovació d'estabilitat ha marcat com a inestables.",
+    "pass": "Passada",
+    "versions": "Versions",
+    "periods": "Períodes",
+    "rate": "Freqüència",
+    "frames": "Mostres",
+    "cells": "Cel·les",
+    "ok": "Executades",
+    "failed": "Fallides",
+    "unstable": "Inestables",
+    "unsupported": "no compatible amb la Pi"
+  },
+  "figures": {
+    "title": "plugin-hostd, una cadena, sense càrrega afegida",
+    "intro": "La passada més nova ({versions}, {periods} períodes per memòria intermèdia, la configuració pròpia de Zynthian): plugin-hostd executant cada conjunt com una sola cadena sense res més carregant la Pi. La càrrega DSP és la mitjana i el màxim, en percentatge del cicle d'àudio; PSS és la memòria dels processos de l'amfitrió.",
+    "set": "Conjunt",
+    "where": "Freqüència / mostres",
+    "dsp": "Càrrega DSP % mitjana / màx.",
+    "xruns": "Xruns",
+    "pss": "PSS MB",
+    "status": "Resultat",
+    "ok": "executat",
+    "failed": "fallit",
+    "unstable": "inestable"
+  },
+  "back": "Tots els bancs de proves",
+  "footer": "Execucions {runs}. Nivell de maquinari, provisional."
+}

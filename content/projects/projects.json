@@ -2,7 +2,7 @@
   "projects": [
     {
       "repo": "omx-dsp",
-      "commit": "f5c279a980a76a9b2ca53df5a9000f9416cb6cc3",
+      "commit": "c2962d89035b9abe51f9f7175a13e0aebf54eded",
       "pages": [
         {
           "src": "README.md"
@@ -23,7 +23,7 @@
     },
     {
       "repo": "omx-clap-core",
-      "commit": "d53f42b8689dc42669552b8518feef626ea9c828",
+      "commit": "587201ce6003e3b311f820beab3e2619ff4bef0a",
       "pages": [
         {
           "src": "README.md"
@@ -44,7 +44,7 @@
     },
     {
       "repo": "omx-panel",
-      "commit": "edaf4f48de7e57496ead1b949f754b7e111867e3",
+      "commit": "e915e372d68e4ef02bc74b911ed67fe3469b80de",
       "pages": [
         {
           "src": "README.md"
@@ -74,10 +74,13 @@
     },
     {
       "repo": "plugin-hostd",
-      "commit": "b4ea6a9",
+      "commit": "a73969e2d024bab73a955c3f260154bdd241255f",
       "pages": [
         {
           "src": "README.md"
+        },
+        {
+          "src": "docs/groupings.md"
         },
         {
           "src": "docs/formats.md"

@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+id: align
+title: Smart alignment
+state: live
+confirmed: true
+manual:
+  - docs/manual/alignment.md
+public: true

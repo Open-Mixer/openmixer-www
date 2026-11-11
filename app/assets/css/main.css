@@ -37,6 +37,23 @@
   --color-edge: #2a323b;
   --color-edge-strong: #3a444f;
 
+  /* The plugin hosting figures (/projects/plugin-hostd/groupings): one fill and one line per layer,
+     JACK graph > process > worker > chain > pool > isolated > plugin. Dark values here, light below. */
+  --color-host-jack: #1b212b;
+  --color-host-jack-line: #6b778c;
+  --color-host-proc: #18243b;
+  --color-host-proc-line: #7aa2ff;
+  --color-host-worker: #14302b;
+  --color-host-worker-line: #4fd1b5;
+  --color-host-chain: #33280f;
+  --color-host-chain-line: #e8b04b;
+  --color-host-pool: #2a2140;
+  --color-host-pool-line: #b794f4;
+  --color-host-iso: #3a1c1c;
+  --color-host-iso-line: #fc8181;
+  --color-host-plugin: #232b37;
+  --color-host-plugin-line: #e4e8ef;
+
   /* The home page's fader-wall meters. Each meter sets its own animation-duration. */
   --animate-level: level 1.6s ease-in-out infinite alternate;
   @keyframes level {
@@ -94,6 +111,20 @@ html.light {
   --color-track: #d3dae0;
   --color-edge: #d5dce2;
   --color-edge-strong: #b3bec8;
+  --color-host-jack: #eef1f6;
+  --color-host-jack-line: #8a97ad;
+  --color-host-proc: #e6eefc;
+  --color-host-proc-line: #2d5bd7;
+  --color-host-worker: #e3f4f1;
+  --color-host-worker-line: #138a76;
+  --color-host-chain: #fff3dc;
+  --color-host-chain-line: #b7791f;
+  --color-host-pool: #efe8fb;
+  --color-host-pool-line: #6b46c1;
+  --color-host-iso: #fdeaea;
+  --color-host-iso-line: #c53030;
+  --color-host-plugin: #ffffff;
+  --color-host-plugin-line: #1c2330;
   /* Nuxt UI's solid primary carries white text in light mode; the dark-mode cyan is too pale for it. */
   --ui-primary: var(--color-accent);
 }

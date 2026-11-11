@@ -1,0 +1,37 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+id: sample-plugins
+title: Sample plugins load their sample
+manual: []
+public: false
+surfaces:
+  libraries:
+    state: released
+    version: omx-clap-host 0.31.0
+  zynthian:
+    state: released
+    version: zynthian-ui omx-track 2026110701
+  console:
+    state: none
+detail: /docs/zynthian#sample-plugins
+card:
+  en:
+    title: A sampler loads its own sample
+    line: A sample-based plugin such as samplv1 takes its sample file from the host and plays it.
+    text: "The host writes a plugin's file and text properties through patch_set and reads them back with patch_get, so a path with spaces in it works too. sfizz is not covered: Zynthian runs sfizz_jack, not an LV2 plugin."
+  ca:
+    title: Un sampler carrega la seva mostra
+    line: Un plugin basat en mostres, com samplv1, rep el fitxer de mostra de l'amfitrió i el reprodueix.
+    text: "L'amfitrió escriu les propietats de fitxer i de text d'un plugin amb patch_set i les llegeix amb patch_get, de manera que també funciona un camí amb espais. sfizz no hi és: Zynthian fa servir sfizz_jack, no un plugin LV2."
+proof:
+  - kind: bench
+    rate: 48000 and 96000 Hz, 128 frames
+    figure: true
+    with: omx-clap-core 0.30.4 (main, 234813ad8e), plugin-hostd 0.19.1, samplv1 1.3.1, mod-host v0.10.6-595-g6c1cdd8 (Zynthian's build)
+    en: "On a Raspberry Pi 5, measured digitally, samplv1 goes from silence to -9.6 dBFS after a note on once its sample is set with patch_set, at 48000 and at 96000 Hz with 128 frames. mod-host v0.10.6-595-g6c1cdd8 (Zynthian's build) gives -9.6 dBFS for the same file at 48000 Hz. jalv was not measured for this figure. The installed omx-clap-core 0.30.2 answers the verb with -902 and stays silent."
+    ca: "En una Raspberry Pi 5, mesurat digitalment, samplv1 passa del silenci a -9,6 dBFS després d'una nota un cop la mostra s'ha posat amb patch_set, a 48000 i a 96000 Hz amb 128 mostres. mod-host v0.10.6-595-g6c1cdd8 (compilació de Zynthian) dóna -9,6 dBFS amb el mateix fitxer a 48000 Hz. jalv no s'ha mesurat per a aquesta xifra. L'omx-clap-core 0.30.2 instal·lat respon el verb amb -902 i es queda en silenci."
+  - kind: bench
+    rate: 48000 and 96000 Hz, 128 frames
+    figure: true
+    with: zynthian-ui vangelis (PR 78), plugin-hostd 0.19.1, samplv1 1.3.1, drumkv1
+    en: "Through the Zynthian interface's own engine on a Raspberry Pi 5, measured digitally, samplv1 plays at -9.6 dBFS at 48000 and at 96000 Hz with 128 frames, also after a snapshot reload and with a user preset. drumkv1 plays at -20.9 dBFS."
+    ca: "Pel motor propi de la interfície de Zynthian en una Raspberry Pi 5, mesurat digitalment, samplv1 sona a -9,6 dBFS a 48000 i a 96000 Hz amb 128 mostres, també després de tornar a carregar un snapshot i amb un preset d'usuari. drumkv1 sona a -20,9 dBFS."
