@@ -169,6 +169,8 @@
     "read": {
       "title": "Read more.",
       "intro": "One card for each thing it gives you, each with the version it shipped in and a link to the detail.",
+      "detail": "In detail.",
+      "detailIntro": "The features this guide has no page of its own for: what each gives you, the version it shipped in and how it was checked. The cards below link here.",
       "coming": "Coming next.",
       "comingIntro": "Merged and not yet in a release, or planned. Each card says which."
     }

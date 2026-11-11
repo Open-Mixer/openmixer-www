@@ -305,7 +305,7 @@
           "state": "none"
         }
       },
-      "detail": "/docs/zynthian#use",
+      "detail": "/docs/zynthian#mackie-pages",
       "card": {
         "en": {
           "title": "Your Mackie surface drives the plugin",
@@ -433,7 +433,7 @@
           "state": "none"
         }
       },
-      "detail": "/docs/zynthian#use",
+      "detail": "/docs/zynthian#mpe",
       "card": {
         "en": {
           "title": "MPE switches on by itself",
@@ -497,7 +497,7 @@
           "state": "none"
         }
       },
-      "detail": "/docs/zynthian#use",
+      "detail": "/docs/zynthian#no-fallback",
       "card": {
         "en": {
           "title": "A refused plugin says why",
@@ -768,7 +768,7 @@
           "state": "none"
         }
       },
-      "detail": "/docs/zynthian#use",
+      "detail": "/docs/zynthian#plugin-bar",
       "card": {
         "en": {
           "title": "You choose how strict the host is",
@@ -900,7 +900,7 @@
           "state": "none"
         }
       },
-      "detail": "/docs/zynthian#use",
+      "detail": "/docs/zynthian#position-law",
       "card": {
         "en": {
           "title": "A frequency knob turns evenly",
@@ -939,7 +939,7 @@
           "state": "none"
         }
       },
-      "detail": "/docs/zynthian#use",
+      "detail": "/docs/zynthian#presets",
       "card": {
         "en": {
           "title": "Factory and User banks for every plugin",
@@ -1082,7 +1082,7 @@
           "state": "none"
         }
       },
-      "detail": "/docs/zynthian#use",
+      "detail": "/docs/zynthian#sample-plugins",
       "card": {
         "en": {
           "title": "A sampler loads its own sample",
@@ -1130,7 +1130,7 @@
           "state": "none"
         }
       },
-      "detail": "/docs/zynthian#install",
+      "detail": "/docs/zynthian#snapshot-converter",
       "card": {
         "en": {
           "title": "Your jalv snapshots come along",
@@ -1203,7 +1203,7 @@
           "state": "none"
         }
       },
-      "detail": "/docs/zynthian#install",
+      "detail": "/docs/zynthian#track-latest",
       "card": {
         "en": {
           "title": "The device follows the releases",

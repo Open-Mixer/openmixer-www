@@ -12,7 +12,7 @@ surfaces:
     version: zynthian-ui omx-track 2026110701
   console:
     state: none
-detail: /docs/zynthian#use
+detail: /docs/zynthian#presets
 card:
   en:
     title: Factory and User banks for every plugin

@@ -11,7 +11,7 @@ surfaces:
     version: zynthian-sys omx-track 2026110701
   console:
     state: none
-detail: /docs/zynthian#install
+detail: /docs/zynthian#track-latest
 card:
   en:
     title: The device follows the releases

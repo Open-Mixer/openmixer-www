@@ -5,13 +5,20 @@ import type { Surface } from '~/composables/useFeatureCards';
 /**
  * The feature cards of one surface, all from the records. `full` shows the longer paragraph, the surfaces and the
  * figures; without it a card is one link with its title and its line. `exceptRows` leaves out the features that
- * already have a hand-built row on the features page.
+ * already have a hand-built row on the features page. `explainedOn` keeps only the features whose detail is an anchor of
+ * that page (`<page>#<id>`, the feature's own id): the page that explains them, each full card its anchor.
  */
-const props = defineProps<{ surface: Surface; group?: 'released' | 'coming' | 'all'; full?: boolean; exceptRows?: boolean }>();
+const props = defineProps<{ surface: Surface; group?: 'released' | 'coming' | 'all'; full?: boolean; exceptRows?: boolean; explainedOn?: string }>();
 const { t } = useI18n();
 const sitePath = useSitePath();
 const { forSurface, text, proofText } = useFeatureCards();
-const list = computed(() => forSurface(props.surface, props.group ?? 'all').filter((c) => !(props.exceptRows && c.row)));
+const list = computed(() =>
+  forSurface(props.surface, props.group ?? 'all')
+    .filter((c) => !(props.exceptRows && c.row))
+    .filter((c) => !props.explainedOn || c.detail === `${props.explainedOn}#${c.id}`),
+);
+/** A full card's detail that is the card itself (its own anchor): no "read more" to where the reader already is. */
+const isSelf = (c: { id: string; detail: string }) => c.detail.endsWith(`#${c.id}`);
 const SURFACES = ['console', 'zynthian', 'libraries'] as const;
 </script>
 
@@ -23,7 +30,7 @@ const SURFACES = ['console', 'zynthian', 'libraries'] as const;
         <p class="pt-1"><SurfaceState :state="c.surfaces[surface].state as 'released'" /></p>
         <p v-if="c.surfaces[surface].version" class="font-mono text-xs text-ink-faint">{{ c.surfaces[surface].version }}</p>
       </LinkCard>
-      <article v-else class="rounded border border-edge bg-surface/60 p-6">
+      <article v-else :id="c.id" class="scroll-mt-24 rounded border border-edge bg-surface/60 p-6">
         <div class="flex items-baseline gap-3">
           <h3 class="font-display text-lg font-semibold tracking-tight text-ink">{{ text(c).title }}</h3>
         </div>
@@ -44,7 +51,7 @@ const SURFACES = ['console', 'zynthian', 'libraries'] as const;
             </li>
           </template>
         </ul>
-        <p class="mt-4 text-sm"><NuxtLink :to="sitePath(c.detail)" class="text-accent hover:underline">{{ t('featureCards.readMore') }}</NuxtLink></p>
+        <p v-if="!isSelf(c)" class="mt-4 text-sm"><NuxtLink :to="sitePath(c.detail)" class="text-accent hover:underline">{{ t('featureCards.readMore') }}</NuxtLink></p>
       </article>
     </template>
   </div>
