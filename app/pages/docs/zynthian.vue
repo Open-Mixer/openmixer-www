@@ -142,10 +142,10 @@ useSeoMeta({
           <p>{{ t('docsZynthian.mixbus.p3') }}</p>
         </div>
         <div class="mt-10 grid gap-5 sm:grid-cols-2">
-          <Shot :src="`${SHOTS}/list-by-tier.png`" :alt="t('docsZynthian.shots.menu.alt')" :caption="t('docsZynthian.shots.menu.caption')" />
-          <Shot :src="`${SHOTS}/controller-page-1-controls.png`" :alt="t('docsZynthian.shots.page.alt')" :caption="t('docsZynthian.shots.page.caption')" />
+          <Shot :src="`${SHOTS}/plugin-menu-by-tier.png`" :alt="t('docsZynthian.shots.menu.alt')" :caption="t('docsZynthian.shots.menu.caption')" />
+          <Shot :src="`${SHOTS}/controller-page-mda-piano.png`" :alt="t('docsZynthian.shots.page.alt')" :caption="t('docsZynthian.shots.page.caption')" />
           <Shot :src="`${SHOTS}/modgui-pedalboard.png`" :alt="t('docsZynthian.shots.modgui.alt')" :caption="t('docsZynthian.shots.modgui.caption')" />
-          <Shot :src="`${SHOTS}/chain-view-kars-zamcomp.png`" :alt="t('docsZynthian.shots.chain.alt')" :caption="t('docsZynthian.shots.chain.caption')" />
+          <Shot :src="`${SHOTS}/chain-view-mda-piano-eq8-comp.png`" :alt="t('docsZynthian.shots.chain.alt')" :caption="t('docsZynthian.shots.chain.caption')" />
         </div>
       </div>
     </section>
