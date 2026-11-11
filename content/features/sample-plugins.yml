@@ -12,7 +12,7 @@ surfaces:
     version: zynthian-ui omx-track 2026110701
   console:
     state: none
-detail: /docs/zynthian#use
+detail: /docs/zynthian#sample-plugins
 card:
   en:
     title: A sampler loads its own sample

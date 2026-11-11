@@ -169,6 +169,8 @@
     "read": {
       "title": "Per saber-ne més.",
       "intro": "Una targeta per a cada cosa que et dona, amb la versió en què va sortir i un enllaç al detall.",
+      "detail": "En detall.",
+      "detailIntro": "Les funcions que aquesta guia no explica en una pàgina pròpia: què et dona cadascuna, la versió en què va sortir i com s'ha comprovat. Les targetes de més avall enllacen aquí.",
       "coming": "El que ve.",
       "comingIntro": "Integrat i encara no en una versió o previst. Cada targeta ho diu."
     }

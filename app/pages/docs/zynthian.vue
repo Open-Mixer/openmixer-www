@@ -242,9 +242,17 @@ useSeoMeta({
       </div>
     </section>
 
+    <section id="in-detail" class="border-b border-edge bg-surface/40">
+      <div class="mx-auto max-w-6xl px-6 py-16">
+        <SectionHead eyebrow="09" :title="t('docsZynthian.read.detail')" />
+        <p class="mb-8 max-w-3xl text-base leading-relaxed text-ink-dim">{{ t('docsZynthian.read.detailIntro') }}</p>
+        <FeatureCards surface="zynthian" full explained-on="/docs/zynthian" />
+      </div>
+    </section>
+
     <section id="read-more" class="border-b border-edge">
       <div class="mx-auto max-w-6xl px-6 py-16">
-        <SectionHead eyebrow="09" :title="t('docsZynthian.read.title')" />
+        <SectionHead eyebrow="10" :title="t('docsZynthian.read.title')" />
         <p class="mb-8 max-w-3xl text-base leading-relaxed text-ink-dim">{{ t('docsZynthian.read.intro') }}</p>
         <FeatureCards surface="zynthian" group="released" />
       </div>
@@ -252,7 +260,7 @@ useSeoMeta({
 
     <section id="coming-next">
       <div class="mx-auto max-w-6xl px-6 py-16">
-        <SectionHead eyebrow="10" :title="t('docsZynthian.read.coming')" />
+        <SectionHead eyebrow="11" :title="t('docsZynthian.read.coming')" />
         <p class="mb-8 max-w-3xl text-base leading-relaxed text-ink-dim">{{ t('docsZynthian.read.comingIntro') }}</p>
         <FeatureCards surface="zynthian" group="coming" />
       </div>
