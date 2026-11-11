@@ -32,6 +32,18 @@ The hosts:
 | mod-host | one mod-host process for every plugin, a JACK client each (LV2 builds) |
 | jalv | one jalv process per plugin (LV2 builds) |
 
+```figure
+chain-add
+```
+
+```figure
+individual
+```
+
+```figure
+shared
+```
+
 The plugin sets: omx comp, delay and drive in turn, 3, 8 and 16 of them, in their CLAP builds where the host runs CLAP
 and their LV2 builds on mod-host and jalv; the same with Calf Compressor (LV2) in the turn, 8 and 16 of them; and one
 Pianoteq 9 playing five-note chords.

@@ -100,3 +100,12 @@ a nice value that is not on record. `software` names the Fedora package `lv2-cal
 
 `schema` is the string `omx-bench/1`. Adding an optional field keeps the version; renaming or removing a
 field or changing its meaning is a new version with its own schema file.
+
+## Interim figures of the hardware tier
+
+`/benchmarks/zynthian-interim` shows what the Raspberry Pi 5 with its RME interface measured before the matrix is
+complete, labelled preliminary until the reference-tier matrix replaces it at the next release. Its data,
+`app/data/zynthian-interim.json`, is written by `scripts/zynthian-interim.mjs` from the harness's runs as written, the
+bench gate's report and the qualification grid's log; the runs themselves stay out of `runs/`, so the main page's
+tables and host comparisons never read a partial matrix. 192 kHz is not shown (unsupported on the Pi), and only
+plugin-hostd's own rows carry figures. The file names each run and its sha256.

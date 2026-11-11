@@ -16,7 +16,7 @@ set -euo pipefail
 dest="${1:?usage: scripts/fetch-docs-tree.sh <dest>}"
 here="$(cd "$(dirname "$0")/.." && pwd)"
 pin="${DOCS_TREE_PIN:-$here/deploy/docs-tree.txt}"
-repo="${DOCS_TREE_REPO:-FreeMixer/openmixer-www}"
+repo="${DOCS_TREE_REPO:-${GITHUB_REPOSITORY:?fetch-docs-tree: GITHUB_REPOSITORY is not set (the repository whose release holds the docs tree)}}"
 
 field() { awk -v k="$1" '$1 == k { print $2; exit }' "$pin"; }
 tag="$(field release)"; asset="$(field asset)"; want="$(field sha256)"

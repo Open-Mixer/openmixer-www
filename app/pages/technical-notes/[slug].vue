@@ -17,6 +17,11 @@ const file = files[`../../data/notes/${slug}.json`];
 if (!file) throw createError({ statusCode: 404, statusMessage: `no note ${slug}`, fatal: true });
 const { data } = await useAsyncData(`note-${slug}-${locale.value}`, async () => (await file()).default[locale.value]);
 const note = computed(() => data.value as Note);
+/**
+ * The note's html cut at each figure placeholder (scripts/gen-pages.mjs, GROUPING_FIGURES): the even parts are html,
+ * the odd ones the name of the drawing GroupingFigure puts there. A note without figures is one part.
+ */
+const parts = computed(() => note.value.html.split(/<div data-figure="([a-z-]+)"><\/div>\n?/));
 
 useSeoMeta({
   title: () => `${note.value.title} | OpenMixer`,
@@ -30,8 +35,13 @@ useSeoMeta({
     <section>
       <div class="mx-auto grid max-w-6xl gap-10 px-6 py-14 lg:grid-cols-[1fr_16rem]">
         <!-- the note's own text, rendered from this repository's markdown -->
-        <div>
-          <article class="doc-body" v-html="note.html" />
+        <div class="min-w-0">
+          <article>
+            <template v-for="(part, i) in parts" :key="i">
+              <div v-if="i % 2 === 0" class="doc-body" v-html="part" />
+              <GroupingFigure v-else :name="part as GroupingFigureName" class="my-6" />
+            </template>
+          </article>
           <!-- the technical data of the measurement (machine, rates, versions, date): a footer, not text -->
           <footer class="mt-12 border-t border-edge pt-4">
             <p class="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-faint">{{ t('notes.page.data') }}</p>

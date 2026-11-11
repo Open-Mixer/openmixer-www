@@ -34,6 +34,18 @@ Els amfitrions:
 | mod-host | un procés de mod-host per a tots els plugins, un client JACK cadascun (versions LV2) |
 | jalv | un procés de jalv per plugin (versions LV2) |
 
+```figure
+chain-add
+```
+
+```figure
+individual
+```
+
+```figure
+shared
+```
+
 Els conjunts de plugins: omx comp, delay i drive per torns, 3, 8 i 16, en les versions CLAP on l'amfitrió fa córrer CLAP
 i en les versions LV2 a mod-host i jalv; el mateix amb Calf Compressor (LV2) als torns, 8 i 16; i un Pianoteq 9 tocant
 acords de cinc notes.

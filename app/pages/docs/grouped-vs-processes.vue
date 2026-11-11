@@ -97,6 +97,8 @@ const rawRows = computed(() =>
         <SectionHead eyebrow="02" :title="t('docsGroupedVsProcesses.method.title')" />
         <div class="space-y-4 text-base leading-relaxed text-ink-dim">
           <p>{{ t('docsGroupedVsProcesses.method.setup') }}</p>
+          <GroupingFigure name="chain" />
+          <GroupingFigure name="individual" />
           <p>{{ t('docsGroupedVsProcesses.method.window') }}</p>
           <p>{{ t('docsGroupedVsProcesses.method.columns') }}</p>
         </div>

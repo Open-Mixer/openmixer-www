@@ -85,6 +85,91 @@ meanings it would need: a transient designer (attack and sustain amounts, no thr
 not a compressor, so its family is `none`. Inference tries the families in the order of the table and
 takes the first whose meanings are all there; none fits, `none`.
 
+## One derivation: `describe`
+
+`tools/describe.mjs` is the one function every surface calls: `describe(descriptor, { overrides, applyOverride, skin, panel })`
+answers `{ description, refusals }` and never throws. The override layers go over the descriptor through omx-contract's
+`applyOverride` (the caller passes it), the layout runs over the effective descriptor, and the skin applies last. The description is
+the family, the `params` (each control's contract facts read from its `travel`: kind, unit and its token, scale, step, ends, default,
+a choice's labels; `log` over a floor at or below zero is served linear), the sections, the controls, the roles, the displays and the
+pages.
+
+The facts are the ones the console's own derivation served for the same descriptor, so a session's params fingerprint holds across
+the switch:
+
+- every symbol the description serves (`params`, `controls`, `roles`, `easy`, a `visibleWhen`'s param) is the name a host sets the
+  parameter by, `servedSymbolOf`: an LV2 control's symbol, a CLAP parameter's id in decimal (`0`, `2147418112`). The layout's own
+  key of a CLAP control, `p<id>`, which a declared panel names, stays inside the layout; the pages slot the id itself;
+- a default rides only inside the ends; one outside them (a TTL that writes 440 on a 0..0.5 travel) is the floor;
+- a choice is a stepped number over its values' span. It carries one label per integer of the span only when every value is an
+  integer (a sparse one, FFT sizes 128..16384, labels each integer between, up to a 16-bit span); a choice whose values lie
+  between integers (0, 0.5, 1) is served unlabelled, its default rounded to an integer inside the ends;
+- a gain the band inference reads as a linear factor (a range that stays above zero), its unit unstated, is served `coef`. A refusal is `{ code, args }`: `PANEL_NO_CONTROLS`, `PANEL_FAMILY_NOT_BACKED`, `PANEL_LAYOUT_INVALID`, a bar group's
+`PANEL_BARS_*`, `PANEL_OVERRIDE_*`, `PANEL_ROLE_DROPPED`, `PANEL_SKIN_DROPPED`. The description is `null` only where no panel can be
+made (no control, an invalid layout); a family the controls do not back is `none` with its refusal.
+
+### The family of a plugin that declares no panel
+
+One rule, the same on every surface, reading no list of plugins:
+
+1. The candidate comes from what the plugin declares about itself, carried in the descriptor's extension bag (`extensions.lv2`:
+   the class as a field or among `rdf:type`'s values; `extensions.clap["clap_plugin_descriptor.features"]`):
+
+   | LV2 class / CLAP feature | Candidate |
+   |---|---|
+   | `lv2:EQPlugin`, `lv2:ParaEQPlugin` / `equalizer` | `eq` |
+   | `lv2:CompressorPlugin` / `compressor` | `dynamics` |
+   | `lv2:GatePlugin`, `lv2:ExpanderPlugin` / `gate` | `gate` |
+   | `lv2:DistortionPlugin` / `distortion` | `drive` |
+
+   A plugin that declares nothing in the table has no candidate; one that declares two families has a family only when exactly
+   one of them passes step 2.
+2. The candidate is kept only when every required role of the family (`REQUIRED_ROLES`) is mapped to a control, by a descriptor word
+   or by the meaning inference below. Otherwise the family is `none` and the panel is the plain sections.
+3. A declared panel, or a user's override naming a `family`, wins and is applied as the layout applies it.
+
+The controls' meanings alone name no family for such a plugin: a plugin declares its class, or it has none.
+
+### The band inference
+
+A control with no `meaning` (or `unknown`, the word a scan writes when neither format states one) is read by `tools/meaning-infer.mjs` (only for a candidate `eq`): its symbol, name and unit give a band
+role (frequency, gain, Q or width, type, on) and the band it belongs to, as the console's heuristic did. A Q whose travel reaches
+zero and comes up at zero is no band's Q, so the width beside it is: LSP's equalizers carry a `q_N` at 0 beside the `w_N` width in
+octaves the band runs on. Every role it yields carries
+`inferred: true`, with the contract token it reads the control in (`hz`, `db` or `coef` for a gain whose range stays above zero,
+`oct` or `none`). A band whose shape no parameter selects carries `shape` on its `band_freq` role; a `band_type` role carries
+`shapes`, one word per choice value from 0 (`off`, `bell`, `lowshelf`, `highshelf`, `highpass`, `lowpass`, `notch`, or `-`), read
+from the choice's labels, so a curve function receives shapes and parses no label. The inference is a derivation, never stored; an
+override file corrects it.
+
+### Displays and their basis
+
+A derived panel whose family has a closed form (`eq`, `dynamics`, `gate`, `drive`) gets its display (`eq_response` or
+`transfer_curve`) on the section holding its first required role, once the required roles are mapped. Every display carries a
+`basis`: `exact` only when an authored descriptor's declared section says `basis: exact` (the plugin's own audio runs the same closed
+form), else `modelled`, which every surface prints in the display's caption place. `basis` is a view and stays out of the canonical
+form. A declared panel's `origins` (band_freq symbol to the planter that owns the band, an authored descriptor's only) gives the role an `origin`, and a surface draws a mark there; nothing is inferred.
+
+The description also serves `easy` (the Easy controls) and its `pages`, cut after the skin applies; a control the values hide keeps its slot in a page, blank.
+
+## Bars
+
+A section gains an optional `bars`: a list of runs `{ controls, labels, tied }`, one label and one `tied` list (the controls an
+encoder changes beside the selected bar) per bar. Every bar is still a control of the section; the field stays out of the canonical
+form and the fingerprint, and out of the CLAP extension.
+
+The rule (`tools/bars.mjs`): inside one section, at least 4 controls one after another that are each a visible, writable `travel`
+with the same ends, the same step (or all continuous), the same unit and the same scale, whose labels form one series: the same words
+with one varying number (`Band 1 Gain`, `Step 1`: the label is the number), a known footage (`16'`, `5 1/3'`, `8'`, `4'`,
+`2 2/3'`, `2'`, `1 3/5'`, `1 1/3'`, `1'`, also `DB <footage>`), or frequencies in strictly rising order (`100 Hz`, `1k`, `1.2 kHz`).
+A run of more than 16 is cut into runs of 16 (`MAX_BARS`). Runs over the same bands (the same length, different labels: an EQ's
+gains, frequencies and Qs) are one group: the run whose controls have a level meaning (`gain`) takes the bars and the others are its
+`tied`; with no meaning the first run in section order. Two runs over different bands are two groups. A declared section says
+`"bars": true` (its controls, in order, are one run; the rule's checks still apply and a failing one refuses the layout by
+`PANEL_BARS_TOO_FEW`, `_NOT_TRAVEL`, `_FACTS_DIFFER` or `_LABELS_NOT_SERIES`) or `"bars": false` (no inference there). A plugin that
+declares no panel gets its skin package's `skin.json` section word, the same `bars`; a skin that rebuilds the sections gets its bars
+recomputed over them, a failing `true` dropped by name.
+
 ## The widget
 
 The widget is a step of its own, `widgetOf(control, declared)`, before any skin. It picks one of the
@@ -116,13 +201,43 @@ audio inputs and outputs with their channels, whether one is a side-chain, and t
 
 ## Pages
 
-`omx-panel layout --pages` cuts each section's controls, in the section's order, into pages of eight (the
-CLAP remote-controls surface); a section of several pages numbers them (`Filter 1`, `Filter 2`). A
-surface with another number of encoders asks for it: `--pages --per-page N` (`perPage` in
-`schema/panel.schema.json`, default 8). Then a group that fits a page is not split across two (the page
-ends early), a group wider than N is cut, and a section of several pages names each page by the controls
-it holds (`Band: Freq - Q`). Every page carries N slots, a short page's last ones `null`. Left out, the
-output is the plain cut of eight, unchanged.
+Every surface pages a plugin's controls from the one description, cut at its own width by one function: omx-panel's
+`pagesOf(description, { perPage, remote })`. No surface builds, stores or reorders pages, and the CLAP remote-controls
+emitter cuts with it too. The width is the surface's (Zynthian 4, the X-Touch and the Mackie 8, CLAP remote-controls 8;
+`perPage` left out is eight) and a surface declares nothing else. The sequence:
+
+1. **The Easy controls first**, on pages of their own named `Easy`, `Easy 2` (the description's `easy`; a skin's `easy` wins,
+   see [skin-package.md](skin-package.md)). A symbol of no control is no slot.
+2. **Then the plugin's declared remote-controls pages, as given**, when the host that has the instance reports them (`remote`:
+   `[{ name, ids }]`, a slot a control's id or `null`). They replace the derived pages and are not edited, so an Easy control may
+   also sit on its remote page; a slot of no control is blank. The served description carries none.
+3. **Else the sections in their effective order** (a skin's `sections` win), each cut at the width with **a group kept whole at
+   every width**: a page ends early rather than split a group, and a group longer than a page is the only one split, on pages of
+   its own, never mixed with its neighbour. A control with no group is its own. A derived page holds a control once, so the Easy
+   controls are not repeated. A section of several pages names each page by the controls it holds (`Band: Freq - Q`).
+
+Every page carries `perPage` slots, a short page's last ones `null`. Below two encoders a bar group (the Bars section)
+is plain controls, one a page. `omx-panel layout --pages [--per-page N]` cuts the layout; `omx-panel describe --pages
+[--per-page N] [--skin file] [--remote file]` serves the same cut over the whole derivation, the skin applied first, as JSON
+to a surface that is not node. The page sequence of the parity fixtures is held at 4 and 8 (`test/pages-fixtures.test.mjs`).
+
+## Visibility
+
+A declared panel can show a control only while another control holds certain values: `visibleWhen`, control
+symbol to a rule (`visibleWhen` in `schema/panel.schema.json`). `{ "param": "mode", "values": [1, 2] }` shows it while
+`mode` is 1 or 2; `{ "param": "eqBands", "atLeast": 5 }` shows it while `eqBands` is 5 or more, so a band's controls
+follow a band count and the rule does not go stale when the count's maximum moves. `param` is an integer or toggle
+parameter of the plugin (a choice, a toggle, or a travel with step 1), every value is 0 to 63, and a rule states one of
+`values` or `atLeast`; anything else is refused by name. The layout carries the rule as the extension's `visible` (the
+governing parameter's id) and `mask` (bit v set: shown while the value is v; `atLeast: n` sets bits n to 63), both in the
+fingerprint, and as `visibleWhen: { symbol, default }`, the governing control and its come-up value, for a renderer.
+
+The pages follow: a control the governing values hide keeps its slot, blank, so the slots after it do not move; a section whose controls are all hidden keeps its page, every slot blank.
+`omx-panel layout --pages --value eqBands=9` cuts at those values; a governing control left out reads its come-up value.
+A host cuts again when a governing value changes (a CLAP face announces its remote-controls changed). With a strip's
+band controls in band order, five a band, a band count of 4 gives the same page boundaries as before, with no hidden band
+on any page. The MOD GUI shows and hides each governed control as its governing port changes, and its screenshot draws
+the controls the come-up values show.
 
 ## The Easy face
 
@@ -152,10 +267,10 @@ output is the plain cut of eight, unchanged.
 A face can set any control that is not a reading, a trigger or a bypass. The list is a view of the panel, so it stays out of
 the canonical serialisation and the fingerprint.
 
-`omx-panel layout --pages --easy-first` puts the Easy controls first, on pages named `Easy`, `Easy 2`, with no control on two
-pages; a scanned descriptor takes the `easy` of the descriptor the plugin's package installed under the same plugin id, as a scan
-has nothing to read one from. Without the flag the pages are the page rule's. `omx-panel modgui --easy-first` draws the Easy
-controls as a MOD GUI's first section and lists them as `modgui:port`.
+The pages put the Easy controls first (see Pages), on pages named `Easy`, `Easy 2`, with no control on two derived pages. With
+`omx-panel layout --pages --easy-first` a scanned descriptor takes the `easy` of the descriptor the plugin's package installed
+under the same plugin id, as a scan has nothing to read one from. `omx-panel modgui --easy-first` draws the Easy controls as a
+MOD GUI's first section and lists them as `modgui:port`.
 
 ## Verbatim
 

@@ -83,21 +83,21 @@ The interface reads the pins for its menus, the records for latency, real-time s
 for the pages. Before an insert it asks the daemon's `estimate` verb what the chain will cost. Nothing is computed twice:
 the descriptor for parameters, the record for figures, the pin for permission, the layout for pages.
 
-On the device, for Kars, the plugin menu row with its tier, latency (measured and declared frames) and real-time safety:
+On the device, the plugin menu: each row with its tier, latency (measured and declared frames), real-time safety and cost:
 
-![The plugin menu, sorted by tier](/technical-notes/from-a-plugin-file-to-a-page/list-by-tier.png)
+![The plugin menu, sorted by tier](/technical-notes/from-a-plugin-file-to-a-page/plugin-menu-by-tier.png)
 
-the engine's controller page:
+an instrument's controller page, with the sections of the omx eq8 and omx comp in its chain:
 
-![The controller page of Kars](/technical-notes/from-a-plugin-file-to-a-page/controller-page-1-controls.png)
+![The controller page of MDA Piano](/technical-notes/from-a-plugin-file-to-a-page/controller-page-mda-piano.png)
 
-the MOD GUI from the same layout:
+the MOD GUI of Kars, from its layout:
 
 ![The MOD GUI of Kars on a pedalboard](/technical-notes/from-a-plugin-file-to-a-page/modgui-pedalboard.png)
 
-and the chain with the instrument:
+and the chains, with the instrument, the equaliser and the compressor:
 
-![A chain with Kars and a compressor](/technical-notes/from-a-plugin-file-to-a-page/chain-view-kars-zamcomp.png)
+![A chain with MDA Piano, omx eq8 and omx comp](/technical-notes/from-a-plugin-file-to-a-page/chain-view-mda-piano-eq8-comp.png)
 
 A fresh device does not repeat the long stage. A package ships the records and pins of a known plugin set, keyed by
 checksums, so a fresh device applies them and probes only what differs.
