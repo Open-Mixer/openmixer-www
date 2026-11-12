@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
-# Build the site and publish it at https://freemixer.github.io/, the root of the
+# Build the site and publish it at https://www.openmixer.org/, the root of the
 # organisation's Pages site.
 #
 # WHERE IT GOES. The root is served from Open-Mixer/open-mixer.github.io, which also
@@ -167,7 +167,7 @@ jobs:
           git config user.signingkey "$fpr"
           git config commit.gpgsign true
 
-      - name: Deploy into freemixer.github.io (dry run on a pull request)
+      - name: Deploy into the root Pages repository (dry run on a pull request)
         run: |
           export SITE_REVISION=${GITHUB_SHA::9}
           if [ "$PUBLISH" = true ]; then
