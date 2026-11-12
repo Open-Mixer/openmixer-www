@@ -50,6 +50,11 @@
       "strip": {
         "title": "A channel strip as plugins",
         "p1": "EQ and dynamics per chain are ordinary effects in that chain; Zynthian's mixer keeps its level, pan and sends. Either add separate plugins (omx keyed-gate, omx eq8, omx comp: you choose each one and its order, and eq8 has eight bands), or one plugin, omx strip: input trim, filters, a gate, four EQ bands and a compressor in stereo, in one load and one worker, its five stages in any order."
+      },
+      "restore": {
+        "title": "A chain restored without its mixer strip",
+        "p1": "Zynthian routes a chain's audio through the chain's mixer strip. A snapshot written by hand or by a tool can hold a chain with a synth and no strip; upstream restores it as written, and the chain is silent. FreeMixer's zynthian-ui adds the strip when it loads such a snapshot, for any engine, and logs a warning that names the chain; the next snapshot holds the strip. A chain that still has a sound source and no strip is named in the log by the audio autoconnect instead of being left unconnected without a word.",
+        "more": "What it changes, the test that holds it and its check on a Pi 5, in the fork's notes"
       }
     },
     "mixbus": {

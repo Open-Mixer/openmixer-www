@@ -50,6 +50,11 @@
       "strip": {
         "title": "Un canal fet de plugins",
         "p1": "L'EQ i la dinàmica de cada cadena són efectes normals d'aquella cadena; el mesclador de Zynthian conserva el nivell, el pan i els envíos. O bé afegiu plugins separats (omx keyed-gate, omx eq8, omx comp: trieu cadascun i el seu ordre i eq8 té vuit bandes) o bé un sol plugin, omx strip: guany d'entrada, filtres, una gate, quatre bandes d'EQ i un compressor en estèreo, en una sola càrrega i un sol worker, amb les seves cinc etapes en qualsevol ordre."
+      },
+      "restore": {
+        "title": "Una cadena restaurada sense el seu canal del mesclador",
+        "p1": "Zynthian encamina l'àudio d'una cadena a través del canal del mesclador de la cadena. Una instantània escrita a mà o per una eina pot contenir una cadena amb un sintetitzador i sense canal; upstream la restaura tal com està escrita i la cadena queda muda. El zynthian-ui de FreeMixer afegeix el canal quan carrega una instantània així (sigui quin sigui el motor) i deixa al registre un avís que anomena la cadena; la instantània següent ja conté el canal. Una cadena que encara té una font de so i cap canal l'anomena al registre la connexió automàtica d'àudio, en lloc de deixar-la desconnectada sense dir res.",
+        "more": "Què canvia, la prova que ho manté i la comprovació en una Pi 5, a les notes del fork"
       }
     },
     "mixbus": {

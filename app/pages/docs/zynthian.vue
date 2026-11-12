@@ -116,6 +116,9 @@ useSeoMeta({
           <p><NuxtLink :to="sitePath('/projects/plugin-hostd/groupings')" class="text-accent hover:underline">{{ t('docsZynthian.use.group.more') }}</NuxtLink></p>
           <h3 class="pt-2 font-display text-lg font-semibold text-ink">{{ t('docsZynthian.use.strip.title') }}</h3>
           <p>{{ t('docsZynthian.use.strip.p1') }}</p>
+          <h3 class="pt-2 font-display text-lg font-semibold text-ink">{{ t('docsZynthian.use.restore.title') }}</h3>
+          <p>{{ t('docsZynthian.use.restore.p1') }}</p>
+          <p><a href="https://github.com/FreeMixer/zynthian-ui/blob/openmixer/docs/mixer-strip-on-restore.md" class="text-accent hover:underline">{{ t('docsZynthian.use.restore.more') }}</a></p>
           <h3 class="pt-2 font-display text-lg font-semibold text-ink">{{ t('docsZynthian.mixbus.title') }}</h3>
           <p>{{ t('docsZynthian.mixbus.p1') }}</p>
           <ol class="list-decimal space-y-2 pl-6">
