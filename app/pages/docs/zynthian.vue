@@ -150,6 +150,9 @@ useSeoMeta({
           <Shot :src="`${SHOTS}/modgui-pedalboard.png`" :alt="t('docsZynthian.shots.modgui.alt')" :caption="t('docsZynthian.shots.modgui.caption')" />
           <Shot :src="`${SHOTS}/chain-view-mda-piano-eq8-comp.png`" :alt="t('docsZynthian.shots.chain.alt')" :caption="t('docsZynthian.shots.chain.caption')" />
         </div>
+        <p class="mt-6 text-base leading-relaxed">
+          <NuxtLink :to="sitePath('/notes/from-a-plugin-file-to-a-page')" class="text-accent hover:underline">{{ t('docsZynthian.use.note') }}</NuxtLink>
+        </p>
       </div>
     </section>
 
@@ -205,9 +208,36 @@ useSeoMeta({
       </div>
     </section>
 
+    <section id="languages" class="border-b border-edge bg-surface/40">
+      <div class="mx-auto max-w-4xl px-6 py-16">
+        <SectionHead eyebrow="06" :title="t('docsZynthian.languages.title')" />
+        <div class="space-y-4 text-base leading-relaxed text-ink-dim">
+          <p>{{ t('docsZynthian.languages.upstream') }}</p>
+          <p>{{ t('docsZynthian.languages.codes') }}</p>
+          <LanguagesFigure />
+          <p>{{ t('docsZynthian.languages.packs') }}</p>
+          <p>{{ t('docsZynthian.languages.review') }}</p>
+          <p>{{ t('docsZynthian.languages.plugins') }}</p>
+          <p>{{ t('docsZynthian.languages.notYet') }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="libraries" class="border-b border-edge">
+      <div class="mx-auto max-w-4xl px-6 py-16">
+        <SectionHead eyebrow="07" :title="t('docsZynthian.libraries.title')" />
+        <div class="space-y-4 text-base leading-relaxed text-ink-dim">
+          <p>{{ t('docsZynthian.libraries.p1') }}</p>
+          <p>
+            <NuxtLink :to="sitePath('/notes/the-libraries-that-read-our-plugins')" class="text-accent hover:underline">{{ t('docsZynthian.libraries.more') }}</NuxtLink>
+          </p>
+        </div>
+      </div>
+    </section>
+
     <section class="border-b border-edge bg-surface/40">
       <div class="mx-auto max-w-4xl px-6 py-16">
-        <SectionHead eyebrow="06" :title="t('docsZynthian.figures.title')" />
+        <SectionHead eyebrow="08" :title="t('docsZynthian.figures.title')" />
         <p class="mb-4 text-base leading-relaxed text-ink-dim">{{ t('docsZynthian.figures.intro') }}</p>
         <ul class="list-disc space-y-3 pl-6 text-base leading-relaxed text-ink-dim">
           <li v-for="f in figures" :key="f.text">
@@ -225,7 +255,7 @@ useSeoMeta({
 
     <section id="status" class="border-b border-edge">
       <div class="mx-auto max-w-4xl px-6 py-16">
-        <SectionHead eyebrow="07" :title="t('docsZynthian.status.title')" />
+        <SectionHead eyebrow="09" :title="t('docsZynthian.status.title')" />
         <div class="space-y-6 text-base leading-relaxed text-ink-dim">
           <p>{{ t('docsZynthian.status.intro') }}</p>
           <ul class="list-disc space-y-2 pl-6">
@@ -237,7 +267,7 @@ useSeoMeta({
 
     <section class="border-b border-edge bg-surface/40">
       <div class="mx-auto max-w-4xl px-6 py-16">
-        <SectionHead eyebrow="08" :title="t('docsZynthian.series.title')" />
+        <SectionHead eyebrow="10" :title="t('docsZynthian.series.title')" />
         <div class="space-y-4 text-base leading-relaxed text-ink-dim">
           <p>{{ t('docsZynthian.series.forks') }}</p>
           <p>{{ t('docsZynthian.series.upstream') }}</p>
@@ -247,7 +277,7 @@ useSeoMeta({
 
     <section id="in-detail" class="border-b border-edge bg-surface/40">
       <div class="mx-auto max-w-6xl px-6 py-16">
-        <SectionHead eyebrow="09" :title="t('docsZynthian.read.detail')" />
+        <SectionHead eyebrow="11" :title="t('docsZynthian.read.detail')" />
         <p class="mb-8 max-w-3xl text-base leading-relaxed text-ink-dim">{{ t('docsZynthian.read.detailIntro') }}</p>
         <FeatureCards surface="zynthian" full explained-on="/docs/zynthian" />
       </div>
@@ -255,7 +285,7 @@ useSeoMeta({
 
     <section id="read-more" class="border-b border-edge">
       <div class="mx-auto max-w-6xl px-6 py-16">
-        <SectionHead eyebrow="10" :title="t('docsZynthian.read.title')" />
+        <SectionHead eyebrow="12" :title="t('docsZynthian.read.title')" />
         <p class="mb-8 max-w-3xl text-base leading-relaxed text-ink-dim">{{ t('docsZynthian.read.intro') }}</p>
         <FeatureCards surface="zynthian" group="released" />
       </div>
@@ -263,7 +293,7 @@ useSeoMeta({
 
     <section id="coming-next">
       <div class="mx-auto max-w-6xl px-6 py-16">
-        <SectionHead eyebrow="11" :title="t('docsZynthian.read.coming')" />
+        <SectionHead eyebrow="13" :title="t('docsZynthian.read.coming')" />
         <p class="mb-8 max-w-3xl text-base leading-relaxed text-ink-dim">{{ t('docsZynthian.read.comingIntro') }}</p>
         <FeatureCards surface="zynthian" group="coming" />
       </div>

@@ -83,6 +83,25 @@ The interface reads the pins for its menus, the records for latency, real-time s
 for the pages. Before an insert it asks the daemon's `estimate` verb what the chain will cost. Nothing is computed twice:
 the descriptor for parameters, the record for figures, the pin for permission, the layout for pages.
 
+### Each artefact through its owner's reader
+
+The interface keeps no copy of what the stages wrote and no code of its own that reads their files. It reads each one
+through the reader its owner ships, all of them in Python:
+
+- **The daemon.** Every line to plugin-hostd and every answer from it goes through plugin-hostd's client,
+  `plugin_hostd_protocol`, which encodes and parses the protocol as its installed table declares it.
+- **The record.** A menu row's qualification is plugin-db's record reader, `plugin_db.query`, and the reason for a
+  verdict is `plugin_db.why`.
+- **The descriptor.** The interface asks the daemon which file holds the plugin's descriptor (`descriptor_get`): its scan,
+  or a describe the interface runs when the daemon has none. omx-panel lays the pages out of that file.
+- **A control's position.** Where a knob sits for a value, drawn and nudged, is omx-contract's position law, read through
+  its scale reader, `omx_contract_scale`.
+- **What an answer says.** An owner's code is shown in the device's language, as `LC_ALL`, `LC_MESSAGES` or `LANG` names
+  it: plugin-hostd's client reads the sentence from the owner's installed catalog, plugin-db's reasons go through
+  omx-contract's catalog reader, and a code with no entry shows its English source sentence.
+
+When an owner changes its data or its reader, the interface follows without a change of its own.
+
 On the device, the plugin menu: each row with its tier, latency (measured and declared frames), real-time safety and cost:
 
 ![The plugin menu, sorted by tier](/technical-notes/from-a-plugin-file-to-a-page/plugin-menu-by-tier.png)
