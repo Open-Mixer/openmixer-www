@@ -93,21 +93,34 @@
       "p3": "Send levels, pre and post fader, and pinning or moving a Mixbus are Zynthian's mixer and chain manager: none of them sends anything to the daemon. Measured at JACK ports, series, parallel and Mixbus chains give the levels they should: unity in series, +6.02 dB for two in parallel, the strip's -20 dB where it sits."
     },
     "shots": {
+      "slot": "Screenshot to come, after {after}.",
       "menu": {
-        "alt": "The Zynthian plugin menu sorted by tier, with latency and real-time safety tags",
+        "alt": "The Zynthian plugin menu sorted by qualification tier, with each plugin's latency, real-time safety and cost",
         "caption": "The plugin menu, sorted by qualification tier"
       },
       "page": {
-        "alt": "The controller page of an instrument in Zynthian, with the sections of its effects",
-        "caption": "A controller page, from the plugin's own sections"
-      },
-      "modgui": {
-        "alt": "An instrument's MOD GUI on a MOD-UI pedalboard",
-        "caption": "An instrument's MOD GUI, from its layout"
+        "alt": "The controller page of MDA Piano in Zynthian: its list of pages on the left and four dials on the right",
+        "caption": "MDA Piano's controller pages, from the plugin's own sections"
       },
       "chain": {
-        "alt": "Zynthian chains, one with an instrument, an equaliser and a compressor",
-        "caption": "A chain with an instrument and two effects"
+        "alt": "A Zynthian chain: MIDI input, MDA Piano, omx eq8, omx comp and the mixer strip",
+        "caption": "A chain with an instrument, an equaliser and a compressor, each a plugin of its own"
+      },
+      "language": {
+        "alt": "A plugin-hostd message in Catalan, read from its owner's catalog",
+        "caption": "A message in the device's language, from its owner's catalog"
+      },
+      "options": {
+        "alt": "A chain's options in Zynthian, headed by its latency, CPU, memory and number of workers",
+        "caption": "A chain's options, headed by what the chain costs: latency, CPU, memory and workers"
+      },
+      "modgui": {
+        "alt": "MOD-UI's pedalboard with each plugin drawn by its MOD GUI, MDA ePiano among them",
+        "caption": "MOD-UI's pedalboard, each plugin drawn by its MOD GUI"
+      },
+      "restart": {
+        "alt": "The same chain after a restart: MDA Piano, omx eq8 and omx comp back in their places",
+        "caption": "The chain after a restart, every processor back"
       }
     },
     "voices": {
