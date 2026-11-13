@@ -8,7 +8,7 @@
 //
 // - static, always: the build installs @freemixer/website alone and runs no closure build.
 // - the clean container, when OPENMIXER_SRC names an openmixer checkout and podman is there: in
-//   fedora:44 with nodejs, npm, pnpm and git only (no C toolchain, no -devel package), the build
+//   fedora:44 with Node 24 (and its ICU data), npm, pnpm and git only (no C toolchain, no -devel package), the build
 //   emits a docs tree with the manual in it. PUBLIC_GUARD_LIST names the private list, as for any build.
 //
 // Run: node --test scripts/build-docs-tree-clean.test.mjs
@@ -42,7 +42,9 @@ test('the docs build succeeds in a clean fedora:44 with no toolchain and no -dev
   const pm = JSON.parse(readFileSync(join(src, 'package.json'), 'utf8')).packageManager ?? 'pnpm@10';
   const inside = [
     'set -euo pipefail',
-    'dnf -y -q install --setopt=install_weak_deps=False nodejs npm git-core >/dev/null',
+    // Node 24, as the site's CI; full-i18n is Node's ICU data (without it Intl.Segmenter, which nuxt
+    // generate calls, segfaults in Fedora's libnode), not a toolchain
+    'dnf -y -q install --setopt=install_weak_deps=False nodejs24 nodejs24-npm nodejs24-full-i18n git-core >/dev/null',
     `npm install -g -s ${pm} >/dev/null`,
     // the point of the test: nothing that compiles C, no -devel header
     'for p in gcc gcc-c++ make pipewire-devel; do ! rpm -q "$p" >/dev/null 2>&1 || { echo "the image has $p"; exit 9; }; done',
