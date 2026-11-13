@@ -115,7 +115,10 @@
       "empty": "Cap plugin coincideix.",
       "open": "Mostra els motius de {id}",
       "close": "Amaga els motius de {id}",
-      "unversioned": "sense versió"
+      "unversioned": "sense versió",
+      "deciding": "Motiu decisiu",
+      "vendorUndeclared": "fabricant no declarat",
+      "also": "també {format}"
     },
     "paging": {
       "label": "Pàgines de la llista de plugins",

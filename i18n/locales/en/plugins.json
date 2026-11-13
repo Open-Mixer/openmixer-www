@@ -115,7 +115,10 @@
       "empty": "No plugin matches.",
       "open": "Show the reasons for {id}",
       "close": "Hide the reasons for {id}",
-      "unversioned": "no version"
+      "unversioned": "no version",
+      "deciding": "Deciding reason",
+      "vendorUndeclared": "vendor not declared",
+      "also": "also {format}"
     },
     "paging": {
       "label": "Pages of the plugin list",

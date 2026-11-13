@@ -16,7 +16,7 @@
     "guide": "Llegeix la guia: instal·lació, ús i paràmetres",
     "figuresTitle": "Les xifres",
     "figuresIntro": "Cada xifra diu amb quines versions s'ha llegit; cada comparació nomena mod-host i jalv.",
-    "notes": "Totes les notes i els bancs de proves"
-  },
-  "interim": "Xifres provisionals de Zynthian"
+    "notes": "Totes les notes i els bancs de proves",
+    "interim": "Xifres provisionals de Zynthian"
+  }
 }
