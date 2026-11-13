@@ -126,6 +126,19 @@ jobs:
       # After the docs tree and the redirect pages are in place, so every link is
       # checked in the tree that is published.
       - run: npm run docs:links
+      # the checks the Pages repository runs on what it serves, on the built site before the deploy: no file points
+      # into a private repository, no notes or dated folder (scripts/check-site-public.sh)
+      - uses: actions/checkout@v4
+        with:
+          repository: Open-Mixer/.github
+          ref: openmixer-v1
+          path: .dotgithub
+      - run: scripts/check-site-public.sh .output/public
+        env:
+          OMX_DOTGITHUB: ${{ github.workspace }}/.dotgithub
+          # report-only until the docs tree is clean (#26): the deploys go on, and the report shows any finding a
+          # change adds; the pull request that moves the docs-tree pin to the clean release removes this line
+          CHECK_SITE_REPORT_ONLY: '1'
 
       # Nothing private leaves this runner: the guard's own tests, then the guard over the
       # whole published tree. A hit fails the run before anything is pushed.
