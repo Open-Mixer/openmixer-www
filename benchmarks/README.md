@@ -107,5 +107,11 @@ field or changing its meaning is a new version with its own schema file.
 complete, labelled preliminary until the reference-tier matrix replaces it at the next release. Its data,
 `app/data/zynthian-interim.json`, is written by `scripts/zynthian-interim.mjs` from the harness's runs as written, the
 bench gate's report and the qualification grid's log; the runs themselves stay out of `runs/`, so the main page's
-tables and host comparisons never read a partial matrix. 192 kHz is not shown (unsupported on the Pi), and only
-plugin-hostd's own rows carry figures. The file names each run and its sha256.
+tables and host comparisons never read a partial matrix. Only plugin-hostd's own rows carry figures. The file names
+each run and its sha256.
+
+The page's last section is the matrix by period length: one table per periods value, a row per period length, a column
+per rate (192 kHz among them), each cell with its frames, its xruns and per host the rows with no xrun over the rows
+that ran, and each rate's safe minimum. Its data, `app/data/zynthian-interim-periods.json`, is written by
+`scripts/zynthian-interim-periods.mjs` from plugin-hostd's `bench/matrix.sh --json` reading and the runs it read. The
+counts are each host's own rows and rank no host against another.

@@ -3,9 +3,12 @@
 /**
  * The interim Zynthian figures: what the hardware tier measured before its matrix is complete, read from
  * app/data/zynthian-interim.json (scripts/zynthian-interim.mjs, from the harness's runs as written). Preliminary:
- * the reference-tier matrix replaces this page at the next release. 192 kHz is not shown, and no host is ranked.
+ * the reference-tier matrix replaces this page at the next release. No host is ranked. The last table is the
+ * matrix by period length, app/data/zynthian-interim-periods.json (scripts/zynthian-interim-periods.mjs): the rates at
+ * equal period length, 192 kHz among them, and each rate's safe minimum.
  */
 import data from '~/data/zynthian-interim.json';
+import periods from '~/data/zynthian-interim-periods.json';
 
 const { t } = useI18n();
 const sitePath = useSitePath();
@@ -59,6 +62,32 @@ const figureRows = computed(() => figurePass.figures.map((f) => ({
   status: f.status !== 'ok' ? t('zynthianInterim.figures.failed') : f.unstable ? t('zynthianInterim.figures.unstable') : t('zynthianInterim.figures.ok'),
 })));
 
+/** One table per periods value: a row per period length, a column per rate, each cell the frames, the verdict and its hosts. */
+const periodVersions = [...new Set(periods.sources.map((x) => versions(x)))].join('; ');
+const periodTables = computed(() => periods.tables.map((table) => ({
+  periods: table.periods,
+  columns: [
+    { key: 'ms', label: t('zynthianInterim.periods.period'), mono: true },
+    ...table.rates.map((rate) => ({ key: `r${rate}`, label: khz(rate), mono: true })),
+  ],
+  rows: [
+    ...table.rows.map((row) => ({
+      ms: `${row.ms} ms`,
+      ...Object.fromEntries(row.cells.map((c) => [`r${c.rate}`, !c.measured
+        ? '—'
+        : [
+            `${c.frames}: ${c.clean ? t('zynthianInterim.periods.clean') : t('zynthianInterim.periods.xruns', { n: c.xruns ?? 0 })}`,
+            (c.hosts ?? []).map((h) => `${h.host} ${h.clean}/${h.ok}`).join(', '),
+            ...(c.sub_ms ? [t('zynthianInterim.periods.subMs')] : []),
+          ].join(' · ')])),
+    })),
+    {
+      ms: t('zynthianInterim.periods.safe'),
+      ...Object.fromEntries(table.safe.map((x) => [`r${x.rate}`, x.ms === null ? t('zynthianInterim.periods.none') : `${x.ms} ms`])),
+    },
+  ],
+})));
+
 const runIds = data.passes.flatMap((p) => p.coverage.map((c) => c.run)).join(', ');
 
 useSeoMeta({
@@ -104,10 +133,27 @@ useSeoMeta({
           </p>
         </SectionHead>
         <RefTable :columns="figureColumns" :rows="figureRows" />
+      </div>
+    </section>
+
+    <section class="border-t border-edge">
+      <div class="mx-auto max-w-5xl px-6 py-16">
+        <SectionHead eyebrow="04" :title="t('zynthianInterim.periods.title')">
+          <p class="mt-3 text-base leading-relaxed text-ink-dim">
+            {{ t('zynthianInterim.periods.intro', { versions: periodVersions, driver: periods.jack.driver, priority: periods.jack.priority, iface: periods.interface }) }}
+          </p>
+          <p class="mt-3 text-base leading-relaxed text-ink-dim">{{ t('zynthianInterim.periods.reading') }}</p>
+        </SectionHead>
+        <div v-for="table in periodTables" :key="table.periods" class="mt-10">
+          <h3 class="mb-4 text-lg font-semibold text-ink">{{ t('zynthianInterim.periods.table', { periods: table.periods }) }}</h3>
+          <RefTable :columns="table.columns" :rows="table.rows" />
+        </div>
+        <p class="mt-6 text-base leading-relaxed text-ink-dim">{{ t('zynthianInterim.periods.hosts') }}</p>
         <p class="mt-6 text-base">
           <NuxtLink :to="sitePath('/benchmarks')" class="text-accent hover:underline">{{ t('zynthianInterim.back') }}</NuxtLink>
         </p>
         <p class="mt-8 font-mono text-xs leading-relaxed text-ink-faint">{{ t('zynthianInterim.footer', { runs: runIds }) }}</p>
+        <p class="mt-2 font-mono text-xs leading-relaxed text-ink-faint">{{ t('zynthianInterim.periods.footer', { runs: periods.sources.map((x) => x.file.replace(/\.json$/, '')).join(', ') }) }}</p>
       </div>
     </section>
   </div>

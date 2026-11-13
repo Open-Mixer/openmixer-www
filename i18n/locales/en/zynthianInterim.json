@@ -12,7 +12,7 @@
     "title": "What these figures are",
     "tier": "Hardware tier: {model}, {cores} cores, {ram} MB, with an {iface} over USB.",
     "covered": "Rates covered: {rates}. Quanta covered: {frames} frames.",
-    "unsupported": "{rates} is unsupported on the Pi and is not shown.",
+    "unsupported": "{rates} was not measured in these passes; the tables by period length below have it.",
     "cells": "Bench: {cells} cells measured at the rates shown; {ok} ran, {failed} failed and stay listed, and the stability gate marked {unstable} of the {ok} as unstable.",
     "grid": "Qualification grid: {done} of {total} cells finished; the grid is still running.",
     "preliminary": "Preliminary: the reference-tier matrix replaces these figures at the next release.",
@@ -45,6 +45,20 @@
     "ok": "ran",
     "failed": "failed",
     "unstable": "unstable"
+  },
+  "periods": {
+    "title": "By period length",
+    "intro": "The matrix read by period length ({versions}; JACK with the {driver} driver at real-time priority {priority} on the {iface}). Rates are compared at equal period length: 512 frames at 48 kHz, 1024 at 96 kHz and 2048 at 192 kHz are the same 10.67 ms.",
+    "reading": "A cell is the frames, then clean or the xruns summed over its rows, then per host the rows with no xrun over the rows that ran. The safe minimum of a rate is its shortest clean period with every longer one clean. A period below one millisecond is no verdict on the rate.",
+    "table": "{periods} periods per buffer",
+    "period": "Period",
+    "clean": "clean",
+    "xruns": "{n} xruns",
+    "subMs": "below 1 ms",
+    "safe": "Safe minimum",
+    "none": "none",
+    "hosts": "H1 is omx-clap-host alone, H2 plugin-hostd, H3 mod-host and H4 jalv. Each host runs its own rows, so the counts are not a ranking of one host against another.",
+    "footer": "Period tables: runs {runs}. Hardware tier, preliminary."
   },
   "back": "All benchmarks",
   "footer": "Runs {runs}. Hardware tier, preliminary."
