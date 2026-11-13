@@ -45,7 +45,7 @@ const install = computed(() => [
   'pnpm -r --filter "@openmixer/mcp-server..." build',
   '',
   `# ${t('docsMcp.install.stdio')}`,
-  'node packages/mcp-server/dist/main.js',
+  'omx-mcp',
 ]);
 
 const SKILLS = [
