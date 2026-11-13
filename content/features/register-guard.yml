@@ -13,7 +13,7 @@ surfaces:
   console:
     state: released
     version: plugin-hostd 0.16.0
-detail: /notes/plugins-that-change-a-callee-saved-register
+detail: /technical-notes/plugins-that-change-a-callee-saved-register
 card:
   en:
     title: A plugin that breaks the rules is isolated

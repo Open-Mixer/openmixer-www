@@ -177,7 +177,7 @@ One instance with 1, 8 and 16 notes held; DSP load and PSS:
 The same DSP load on both hosts, and 43 to 44 MB less memory on plugin-hostd. ZynAddSubFX and sfizz run as their own JACK
 programs, as Zynthian runs them, through neither host: ZynAddSubFX with Analog Pad 1 at 0.6 / 1.6 / 2.6 %, 90 MB; sfizz with
 the Salamander piano at 0.9 / 2.9 / 5.1 %, 86 to 119 MB. None of the five offers a thread pool. One plugin-hostd repeat of
-Odin 2 at one note had one xrun. How instruments use the cores is in [Instruments on a Pi 5](/notes/instruments-on-a-pi-5).
+Odin 2 at one note had one xrun. How instruments use the cores is in [Instruments on a Pi 5](/technical-notes/instruments-on-a-pi-5).
 
 ### Where the chain's time goes
 

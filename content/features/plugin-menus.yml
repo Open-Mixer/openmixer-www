@@ -11,7 +11,7 @@ surfaces:
     version: zynthian-ui omx-track 2026110701
   console:
     state: none
-detail: /notes/from-a-plugin-file-to-a-page
+detail: /technical-notes/from-a-plugin-file-to-a-page
 card:
   en:
     title: Menus that tell you what is safe

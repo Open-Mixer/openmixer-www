@@ -49,15 +49,15 @@ sonant.
 
 En surt un veredicte per a cada amfitrió: apte, aïllat (corre en un worker propi i no s'agrupa mai) o no apte. Kars queda
 apte per a omx-clap-host, segur en temps real amb un escombratge de paràmetres i amb notes, allotjat aïllat. Les xifres de
-la Pi són a [plugin-hostd en una Raspberry Pi 5](/ca/notes/plugin-hostd-on-a-raspberry-pi-5) i les de Surge XT a
-[Instruments en una Pi 5](/ca/notes/instruments-on-a-pi-5).
+la Pi són a [plugin-hostd en una Raspberry Pi 5](/ca/technical-notes/plugin-hostd-on-a-raspberry-pi-5) i les de Surge XT a
+[Instruments en una Pi 5](/ca/technical-notes/instruments-on-a-pi-5).
 
 ## 3. Empremtes
 
 **Responsable:** plugin-qualify. **Escriu:** `/var/lib/omx/qualified.pins`, una línia per plugin.
 
 A partir dels registres, una línia per plugin diu què pot allotjar plugin-hostd i com (vegeu
-[Empremtes al primer ús](/ca/notes/pins-on-first-use)). El dimoni carrega les empremtes com a única font de permís i el seu
+[Empremtes al primer ús](/ca/technical-notes/pins-on-first-use)). El dimoni carrega les empremtes com a única font de permís i el seu
 planificador les llegeix per agrupar workers i col·locar-los en nuclis. Un instrument mai no es posa al worker compartit
 d'una cadena, de manera que una fallada o un búfer tardà d'una veu no poden arribar als efectes que la segueixen.
 
@@ -73,7 +73,7 @@ workers es reparteixen pels nuclis d'àudio, amb el dimoni fora d'aquests nuclis
 La disposició converteix els paràmetres d'un descriptor en pàgines: les seccions esdevenen grups i cada control rep una
 clau estable. La mateixa disposició governa les pàgines de controls del motor a Zynthian, la MOD GUI generada per a MOD-UI
 i el paquet que afegeix grups als plugins LV2 de tercers (vegeu [Per què la majoria dels plugins LV2 d'un Zynthian
-necessiten grups de ports inferits](/ca/notes/why-lv2-plugins-on-zynthian-need-inferred-port-groups)).
+necessiten grups de ports inferits](/ca/technical-notes/why-lv2-plugins-on-zynthian-need-inferred-port-groups)).
 
 Kars té un grup de tres potenciòmetres i per tant una sola pàgina, "Controls". Un efecte es disposa d'una altra manera:
 l'equalitzador d'OpenMixer posa cada banda en una pàgina pròpia.

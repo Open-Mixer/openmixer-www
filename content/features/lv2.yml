@@ -15,7 +15,7 @@ surfaces:
     version: zynthian-sys omx-track 2026110701
   console:
     state: coming
-detail: /notes/the-lv2-adapter-against-mod-host-and-jalv
+detail: /technical-notes/the-lv2-adapter-against-mod-host-and-jalv
 card:
   en:
     title: LV2 plugins on one adapter

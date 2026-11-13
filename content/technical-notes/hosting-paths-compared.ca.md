@@ -143,8 +143,8 @@ tres execucions cadascun:
   cada camí l'ordre desapareix.
 
 Per tant, el que costa és el nombre de nodes, no l'amfitrió. Això és el que va portar a fer córrer una cadena en un sol
-client JACK (vegeu [Un sol client JACK per a una cadena](/ca/notes/one-jack-client-for-a-chain)) i a la retenció dels estats
-de repòs (vegeu [Estats de repòs de la CPU i allotjament de plugins](/ca/notes/cpu-idle-states-and-plugin-hosting)).
+client JACK (vegeu [Un sol client JACK per a una cadena](/ca/technical-notes/one-jack-client-for-a-chain)) i a la retenció dels estats
+de repòs (vegeu [Estats de repòs de la CPU i allotjament de plugins](/ca/technical-notes/cpu-idle-states-and-plugin-hosting)).
 
 ## Límits
 

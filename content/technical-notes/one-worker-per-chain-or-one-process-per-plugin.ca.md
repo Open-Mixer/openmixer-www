@@ -8,7 +8,7 @@ order: 100
 
 plugin-hostd fa córrer una cadena en un sol procés worker (agrupada) o cada plugin en un worker propi. Els amfitrions del
 mateix Zynthian són als dos extrems: jalv fa córrer un procés per plugin, mod-host tots els plugins en un sol procés. Les
-xifres són a [plugin-hostd en una Raspberry Pi 5](/ca/notes/plugin-hostd-on-a-raspberry-pi-5) i a la [pàgina de bancs de
+xifres són a [plugin-hostd en una Raspberry Pi 5](/ca/technical-notes/plugin-hostd-on-a-raspberry-pi-5) i a la [pàgina de bancs de
 proves](/ca/benchmarks); mesuren el dimoni directament en un graf JACK privat, no a través del motor de Zynthian.
 
 ```figure
@@ -33,7 +33,7 @@ shared
   context en 20 s, contra 84 099 amb un worker per plugin i 72 292 amb mod-host.
 - **Contenció de fallades.** El dimoni reinicia un worker perdut amb els enllaços que ell mateix havia fet, en uns 340 ms;
   jalv i mod-host perden el procés i res no torna el plugin. Dins d'una cadena, un membre que avorta deixa els altres
-  sonant (vegeu [Cadenes](/ca/notes/chains-plugins-in-series-in-one-worker)). Els enllaços fets des de fora, com els de
+  sonant (vegeu [Cadenes](/ca/technical-notes/chains-plugins-in-series-in-one-worker)). Els enllaços fets des de fora, com els de
   l'encaminament de Zynthian, el dimoni no els restableix.
 
 ## Què costa

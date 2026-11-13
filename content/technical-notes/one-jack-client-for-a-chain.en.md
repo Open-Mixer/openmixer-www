@@ -11,7 +11,7 @@ order: 130
 omx-clap-host gives every plugin its own JACK client, and every client is a node of the graph with its own wake-up per
 cycle. The question was whether N plugins in series in one client are bit-identical with the same N plugins in N clients
 linked in series, and whether the bench's numbers get better, with nothing getting worse. This is the measurement behind the
-chain of the host library (see the [chains note](/notes/chains-plugins-in-series-in-one-worker) for how plugin-hostd uses it).
+chain of the host library (see the [chains note](/technical-notes/chains-plugins-in-series-in-one-worker) for how plugin-hostd uses it).
 
 ## How the chain runs
 
@@ -97,6 +97,6 @@ With four plugins (omx-eq8, omx-comp, omx-deesser, omx-delay, CLAP):
 ## What was not measured
 
 The container had no `/dev/cpu_dma_latency`, so no CPU idle-state hold was in effect (see [CPU idle states and plugin
-hosting](/notes/cpu-idle-states-and-plugin-hosting)), and its real-time limit was 0, so PipeWire's threads ran
+hosting](/technical-notes/cpu-idle-states-and-plugin-hosting)), and its real-time limit was 0, so PipeWire's threads ran
 `SCHED_OTHER`: the figures are larger and noisier than a real-time graph's, the same for both arms. Whether part of the
 saving is the idle-state exit stays open until the same bench runs on a machine with the device, at each hold.

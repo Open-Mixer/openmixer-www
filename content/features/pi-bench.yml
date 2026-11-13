@@ -12,7 +12,7 @@ surfaces:
     version: plugin-hostd 0.18.0
   console:
     state: none
-detail: /notes/plugin-hostd-on-a-raspberry-pi-5
+detail: /technical-notes/plugin-hostd-on-a-raspberry-pi-5
 card:
   en:
     title: Lighter on a Pi 5

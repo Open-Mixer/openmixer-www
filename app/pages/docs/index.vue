@@ -91,7 +91,7 @@ const faqGroups = computed(() =>
           <LinkCard :title="t('docsIndex.tech.projects.title')" :href="sitePath('/projects')" label="/projects">
             <p>{{ t('docsIndex.tech.projects.body') }}</p>
           </LinkCard>
-          <LinkCard :title="t('docsIndex.tech.notes.title')" :href="sitePath('/notes')" label="/notes">
+          <LinkCard :title="t('docsIndex.tech.notes.title')" :href="sitePath('/technical-notes')" label="/technical-notes">
             <p>{{ t('docsIndex.tech.notes.body') }}</p>
           </LinkCard>
         </div>

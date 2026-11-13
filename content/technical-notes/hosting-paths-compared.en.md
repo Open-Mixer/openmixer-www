@@ -136,8 +136,8 @@ Cycle end p50, µs, one to three runs each:
   adapter path shorten its cycle the same way, and with six on every path the order goes away.
 
 So it is the number of nodes that costs, not the host. That is what led to running a chain in one JACK client (see [One JACK
-client for a chain](/notes/one-jack-client-for-a-chain)) and to the idle-state hold (see [CPU idle states and plugin
-hosting](/notes/cpu-idle-states-and-plugin-hosting)).
+client for a chain](/technical-notes/one-jack-client-for-a-chain)) and to the idle-state hold (see [CPU idle states and plugin
+hosting](/technical-notes/cpu-idle-states-and-plugin-hosting)).
 
 ## Limits
 

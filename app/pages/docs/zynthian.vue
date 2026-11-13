@@ -151,7 +151,7 @@ useSeoMeta({
           <Shot :src="`${SHOTS}/chain-view-mda-piano-eq8-comp.png`" :alt="t('docsZynthian.shots.chain.alt')" :caption="t('docsZynthian.shots.chain.caption')" />
         </div>
         <p class="mt-6 text-base leading-relaxed">
-          <NuxtLink :to="sitePath('/notes/from-a-plugin-file-to-a-page')" class="text-accent hover:underline">{{ t('docsZynthian.use.note') }}</NuxtLink>
+          <NuxtLink :to="sitePath('/technical-notes/from-a-plugin-file-to-a-page')" class="text-accent hover:underline">{{ t('docsZynthian.use.note') }}</NuxtLink>
         </p>
       </div>
     </section>
@@ -202,7 +202,7 @@ useSeoMeta({
           <p>{{ t('docsZynthian.voices.measured.p2') }}</p>
           <p>{{ t('docsZynthian.voices.measured.p3') }}</p>
           <p>
-            <NuxtLink :to="sitePath('/notes/instruments-on-a-pi-5')" class="text-accent hover:underline">{{ t('docsZynthian.voices.measured.more') }}</NuxtLink>
+            <NuxtLink :to="sitePath('/technical-notes/instruments-on-a-pi-5')" class="text-accent hover:underline">{{ t('docsZynthian.voices.measured.more') }}</NuxtLink>
           </p>
         </div>
       </div>
@@ -229,7 +229,7 @@ useSeoMeta({
         <div class="space-y-4 text-base leading-relaxed text-ink-dim">
           <p>{{ t('docsZynthian.libraries.p1') }}</p>
           <p>
-            <NuxtLink :to="sitePath('/notes/the-libraries-that-read-our-plugins')" class="text-accent hover:underline">{{ t('docsZynthian.libraries.more') }}</NuxtLink>
+            <NuxtLink :to="sitePath('/technical-notes/the-libraries-that-read-our-plugins')" class="text-accent hover:underline">{{ t('docsZynthian.libraries.more') }}</NuxtLink>
           </p>
         </div>
       </div>
@@ -246,7 +246,7 @@ useSeoMeta({
           </li>
         </ul>
         <p class="mt-6 flex flex-wrap gap-x-6 text-base leading-relaxed">
-          <NuxtLink :to="sitePath('/notes/plugin-hostd-on-a-raspberry-pi-5')" class="text-accent hover:underline">{{ t('docsZynthian.figures.more') }}</NuxtLink>
+          <NuxtLink :to="sitePath('/technical-notes/plugin-hostd-on-a-raspberry-pi-5')" class="text-accent hover:underline">{{ t('docsZynthian.figures.more') }}</NuxtLink>
           <NuxtLink :to="sitePath('/benchmarks')" class="text-accent hover:underline">{{ t('docsZynthian.figures.bench') }}</NuxtLink>
         </p>
         <p class="mt-8 font-mono text-xs leading-relaxed text-ink-faint">{{ t('docsZynthian.figures.footer') }}</p>

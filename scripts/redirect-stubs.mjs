@@ -21,6 +21,7 @@
 import { mkdirSync, readdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { withOldAddresses } from './old-addresses.mjs';
 
 const OLD_PREFIX = 'openmixer-www';
 const ORIGIN = 'https://open-mixer.github.io';
@@ -83,3 +84,10 @@ if (pages.length === 0) {
   process.exit(1);
 }
 console.log(`[redirect-stubs] ${pages.length} redirect pages under /${OLD_PREFIX}/`);
+
+// the addresses that have no page any more (the notes at /notes, now /technical-notes) are answered by 404.html, the
+// page GitHub Pages serves for any address it has no file for (scripts/old-addresses.mjs)
+for (const page of ['404.html', 'ca/404.html']) {
+  const f = join(root, page);
+  if (existsSync(f)) writeFileSync(f, withOldAddresses(readFileSync(f, 'utf8')));
+}
