@@ -55,7 +55,8 @@
         "title": "A chain restored without its mixer strip",
         "p1": "Zynthian routes a chain's audio through the chain's mixer strip. A snapshot written by hand or by a tool can hold a chain with a synth and no strip; upstream restores it as written, and the chain is silent. FreeMixer's zynthian-ui adds the strip when it loads such a snapshot, for any engine, and logs a warning that names the chain; the next snapshot holds the strip. A chain that still has a sound source and no strip is named in the log by the audio autoconnect instead of being left unconnected without a word.",
         "more": "What it changes, the test that holds it and its check on a Pi 5, in the fork's notes"
-      }
+      },
+      "note": "How a plugin file becomes these screens, stage by stage, and the reader each stage's artefact is read through"
     },
     "mixbus": {
       "title": "Shared effects on a Mixbus",
@@ -168,7 +169,7 @@
     },
     "series": {
       "title": "Where the changes to Zynthian stand.",
-      "forks": "The engine and the system changes are carried on FreeMixer's forks of zynthian-ui and zynthian-sys. In zynthian-ui: the plugin-hostd engine and its client for plugin-hostd's protocol 0.4, plugin-hostd by default with a snapshot converter, menus from qualification, chains from the daemon's planner. In zynthian-sys: the OpenMixer repository, plugin-hostd as the mod-host of MOD-UI, MOD GUIs from omx-panel, OpenMixer in the default install. Merged and open pull requests are listed on each fork.",
+      "forks": "The engine and the system changes are carried on FreeMixer's forks of zynthian-ui and zynthian-sys. In zynthian-ui: the plugin-hostd engine, plugin-hostd by default with a snapshot converter, menus from qualification, chains from the daemon's planner. The fork reads every owner's library and keeps no copy of their data: it speaks to the daemon through plugin-hostd's Python client, reads the records through plugin-db's reader, the position law and the sentences through omx-contract's readers, and the gesture words and compare slots from omx-panel. What remains is on the owners' side: three kinds of name the fork still writes as text, on a few listed lines that each name their issue, until their readers expose them as constants: which refusals are transient, the verbs and the reply codes (in plugin-hostd-protocol) and the grouping reasons (in plugin-hostd). In zynthian-sys: the OpenMixer repository, plugin-hostd as the mod-host of MOD-UI, MOD GUIs from omx-panel, OpenMixer in the default install. Merged and open pull requests are listed on each fork.",
       "upstream": "Upstream, one change is proposed so far: building MOD-UI's environment on Python 3.13, in zynthian-sys. The rest has not been proposed to Zynthian's maintainers yet."
     },
     "read": {
@@ -178,6 +179,42 @@
       "detailIntro": "The features this guide has no page of its own for: what each gives you, the version it shipped in and how it was checked. The cards below link here.",
       "coming": "Coming next.",
       "comingIntro": "Merged and not yet in a release, or planned. Each card says which."
+    },
+    "languages": {
+      "title": "Languages.",
+      "upstream": "Zynthian's own screens, menus and labels stay as Zynthian ships them, in English: nothing of upstream is translated.",
+      "codes": "Our part speaks in codes. Every message our screens show is an owner's code with its arguments, and the owner's contract holds one English source sentence for it. The device's language is the one LC_ALL, LC_MESSAGES or LANG names. The sentence in that language comes from the owner's installed catalog: plugin-hostd's codes through plugin-hostd's client, plugin-db's reasons through omx-contract's catalog reader. A code with no entry in that language shows its English source sentence.",
+      "packs": "Translations ship as language packs, one per owner and language: <package>-l10n-<lang> as a deb, <package>-langpack-<lang> as an rpm. One meta pack per language, openmixer-langpack-<lang>, installs them all, so on the Pi installing the Catalan meta pack is the whole act. The meta pack is not in the channel yet; until it is, the owners' Catalan packs install one by one (omx-contract-l10n-ca, omx-clap-host-l10n-ca, omx-panel-l10n-ca, plugin-db-l10n-ca, plugin-hostd-protocol-l10n-ca, plugin-qualify-l10n-ca).",
+      "review": "Catalan is reviewed by hand. Spanish, French, German, Italian and Portuguese are made by machine, each entry with its provenance, and never overwrite an entry a person wrote. A missing entry falls back to English.",
+      "plugins": "A plugin's parameter names stay in English, as they are on hardware. Its section titles, enumeration values and preset names are translated; that part is still to come in omx-plugins.",
+      "notYet": "Not in the user's language yet: the fork's gesture refusals (GESTURE_*) and the plugin-tier wording built on plugin-qualify's reasons. They will be once they are owner codes with catalogs.",
+      "fig": {
+        "code": {
+          "label": "1  the owner's code",
+          "value": "reply.host.instance-already-exists",
+          "note": "with its arguments, as the screen receives it"
+        },
+        "contract": {
+          "label": "2  the owner's contract (en)",
+          "value": "contract.d/3/<owner>/",
+          "note": "one English source sentence per code"
+        },
+        "pack": {
+          "label": "3  the language pack (ca)",
+          "value": "<owner>/catalogs/ca.json",
+          "note": "from <package>-l10n-ca or -langpack-ca"
+        },
+        "screen": {
+          "label": "4  the screen",
+          "value": "LC_ALL, LC_MESSAGES, LANG",
+          "note": "the sentence in the device's language, else English"
+        }
+      }
+    },
+    "libraries": {
+      "title": "The libraries that read our plugins.",
+      "p1": "Each owner ships the reader of what it writes, in the languages it is read from: C, TypeScript or JavaScript, and Python. The fork reads every owner's data through those readers and keeps no copy of its own: plugin-hostd's client for the daemon, plugin-db's reader for the records, omx-contract's readers for sentences and scales, omx-panel for pages and gestures.",
+      "more": "Per owner and per language: what to install, the entry point and one call, copied from each repository"
     }
   }
 }
