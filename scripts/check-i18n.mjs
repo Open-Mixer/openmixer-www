@@ -16,6 +16,9 @@
 //     (title, lede, eyebrow, label, alt, aria-label, ...) of two words or more, under app/,
 //     must come from a message. An element marked `data-i18n-skip` (a command, a code
 //     sample) is not read, nor is anything inside <code>, <pre> or <kbd>.
+//  6. Every key a file under app/ names in a literal `t('a.b')` is an English message. A
+//     message file that does not open with its page's own key leaves the page printing
+//     the key instead of the sentence.
 //
 // Usage: node scripts/check-i18n.mjs     Exit 0 clean, 1 on any finding.
 
@@ -77,6 +80,7 @@ function compiles(where, text) {
 const sourceFiles = jsonFiles(join(LOCALES, SOURCE));
 if (sourceFiles.length === 0) report('i18n/locales/en', 'no message files');
 let keyCount = 0;
+const sourceKeys = new Set(sourceFiles.flatMap((f) => Object.keys(flatten(readJson(join(LOCALES, SOURCE, f))))));
 
 for (const locale of TARGETS) {
   const targetFiles = jsonFiles(join(LOCALES, locale));
@@ -145,11 +149,24 @@ for (const f of vueFiles) {
   if (descriptor.template?.ast) walk(descriptor.template.ast, `app/${f}`);
 }
 
+const NAMED_KEY = /(?<![\w.])\$?t\(\s*'([A-Za-z][\w-]*(?:\.[\w-]+)+)'/g;
+const appFiles = readdirSync(join(root, 'app'), { recursive: true })
+  .map(String)
+  .filter((f) => /\.(vue|ts)$/.test(f));
+let namedKeys = 0;
+for (const f of appFiles) {
+  for (const [, key] of readFileSync(join(root, 'app', f), 'utf8').matchAll(NAMED_KEY)) {
+    namedKeys += 1;
+    if (!sourceKeys.has(key)) report(`app/${f}`, `names the message ${key}, which no English message file holds`);
+  }
+}
+if (namedKeys === 0) report('app', 'no file names a message: the scan for named keys found nothing to check');
+
 if (findings.length > 0) {
   for (const line of findings) console.error(`  ${line}`);
   console.error(`[check-i18n] FAIL: ${findings.length} finding(s)`);
   process.exit(1);
 }
 console.log(
-  `[check-i18n] clean: ${sourceFiles.length} message files, ${keyCount} keys, translated into ${TARGETS.join(', ')}; ${vueFiles.length} templates carry no literal text`,
+  `[check-i18n] clean: ${sourceFiles.length} message files, ${keyCount} keys, translated into ${TARGETS.join(', ')}; ${vueFiles.length} templates carry no literal text; ${namedKeys} named keys resolve`,
 );

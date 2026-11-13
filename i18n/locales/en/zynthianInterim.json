@@ -1,65 +1,67 @@
 {
-  "seo": {
-    "title": "Zynthian: interim figures",
-    "description": "Preliminary hardware-tier figures from a Raspberry Pi 5 with an RME audio interface, published before the matrix is complete."
-  },
-  "hero": {
-    "eyebrow": "Hardware tier · preliminary",
-    "title": "Zynthian: interim figures",
-    "lede": "What a Raspberry Pi 5 with an RME audio interface has measured so far, published before its matrix is complete. These figures are preliminary: the reference-tier matrix replaces this page at the next release."
-  },
-  "scope": {
-    "title": "What these figures are",
-    "tier": "Hardware tier: {model}, {cores} cores, {ram} MB, with an {iface} over USB.",
-    "covered": "Rates covered: {rates}. Quanta covered: {frames} frames.",
-    "unsupported": "{rates} was not measured in these passes; the tables by period length below have it.",
-    "cells": "Bench: {cells} cells measured at the rates shown; {ok} ran, {failed} failed and stay listed, and the stability gate marked {unstable} of the {ok} as unstable.",
-    "grid": "Qualification grid: {done} of {total} cells finished; the grid is still running.",
-    "preliminary": "Preliminary: the reference-tier matrix replaces these figures at the next release.",
-    "noRanking": "No host is ranked against another from a partial matrix: only plugin-hostd's own figures are shown.",
-    "digital": "Every figure is measured digitally inside the host; nothing here is a claim about the analog path."
-  },
-  "coverage": {
-    "title": "Coverage",
-    "intro": "Each pass of the bench, at each rate: the cells it measured, how many ran, how many failed, and how many the stability gate marked unstable.",
-    "pass": "Pass",
-    "versions": "Versions",
-    "periods": "Periods",
-    "rate": "Rate",
-    "frames": "Frames",
-    "cells": "Cells",
-    "ok": "Ran",
-    "failed": "Failed",
-    "unstable": "Unstable",
-    "unsupported": "unsupported on the Pi"
-  },
-  "figures": {
-    "title": "plugin-hostd, one chain, no added load",
-    "intro": "The newest pass ({versions}, {periods} periods per buffer, Zynthian's own setting): plugin-hostd running each set as one chain with nothing else loading the Pi. DSP load is the average and the maximum, in percent of the audio cycle; PSS is the memory of the host's processes.",
-    "set": "Set",
-    "where": "Rate / frames",
-    "dsp": "DSP load % avg / max",
-    "xruns": "Xruns",
-    "pss": "PSS MB",
-    "status": "Result",
-    "ok": "ran",
-    "failed": "failed",
-    "unstable": "unstable"
-  },
-  "periods": {
-    "title": "By period length",
-    "intro": "The matrix read by period length ({versions}; JACK with the {driver} driver at real-time priority {priority} on the {iface}). Rates are compared at equal period length: 512 frames at 48 kHz, 1024 at 96 kHz and 2048 at 192 kHz are the same 10.67 ms.",
-    "reading": "A cell is the frames, then clean or the xruns summed over its rows, then per host the rows with no xrun over the rows that ran. The safe minimum of a rate is its shortest clean period with every longer one clean. A period below one millisecond is no verdict on the rate.",
-    "table": "{periods} periods per buffer",
-    "period": "Period",
-    "clean": "clean",
-    "xruns": "{n} xruns",
-    "subMs": "below 1 ms",
-    "safe": "Safe minimum",
-    "none": "none",
-    "hosts": "H1 is omx-clap-host alone, H2 plugin-hostd, H3 mod-host and H4 jalv. Each host runs its own rows, so the counts are not a ranking of one host against another.",
-    "footer": "Period tables: runs {runs}. Hardware tier, preliminary."
-  },
-  "back": "All benchmarks",
-  "footer": "Runs {runs}. Hardware tier, preliminary."
+  "zynthianInterim": {
+    "seo": {
+      "title": "Zynthian: interim figures",
+      "description": "Preliminary hardware-tier figures from a Raspberry Pi 5 with an RME audio interface, published before the matrix is complete."
+    },
+    "hero": {
+      "eyebrow": "Hardware tier · preliminary",
+      "title": "Zynthian: interim figures",
+      "lede": "What a Raspberry Pi 5 with an RME audio interface has measured so far, published before its matrix is complete. These figures are preliminary: the reference-tier matrix replaces this page at the next release."
+    },
+    "scope": {
+      "title": "What these figures are",
+      "tier": "Hardware tier: {model}, {cores} cores, {ram} MB, with an {iface} over USB.",
+      "covered": "Rates covered: {rates}. Quanta covered: {frames} frames.",
+      "unsupported": "{rates} was not measured in these passes; the tables by period length below have it.",
+      "cells": "Bench: {cells} cells measured at the rates shown; {ok} ran, {failed} failed and stay listed, and the stability gate marked {unstable} of the {ok} as unstable.",
+      "grid": "Qualification grid: {done} of {total} cells finished; the grid is still running.",
+      "preliminary": "Preliminary: the reference-tier matrix replaces these figures at the next release.",
+      "noRanking": "No host is ranked against another from a partial matrix: only plugin-hostd's own figures are shown.",
+      "digital": "Every figure is measured digitally inside the host; nothing here is a claim about the analog path."
+    },
+    "coverage": {
+      "title": "Coverage",
+      "intro": "Each pass of the bench, at each rate: the cells it measured, how many ran, how many failed, and how many the stability gate marked unstable.",
+      "pass": "Pass",
+      "versions": "Versions",
+      "periods": "Periods",
+      "rate": "Rate",
+      "frames": "Frames",
+      "cells": "Cells",
+      "ok": "Ran",
+      "failed": "Failed",
+      "unstable": "Unstable",
+      "unsupported": "unsupported on the Pi"
+    },
+    "figures": {
+      "title": "plugin-hostd, one chain, no added load",
+      "intro": "The newest pass ({versions}, {periods} periods per buffer, Zynthian's own setting): plugin-hostd running each set as one chain with nothing else loading the Pi. DSP load is the average and the maximum, in percent of the audio cycle; PSS is the memory of the host's processes.",
+      "set": "Set",
+      "where": "Rate / frames",
+      "dsp": "DSP load % avg / max",
+      "xruns": "Xruns",
+      "pss": "PSS MB",
+      "status": "Result",
+      "ok": "ran",
+      "failed": "failed",
+      "unstable": "unstable"
+    },
+    "periods": {
+      "title": "By period length",
+      "intro": "The matrix read by period length ({versions}; JACK with the {driver} driver at real-time priority {priority} on the {iface}). Rates are compared at equal period length: 512 frames at 48 kHz, 1024 at 96 kHz and 2048 at 192 kHz are the same 10.67 ms.",
+      "reading": "A cell is the frames, then clean or the xruns summed over its rows, then per host the rows with no xrun over the rows that ran. The safe minimum of a rate is its shortest clean period with every longer one clean. A period below one millisecond is no verdict on the rate.",
+      "table": "{periods} periods per buffer",
+      "period": "Period",
+      "clean": "clean",
+      "xruns": "{n} xruns",
+      "subMs": "below 1 ms",
+      "safe": "Safe minimum",
+      "none": "none",
+      "hosts": "H1 is omx-clap-host alone, H2 plugin-hostd, H3 mod-host and H4 jalv. Each host runs its own rows, so the counts are not a ranking of one host against another.",
+      "footer": "Period tables: runs {runs}. Hardware tier, preliminary."
+    },
+    "back": "All benchmarks",
+    "footer": "Runs {runs}. Hardware tier, preliminary."
+  }
 }
