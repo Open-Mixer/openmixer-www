@@ -21,6 +21,8 @@
 //   app/data/rest-reference.json
 //   app/data/refusal-codes.json
 
+import { publicSample } from './public-provenance.mjs';
+import { listedCodesOf } from './listed-codes.mjs';
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { resolve, dirname } from 'node:path';
@@ -106,12 +108,7 @@ function parseMessageCode(text, listedText) {
   // The listed codes live in their own union-merged file since 2026-10-19
   // (LISTED_MESSAGE_CODES, which message-code.ts spreads into its typed list); an older checkout
   // still carries them inline as LISTED_CODES.
-  const listedCodes = listedText
-    ? extractArrayStrings(listedText, /export const LISTED_MESSAGE_CODES = \[/)
-    : extractArrayStrings(text, /const LISTED_CODES = \[/);
-  if (listedCodes.length === 0) {
-    throw new Error('message-code: no listed codes found (neither LISTED_MESSAGE_CODES nor LISTED_CODES)');
-  }
+  const listedCodes = listedCodesOf(listedText, text);
   const undoSetParams = extractArrayStrings(text, /const UNDO_SET_PARAMS = \[/);
   const undoSetCodes = undoSetParams.map((p) => `undo.label.set.${p}`);
 
@@ -319,7 +316,7 @@ function buildRestReference(travelSheet, rowsDoc) {
       demand: !!demand[row.path],
       instances: row.instances || 0,
       fields,
-      sample: row.sample || null,
+      sample: publicSample(row.sample || null),
     };
     if (!families.has(family)) families.set(family, new Map());
     const groups = families.get(family);

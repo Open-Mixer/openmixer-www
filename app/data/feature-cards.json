@@ -18,7 +18,7 @@
           "state": "none"
         }
       },
-      "detail": "/notes/the-grouping-planner",
+      "detail": "/technical-notes/the-grouping-planner",
       "card": {
         "en": {
           "title": "See the cost before you add",
@@ -49,7 +49,7 @@
           "state": "none"
         }
       },
-      "detail": "/notes/why-lv2-plugins-on-zynthian-need-inferred-port-groups",
+      "detail": "/technical-notes/why-lv2-plugins-on-zynthian-need-inferred-port-groups",
       "card": {
         "en": {
           "title": "Pages named for what they hold",
@@ -82,7 +82,7 @@
           "version": "plugin-hostd 0.16.0"
         }
       },
-      "detail": "/notes/one-worker-per-chain-or-one-process-per-plugin",
+      "detail": "/technical-notes/one-worker-per-chain-or-one-process-per-plugin",
       "card": {
         "en": {
           "title": "A crash stays in one plugin",
@@ -121,7 +121,7 @@
           "state": "none"
         }
       },
-      "detail": "/notes/from-a-plugin-file-to-a-page",
+      "detail": "/technical-notes/from-a-plugin-file-to-a-page",
       "card": {
         "en": {
           "title": "Easy page, and A/B/C/D to compare",
@@ -193,7 +193,7 @@
           "version": "plugin-hostd 0.16.0"
         }
       },
-      "detail": "/notes/the-grouping-planner",
+      "detail": "/technical-notes/the-grouping-planner",
       "card": {
         "en": {
           "title": "A chain in one worker",
@@ -274,7 +274,7 @@
           "state": "coming"
         }
       },
-      "detail": "/notes/the-lv2-adapter-against-mod-host-and-jalv",
+      "detail": "/technical-notes/the-lv2-adapter-against-mod-host-and-jalv",
       "card": {
         "en": {
           "title": "LV2 plugins on one adapter",
@@ -402,7 +402,7 @@
           "state": "none"
         }
       },
-      "detail": "/notes/audio-layouts-and-how-the-host-judges-the-fit",
+      "detail": "/technical-notes/audio-layouts-and-how-the-host-judges-the-fit",
       "card": {
         "en": {
           "title": "Mono effects in a stereo chain",
@@ -640,7 +640,7 @@
           "state": "none"
         }
       },
-      "detail": "/notes/plugin-hostd-on-a-raspberry-pi-5",
+      "detail": "/technical-notes/plugin-hostd-on-a-raspberry-pi-5",
       "card": {
         "en": {
           "title": "Lighter on a Pi 5",
@@ -736,7 +736,7 @@
           "version": "plugin-hostd 0.16.0"
         }
       },
-      "detail": "/notes/pins-on-first-use",
+      "detail": "/technical-notes/pins-on-first-use",
       "card": {
         "en": {
           "title": "What loads is what was measured",
@@ -806,7 +806,7 @@
           "state": "none"
         }
       },
-      "detail": "/notes/from-a-plugin-file-to-a-page",
+      "detail": "/technical-notes/from-a-plugin-file-to-a-page",
       "card": {
         "en": {
           "title": "Menus that tell you what is safe",
@@ -1010,7 +1010,7 @@
           "version": "plugin-qualify 0.18.5"
         }
       },
-      "detail": "/notes/from-a-plugin-file-to-a-page",
+      "detail": "/technical-notes/from-a-plugin-file-to-a-page",
       "card": {
         "en": {
           "title": "Every plugin measured on your device",
@@ -1050,7 +1050,7 @@
           "version": "plugin-hostd 0.16.0"
         }
       },
-      "detail": "/notes/plugins-that-change-a-callee-saved-register",
+      "detail": "/technical-notes/plugins-that-change-a-callee-saved-register",
       "card": {
         "en": {
           "title": "A plugin that breaks the rules is isolated",
@@ -1163,7 +1163,7 @@
           "version": "omx-clap-host 0.27.0"
         }
       },
-      "detail": "/notes/instruments-on-a-pi-5",
+      "detail": "/technical-notes/instruments-on-a-pi-5",
       "card": {
         "en": {
           "title": "Big synths use all four cores",

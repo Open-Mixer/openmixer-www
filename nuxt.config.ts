@@ -14,18 +14,18 @@ const familyRoutes: string[] = existsSync(restReferencePath)
   ? (JSON.parse(readFileSync(restReferencePath, 'utf8')).families as { slug: string }[]).map((f) => `/docs/rest/${f.slug}`)
   : [];
 
-// The notes and the projects' documents are dynamic routes too (/notes/[slug], /projects/[repo]/[[page]]), rendered
+// The notes and the projects' documents are dynamic routes too (/technical-notes/[slug], /projects/[repo]/[[page]]), rendered
 // from content/ by scripts/gen-pages.mjs ahead of this config; their routes are named from its indexes.
 const dataFile = (name: string) => fileURLToPath(new URL(`./app/data/${name}`, import.meta.url));
 const noteRoutes: string[] = existsSync(dataFile('notes-index.json'))
-  ? (JSON.parse(readFileSync(dataFile('notes-index.json'), 'utf8')).en as { slug: string }[]).map((n) => `/notes/${n.slug}`)
+  ? (JSON.parse(readFileSync(dataFile('notes-index.json'), 'utf8')).en as { slug: string }[]).map((n) => `/technical-notes/${n.slug}`)
   : [];
 const projectRoutes: string[] = existsSync(dataFile('projects-index.json'))
   ? (JSON.parse(readFileSync(dataFile('projects-index.json'), 'utf8')) as { repo: string; pages: { slug: string }[] }[]).flatMap((p) =>
       p.pages.map((pg) => `/projects/${p.repo}${pg.slug ? `/${pg.slug}` : ''}`),
     )
   : [];
-const pageRoutes = ['/notes', '/projects', ...noteRoutes, ...projectRoutes];
+const pageRoutes = ['/technical-notes', '/projects', ...noteRoutes, ...projectRoutes];
 
 /**
  * The site's languages. English is the default and has no prefix; Catalan lives under /ca/.
@@ -63,7 +63,7 @@ const DOCS_TREE_SECTIONS = ['install', 'manual', 'hardware', 'admin', 'troublesh
  * written twice — bare, and mounted — because a rule that silently fails to match reads
  * exactly like a route that renders.
  */
-const NOT_OURS = ['/api-docs/**', '/openapi.json', ...DOCS_TREE_SECTIONS.flatMap((s) => [`/docs/${s}`, `/docs/${s}/**`])];
+const NOT_OURS = ['/openapi.json', ...DOCS_TREE_SECTIONS.flatMap((s) => [`/docs/${s}`, `/docs/${s}/**`])];
 const mount = baseURL.replace(/\/+$/, '');
 const notOursRules = Object.fromEntries(
   NOT_OURS.flatMap((path) => [
@@ -84,9 +84,8 @@ export default defineNuxtConfig({
     },
   },
 
-  // /api-docs/ (typedoc's own static HTML tree, copied verbatim from public/) and
-  // openapi.json are plain files, not Vue routes — the prerender crawler otherwise
-  // tries to resolve a linked /api-docs/ through the app router, gets a 404 (nothing
+  // openapi.json is a plain file, not a Vue route — the prerender crawler otherwise
+  // tries to resolve a linked /openapi.json through the app router, gets a 404 (nothing
   // registers that path as a page) and fails the whole generate under failOnError.
   //
   // The documentation tree (/docs/manual, /docs/install, …) is not this app's either:

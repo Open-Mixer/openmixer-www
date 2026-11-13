@@ -1,14 +1,14 @@
 {
   "meta": {
-    "generatedAt": "2026-10-26T10:21:01.818Z",
-    "sourceRowCount": 248,
-    "sourceTravelCount": 61
+    "generatedAt": "2026-11-13T11:27:59.000Z",
+    "sourceRowCount": 258,
+    "sourceTravelCount": 64
   },
   "families": [
     {
       "slug": "channel",
       "root": "/channel",
-      "count": 67,
+      "count": 68,
       "groups": [
         {
           "label": "(channel itself)",
@@ -313,7 +313,7 @@
             {
               "path": "/channel/{kind}/{index}/chain/processors",
               "example": "/channel/input/1/chain/processors",
-              "writable": false,
+              "writable": true,
               "demand": false,
               "instances": 9,
               "fields": [
@@ -326,7 +326,7 @@
                 },
                 {
                   "name": "plugin",
-                  "writable": false,
+                  "writable": true,
                   "limit": null,
                   "values": null,
                   "perInstance": false
@@ -349,7 +349,7 @@
               "example": "/channel/input/1/chain/processors/trim",
               "writable": true,
               "demand": false,
-              "instances": 151,
+              "instances": 156,
               "fields": [
                 {
                   "name": "admission",
@@ -462,6 +462,15 @@
                 "tier": "",
                 "tierReason": ""
               }
+            },
+            {
+              "path": "/channel/{kind}/{index}/chain/processors/{processorId}/meters",
+              "example": "/channel/input/1/chain/processors/1/meters",
+              "writable": false,
+              "demand": true,
+              "instances": 0,
+              "fields": [],
+              "sample": null
             },
             {
               "path": "/channel/{kind}/{index}/chain/processors/{processorId}/params/{symbol}",
@@ -633,7 +642,7 @@
                   "limit": {
                     "min": 0.1,
                     "max": 100,
-                    "step": 1,
+                    "step": 0.1,
                     "unit": "ms",
                     "default": 5,
                     "defaultFrom": "desk"
@@ -710,7 +719,7 @@
                   "limit": {
                     "min": 5,
                     "max": 3000,
-                    "step": 10,
+                    "step": 5,
                     "unit": "ms",
                     "default": 200,
                     "defaultFrom": "desk"
@@ -980,7 +989,10 @@
                   "name": "slope",
                   "writable": true,
                   "limit": null,
-                  "values": null,
+                  "values": [
+                    12,
+                    24
+                  ],
                   "perInstance": false
                 }
               ],
@@ -1056,13 +1068,13 @@
                   "perInstance": false
                 },
                 {
-                  "name": "cooldownMinutes",
+                  "name": "cooldownSeconds",
                   "writable": true,
                   "limit": {
                     "min": 0,
-                    "max": 120,
-                    "step": 1,
-                    "unit": "min"
+                    "max": 7200,
+                    "step": 10,
+                    "unit": "s"
                   },
                   "values": null,
                   "perInstance": false
@@ -1122,7 +1134,7 @@
                   "limit": {
                     "min": 0.3,
                     "max": 116,
-                    "step": 1,
+                    "step": 0.1,
                     "unit": ""
                   },
                   "values": null,
@@ -1143,7 +1155,7 @@
               ],
               "sample": {
                 "autoBands": 0,
-                "cooldownMinutes": 10,
+                "cooldownSeconds": 600,
                 "holdSeconds": 5,
                 "maxAutoBands": 6,
                 "mergeCents": 100,
@@ -3009,7 +3021,7 @@
     {
       "slug": "console",
       "root": "/console",
-      "count": 24,
+      "count": 26,
       "groups": [
         {
           "label": "(console itself)",
@@ -3584,6 +3596,77 @@
               "sample": {
                 "facts": null,
                 "targetUs": 10
+              }
+            }
+          ]
+        },
+        {
+          "label": "language",
+          "rows": [
+            {
+              "path": "/console/language/{lang}",
+              "example": "/console/language/ca",
+              "writable": false,
+              "demand": true,
+              "instances": 2,
+              "fields": [
+                {
+                  "name": "codes",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "lang",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "strings",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                }
+              ],
+              "sample": {
+                "codes": {
+                  "contract.dir.absent": "Cap directori de contracte a {path}"
+                },
+                "lang": "ca",
+                "strings": {
+                  "WEB_UI.common.action.save": "Desa"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "label": "languages",
+          "rows": [
+            {
+              "path": "/console/languages",
+              "example": "/console/languages",
+              "writable": false,
+              "demand": false,
+              "instances": 1,
+              "fields": [
+                {
+                  "name": "languages",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                }
+              ],
+              "sample": {
+                "languages": [
+                  "ca",
+                  "es"
+                ]
               }
             }
           ]
@@ -4167,11 +4250,11 @@
                     ],
                     "maxInputs": {
                       "admits": {
-                        "count": 66944,
+                        "count": 66783,
                         "workers": 1
                       },
                       "fitsWithHeadroom": {
-                        "count": 55776,
+                        "count": 55616,
                         "workers": 1
                       }
                     }
@@ -4313,7 +4396,7 @@
                     "splitHeadroomRatio",
                     "/console/rt-split facts: no CPU set read — the single walk",
                     "no split facts published: W = 1",
-                    "rt-cost-seed: status=measured host=ref-desk cpu=Intel(R) Core(TM) Ultra 9 275HX measuredAt=2026-10-06 rates=96000,192000 quanta=128,256,512 p95 source=docs/design/notes/2026-10-06-rt-envelope-new-kinds/grid"
+                    "rt-cost-seed: status=measured cpu=Intel(R) Core(TM) Ultra 9 275HX measuredAt=2026-10-06 rates=96000,192000 quanta=128,256,512 p95"
                   ],
                   "capacity.R.maxInputs": [
                     "CYCLE_FIXED_NS[48000]",
@@ -4337,7 +4420,7 @@
                     "splitHeadroomRatio",
                     "/console/rt-split facts: no CPU set read — the single walk",
                     "no split facts published: W = 1",
-                    "rt-cost-seed: status=measured host=ref-desk cpu=Intel(R) Core(TM) Ultra 9 275HX measuredAt=2026-10-06 rates=96000,192000 quanta=128,256,512 p95 source=docs/design/notes/2026-10-06-rt-envelope-new-kinds/grid"
+                    "rt-cost-seed: status=measured cpu=Intel(R) Core(TM) Ultra 9 275HX measuredAt=2026-10-06 rates=96000,192000 quanta=128,256,512 p95"
                   ],
                   "capacity.R.maxOut": [
                     "CYCLE_FIXED_NS[48000]",
@@ -4363,7 +4446,7 @@
                     "no split facts published: W = 1",
                     "presetBuses(inputs, out)",
                     "ALLOCATION_COUNT_CODEC",
-                    "rt-cost-seed: status=measured host=ref-desk cpu=Intel(R) Core(TM) Ultra 9 275HX measuredAt=2026-10-06 rates=96000,192000 quanta=128,256,512 p95 source=docs/design/notes/2026-10-06-rt-envelope-new-kinds/grid"
+                    "rt-cost-seed: status=measured cpu=Intel(R) Core(TM) Ultra 9 275HX measuredAt=2026-10-06 rates=96000,192000 quanta=128,256,512 p95"
                   ],
                   "capacity.W.maxInputs": [
                     "CYCLE_FIXED_NS[48000]",
@@ -4372,7 +4455,7 @@
                     "splitHeadroomRatio",
                     "/console/rt-split facts: no CPU set read — the single walk",
                     "no split facts published: W = 1",
-                    "rt-cost-seed: status=measured host=ref-desk cpu=Intel(R) Core(TM) Ultra 9 275HX measuredAt=2026-10-06 rates=96000,192000 quanta=128,256,512 p95 source=docs/design/notes/2026-10-06-rt-envelope-new-kinds/grid"
+                    "rt-cost-seed: status=measured cpu=Intel(R) Core(TM) Ultra 9 275HX measuredAt=2026-10-06 rates=96000,192000 quanta=128,256,512 p95"
                   ],
                   "capacity.W.maxOut": [
                     "CYCLE_FIXED_NS[48000]",
@@ -4383,7 +4466,7 @@
                     "no split facts published: W = 1",
                     "presetBuses(inputs, out)",
                     "ALLOCATION_COUNT_CODEC",
-                    "rt-cost-seed: status=measured host=ref-desk cpu=Intel(R) Core(TM) Ultra 9 275HX measuredAt=2026-10-06 rates=96000,192000 quanta=128,256,512 p95 source=docs/design/notes/2026-10-06-rt-envelope-new-kinds/grid"
+                    "rt-cost-seed: status=measured cpu=Intel(R) Core(TM) Ultra 9 275HX measuredAt=2026-10-06 rates=96000,192000 quanta=128,256,512 p95"
                   ],
                   "cycleNs": [
                     "quantum / rate × 1e9"
@@ -4415,7 +4498,7 @@
                     "the live input count"
                   ],
                   "status.target": [
-                    "RT_HARD_TARGET (packages/core/src/rt-hard-target.ts)",
+                    "RT_HARD_TARGET (core)",
                     "cycleNs: quantum / rate × 1e9",
                     "budgetNs: RT_ADMISSION_CEILING_RATIO × cycleNs",
                     "predictRtCycleCost over the door desk at the target pace (the single walk: W = 1, the bound a re-partition only lowers)"
@@ -4491,7 +4574,7 @@
                         ]
                       },
                       "currentChain": {
-                        "count": 66940,
+                        "count": 66779,
                         "workers": 1
                       },
                       "worstChain": {
@@ -4507,22 +4590,22 @@
                     "ceilingNs": 399999.99999999994,
                     "cycleNs": 666666.6666666666,
                     "fits": true,
-                    "predictedNs": 11118.079999999998,
-                    "predictedRatio": 0.016677119999999997,
+                    "predictedNs": 14958.079999999998,
+                    "predictedRatio": 0.022437119999999998,
                     "quantum": 128,
                     "rate": 192000,
-                    "roomNs": 388881.9199999999,
-                    "roomRatio": 0.5833228799999999,
+                    "roomNs": 385041.9199999999,
+                    "roomRatio": 0.5775628799999999,
                     "unknown": []
                   },
                   "total": {
                     "ceilingNs": 12799999.999999998,
                     "measuredEmaNs": null,
                     "measuredP95Ns": null,
-                    "predictedNs": 12023.024000000001,
-                    "predictedRatio": 0.0005635792500000001,
-                    "roomNs": 12787976.975999998,
-                    "roomRatio": 0.5994364207499999,
+                    "predictedNs": 42743.024000000005,
+                    "predictedRatio": 0.0020035792500000004,
+                    "roomNs": 12757256.975999998,
+                    "roomRatio": 0.5979964207499999,
                     "serialNs": 10480.400000000001
                   },
                   "unknown": [
@@ -4534,10 +4617,10 @@
                       "cpu": null,
                       "measuredEmaNs": null,
                       "measuredP95Ns": null,
-                      "predictedNs": 12023.024000000001,
-                      "predictedRatio": 0.0005635792500000001,
-                      "roomNs": 12787976.975999998,
-                      "roomRatio": 0.5994364207499999,
+                      "predictedNs": 42743.024000000005,
+                      "predictedRatio": 0.0020035792500000004,
+                      "roomNs": 12757256.975999998,
+                      "roomRatio": 0.5979964207499999,
                       "worker": 0
                     }
                   ]
@@ -5584,6 +5667,13 @@
                   "perInstance": false
                 },
                 {
+                  "name": "missing",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
                   "name": "override",
                   "writable": false,
                   "limit": null,
@@ -5630,7 +5720,11 @@
                 "designated": false,
                 "eligible": false,
                 "flagged": true,
-                "lockDetail": "openmixer emits the pace; the REAC transport free-runs on the host clock (FreeREAC/reac-pw#75).",
+                "lockDetail": {
+                  "code": "clock.lock.master",
+                  "params": {}
+                },
+                "missing": null,
                 "override": false,
                 "paceLocked": false,
                 "paceOwner": "",
@@ -5639,7 +5733,10 @@
                   48000,
                   96000
                 ],
-                "reason": "No hardware clock on the graph worth propagating — let a stagebox own the pace instead.",
+                "reason": {
+                  "code": "clock.pace.no-hardware",
+                  "params": {}
+                },
                 "reference": null
               }
             }
@@ -5671,7 +5768,7 @@
                     "id": "Dummy-Driver",
                     "label": "Dummy-Driver",
                     "priority": 200000,
-                    "reason": "a PipeWire software driver — it keeps time with a system timer, not with hardware"
+                    "why": "software-driver"
                   },
                   {
                     "driving": false,
@@ -5679,7 +5776,7 @@
                     "id": "Freewheel-Driver",
                     "label": "Freewheel-Driver",
                     "priority": 190000,
-                    "reason": "a PipeWire software driver — it keeps time with a system timer, not with hardware"
+                    "why": "software-driver"
                   }
                 ]
               }
@@ -5707,9 +5804,11 @@
               "sample": {
                 "warnings": [
                   {
-                    "detail": "No hardware clock on the graph worth propagating — let a stagebox own the pace instead.",
+                    "detailCode": {
+                      "code": "clock.pace.no-hardware",
+                      "params": {}
+                    },
                     "id": "clock:unqualified-master",
-                    "title": "Owning the pace without a qualifying reference",
                     "titleCode": {
                       "code": "clock.unqualified-master.title",
                       "params": {}
@@ -6258,6 +6357,7 @@
                 "barrier": 0,
                 "continuous": [
                   "/channel/{kind}/{index}/align/measurement",
+                  "/channel/{kind}/{index}/chain/processors/{processorId}/meters",
                   "/channel/{kind}/{index}/eq/bands/sort",
                   "/channel/{kind}/{index}/hrp/report",
                   "/channel/{kind}/{index}/hrp/reset",
@@ -6280,6 +6380,7 @@
                   "/clock/references",
                   "/clock/warnings",
                   "/console/bpm/tap",
+                  "/console/language/{lang}",
                   "/console/room/positions/add",
                   "/console/room/positions/clear",
                   "/cue/clear",
@@ -6307,6 +6408,7 @@
                   "/patches",
                   "/patches/{id}",
                   "/patches/{id}/apply",
+                  "/plugins/scan",
                   "/profiles",
                   "/profiles/{id}",
                   "/record/start",
@@ -8221,6 +8323,13 @@
                   "perInstance": false
                 },
                 {
+                  "name": "plugins",
+                  "writable": true,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
                   "name": "progress",
                   "writable": false,
                   "limit": null,
@@ -9549,6 +9658,128 @@
               ],
               "sample": {
                 "running": false
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "access",
+      "root": "/access",
+      "count": 4,
+      "groups": [
+        {
+          "label": "device",
+          "rows": [
+            {
+              "path": "/access/device/{id}",
+              "example": "/access/device/1",
+              "writable": false,
+              "demand": false,
+              "instances": 0,
+              "fields": [],
+              "sample": null
+            }
+          ]
+        },
+        {
+          "label": "log",
+          "rows": [
+            {
+              "path": "/access/log",
+              "example": "/access/log",
+              "writable": false,
+              "demand": false,
+              "instances": 1,
+              "fields": [
+                {
+                  "name": "entries",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                }
+              ],
+              "sample": {
+                "entries": []
+              }
+            }
+          ]
+        },
+        {
+          "label": "mix",
+          "rows": [
+            {
+              "path": "/access/mix/{index}",
+              "example": "/access/mix/1",
+              "writable": true,
+              "demand": false,
+              "instances": 1,
+              "fields": [
+                {
+                  "name": "ceiling",
+                  "writable": true,
+                  "limit": {
+                    "min": 0,
+                    "max": 1,
+                    "step": 0,
+                    "unit": ""
+                  },
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "locked",
+                  "writable": true,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                }
+              ],
+              "sample": {
+                "ceiling": null,
+                "locked": false
+              }
+            }
+          ]
+        },
+        {
+          "label": "network",
+          "rows": [
+            {
+              "path": "/access/network",
+              "example": "/access/network",
+              "writable": true,
+              "demand": false,
+              "instances": 1,
+              "fields": [
+                {
+                  "name": "asked",
+                  "writable": true,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "open",
+                  "writable": true,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "since",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                }
+              ],
+              "sample": {
+                "asked": false,
+                "open": true,
+                "since": null
               }
             }
           ]
@@ -11460,171 +11691,9 @@
       ]
     },
     {
-      "slug": "adapterType",
-      "root": "/adapterType",
-      "count": 2,
-      "groups": [
-        {
-          "label": "(adapterType itself)",
-          "rows": [
-            {
-              "path": "/adapterType",
-              "example": "/adapterType",
-              "writable": false,
-              "demand": false,
-              "instances": 0,
-              "fields": [],
-              "sample": null
-            },
-            {
-              "path": "/adapterType/{type}",
-              "example": "/adapterType/1",
-              "writable": false,
-              "demand": false,
-              "instances": 0,
-              "fields": [],
-              "sample": null
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "clipboard",
-      "root": "/clipboard",
-      "count": 2,
-      "groups": [
-        {
-          "label": "(clipboard itself)",
-          "rows": [
-            {
-              "path": "/clipboard/{slot}",
-              "example": "/clipboard/current",
-              "writable": true,
-              "demand": false,
-              "instances": 1,
-              "fields": [
-                {
-                  "name": "names",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "parts",
-                  "writable": true,
-                  "limit": null,
-                  "values": [
-                    "dynamics",
-                    "processing",
-                    "strip",
-                    "eq",
-                    "gate",
-                    "comp",
-                    "chain",
-                    "trim",
-                    "mix",
-                    "sends",
-                    "label"
-                  ],
-                  "perInstance": false
-                },
-                {
-                  "name": "sources",
-                  "writable": true,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                }
-              ],
-              "sample": {
-                "names": [],
-                "parts": [],
-                "sources": []
-              }
-            }
-          ]
-        },
-        {
-          "label": "paste",
-          "rows": [
-            {
-              "path": "/clipboard/{slot}/paste",
-              "example": "/clipboard/current/paste",
-              "writable": true,
-              "demand": false,
-              "instances": 1,
-              "fields": [
-                {
-                  "name": "params",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "parts",
-                  "writable": true,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "progress",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "refusal",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "report",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "running",
-                  "writable": true,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "startedAt",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "targets",
-                  "writable": true,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                }
-              ],
-              "sample": {
-                "running": false
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
       "slug": "plugins",
       "root": "/plugins",
-      "count": 2,
+      "count": 3,
       "groups": [
         {
           "label": "(plugins itself)",
@@ -11880,23 +11949,25 @@
                 "description": {
                   "controls": [
                     {
-                      "label": "",
+                      "label": "Input gain",
                       "labelKey": "",
-                      "section": "params",
+                      "section": "controls",
                       "symbol": "g_in",
                       "visibleWhen": null,
-                      "widget": "auto"
+                      "widget": "knob"
                     }
                   ],
                   "displays": [],
-                  "family": "eq",
-                  "fingerprint": "8b8ee2b1191fe31b6e7c6f65938dac3f643f9828ee227acb8038e843d4fbd601",
+                  "easy": [
+                    "g_in"
+                  ],
+                  "family": "none",
+                  "fingerprint": "97646a57487f213902554501ea492856bf2ac0da552469f3cfdd1913fe89fa8e",
                   "manualPage": null,
+                  "meters": [],
                   "pages": [
                     {
-                      "pageName": "Parameters",
-                      "sectionName": "Parameters",
-                      "symbols": [
+                      "ids": [
                         "g_in",
                         null,
                         null,
@@ -11905,7 +11976,10 @@
                         null,
                         null,
                         null
-                      ]
+                      ],
+                      "pageName": "Easy",
+                      "section": null,
+                      "sectionName": "Easy"
                     }
                   ],
                   "params": [
@@ -11928,9 +12002,9 @@
                   "roles": [],
                   "sections": [
                     {
-                      "key": "params",
-                      "label": "Parameters",
-                      "labelKey": "mixer.panel.params"
+                      "key": "controls",
+                      "label": "Controls",
+                      "labelKey": ""
                     }
                   ],
                   "skin": {
@@ -12051,6 +12125,393 @@
                 ],
                 "role": "eq",
                 "uri": "http://lsp-plug.in/plugins/lv2/para_equalizer_x16_stereo"
+              }
+            }
+          ]
+        },
+        {
+          "label": "scan",
+          "rows": [
+            {
+              "path": "/plugins/scan",
+              "example": "/plugins/scan",
+              "writable": true,
+              "demand": false,
+              "instances": 1,
+              "fields": [
+                {
+                  "name": "params",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "progress",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "refusal",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "report",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "running",
+                  "writable": true,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "startedAt",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                }
+              ],
+              "sample": {
+                "running": false
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "adapterType",
+      "root": "/adapterType",
+      "count": 2,
+      "groups": [
+        {
+          "label": "(adapterType itself)",
+          "rows": [
+            {
+              "path": "/adapterType",
+              "example": "/adapterType",
+              "writable": false,
+              "demand": false,
+              "instances": 0,
+              "fields": [],
+              "sample": null
+            },
+            {
+              "path": "/adapterType/{type}",
+              "example": "/adapterType/1",
+              "writable": false,
+              "demand": false,
+              "instances": 0,
+              "fields": [],
+              "sample": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "clipboard",
+      "root": "/clipboard",
+      "count": 2,
+      "groups": [
+        {
+          "label": "(clipboard itself)",
+          "rows": [
+            {
+              "path": "/clipboard/{slot}",
+              "example": "/clipboard/current",
+              "writable": true,
+              "demand": false,
+              "instances": 1,
+              "fields": [
+                {
+                  "name": "names",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "parts",
+                  "writable": true,
+                  "limit": null,
+                  "values": [
+                    "dynamics",
+                    "processing",
+                    "strip",
+                    "eq",
+                    "gate",
+                    "comp",
+                    "chain",
+                    "trim",
+                    "mix",
+                    "sends",
+                    "label"
+                  ],
+                  "perInstance": false
+                },
+                {
+                  "name": "sources",
+                  "writable": true,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                }
+              ],
+              "sample": {
+                "names": [],
+                "parts": [],
+                "sources": []
+              }
+            }
+          ]
+        },
+        {
+          "label": "paste",
+          "rows": [
+            {
+              "path": "/clipboard/{slot}/paste",
+              "example": "/clipboard/current/paste",
+              "writable": true,
+              "demand": false,
+              "instances": 1,
+              "fields": [
+                {
+                  "name": "params",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "parts",
+                  "writable": true,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "progress",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "refusal",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "report",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "running",
+                  "writable": true,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "startedAt",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "targets",
+                  "writable": true,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                }
+              ],
+              "sample": {
+                "running": false
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "presets",
+      "root": "/presets",
+      "count": 2,
+      "groups": [
+        {
+          "label": "(presets itself)",
+          "rows": [
+            {
+              "path": "/presets/{plugin}",
+              "example": "/presets/http://lsp-plug.in/plugins/lv2/filter_mono",
+              "writable": false,
+              "demand": false,
+              "instances": 1,
+              "fields": [
+                {
+                  "name": "format",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "items",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                }
+              ],
+              "sample": {
+                "format": "lv2",
+                "items": [
+                  {
+                    "carries": "params",
+                    "copyOf": null,
+                    "hides": null,
+                    "key": "http://lsp-plug.in/plugins/lv2/filter_mono#preset-highpass",
+                    "layer": "scanned",
+                    "name": "Highpass",
+                    "removable": false
+                  }
+                ]
+              }
+            },
+            {
+              "path": "/presets/{plugin}/{preset}",
+              "example": "/presets/http://lsp-plug.in/plugins/lv2/filter_mono/http://lsp-plug.in/plugins/lv2/filter_mono#preset-highpass",
+              "writable": false,
+              "demand": false,
+              "instances": 1,
+              "fields": [
+                {
+                  "name": "carries",
+                  "writable": false,
+                  "limit": null,
+                  "values": [
+                    "params",
+                    "params+state"
+                  ],
+                  "perInstance": false
+                },
+                {
+                  "name": "changedAt",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "copyOf",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "createdAt",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "hides",
+                  "writable": false,
+                  "limit": null,
+                  "values": [
+                    "installed",
+                    "scanned",
+                    "house",
+                    "profile"
+                  ],
+                  "perInstance": false
+                },
+                {
+                  "name": "key",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "layer",
+                  "writable": false,
+                  "limit": null,
+                  "values": [
+                    "installed",
+                    "scanned",
+                    "house",
+                    "profile"
+                  ],
+                  "perInstance": false
+                },
+                {
+                  "name": "name",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "plugin",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "removable",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "values",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                }
+              ],
+              "sample": {
+                "carries": "params",
+                "changedAt": null,
+                "copyOf": null,
+                "createdAt": null,
+                "hides": null,
+                "key": "http://lsp-plug.in/plugins/lv2/filter_mono#preset-highpass",
+                "layer": "scanned",
+                "name": "Highpass",
+                "plugin": "http://lsp-plug.in/plugins/lv2/filter_mono",
+                "removable": false,
+                "values": [
+                  {
+                    "symbol": "g",
+                    "value": 0
+                  }
+                ]
               }
             }
           ]
@@ -12836,6 +13297,20 @@
                 },
                 {
                   "name": "gateGr",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "input",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "inputRight",
                   "writable": false,
                   "limit": null,
                   "values": null,

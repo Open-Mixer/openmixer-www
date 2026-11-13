@@ -70,9 +70,6 @@ const faqGroups = computed(() =>
           </p>
         </SectionHead>
         <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          <LinkCard :title="t('docsIndex.tech.api.title')" :href="sitePath('/api-docs/')" label="/api-docs/">
-            <p>{{ t('docsIndex.tech.api.body') }}</p>
-          </LinkCard>
           <LinkCard :title="t('docsIndex.tech.rest.title')" :href="sitePath('/docs/rest')" label="/docs/rest">
             <p>{{ t('docsIndex.tech.rest.body', { count: totalRestRows }) }}</p>
           </LinkCard>
@@ -91,7 +88,7 @@ const faqGroups = computed(() =>
           <LinkCard :title="t('docsIndex.tech.projects.title')" :href="sitePath('/projects')" label="/projects">
             <p>{{ t('docsIndex.tech.projects.body') }}</p>
           </LinkCard>
-          <LinkCard :title="t('docsIndex.tech.notes.title')" :href="sitePath('/notes')" label="/notes">
+          <LinkCard :title="t('docsIndex.tech.notes.title')" :href="sitePath('/technical-notes')" label="/technical-notes">
             <p>{{ t('docsIndex.tech.notes.body') }}</p>
           </LinkCard>
         </div>
