@@ -2,7 +2,7 @@
 
 What was measured about each audio plugin, per platform. The `/plugins/` page is built from the files
 in `app/data/plugin-catalog/`, and those are generated from the public qualification records, plugin-db's qualification layer, in
-[FreeMixer/plugin-db-qualification](https://github.com/FreeMixer/plugin-db-qualification). Nothing is
+[Open-Mixer/plugin-db-qualification](https://github.com/Open-Mixer/plugin-db-qualification). Nothing is
 typed by hand: every figure is read from a record, from the probe output beside it, or from its set's
 `provenance.json`.
 

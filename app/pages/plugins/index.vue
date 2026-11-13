@@ -16,8 +16,8 @@ const PAGE_SIZE = 50;
 const loaders = import.meta.glob<PlatformFile>('../../data/plugin-catalog/platforms/*.json', { import: 'default' });
 
 const total = platforms.reduce((n, p) => n + p.tested, 0);
-const sourceUrl = `https://github.com/FreeMixer/${index.source.repo}/tree/${index.source.commit}`;
-const docsUrl = 'https://github.com/FreeMixer/openmixer-www/tree/main/plugin-catalog';
+const sourceUrl = `https://github.com/Open-Mixer/${index.source.repo}/tree/${index.source.commit}`;
+const docsUrl = 'https://github.com/Open-Mixer/openmixer-www/tree/main/plugin-catalog';
 
 const platformName = (id: string) => t(`plugins.platform.${id}.name`);
 const verdictLabel = (v: Verdict) => t(`plugins.verdict.${v}.label`);

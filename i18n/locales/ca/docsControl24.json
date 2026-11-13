@@ -47,7 +47,7 @@
     },
     "install": {
       "title": "Instal·lació.",
-      "intro": "libdiginet és als repositoris de paquets de FreeMixer: RPM per a Fedora (x86_64, aarch64) i DEB per a Debian bookworm i trixie (amd64, arm64). Afegiu el repositori com a les altres pàgines i instal·leu diginet-tools, que porta la biblioteca.",
+      "intro": "libdiginet és als repositoris de paquets de Open-Mixer: RPM per a Fedora (x86_64, aarch64) i DEB per a Debian bookworm i trixie (amd64, arm64). Afegiu el repositori com a les altres pàgines i instal·leu diginet-tools, que porta la biblioteca.",
       "pkgLib": "La biblioteca del protocol i el seu transport: el descobriment, l'inici de sessió, els acusaments de recepció, el keepalive i les retransmissions.",
       "pkgTools": "diginet-probe, l'eina de línia d'ordres per provar una taula.",
       "pkgDevel": "Capçaleres, fitxers pkg-config i la gramàtica del protocol, per compilar un programa sobre la biblioteca.",
@@ -55,7 +55,7 @@
       "firstLook": "Amb la taula connectada i engegada, la primera mirada no envia res: només escolta l'anunci. Després l'eina desperta la taula, mou el fader 1, encén un llum, escriu en una pantalla de nom, registra cada tecla i cada toc i acaba amb un resum.",
       "listen": "només escoltar: l'anunci de la taula, cada 7 segons aproximadament",
       "probe": "despertar la taula i fer la primera prova",
-      "probeDoc": "Totes les opcions i els codis de sortida de l'eina: <a href=\"https://github.com/FreeMixer/libdiginet/blob/main/docs/probe.md\" class=\"text-accent hover:underline\">docs/probe.md</a>. El protocol tal com es coneix, amb una font per a cada afirmació: <a href=\"https://github.com/FreeMixer/libdiginet/blob/main/docs/protocol.md\" class=\"text-accent hover:underline\">docs/protocol.md</a>."
+      "probeDoc": "Totes les opcions i els codis de sortida de l'eina: <a href=\"https://github.com/Open-Mixer/libdiginet/blob/main/docs/probe.md\" class=\"text-accent hover:underline\">docs/probe.md</a>. El protocol tal com es coneix, amb una font per a cada afirmació: <a href=\"https://github.com/Open-Mixer/libdiginet/blob/main/docs/protocol.md\" class=\"text-accent hover:underline\">docs/protocol.md</a>."
     },
     "status": {
       "title": "Estat.",

@@ -40,7 +40,7 @@ documents at a new commit; `npm run pages:verify` checks every copy against its 
 ## The documentation tree
 
 The operator manual, its FAQ, install, hardware, administration, troubleshooting and
-architecture are markdown in `FreeMixer/openmixer` under `docs/`, and that repository's own
+architecture are markdown in `Open-Mixer/openmixer` under `docs/`, and that repository's own
 `packages/website` renders them — the same build a console serves offline at `/help`. This
 site publishes THAT build's `/docs/**` tree rather than re-rendering the markdown or
 committing a copy of it. openmixer is private, so the build and the publish are two steps, and
@@ -140,7 +140,7 @@ the scenario modes and how to add a run are in `benchmarks/README.md`;
 ## The plugin catalog data
 
 `/plugins/` is rendered from `app/data/plugin-catalog/`, which `scripts/plugin-catalog-from-records.mjs` writes
-from the public qualification records (FreeMixer/plugin-db-qualification) at the one commit
+from the public qualification records (Open-Mixer/plugin-db-qualification) at the one commit
 `plugin-catalog/pin.json` names, the way `content/projects/projects.json` pins project documents. The data is
 committed; the build reads it and `npm run catalog:check` (wired into `predev`, `prebuild` and `pregenerate`)
 fails on data that does not match `plugin-catalog/schema/plugin-catalog.v2.schema.json` or that disagrees with
@@ -154,21 +154,21 @@ check and of the generator.
 ### GitHub Pages
 
 `.github/workflows/pages.yml` builds on a push to `main` and publishes the site at the
-root of <https://freemixer.github.io/>, with `NUXT_APP_BASE_URL=/`. The root is served from
-`FreeMixer/freemixer.github.io`, which also holds the package repositories, so the workflow
+root of <https://open-mixer.github.io/>, with `NUXT_APP_BASE_URL=/`. The root is served from
+`Open-Mixer/open-mixer.github.io`, which also holds the package repositories, so the workflow
 does not deploy a Pages artifact: it checks that repository out and `scripts/deploy-root.sh`
 replaces only the top-level paths listed in `deploy/site-owns.txt`, refusing a change that
 reaches anything else. A pull request runs the same steps as a dry run. Every page also gets
 a redirect page at its old `/openmixer-www/` address (`scripts/redirect-stubs.mjs`).
 
 The workflow reads only public sources: this repository, the pinned docs tree (a release of this
-repository) and `FreeMixer/freemixer.github.io`. If the pinned tree cannot be downloaded or its
+repository) and `Open-Mixer/open-mixer.github.io`. If the pinned tree cannot be downloaded or its
 sha256 differs, the run fails and the root keeps serving the previous commit — deliberately,
 because a site that quietly loses its manual looks exactly like a site that never had one. It
 needs two secrets (**Settings → Secrets and variables → Actions**), both for the publish and
 neither for a pull request:
 
-- `PAGES_TOKEN`, with push access to `FreeMixer/freemixer.github.io`.
+- `PAGES_TOKEN`, with push access to `Open-Mixer/open-mixer.github.io`.
 - `SITE_GPG_KEY`, the key that signs the publish commit. Without it the publish step refuses
   to push; the dry run does not need it.
 
@@ -209,7 +209,7 @@ scripts/           build-docs-tree.mjs builds and publishes the openmixer docs t
                    pages. Never hand-edit the generated files; the checked-in one is the
                    curated half typedoc cannot read (Vue components, C headers). openmixer's
                    typedoc.json carries `packageOptions: { disableSources: true }` — the repo
-                   is private, so a "Defined in" link to github.com/FreeMixer/openmixer would
+                   is private, so a "Defined in" link to github.com/Open-Mixer/openmixer would
                    404 for every reader. It has to sit under `packageOptions`, not at the top
                    level: `entryPointStrategy: "packages"` re-reads options per package and a
                    root-level `disableSources` never reaches that re-read, so the flag silently

@@ -29,7 +29,7 @@
     "qualify": {
       "title": "Measure a plugin before you rely on it.",
       "what": "plugin-qualify scans a plugin, measures it offline (latency and CPU cost) and runs it under a real host, then gives one verdict. It installs next to plugin-hostd:",
-      "installFedora": "On Fedora, with the FreeMixer repository added as on the page of shipped plugins:",
+      "installFedora": "On Fedora, with the Open-Mixer repository added as on the page of shipped plugins:",
       "installDebian": "On Debian and Raspberry Pi OS:",
       "run": "Name a plugin file, a bundle or a URI:",
       "output": "The answer is one line per plugin, here for one of the omx plugins:",

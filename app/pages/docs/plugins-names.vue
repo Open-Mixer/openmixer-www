@@ -7,11 +7,11 @@ useSeoMeta({
   description: () => t('docsPluginsNames.seo.description'),
 });
 
-const ORG = 'https://github.com/FreeMixer/';
+const ORG = 'https://github.com/Open-Mixer/';
 
 /**
  * One row per piece; an empty list is a form the piece does not ship in. `path` is where the piece lives when it is
- * not a repository of its own (it is built from FreeMixer/.github).
+ * not a repository of its own (it is built from Open-Mixer/.github).
  */
 const PIECES = [
   {

@@ -8,7 +8,7 @@ useSeoMeta({
 });
 
 /** The worked example's document; the link below shows only when this is set. */
-const WORKED_EXAMPLE_HREF = 'https://github.com/FreeMixer/omx-panel/blob/main/docs/worked-example.md';
+const WORKED_EXAMPLE_HREF = 'https://github.com/Open-Mixer/omx-panel/blob/main/docs/worked-example.md';
 
 const steps = ['declare', 'layout', 'write'] as const;
 

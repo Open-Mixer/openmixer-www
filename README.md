@@ -12,7 +12,7 @@ and code, all generated from the openmixer sources so they never drift from the 
 
 ## Read it
 
-The site is live at <https://freemixer.github.io/>: start at Features, then the manual under
+The site is live at <https://open-mixer.github.io/>: start at Features, then the manual under
 Docs.
 
 ## Where the documentation comes from
@@ -28,7 +28,7 @@ release and change the pin in a pull request: [BUILDING.md](BUILDING.md) has the
 
 ## Install
 
-The site itself is not installed. The FreeMixer tools that openmixer builds on are, from our
+The site itself is not installed. The OpenMixer tools that openmixer builds on are, from our
 packages.
 
 Fedora:

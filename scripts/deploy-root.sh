@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
-# Puts the built site into a checkout of FreeMixer/freemixer.github.io, which serves
-# https://freemixer.github.io/ and also holds the package repositories.
+# Puts the built site into a checkout of Open-Mixer/open-mixer.github.io, which serves
+# https://open-mixer.github.io/ and also holds the package repositories.
 #
 #   scripts/deploy-root.sh <site-dir> <pages-checkout> [--publish]
 #

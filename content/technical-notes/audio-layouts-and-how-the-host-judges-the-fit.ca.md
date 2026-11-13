@@ -77,7 +77,7 @@ es proven amb peces de prova.
 
 Les regles mateixes (quins ports són principals i quins auxiliars, els tipus de grup LV2 i els seus mapes de canals, les
 extensions CLAP que es llegeixen, els noms dels ports JACK, els límits i els codis de refús) són a [la referència de la
-biblioteca de l'amfitrió](https://github.com/FreeMixer/omx-clap-core/blob/main/doc/reference.md).
+biblioteca de l'amfitrió](https://github.com/Open-Mixer/omx-clap-core/blob/main/doc/reference.md).
 
 ## Com es demostra
 
