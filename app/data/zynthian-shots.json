@@ -1,0 +1,12 @@
+{
+  "doc": "The seven acceptance shots of the Zynthian page (2026-11-13, a Raspberry Pi 5 running the Open-Mixer fork), each placed with <ZynthianShot id> where its text is. file is the picture under public/, or null for a shot still to come, with after naming what it waits for. key names its words in i18n docsZynthian.shots.",
+  "shots": [
+    { "id": "s1", "file": null, "after": "plugin-qualify 0.20.5", "key": "menu" },
+    { "id": "s2", "file": "/docs/zynthian/shots/s2-controller-mda-piano.png", "key": "page" },
+    { "id": "s3", "file": "/docs/zynthian/shots/s3-chain-piano-eq8-comp.png", "key": "chain" },
+    { "id": "s4", "file": null, "after": "zynthian-ui#30", "key": "language" },
+    { "id": "s5", "file": "/docs/zynthian/shots/s5-chain-options.png", "key": "options" },
+    { "id": "s6", "file": "/docs/zynthian/shots/s6-mod-gui-pedalboard.webp", "key": "modgui" },
+    { "id": "s7", "file": "/docs/zynthian/shots/s7-chain-after-restart.png", "key": "restart" }
+  ]
+}
