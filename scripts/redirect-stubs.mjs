@@ -6,7 +6,7 @@
 // working now that it is served from the root.
 //
 //   openmixer-www/faq/index.html        -> /faq/
-//   openmixer-www/api-docs/x.html       -> /api-docs/x.html
+//   openmixer-www/docs/rest/index.html  -> /docs/rest/
 //
 // Each page redirects at once (meta refresh, and a script that keeps the query and the
 // #anchor), names the new address as canonical, and asks search engines not to index it.

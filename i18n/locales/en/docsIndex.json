@@ -71,10 +71,6 @@
       "eyebrow": "Tech docs",
       "title": "Reference for developers and integrators.",
       "intro": "Generated from the running console's own contract, not hand-written — each one dates itself and cannot describe a control the server does not actually serve.",
-      "api": {
-        "title": "API reference",
-        "body": "TSDoc for {'@'}openmixer/core and the server's public surface, generated with typedoc."
-      },
       "rest": {
         "title": "REST reference",
         "body": "{count} addressable rows, their fields, ranges and refusal codes."

@@ -63,7 +63,7 @@ const DOCS_TREE_SECTIONS = ['install', 'manual', 'hardware', 'admin', 'troublesh
  * written twice — bare, and mounted — because a rule that silently fails to match reads
  * exactly like a route that renders.
  */
-const NOT_OURS = ['/api-docs/**', '/openapi.json', ...DOCS_TREE_SECTIONS.flatMap((s) => [`/docs/${s}`, `/docs/${s}/**`])];
+const NOT_OURS = ['/openapi.json', ...DOCS_TREE_SECTIONS.flatMap((s) => [`/docs/${s}`, `/docs/${s}/**`])];
 const mount = baseURL.replace(/\/+$/, '');
 const notOursRules = Object.fromEntries(
   NOT_OURS.flatMap((path) => [
@@ -84,9 +84,8 @@ export default defineNuxtConfig({
     },
   },
 
-  // /api-docs/ (typedoc's own static HTML tree, copied verbatim from public/) and
-  // openapi.json are plain files, not Vue routes — the prerender crawler otherwise
-  // tries to resolve a linked /api-docs/ through the app router, gets a 404 (nothing
+  // openapi.json is a plain file, not a Vue route — the prerender crawler otherwise
+  // tries to resolve a linked /openapi.json through the app router, gets a 404 (nothing
   // registers that path as a page) and fails the whole generate under failOnError.
   //
   // The documentation tree (/docs/manual, /docs/install, …) is not this app's either:

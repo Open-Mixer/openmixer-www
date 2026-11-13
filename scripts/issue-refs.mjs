@@ -9,7 +9,7 @@
 // without needing the private list:
 //
 //   node scripts/issue-refs.mjs check [dir ...]    fail on a reference (default: public)
-//   node scripts/issue-refs.mjs redact [dir ...]   strip them from every .html file (default: public/api-docs)
+//   node scripts/issue-refs.mjs redact [dir ...]   strip them from every .html file of the directories named
 //
 // The pattern is built from parts, so this file does not spell the shape it looks for.
 
@@ -79,7 +79,8 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
     if (hits.length) { console.error(hits.join('\n')); console.error(`[issue-refs] ${hits.length} reference(s) to a private issue`); process.exit(1); }
     console.log('[issue-refs] no reference to a private issue');
   } else if (mode === 'redact') {
-    const dirs = (rest.length ? rest : ['public/api-docs']).map((d) => resolve(wwwRoot, d));
+    if (!rest.length) { console.error('issue-refs: redact needs the directories to strip'); process.exit(2); }
+    const dirs = rest.map((d) => resolve(wwwRoot, d));
     for (const d of dirs) console.log(`[issue-refs] ${d}: ${redactDir(d)} file(s) changed`);
   } else {
     console.error('usage: issue-refs.mjs check|redact [dir ...]');

@@ -71,10 +71,6 @@
       "eyebrow": "Documentació tècnica",
       "title": "Referència per a desenvolupadors i integradors.",
       "intro": "Generada a partir del contracte de la mateixa taula en execució, no escrita a mà: cada document porta la seva data i no pot descriure cap control que el servidor no serveixi de debò.",
-      "api": {
-        "title": "Referència de l'API",
-        "body": "TSDoc de {'@'}openmixer/core i de la interfície pública del servidor, generat amb typedoc."
-      },
       "rest": {
         "title": "Referència REST",
         "body": "{count} files adreçables, amb els seus camps, rangs i codis de rebuig."
