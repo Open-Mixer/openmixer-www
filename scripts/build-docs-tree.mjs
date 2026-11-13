@@ -355,7 +355,7 @@ function emitTree({ built, revision }) {
     cpSync(built, join(out, 'public'), { recursive: true });
     writeFileSync(
       join(out, TREE_META),
-      `${JSON.stringify({ repository: 'Open-Mixer/openmixer', revision, baseURL, listHash, pages: allow.pages.length, builtAt: stamp }, null, 2)}\n`,
+      `${JSON.stringify({ revision, baseURL, listHash, pages: allow.pages.length, builtAt: stamp }, null, 2)}\n`,
     );
     mkdirSync(dirname(emitTo), { recursive: true });
     tarReproducible(emitTo, out, [TREE_META, 'public'], stamp);
@@ -457,7 +457,6 @@ writeFileSync(
   join(dist, MANIFEST),
   `${JSON.stringify(
     {
-      repository: 'Open-Mixer/openmixer',
       revision,
       from: treeDir ? 'docs tree' : 'checkout',
       publishedAt: tree.builtAt ?? stampFor(src),
