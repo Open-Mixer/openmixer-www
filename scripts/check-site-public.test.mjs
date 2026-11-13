@@ -74,3 +74,19 @@ test('no built site is red', () => {
   const res = run(join(r.root, 'nosite'), { OMX_DOTGITHUB: r.dot });
   assert.notEqual(res.status, 0);
 });
+
+// report-only (CHECK_SITE_REPORT_ONLY=1), until the docs tree is clean: the findings are shown and counted, the step
+// passes so the deploys go on; a checker that cannot run is still red
+test('report-only: the findings shown and counted, exit 0', () => {
+  const r = rig({ 'index.html': '<p>hello</p>\n', 'api-docs/x.html': 'Defined in FORBIDDEN/src/x.ts\n', 'notes/a.html': 'n\n' });
+  const res = run(r.site, { OMX_DOTGITHUB: r.dot, CHECK_SITE_REPORT_ONLY: '1' });
+  assert.equal(res.status, 0, res.stdout + res.stderr);
+  assert.match(res.stdout + res.stderr, /api-docs\/x\.html/);
+  assert.match(res.stdout + res.stderr, /REPORT-ONLY: the built site fails private-refs-check, public-layout-check/);
+});
+
+test('report-only: a checker that cannot run is still red', () => {
+  const r = rig({ 'index.html': '<p>hello</p>\n' });
+  const res = run(r.site, { OMX_DOTGITHUB: join(r.root, 'nowhere'), CHECK_SITE_REPORT_ONLY: '1' });
+  assert.notEqual(res.status, 0);
+});
