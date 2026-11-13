@@ -289,7 +289,11 @@ const clap_plugin_t *delay = f->create_plugin(f, host, "org.openmixer.delay");
 - plugin-qualify cites a Python reader of record figures for Zynthian (`tools/record_figures.py`) that does not exist:
   there is no Python reader of records or of the pins file.
 - omx-contract's Python modules are not on `sys.path`; every program loads them by their file, as plugin-db's
-  `text.py` does.
+  `text.py` does. omx-contract#28 makes them a package, `python3-omx-contract` (`import omx_contract.catalog`).
+- Three kinds of name a client compares against are not constants of their owner's reader yet, so the Zynthian fork writes
+  them as text on a few listed lines, each naming its issue: which refusals are transient (plugin-hostd-protocol#23),
+  the verbs and the reply codes in the Python client (plugin-hostd-protocol#24) and the grouping reasons of
+  `grouping.json` (plugin-hostd#67).
 - omx-contract's `/validate` export, its generated `omx_contract.py` and plugin-qualify's `readDistributedLayer` have
   no example in their repositories.
 - omx-dsp's TypeScript twins and plugin-hostd's TypeScript client are on npm only, not in the rpm or deb packages;
