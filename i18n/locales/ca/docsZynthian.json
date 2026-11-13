@@ -55,7 +55,8 @@
         "title": "Una cadena restaurada sense el seu canal del mesclador",
         "p1": "Zynthian encamina l'àudio d'una cadena a través del canal del mesclador de la cadena. Una instantània escrita a mà o per una eina pot contenir una cadena amb un sintetitzador i sense canal; upstream la restaura tal com està escrita i la cadena queda muda. El zynthian-ui de FreeMixer afegeix el canal quan carrega una instantània així (sigui quin sigui el motor) i deixa al registre un avís que anomena la cadena; la instantània següent ja conté el canal. Una cadena que encara té una font de so i cap canal l'anomena al registre la connexió automàtica d'àudio, en lloc de deixar-la desconnectada sense dir res.",
         "more": "Què canvia, la prova que ho manté i la comprovació en una Pi 5, a les notes del fork"
-      }
+      },
+      "note": "Com un fitxer de plugin esdevé aquestes pantalles, etapa per etapa: amb el lector a través del qual es llegeix l'artefacte de cada etapa"
     },
     "mixbus": {
       "title": "Efectes compartits en un Mixbus",
@@ -168,7 +169,7 @@
     },
     "series": {
       "title": "On són els canvis a Zynthian.",
-      "forks": "El motor i els canvis del sistema són als forks de zynthian-ui i zynthian-sys de FreeMixer. A zynthian-ui: el motor plugin-hostd i el seu client del protocol 0.4 de plugin-hostd, plugin-hostd per defecte amb un convertidor d'instantànies, menús a partir de la qualificació, cadenes a partir del planificador del dimoni. A zynthian-sys: el repositori d'OpenMixer, plugin-hostd com el mod-host de MOD-UI, MOD GUI generades per omx-panel, OpenMixer a la instal·lació per defecte. Les peticions d'integració acceptades i obertes són a cada fork.",
+      "forks": "El motor i els canvis del sistema són als forks de zynthian-ui i zynthian-sys de FreeMixer. A zynthian-ui: el motor plugin-hostd, plugin-hostd per defecte amb un convertidor d'instantànies, menús a partir de la qualificació, cadenes a partir del planificador del dimoni. El fork no repeteix cap dada dels responsables: parla amb el dimoni a través del client en Python de plugin-hostd, llegeix els registres a través del lector de plugin-db, la llei de posició i les frases a través dels lectors d'omx-contract; les paraules dels gestos i els espais de la comparació, a partir d'omx-panel. A zynthian-sys: el repositori d'OpenMixer, plugin-hostd com el mod-host de MOD-UI, MOD GUI generades per omx-panel, OpenMixer a la instal·lació per defecte. Les peticions d'integració acceptades i obertes són a cada fork.",
       "upstream": "Al projecte original, fins ara només s'ha proposat un canvi: construir l'entorn de MOD-UI amb Python 3.13, a zynthian-sys. La resta encara no s'ha proposat als responsables de Zynthian."
     },
     "read": {
@@ -178,6 +179,42 @@
       "detailIntro": "Les funcions que aquesta guia no explica en una pàgina pròpia: què et dona cadascuna, la versió en què va sortir i com s'ha comprovat. Les targetes de més avall enllacen aquí.",
       "coming": "El que ve.",
       "comingIntro": "Integrat i encara no en una versió o previst. Cada targeta ho diu."
+    },
+    "languages": {
+      "title": "Llengües.",
+      "upstream": "Les pantalles, els menús i les etiquetes del mateix Zynthian es queden tal com els distribueix Zynthian, en anglès: no es tradueix res del projecte original.",
+      "codes": "La nostra part parla amb codis. Cada missatge que mostren les nostres pantalles és el codi d'un responsable amb els seus arguments. El contracte del responsable en conté una frase original en anglès. La llengua de l'aparell és la que indiquen LC_ALL, LC_MESSAGES o LANG. La frase en aquesta llengua surt del catàleg instal·lat del responsable: els codis de plugin-hostd a través del client de plugin-hostd, els motius de plugin-db a través del lector de catàlegs d'omx-contract. Un codi sense entrada en aquesta llengua mostra la seva frase original en anglès.",
+      "packs": "Les traduccions es distribueixen en paquets de llengua, un per responsable i llengua: <package>-l10n-<lang> com a deb, <package>-langpack-<lang> com a rpm. Un metapaquet per llengua, openmixer-langpack-<lang>, els instal·la tots: a la Pi, instal·lar el metapaquet català és tot el que cal fer. El metapaquet encara no és al canal; mentrestant, els paquets catalans dels responsables s'instal·len un per un (omx-contract-l10n-ca, omx-clap-host-l10n-ca, omx-panel-l10n-ca, plugin-db-l10n-ca, plugin-hostd-protocol-l10n-ca, plugin-qualify-l10n-ca).",
+      "review": "El català es revisa a mà. El castellà, el francès, l'alemany, l'italià i el portuguès els fa una màquina, cada entrada amb la seva procedència; mai no substitueixen una entrada escrita per una persona. Una entrada que falta torna a l'anglès.",
+      "plugins": "Els noms dels paràmetres d'un plugin es queden en anglès, com en el maquinari. Els títols de les seves seccions, els valors de les enumeracions i els noms dels presets es tradueixen; aquesta part encara ha d'arribar a omx-plugins.",
+      "notYet": "Encara no són en la llengua de l'usuari: els refusos de gestos del fork (GESTURE_*) i el text dels nivells de plugin fet a partir dels motius de plugin-qualify. Ho seran quan siguin codis de responsable amb catàlegs.",
+      "fig": {
+        "code": {
+          "label": "1  el codi del responsable",
+          "value": "reply.host.instance-already-exists",
+          "note": "amb els seus arguments, tal com el rep la pantalla"
+        },
+        "contract": {
+          "label": "2  el contracte del responsable (en)",
+          "value": "contract.d/3/<owner>/",
+          "note": "una frase original en anglès per codi"
+        },
+        "pack": {
+          "label": "3  el paquet de llengua (ca)",
+          "value": "<owner>/catalogs/ca.json",
+          "note": "de <package>-l10n-ca o -langpack-ca"
+        },
+        "screen": {
+          "label": "4  la pantalla",
+          "value": "LC_ALL, LC_MESSAGES, LANG",
+          "note": "la frase en la llengua de l'aparell; si no hi és, en anglès"
+        }
+      }
+    },
+    "libraries": {
+      "title": "Les biblioteques que llegeixen els nostres plugins.",
+      "p1": "Cada responsable distribueix el lector del que escriu, en els llenguatges des dels quals es llegeix: C, TypeScript (o JavaScript) i Python. El fork llegeix les dades de cada responsable a través d'aquests lectors i no en guarda cap còpia: el client de plugin-hostd per al dimoni, el lector de plugin-db per als registres, els lectors d'omx-contract per a les frases i les escales, omx-panel per a les pàgines i els gestos.",
+      "more": "Per a cada responsable i cada llenguatge: què cal instal·lar, el punt d'entrada i una crida, copiada de cada repositori"
     }
   }
 }
