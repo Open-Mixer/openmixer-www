@@ -74,7 +74,7 @@ stereo groups). No installed plugin declared a surround or ambisonic group; thos
 ## Where the rules are
 
 The rules themselves (which ports are main and which auxiliary, the LV2 group types and their channel maps, the CLAP
-extensions read, the JACK port names, the limits and the refusal codes) are in [the host library's reference](https://github.com/FreeMixer/omx-clap-core/blob/main/doc/reference.md).
+extensions read, the JACK port names, the limits and the refusal codes) are in [the host library's reference](https://github.com/Open-Mixer/omx-clap-core/blob/main/doc/reference.md).
 
 ## How it is proven
 

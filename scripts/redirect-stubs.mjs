@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 //
 // Writes a redirect page under openmixer-www/ for every page of the generated site, so the
-// addresses the site had when it lived at https://freemixer.github.io/openmixer-www/ keep
+// addresses the site had when it lived at https://open-mixer.github.io/openmixer-www/ keep
 // working now that it is served from the root.
 //
 //   openmixer-www/faq/index.html        -> /faq/
@@ -23,7 +23,7 @@ import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const OLD_PREFIX = 'openmixer-www';
-const ORIGIN = 'https://freemixer.github.io';
+const ORIGIN = 'https://open-mixer.github.io';
 const SKIP = new Set(['200.html', '404.html']);
 
 const here = dirname(fileURLToPath(import.meta.url));

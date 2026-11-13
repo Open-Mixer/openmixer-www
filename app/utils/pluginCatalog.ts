@@ -206,5 +206,5 @@ export function reportUrl(r: CatalogRow, day: string): string {
     package: `${r.binary}${r.version ? ` ${r.version}` : ''}`,
     run: day,
   });
-  return `https://github.com/FreeMixer/openmixer-www/issues/new?${q.toString()}`;
+  return `https://github.com/Open-Mixer/openmixer-www/issues/new?${q.toString()}`;
 }

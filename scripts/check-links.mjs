@@ -17,7 +17,7 @@
 //
 // AND AN UNPREFIXED SITE-ABSOLUTE LINK IS BROKEN, however well it resolves on disk.
 // `<a href="/docs/rest">` on a site mounted at /openmixer-www/ points one level ABOVE
-// the mount: freemixer.github.io/docs/rest, which is nobody's page. It resolves here
+// the mount: open-mixer.github.io/docs/rest, which is nobody's page. It resolves here
 // only because the check ran against a tree whose root IS the mount — the same shape
 // as every other false green this project has paid for. Ten such links were live on
 // 2026-09-07: the favicon, the home page's screenshot, and five cards on /docs, all

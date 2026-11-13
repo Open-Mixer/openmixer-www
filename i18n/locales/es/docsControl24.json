@@ -47,7 +47,7 @@
     },
     "install": {
       "title": "Instalación.",
-      "intro": "libdiginet 0.1.0 está en los repositorios de paquetes de FreeMixer: RPM para Fedora (x86_64, aarch64) y DEB para Debian bookworm y trixie (amd64, arm64). Añade el repositorio como en las demás páginas e instala diginet-tools, que trae la biblioteca.",
+      "intro": "libdiginet 0.1.0 está en los repositorios de paquetes de Open-Mixer: RPM para Fedora (x86_64, aarch64) y DEB para Debian bookworm y trixie (amd64, arm64). Añade el repositorio como en las demás páginas e instala diginet-tools, que trae la biblioteca.",
       "pkgLib": "La biblioteca del protocolo y su transporte: el descubrimiento, el inicio de sesión, los acuses de recibo, el keepalive y las retransmisiones.",
       "pkgTools": "diginet-probe, la herramienta de línea de órdenes para probar una mesa.",
       "pkgDevel": "Cabeceras, ficheros pkg-config y la gramática del protocolo, para compilar un programa sobre la biblioteca.",
@@ -55,7 +55,7 @@
       "firstLook": "Con la mesa conectada y encendida, el primer vistazo no envía nada: solo escucha el anuncio. Después la herramienta despierta la mesa, mueve el fader 1, enciende una luz, escribe en una pantalla de nombre, registra cada tecla y cada toque y termina con un resumen.",
       "listen": "solo escuchar: el anuncio de la mesa, cada 7 segundos aproximadamente",
       "probe": "despertar la mesa y hacer la primera prueba",
-      "probeDoc": "Todas las opciones y los códigos de salida de la herramienta: <a href=\"https://github.com/FreeMixer/libdiginet/blob/main/docs/probe.md\" class=\"text-accent hover:underline\">docs/probe.md</a>. El protocolo tal como se conoce, con una fuente para cada afirmación: <a href=\"https://github.com/FreeMixer/libdiginet/blob/main/docs/protocol.md\" class=\"text-accent hover:underline\">docs/protocol.md</a>."
+      "probeDoc": "Todas las opciones y los códigos de salida de la herramienta: <a href=\"https://github.com/Open-Mixer/libdiginet/blob/main/docs/probe.md\" class=\"text-accent hover:underline\">docs/probe.md</a>. El protocolo tal como se conoce, con una fuente para cada afirmación: <a href=\"https://github.com/Open-Mixer/libdiginet/blob/main/docs/protocol.md\" class=\"text-accent hover:underline\">docs/protocol.md</a>."
     },
     "status": {
       "title": "Estado.",

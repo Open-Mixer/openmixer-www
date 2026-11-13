@@ -14,7 +14,7 @@ tarball="${1:?usage: scripts/pin-docs-tree.sh <docs-tree.tar.gz> <openmixer-revi
 rev="${2:?usage: scripts/pin-docs-tree.sh <docs-tree.tar.gz> <openmixer-revision>}"
 here="$(cd "$(dirname "$0")/.." && pwd)"
 pin="${DOCS_TREE_PIN:-$here/deploy/docs-tree.txt}"
-repo="${DOCS_TREE_REPO:-FreeMixer/openmixer-www}"
+repo="${DOCS_TREE_REPO:-Open-Mixer/openmixer-www}"
 
 [ -f "$tarball" ] || { echo "pin-docs-tree: no file $tarball" >&2; exit 2; }
 case "$rev" in *[!0-9a-f]*|'') echo "pin-docs-tree: the openmixer revision is a commit hash, got '$rev'" >&2; exit 2 ;; esac
@@ -38,7 +38,7 @@ if gh release view "$tag" -R "$repo" >/dev/null 2>&1; then
   gh release upload "$tag" "$tarball" -R "$repo" --clobber
 else
   gh release create "$tag" "$tarball" -R "$repo" --prerelease --title "Docs tree from openmixer $rev" \
-    --notes "The documentation tree built from FreeMixer/openmixer at $rev."
+    --notes "The documentation tree built from Open-Mixer/openmixer at $rev."
 fi
 branch="docs-tree-$rev"
 git switch -C "$branch"

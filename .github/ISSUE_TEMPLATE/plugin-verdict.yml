@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 name: Plugin catalog correction
-description: A plugin's entry on https://freemixer.github.io/plugins/ is wrong or out of date.
+description: A plugin's entry on https://open-mixer.github.io/plugins/ is wrong or out of date.
 title: "Plugin verdict: "
 body:
   - type: markdown

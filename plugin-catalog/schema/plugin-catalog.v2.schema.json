@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/FreeMixer/openmixer-www/plugin-catalog/schema/plugin-catalog.v2.schema.json",
+  "$id": "https://github.com/Open-Mixer/openmixer-www/plugin-catalog/schema/plugin-catalog.v2.schema.json",
   "title": "Plugin catalog data (index and platform files)",
   "$defs": {
     "verdict": { "enum": ["accepted", "conditional", "refused"] },

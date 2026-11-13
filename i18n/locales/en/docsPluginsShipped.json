@@ -13,7 +13,7 @@
       "title": "Nineteen effects, two formats.",
       "formats": "The <code>omx-plugins</code> package carries every effect twice: as <strong>CLAP</strong>, for CLAP hosts, and as <strong>LV2</strong>, for LV2 hosts. The LV2 build also carries a MOD GUI.",
       "same": "The processing inside each one is the console's own, so a plugin sounds the same in a host as on the desk. Each plugin is described once, and its CLAP parameters, its LV2 ports and its MOD GUI come from that one description, so they cannot disagree.",
-      "catalogue": "The set: chorus, comp, deesser, delay, drive, eq8, eq16, eq32, flanger, geq, keyed-gate, limiter, phaser, pitch, reverb, rotary, strip, transient and tremolo. Every plugin, with its CLAP id, its LV2 URI and its parameter ranges, is listed in the <a class=\"text-accent hover:underline\" href=\"https://github.com/FreeMixer/omx-plugins\">omx-plugins README</a>."
+      "catalogue": "The set: chorus, comp, deesser, delay, drive, eq8, eq16, eq32, flanger, geq, keyed-gate, limiter, phaser, pitch, reverb, rotary, strip, transient and tremolo. Every plugin, with its CLAP id, its LV2 URI and its parameter ranges, is listed in the <a class=\"text-accent hover:underline\" href=\"https://github.com/Open-Mixer/omx-plugins\">omx-plugins README</a>."
     },
     "install": {
       "title": "Install.",

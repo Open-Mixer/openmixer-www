@@ -47,7 +47,7 @@
     },
     "install": {
       "title": "Install.",
-      "intro": "libdiginet is in the FreeMixer package repositories: RPMs for Fedora (x86_64, aarch64) and DEBs for Debian bookworm and trixie (amd64, arm64). Add the repository as on the other pages and install diginet-tools, which brings the library with it.",
+      "intro": "libdiginet is in the Open-Mixer package repositories: RPMs for Fedora (x86_64, aarch64) and DEBs for Debian bookworm and trixie (amd64, arm64). Add the repository as on the other pages and install diginet-tools, which brings the library with it.",
       "pkgLib": "The protocol library and its transport: discovery, the session handshake, acknowledgements, keepalive and retransmit.",
       "pkgTools": "diginet-probe, the command-line tool for testing a desk.",
       "pkgDevel": "Headers, pkg-config files and the protocol grammar, for building a program on the library.",
@@ -55,7 +55,7 @@
       "firstLook": "With the desk cabled and powered on, the first look sends nothing: it only listens for the announce. The probe then wakes the desk, moves fader 1, lights a lamp, writes a scribble strip, logs every key and touch, and ends with a summary.",
       "listen": "listen only: the desk's announce, about every 7 seconds",
       "probe": "wake the desk and run the first test",
-      "probeDoc": "Every option and exit status of the probe: <a href=\"https://github.com/FreeMixer/libdiginet/blob/main/docs/probe.md\" class=\"text-accent hover:underline\">docs/probe.md</a>. The protocol as it is known, with a source for every claim: <a href=\"https://github.com/FreeMixer/libdiginet/blob/main/docs/protocol.md\" class=\"text-accent hover:underline\">docs/protocol.md</a>."
+      "probeDoc": "Every option and exit status of the probe: <a href=\"https://github.com/Open-Mixer/libdiginet/blob/main/docs/probe.md\" class=\"text-accent hover:underline\">docs/probe.md</a>. The protocol as it is known, with a source for every claim: <a href=\"https://github.com/Open-Mixer/libdiginet/blob/main/docs/protocol.md\" class=\"text-accent hover:underline\">docs/protocol.md</a>."
     },
     "status": {
       "title": "Status.",

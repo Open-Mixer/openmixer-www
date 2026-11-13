@@ -1,4 +1,4 @@
-# The docs tree the site publishes (/docs/**): built from FreeMixer/openmixer's docs on the machine
+# The docs tree the site publishes (/docs/**): built from Open-Mixer/openmixer's docs on the machine
 # that holds the private checkout, attached to a release of THIS repository, pinned here by its
 # sha256. Read by scripts/fetch-docs-tree.sh. BUILDING.md, "The documentation tree", says how to
 # make a new one; the pages in it are the ones deploy/public-docs.txt names, and no others.

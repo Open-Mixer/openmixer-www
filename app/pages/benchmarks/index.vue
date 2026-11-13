@@ -120,8 +120,8 @@ const machineLine = (r: BenchRun) => t('benchmarks.machine', { model: r.machine.
 /** The run's date, from its id (<class>-<yyyymmdd>-<n>): data for the footer, never body text. */
 const runDate = (r: BenchRun) => { const m = /-(\d{4})(\d{2})(\d{2})-/.exec(r.id); return m ? `${m[1]}-${m[2]}-${m[3]}` : ''; };
 const softwareLine = (r: BenchRun) => Object.entries(r.software).map(([k, v]) => `${k} ${v}`).join(', ');
-const harnessUrl = 'https://github.com/FreeMixer/plugin-hostd/blob/main/README.md';
-const dataUrl = 'https://github.com/FreeMixer/openmixer-www/tree/main/benchmarks';
+const harnessUrl = 'https://github.com/Open-Mixer/plugin-hostd/blob/main/README.md';
+const dataUrl = 'https://github.com/Open-Mixer/openmixer-www/tree/main/benchmarks';
 
 useSeoMeta({
   title: () => t('benchmarks.seo.title'),

@@ -3,7 +3,7 @@
 /**
  * Connecting a Digidesign Control|24: what DigiNet is on the wire, what the network must give
  * the desk, and installing libdiginet and diginet-probe. The protocol facts come from
- * FreeMixer/libdiginet docs/protocol.md, where each one is cited to its source.
+ * Open-Mixer/libdiginet docs/protocol.md, where each one is cited to its source.
  */
 const { t } = useI18n();
 

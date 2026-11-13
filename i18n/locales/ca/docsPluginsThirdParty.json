@@ -29,7 +29,7 @@
     "qualify": {
       "title": "Mesura un plugin abans de fiar-te'n.",
       "what": "plugin-qualify escaneja un plugin, el mesura fora de línia (latència i cost de CPU) i l'executa sota un host real i després dona un sol veredicte. S'instal·la al costat de plugin-hostd:",
-      "installFedora": "A Fedora, amb el repositori de FreeMixer afegit com a la pàgina dels plugins que porten els paquets:",
+      "installFedora": "A Fedora, amb el repositori de Open-Mixer afegit com a la pàgina dels plugins que porten els paquets:",
       "installDebian": "A Debian i Raspberry Pi OS:",
       "run": "Indica un fitxer de plugin, un paquet o una URI:",
       "output": "La resposta és una línia per plugin, aquí per a un dels plugins omx:",
