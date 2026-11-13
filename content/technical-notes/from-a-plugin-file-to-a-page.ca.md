@@ -97,7 +97,7 @@ cadascun a través del lector que en distribueix el responsable, tots en Python:
 - **El registre.** La qualificació d'una fila del menú la dona el lector de registres de plugin-db, `plugin_db.query`; el
   motiu d'un veredicte, `plugin_db.why`.
 - **El descriptor.** La interfície pregunta al dimoni quin fitxer conté el descriptor del plugin (`descriptor_get`): el
-  del seu escaneig, o una descripció que fa la mateixa interfície quan el dimoni no en té cap. omx-panel en disposa les
+  del seu escaneig o, si el dimoni no en té cap, una descripció que fa la mateixa interfície. omx-panel en disposa les
   pàgines a partir d'aquest fitxer.
 - **La posició d'un control.** On queda un potenciòmetre per a un valor, tant en dibuixar-lo com en moure'l, és la llei
   de posició d'omx-contract, llegida amb el seu lector d'escales, `omx_contract_scale`.

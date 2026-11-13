@@ -23,7 +23,7 @@ màxim, la versió menor següent per sota d'1.0 i `< 4` per a omx-contract; la 
 
 ## omx-contract
 
-El vocabulari, les unitats i les escales, i el directori de contractes on la resta de responsables instal·la les seves
+El vocabulari, les unitats i les escales; també el directori de contractes on la resta de responsables instal·la les seves
 paraules.
 
 | llenguatge | instal·lació | punt d'entrada |
@@ -186,7 +186,7 @@ from plugin_hostd_protocol import RETRY_REASONS, Protocol, ProtocolError, format
 
 ## plugin-db
 
-Els registres del que és cada plugin en aquesta màquina, i el veredicte que mostra una superfície.
+Els registres del que és cada plugin en aquesta màquina amb el veredicte que mostra una superfície.
 
 | llenguatge | instal·lació | punt d'entrada |
 |---|---|---|
@@ -241,7 +241,7 @@ const figures = recordFigures(rec, 48000, 128);
 
 ## omx-panel
 
-La disposició de les pàgines d'un plugin, els seus gestos i els seus aspectes, i el renderitzador que els dibuixa.
+La disposició de les pàgines d'un plugin, els seus gestos i els seus aspectes; també el renderitzador que els dibuixa.
 
 | llenguatge | instal·lació | punt d'entrada |
 |---|---|---|
@@ -268,7 +268,7 @@ biblioteca de C amb ctypes.
 
 ## omx-plugins
 
-Els plugins propis d'OpenMixer: els seus descriptors, presets i empremtes, i l'entrada estàtica de cada plugin CLAP.
+Els plugins propis d'OpenMixer: els seus descriptors, presets i empremtes; també l'entrada estàtica de cada plugin CLAP.
 
 | llenguatge | instal·lació | punt d'entrada |
 |---|---|---|
