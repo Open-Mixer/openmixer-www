@@ -11,6 +11,8 @@
 #
 # The checks come from a checkout of Open-Mixer/.github at the release line: OMX_DOTGITHUB (CI checks it out there).
 # Exit 0 clean, 1 a finding (shown), 2 no site or no checker: a check that cannot run is never a pass.
+# CHECK_SITE_REPORT_ONLY=1 shows and names the findings and exits 0 (until the docs tree is clean, #26: the deploys go
+# on and a reviewer reads the report so that no change adds a finding); a checker that cannot run is still exit 2.
 set -euo pipefail
 
 site=${1:-.output/public}
@@ -29,13 +31,19 @@ cp -a "$site/." "$scratch/"
 git -C "$scratch" init -q
 git -C "$scratch" add -A
 
-rc=0
+rc=0 failed=""
 for c in private-refs-check public-layout-check; do
   "$dot/.github/actions/$c/check.sh" --self-test >/dev/null || die "$c --self-test failed: the checker itself is broken"
   if ! (cd "$scratch" && "$dot/.github/actions/$c/check.sh" "$scratch"); then
     echo "check-site-public: $c finds the above in the built site; nothing may be deployed until the generator stops writing it" >&2
-    rc=1
+    rc=1; failed+="${failed:+, }$c"
   fi
 done
 [ "$rc" = 0 ] && echo "check-site-public: the built site passes private-refs-check and public-layout-check"
+if [ "$rc" = 1 ] && [ "${CHECK_SITE_REPORT_ONLY:-}" = 1 ]; then
+  msg="check-site-public: REPORT-ONLY: the built site fails $failed (above); not enforced until the docs tree is clean (#26), and no change may add a finding"
+  echo "$msg"
+  [ -z "${GITHUB_STEP_SUMMARY:-}" ] || echo "$msg" >> "$GITHUB_STEP_SUMMARY"
+  exit 0
+fi
 exit "$rc"

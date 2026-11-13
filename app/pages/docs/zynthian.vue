@@ -8,7 +8,6 @@ const { t } = useI18n();
 const sitePath = useSitePath();
 
 /** The captures, shared with the note that walks a plugin from its file to these screens. */
-const SHOTS = '/technical-notes/from-a-plugin-file-to-a-page';
 
 const onExisting = [
   'cd /tmp && curl -fsSLO https://www.openmixer.org/deb/openmixer-release.deb',
@@ -80,6 +79,7 @@ useSeoMeta({
         <div class="space-y-4 text-base leading-relaxed text-ink-dim">
           <p>{{ t('docsZynthian.changes.p1') }}</p>
           <p>{{ t('docsZynthian.changes.p2') }}</p>
+          <ZynthianShot id="s6" />
           <p>{{ t('docsZynthian.changes.p3') }}</p>
         </div>
       </div>
@@ -109,15 +109,22 @@ useSeoMeta({
         <SectionHead eyebrow="04" :title="t('docsZynthian.use.title')" />
         <div class="space-y-4 text-base leading-relaxed text-ink-dim">
           <p>{{ t('docsZynthian.use.intro') }}</p>
+          <div class="grid gap-5 sm:grid-cols-2">
+            <ZynthianShot id="s1" />
+            <ZynthianShot id="s2" />
+          </div>
           <h3 class="pt-2 font-display text-lg font-semibold text-ink">{{ t('docsZynthian.use.group.title') }}</h3>
           <p>{{ t('docsZynthian.use.group.p1') }}</p>
+          <ZynthianShot id="s5" />
           <GroupingFigure name="chain" />
           <p>{{ t('docsZynthian.use.group.p2') }}</p>
           <p><NuxtLink :to="sitePath('/projects/plugin-hostd/groupings')" class="text-accent hover:underline">{{ t('docsZynthian.use.group.more') }}</NuxtLink></p>
           <h3 class="pt-2 font-display text-lg font-semibold text-ink">{{ t('docsZynthian.use.strip.title') }}</h3>
           <p>{{ t('docsZynthian.use.strip.p1') }}</p>
+          <ZynthianShot id="s3" />
           <h3 class="pt-2 font-display text-lg font-semibold text-ink">{{ t('docsZynthian.use.restore.title') }}</h3>
           <p>{{ t('docsZynthian.use.restore.p1') }}</p>
+          <ZynthianShot id="s7" />
           <p><a href="https://github.com/Open-Mixer/zynthian-ui/blob/openmixer/docs/mixer-strip-on-restore.md" class="text-accent hover:underline">{{ t('docsZynthian.use.restore.more') }}</a></p>
           <h3 class="pt-2 font-display text-lg font-semibold text-ink">{{ t('docsZynthian.mixbus.title') }}</h3>
           <p>{{ t('docsZynthian.mixbus.p1') }}</p>
@@ -144,13 +151,7 @@ useSeoMeta({
           </div>
           <p>{{ t('docsZynthian.mixbus.p3') }}</p>
         </div>
-        <div class="mt-10 grid gap-5 sm:grid-cols-2">
-          <Shot :src="`${SHOTS}/plugin-menu-by-tier.png`" :alt="t('docsZynthian.shots.menu.alt')" :caption="t('docsZynthian.shots.menu.caption')" />
-          <Shot :src="`${SHOTS}/controller-page-mda-piano.png`" :alt="t('docsZynthian.shots.page.alt')" :caption="t('docsZynthian.shots.page.caption')" />
-          <Shot :src="`${SHOTS}/modgui-pedalboard.png`" :alt="t('docsZynthian.shots.modgui.alt')" :caption="t('docsZynthian.shots.modgui.caption')" />
-          <Shot :src="`${SHOTS}/chain-view-mda-piano-eq8-comp.png`" :alt="t('docsZynthian.shots.chain.alt')" :caption="t('docsZynthian.shots.chain.caption')" />
-        </div>
-        <p class="mt-6 text-base leading-relaxed">
+        <p class="mt-8 text-base leading-relaxed">
           <NuxtLink :to="sitePath('/technical-notes/from-a-plugin-file-to-a-page')" class="text-accent hover:underline">{{ t('docsZynthian.use.note') }}</NuxtLink>
         </p>
       </div>
@@ -215,6 +216,7 @@ useSeoMeta({
           <p>{{ t('docsZynthian.languages.upstream') }}</p>
           <p>{{ t('docsZynthian.languages.codes') }}</p>
           <LanguagesFigure />
+          <ZynthianShot id="s4" />
           <p>{{ t('docsZynthian.languages.packs') }}</p>
           <p>{{ t('docsZynthian.languages.review') }}</p>
           <p>{{ t('docsZynthian.languages.plugins') }}</p>

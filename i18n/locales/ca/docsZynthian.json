@@ -93,21 +93,34 @@
       "p3": "Els nivells d'envío, abans i després del fader i fixar o moure un Mixbus són cosa del mesclador i del gestor de cadenes de Zynthian: cap no envia res al dimoni. Mesurades als ports de JACK, les cadenes en sèrie, en paral·lel i de Mixbus donen els nivells que toca: guany unitari en sèrie, +6,02 dB per a dos en paral·lel, els -20 dB del canal allà on és."
     },
     "shots": {
+      "slot": "Captura pendent, després de {after}.",
       "menu": {
-        "alt": "El menú de plugins de Zynthian ordenat per nivell, amb etiquetes de latència i de seguretat en temps real",
-        "caption": "El menú de plugins, ordenat pel nivell de qualificació"
+        "alt": "El menú de plugins de Zynthian ordenat per nivell de qualificació, amb la latència, la seguretat en temps real i el cost de cada plugin",
+        "caption": "El menú de plugins, ordenat per nivell de qualificació"
       },
       "page": {
-        "alt": "La pàgina de controls d'un instrument a Zynthian, amb les seccions dels seus efectes",
-        "caption": "Una pàgina de controls, a partir de les seccions del mateix plugin"
-      },
-      "modgui": {
-        "alt": "La MOD GUI d'un instrument en un pedalboard de MOD-UI",
-        "caption": "La MOD GUI d'un instrument, a partir de la seva disposició"
+        "alt": "La pàgina de controls de MDA Piano a Zynthian: la llista de pàgines a l'esquerra i quatre potenciòmetres a la dreta",
+        "caption": "Les pàgines de controls de MDA Piano, a partir de les seccions del mateix plugin"
       },
       "chain": {
-        "alt": "Cadenes de Zynthian, una amb un instrument, un equalitzador i un compressor",
-        "caption": "Una cadena amb un instrument i dos efectes"
+        "alt": "Una cadena de Zynthian: entrada MIDI, MDA Piano, omx eq8, omx comp i la tira del mesclador",
+        "caption": "Una cadena amb un instrument, un equalitzador i un compressor, cadascun un plugin propi"
+      },
+      "language": {
+        "alt": "Un missatge de plugin-hostd en català, llegit del catàleg del seu responsable",
+        "caption": "Un missatge en la llengua de l'aparell, del catàleg del seu responsable"
+      },
+      "options": {
+        "alt": "Les opcions d'una cadena a Zynthian, encapçalades per la latència, la CPU, la memòria i el nombre de workers",
+        "caption": "Les opcions d'una cadena, encapçalades pel que costa: latència, CPU, memòria i workers"
+      },
+      "modgui": {
+        "alt": "El pedalboard de MOD-UI amb cada plugin dibuixat per la seva MOD GUI, entre ells MDA ePiano",
+        "caption": "El pedalboard de MOD-UI, cada plugin dibuixat per la seva MOD GUI"
+      },
+      "restart": {
+        "alt": "La mateixa cadena després d'un reinici: MDA Piano, omx eq8 i omx comp tornen a ser al seu lloc",
+        "caption": "La cadena després d'un reinici, amb tots els processadors"
       }
     },
     "voices": {
