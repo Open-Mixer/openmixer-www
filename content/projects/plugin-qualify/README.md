@@ -42,7 +42,7 @@ The GitHub release also carries the packed tarball, `openmixer-plugin-qualify-<v
 checkout instead (Node.js 20 or newer and pnpm 10, see `BUILDING.md`):
 
 ```
-git clone https://github.com/Open-Mixer/plugin-qualify.git
+git clone https://github.com/FreeMixer/plugin-qualify.git
 cd plugin-qualify
 pnpm install
 pnpm exec plugin-qualify --help
