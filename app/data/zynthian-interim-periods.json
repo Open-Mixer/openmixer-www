@@ -1,0 +1,1110 @@
+{
+ "tier": "hardware",
+ "machine": {
+  "model": "Raspberry Pi 5 Model B Rev 1.0",
+  "cpu": "Cortex-A76",
+  "cores": 4,
+  "ram_mb": 4049,
+  "os": "Debian 13",
+  "kernel": "6.18.50+rpt-rpi-2712",
+  "governor": "performance"
+ },
+ "interface": "RME Babyface Pro",
+ "jack": {
+  "driver": "alsa",
+  "priority": 70
+ },
+ "tables": [
+  {
+   "periods": 2,
+   "rates": [
+    48000,
+    96000,
+    192000
+   ],
+   "rows": [
+    {
+     "ms": 10.67,
+     "cells": [
+      {
+       "rate": 48000,
+       "measured": true,
+       "run": "rpi5-20261112-15",
+       "frames": 512,
+       "clean": true,
+       "sub_ms": false,
+       "xruns": 0,
+       "hosts": [
+        {
+         "host": "H1",
+         "ok": 5,
+         "clean": 5,
+         "xruns": 0
+        },
+        {
+         "host": "H2",
+         "ok": 11,
+         "clean": 11,
+         "xruns": 0
+        },
+        {
+         "host": "H3",
+         "ok": 5,
+         "clean": 5,
+         "xruns": 0
+        },
+        {
+         "host": "H4",
+         "ok": 4,
+         "clean": 4,
+         "xruns": 0
+        }
+       ]
+      },
+      {
+       "rate": 96000,
+       "measured": true,
+       "run": "rpi5-20261113-2",
+       "frames": 1024,
+       "clean": true,
+       "sub_ms": false,
+       "xruns": 0,
+       "hosts": [
+        {
+         "host": "H1",
+         "ok": 5,
+         "clean": 5,
+         "xruns": 0
+        },
+        {
+         "host": "H2",
+         "ok": 11,
+         "clean": 11,
+         "xruns": 0
+        },
+        {
+         "host": "H3",
+         "ok": 5,
+         "clean": 5,
+         "xruns": 0
+        },
+        {
+         "host": "H4",
+         "ok": 4,
+         "clean": 4,
+         "xruns": 0
+        }
+       ]
+      },
+      {
+       "rate": 192000,
+       "measured": true,
+       "run": "rpi5-20261113-4",
+       "frames": 2048,
+       "clean": true,
+       "sub_ms": false,
+       "xruns": 0,
+       "hosts": [
+        {
+         "host": "H1",
+         "ok": 5,
+         "clean": 5,
+         "xruns": 0
+        },
+        {
+         "host": "H2",
+         "ok": 11,
+         "clean": 11,
+         "xruns": 0
+        },
+        {
+         "host": "H3",
+         "ok": 5,
+         "clean": 5,
+         "xruns": 0
+        },
+        {
+         "host": "H4",
+         "ok": 4,
+         "clean": 4,
+         "xruns": 0
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "ms": 5.33,
+     "cells": [
+      {
+       "rate": 48000,
+       "measured": true,
+       "run": "rpi5-20261112-11",
+       "frames": 256,
+       "clean": false,
+       "sub_ms": false,
+       "xruns": 10,
+       "hosts": [
+        {
+         "host": "H1",
+         "ok": 5,
+         "clean": 5,
+         "xruns": 0
+        },
+        {
+         "host": "H2",
+         "ok": 11,
+         "clean": 11,
+         "xruns": 0
+        },
+        {
+         "host": "H3",
+         "ok": 5,
+         "clean": 4,
+         "xruns": 1
+        },
+        {
+         "host": "H4",
+         "ok": 4,
+         "clean": 3,
+         "xruns": 9
+        }
+       ]
+      },
+      {
+       "rate": 96000,
+       "measured": true,
+       "run": "rpi5-20261112-16",
+       "frames": 512,
+       "clean": false,
+       "sub_ms": false,
+       "xruns": 17,
+       "hosts": [
+        {
+         "host": "H1",
+         "ok": 5,
+         "clean": 5,
+         "xruns": 0
+        },
+        {
+         "host": "H2",
+         "ok": 10,
+         "clean": 9,
+         "xruns": 1
+        },
+        {
+         "host": "H3",
+         "ok": 5,
+         "clean": 4,
+         "xruns": 1
+        },
+        {
+         "host": "H4",
+         "ok": 4,
+         "clean": 1,
+         "xruns": 15
+        }
+       ]
+      },
+      {
+       "rate": 192000,
+       "measured": true,
+       "run": "rpi5-20261113-3",
+       "frames": 1024,
+       "clean": false,
+       "sub_ms": false,
+       "xruns": 24,
+       "hosts": [
+        {
+         "host": "H1",
+         "ok": 5,
+         "clean": 4,
+         "xruns": 1
+        },
+        {
+         "host": "H2",
+         "ok": 11,
+         "clean": 10,
+         "xruns": 1
+        },
+        {
+         "host": "H3",
+         "ok": 5,
+         "clean": 4,
+         "xruns": 1
+        },
+        {
+         "host": "H4",
+         "ok": 4,
+         "clean": 2,
+         "xruns": 21
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "ms": 2.67,
+     "cells": [
+      {
+       "rate": 48000,
+       "measured": true,
+       "run": "rpi5-20261112-13",
+       "frames": 128,
+       "clean": false,
+       "sub_ms": false,
+       "xruns": 19,
+       "hosts": [
+        {
+         "host": "H1",
+         "ok": 5,
+         "clean": 5,
+         "xruns": 0
+        },
+        {
+         "host": "H2",
+         "ok": 11,
+         "clean": 10,
+         "xruns": 2
+        },
+        {
+         "host": "H3",
+         "ok": 5,
+         "clean": 4,
+         "xruns": 1
+        },
+        {
+         "host": "H4",
+         "ok": 4,
+         "clean": 3,
+         "xruns": 16
+        }
+       ]
+      },
+      {
+       "rate": 96000,
+       "measured": true,
+       "run": "rpi5-20261112-12",
+       "frames": 256,
+       "clean": false,
+       "sub_ms": false,
+       "xruns": 34,
+       "hosts": [
+        {
+         "host": "H1",
+         "ok": 5,
+         "clean": 4,
+         "xruns": 2
+        },
+        {
+         "host": "H2",
+         "ok": 11,
+         "clean": 10,
+         "xruns": 1
+        },
+        {
+         "host": "H3",
+         "ok": 5,
+         "clean": 4,
+         "xruns": 2
+        },
+        {
+         "host": "H4",
+         "ok": 4,
+         "clean": 2,
+         "xruns": 29
+        }
+       ]
+      },
+      {
+       "rate": 192000,
+       "measured": true,
+       "run": "rpi5-20261113-5",
+       "frames": 512,
+       "clean": false,
+       "sub_ms": false,
+       "xruns": 42,
+       "hosts": [
+        {
+         "host": "H1",
+         "ok": 5,
+         "clean": 4,
+         "xruns": 2
+        },
+        {
+         "host": "H2",
+         "ok": 11,
+         "clean": 10,
+         "xruns": 2
+        },
+        {
+         "host": "H3",
+         "ok": 5,
+         "clean": 4,
+         "xruns": 2
+        },
+        {
+         "host": "H4",
+         "ok": 4,
+         "clean": 1,
+         "xruns": 36
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "ms": 1.33,
+     "cells": [
+      {
+       "rate": 48000,
+       "measured": false
+      },
+      {
+       "rate": 96000,
+       "measured": true,
+       "run": "rpi5-20261112-14",
+       "frames": 128,
+       "clean": false,
+       "sub_ms": false,
+       "xruns": 107,
+       "hosts": [
+        {
+         "host": "H1",
+         "ok": 5,
+         "clean": 3,
+         "xruns": 5
+        },
+        {
+         "host": "H2",
+         "ok": 11,
+         "clean": 7,
+         "xruns": 9
+        },
+        {
+         "host": "H3",
+         "ok": 5,
+         "clean": 2,
+         "xruns": 5
+        },
+        {
+         "host": "H4",
+         "ok": 4,
+         "clean": 1,
+         "xruns": 88
+        }
+       ]
+      },
+      {
+       "rate": 192000,
+       "measured": true,
+       "run": "rpi5-20261113-6",
+       "frames": 256,
+       "clean": false,
+       "sub_ms": false,
+       "xruns": 96,
+       "hosts": [
+        {
+         "host": "H1",
+         "ok": 5,
+         "clean": 3,
+         "xruns": 3
+        },
+        {
+         "host": "H2",
+         "ok": 10,
+         "clean": 6,
+         "xruns": 20
+        },
+        {
+         "host": "H3",
+         "ok": 5,
+         "clean": 2,
+         "xruns": 6
+        },
+        {
+         "host": "H4",
+         "ok": 4,
+         "clean": 2,
+         "xruns": 67
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "safe": [
+    {
+     "rate": 48000,
+     "ms": 10.67
+    },
+    {
+     "rate": 96000,
+     "ms": 10.67
+    },
+    {
+     "rate": 192000,
+     "ms": 10.67
+    }
+   ]
+  },
+  {
+   "periods": 3,
+   "rates": [
+    48000,
+    96000,
+    192000
+   ],
+   "rows": [
+    {
+     "ms": 10.67,
+     "cells": [
+      {
+       "rate": 48000,
+       "measured": true,
+       "run": "rpi5-20261112-5",
+       "frames": 512,
+       "clean": true,
+       "sub_ms": false,
+       "xruns": 0,
+       "hosts": [
+        {
+         "host": "H1",
+         "ok": 5,
+         "clean": 5,
+         "xruns": 0
+        },
+        {
+         "host": "H2",
+         "ok": 11,
+         "clean": 11,
+         "xruns": 0
+        },
+        {
+         "host": "H3",
+         "ok": 5,
+         "clean": 5,
+         "xruns": 0
+        },
+        {
+         "host": "H4",
+         "ok": 4,
+         "clean": 4,
+         "xruns": 0
+        }
+       ]
+      },
+      {
+       "rate": 96000,
+       "measured": true,
+       "run": "rpi5-20261112-17",
+       "frames": 1024,
+       "clean": false,
+       "sub_ms": false,
+       "xruns": 1,
+       "hosts": [
+        {
+         "host": "H1",
+         "ok": 5,
+         "clean": 5,
+         "xruns": 0
+        },
+        {
+         "host": "H2",
+         "ok": 11,
+         "clean": 11,
+         "xruns": 0
+        },
+        {
+         "host": "H3",
+         "ok": 5,
+         "clean": 5,
+         "xruns": 0
+        },
+        {
+         "host": "H4",
+         "ok": 4,
+         "clean": 3,
+         "xruns": 1
+        }
+       ]
+      },
+      {
+       "rate": 192000,
+       "measured": true,
+       "run": "rpi5-20261113-1",
+       "frames": 2048,
+       "clean": true,
+       "sub_ms": false,
+       "xruns": 0,
+       "hosts": [
+        {
+         "host": "H1",
+         "ok": 5,
+         "clean": 5,
+         "xruns": 0
+        },
+        {
+         "host": "H2",
+         "ok": 11,
+         "clean": 11,
+         "xruns": 0
+        },
+        {
+         "host": "H3",
+         "ok": 5,
+         "clean": 5,
+         "xruns": 0
+        },
+        {
+         "host": "H4",
+         "ok": 4,
+         "clean": 4,
+         "xruns": 0
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "ms": 5.33,
+     "cells": [
+      {
+       "rate": 48000,
+       "measured": true,
+       "run": "rpi5-20261112-1",
+       "frames": 256,
+       "clean": true,
+       "sub_ms": false,
+       "xruns": 0,
+       "hosts": [
+        {
+         "host": "H1",
+         "ok": 5,
+         "clean": 5,
+         "xruns": 0
+        },
+        {
+         "host": "H2",
+         "ok": 11,
+         "clean": 11,
+         "xruns": 0
+        },
+        {
+         "host": "H3",
+         "ok": 5,
+         "clean": 5,
+         "xruns": 0
+        },
+        {
+         "host": "H4",
+         "ok": 4,
+         "clean": 4,
+         "xruns": 0
+        }
+       ]
+      },
+      {
+       "rate": 96000,
+       "measured": true,
+       "run": "rpi5-20261112-6",
+       "frames": 512,
+       "clean": false,
+       "sub_ms": false,
+       "xruns": 28,
+       "hosts": [
+        {
+         "host": "H1",
+         "ok": 5,
+         "clean": 5,
+         "xruns": 0
+        },
+        {
+         "host": "H2",
+         "ok": 11,
+         "clean": 10,
+         "xruns": 1
+        },
+        {
+         "host": "H3",
+         "ok": 5,
+         "clean": 5,
+         "xruns": 0
+        },
+        {
+         "host": "H4",
+         "ok": 4,
+         "clean": 3,
+         "xruns": 27
+        }
+       ]
+      },
+      {
+       "rate": 192000,
+       "measured": true,
+       "run": "rpi5-20261112-18",
+       "frames": 1024,
+       "clean": false,
+       "sub_ms": false,
+       "xruns": 2,
+       "hosts": [
+        {
+         "host": "H1",
+         "ok": 5,
+         "clean": 4,
+         "xruns": 1
+        },
+        {
+         "host": "H2",
+         "ok": 11,
+         "clean": 11,
+         "xruns": 0
+        },
+        {
+         "host": "H3",
+         "ok": 5,
+         "clean": 4,
+         "xruns": 1
+        },
+        {
+         "host": "H4",
+         "ok": 4,
+         "clean": 4,
+         "xruns": 0
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "ms": 2.67,
+     "cells": [
+      {
+       "rate": 48000,
+       "measured": true,
+       "run": "rpi5-20261112-3",
+       "frames": 128,
+       "clean": true,
+       "sub_ms": false,
+       "xruns": 0,
+       "hosts": [
+        {
+         "host": "H1",
+         "ok": 5,
+         "clean": 5,
+         "xruns": 0
+        },
+        {
+         "host": "H2",
+         "ok": 11,
+         "clean": 11,
+         "xruns": 0
+        },
+        {
+         "host": "H3",
+         "ok": 5,
+         "clean": 5,
+         "xruns": 0
+        },
+        {
+         "host": "H4",
+         "ok": 4,
+         "clean": 4,
+         "xruns": 0
+        }
+       ]
+      },
+      {
+       "rate": 96000,
+       "measured": true,
+       "run": "rpi5-20261112-2",
+       "frames": 256,
+       "clean": false,
+       "sub_ms": false,
+       "xruns": 3,
+       "hosts": [
+        {
+         "host": "H1",
+         "ok": 5,
+         "clean": 4,
+         "xruns": 1
+        },
+        {
+         "host": "H2",
+         "ok": 11,
+         "clean": 11,
+         "xruns": 0
+        },
+        {
+         "host": "H3",
+         "ok": 5,
+         "clean": 4,
+         "xruns": 2
+        },
+        {
+         "host": "H4",
+         "ok": 4,
+         "clean": 4,
+         "xruns": 0
+        }
+       ]
+      },
+      {
+       "rate": 192000,
+       "measured": true,
+       "run": "rpi5-20261112-8",
+       "frames": 512,
+       "clean": false,
+       "sub_ms": false,
+       "xruns": 33,
+       "hosts": [
+        {
+         "host": "H1",
+         "ok": 5,
+         "clean": 5,
+         "xruns": 0
+        },
+        {
+         "host": "H2",
+         "ok": 11,
+         "clean": 10,
+         "xruns": 3
+        },
+        {
+         "host": "H3",
+         "ok": 5,
+         "clean": 5,
+         "xruns": 0
+        },
+        {
+         "host": "H4",
+         "ok": 4,
+         "clean": 2,
+         "xruns": 30
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "ms": 1.33,
+     "cells": [
+      {
+       "rate": 48000,
+       "measured": true,
+       "run": "rpi5-20261112-10",
+       "frames": 64,
+       "clean": false,
+       "sub_ms": false,
+       "xruns": 108,
+       "hosts": [
+        {
+         "host": "H1",
+         "ok": 5,
+         "clean": 5,
+         "xruns": 0
+        },
+        {
+         "host": "H2",
+         "ok": 11,
+         "clean": 9,
+         "xruns": 11
+        },
+        {
+         "host": "H3",
+         "ok": 5,
+         "clean": 4,
+         "xruns": 3
+        },
+        {
+         "host": "H4",
+         "ok": 4,
+         "clean": 1,
+         "xruns": 94
+        }
+       ]
+      },
+      {
+       "rate": 96000,
+       "measured": true,
+       "run": "rpi5-20261112-4",
+       "frames": 128,
+       "clean": false,
+       "sub_ms": false,
+       "xruns": 33,
+       "hosts": [
+        {
+         "host": "H1",
+         "ok": 5,
+         "clean": 4,
+         "xruns": 3
+        },
+        {
+         "host": "H2",
+         "ok": 11,
+         "clean": 9,
+         "xruns": 9
+        },
+        {
+         "host": "H3",
+         "ok": 5,
+         "clean": 5,
+         "xruns": 0
+        },
+        {
+         "host": "H4",
+         "ok": 4,
+         "clean": 2,
+         "xruns": 21
+        }
+       ]
+      },
+      {
+       "rate": 192000,
+       "measured": true,
+       "run": "rpi5-20261112-7",
+       "frames": 256,
+       "clean": false,
+       "sub_ms": false,
+       "xruns": 607,
+       "hosts": [
+        {
+         "host": "H1",
+         "ok": 5,
+         "clean": 4,
+         "xruns": 391
+        },
+        {
+         "host": "H2",
+         "ok": 10,
+         "clean": 8,
+         "xruns": 37
+        },
+        {
+         "host": "H3",
+         "ok": 5,
+         "clean": 4,
+         "xruns": 22
+        },
+        {
+         "host": "H4",
+         "ok": 4,
+         "clean": 2,
+         "xruns": 157
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "ms": 0.67,
+     "cells": [
+      {
+       "rate": 48000,
+       "measured": false
+      },
+      {
+       "rate": 96000,
+       "measured": false
+      },
+      {
+       "rate": 192000,
+       "measured": true,
+       "run": "rpi5-20261112-9",
+       "frames": 128,
+       "clean": false,
+       "sub_ms": true,
+       "xruns": 17545,
+       "hosts": [
+        {
+         "host": "H1",
+         "ok": 5,
+         "clean": 0,
+         "xruns": 3711
+        },
+        {
+         "host": "H2",
+         "ok": 10,
+         "clean": 0,
+         "xruns": 6952
+        },
+        {
+         "host": "H3",
+         "ok": 4,
+         "clean": 0,
+         "xruns": 3177
+        },
+        {
+         "host": "H4",
+         "ok": 4,
+         "clean": 0,
+         "xruns": 3705
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "safe": [
+    {
+     "rate": 48000,
+     "ms": 2.67
+    },
+    {
+     "rate": 96000,
+     "ms": null
+    },
+    {
+     "rate": 192000,
+     "ms": 10.67
+    }
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "file": "rpi5-20261112-1.json",
+   "sha256": "4cc2642af22c54e43038408ae4de670d7201adfa799f37ea7c8946d8f45eff7d",
+   "plugin-hostd": "0.20.3",
+   "omx-clap-host": "0.31.2"
+  },
+  {
+   "file": "rpi5-20261112-10.json",
+   "sha256": "038782bb5a5cf85682c27922c086f55f2cac76c84b236e604c091a5063c1dde6",
+   "plugin-hostd": "0.20.3",
+   "omx-clap-host": "0.31.2"
+  },
+  {
+   "file": "rpi5-20261112-11.json",
+   "sha256": "5981db15b14b94850a6ee849a49a237f3957259ecbdc7da79c3e62d86655cef0",
+   "plugin-hostd": "0.20.3",
+   "omx-clap-host": "0.31.2"
+  },
+  {
+   "file": "rpi5-20261112-12.json",
+   "sha256": "283d80b6f14227cccbbc341b3335ba8903a36fb6062100ec1b6b99ca60615990",
+   "plugin-hostd": "0.20.3",
+   "omx-clap-host": "0.31.2"
+  },
+  {
+   "file": "rpi5-20261112-13.json",
+   "sha256": "252413220cbbcac0131d7e292e68424f4ab5d7788f3d3742e5889a2bb03e0dd6",
+   "plugin-hostd": "0.20.3",
+   "omx-clap-host": "0.31.2"
+  },
+  {
+   "file": "rpi5-20261112-14.json",
+   "sha256": "a36654ccf268a30aeac7ed25a11e9a6e63bdfd49dbae0270feba048d14470050",
+   "plugin-hostd": "0.20.3",
+   "omx-clap-host": "0.31.2"
+  },
+  {
+   "file": "rpi5-20261112-15.json",
+   "sha256": "26a8f6de0a76e81de2022e7870274f4989eb137d7cd99e6459bb6358b6f52ef7",
+   "plugin-hostd": "0.20.3",
+   "omx-clap-host": "0.31.2"
+  },
+  {
+   "file": "rpi5-20261112-16.json",
+   "sha256": "4c477713391b0ba17be335b667261aa0df0de15d3964bd3f66e80dd9928a6332",
+   "plugin-hostd": "0.20.3",
+   "omx-clap-host": "0.31.2"
+  },
+  {
+   "file": "rpi5-20261112-17.json",
+   "sha256": "74d0f669d4445b8a8dd7695350afa924ab0ce590191ba7a4c0d14b6ac3517f74",
+   "plugin-hostd": "0.20.3",
+   "omx-clap-host": "0.31.2"
+  },
+  {
+   "file": "rpi5-20261112-18.json",
+   "sha256": "f73763b8e7fb7fcb208f3577f3a66f8bc386375dd72c00e496a30c4491e74baf",
+   "plugin-hostd": "0.20.3",
+   "omx-clap-host": "0.31.2"
+  },
+  {
+   "file": "rpi5-20261112-2.json",
+   "sha256": "a0f3df9a23cdcb2be0bd0e8879c9e7049a2505e9dcda902aa0c7adf91675a017",
+   "plugin-hostd": "0.20.3",
+   "omx-clap-host": "0.31.2"
+  },
+  {
+   "file": "rpi5-20261112-3.json",
+   "sha256": "654990bfacdb1e8c3db3095d3e04b214003775a450e263f2f3bd4b1a654293a9",
+   "plugin-hostd": "0.20.3",
+   "omx-clap-host": "0.31.2"
+  },
+  {
+   "file": "rpi5-20261112-4.json",
+   "sha256": "60f2fc44549e582f6ea8a8e33b5a8a14d88a1ac0778c263fe5732ceb18a33151",
+   "plugin-hostd": "0.20.3",
+   "omx-clap-host": "0.31.2"
+  },
+  {
+   "file": "rpi5-20261112-5.json",
+   "sha256": "931ab486f726345fa39e2bcead450c4b5850ef3e1f98c39f9acc5f0c45bec0d5",
+   "plugin-hostd": "0.20.3",
+   "omx-clap-host": "0.31.2"
+  },
+  {
+   "file": "rpi5-20261112-6.json",
+   "sha256": "a10d46444614b7bf440a2f98f95065375f1fbc9d6c9fc4ee42c1993d59bcd148",
+   "plugin-hostd": "0.20.3",
+   "omx-clap-host": "0.31.2"
+  },
+  {
+   "file": "rpi5-20261112-7.json",
+   "sha256": "0f9cca4d284723fd480b6a007556fcd777578bb155aee68f111b3969d4632b0f",
+   "plugin-hostd": "0.20.3",
+   "omx-clap-host": "0.31.2"
+  },
+  {
+   "file": "rpi5-20261112-8.json",
+   "sha256": "345adf4e6fb594bcd3d1e5c8b80bf47ebf792e40aa5c0e669574629207553f0f",
+   "plugin-hostd": "0.20.3",
+   "omx-clap-host": "0.31.2"
+  },
+  {
+   "file": "rpi5-20261112-9.json",
+   "sha256": "250f4d4dd4710502be56106fcf36aeb0cc576b40605c2bf885fa946edbe6a2f6",
+   "plugin-hostd": "0.20.3",
+   "omx-clap-host": "0.31.2"
+  },
+  {
+   "file": "rpi5-20261113-1.json",
+   "sha256": "fafe3b1258dd4573131d9d94f5193019e06f0d1837fbcf4780c30a9291e3ddbe",
+   "plugin-hostd": "0.20.3",
+   "omx-clap-host": "0.31.2"
+  },
+  {
+   "file": "rpi5-20261113-2.json",
+   "sha256": "8762e180ae7ff729e49db22f865034eaa2a82cc22b468e0f397bb331d94659c9",
+   "plugin-hostd": "0.20.3",
+   "omx-clap-host": "0.31.2"
+  },
+  {
+   "file": "rpi5-20261113-3.json",
+   "sha256": "da3c31383c43b8f8b31a33e31c083d2302fd885d5aad7e5b664172ea048165bc",
+   "plugin-hostd": "0.20.3",
+   "omx-clap-host": "0.31.2"
+  },
+  {
+   "file": "rpi5-20261113-4.json",
+   "sha256": "6eb04c417a5dff73411b9764a8e35f2e4dede4ffb421c5998c19323c07359b0a",
+   "plugin-hostd": "0.20.3",
+   "omx-clap-host": "0.31.2"
+  },
+  {
+   "file": "rpi5-20261113-5.json",
+   "sha256": "921198f4a3746b5fa0e558ba979e62432d02057b884958030fe5757a206623e7",
+   "plugin-hostd": "0.20.3",
+   "omx-clap-host": "0.31.2"
+  },
+  {
+   "file": "rpi5-20261113-6.json",
+   "sha256": "7df0a6cc3f146e62a4b0770e5bba94f1826e1addd597a53af865219181cf03f4",
+   "plugin-hostd": "0.20.3",
+   "omx-clap-host": "0.31.2"
+  }
+ ]
+}

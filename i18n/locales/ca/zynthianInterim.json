@@ -12,7 +12,7 @@
     "title": "Què són aquestes xifres",
     "tier": "Nivell de maquinari: {model}, {cores} nuclis, {ram} MB, amb una {iface} per USB.",
     "covered": "Freqüències cobertes: {rates}. Quanta coberts: {frames} mostres.",
-    "unsupported": "{rates} no és compatible amb la Pi i no es mostra.",
+    "unsupported": "{rates} no s'ha mesurat en aquestes passades; les taules per durada del període de més avall la inclouen.",
     "cells": "Banc de proves: {cells} cel·les mesurades a les freqüències mostrades; {ok} s'han executat, {failed} han fallat i continuen a la llista; la comprovació d'estabilitat n'ha marcat {unstable} de les {ok} com a inestables.",
     "grid": "Graella de qualificació: {done} de {total} cel·les acabades; la graella encara s'està executant.",
     "preliminary": "Provisional: la matriu del nivell de referència substitueix aquestes xifres a la propera versió.",
@@ -45,6 +45,20 @@
     "ok": "executat",
     "failed": "fallit",
     "unstable": "inestable"
+  },
+  "periods": {
+    "title": "Per durada del període",
+    "intro": "La matriu llegida per durada del període ({versions}; JACK amb el controlador {driver} a prioritat de temps real {priority} sobre la {iface}). Les freqüències es comparen a la mateixa durada de període: 512 mostres a 48 kHz, 1024 a 96 kHz i 2048 a 192 kHz són els mateixos 10,67 ms.",
+    "reading": "Una cel·la mostra les mostres, si és neta o els xruns sumats de les seves files i, per a cada amfitrió, les files sense cap xrun sobre les files que s'han executat. El mínim segur d'una freqüència és el seu període net més curt amb tots els més llargs també nets. Un període de menys d'un mil·lisegon no és cap veredicte sobre la freqüència.",
+    "table": "{periods} períodes per memòria intermèdia",
+    "period": "Període",
+    "clean": "neta",
+    "xruns": "{n} xruns",
+    "subMs": "menys d'1 ms",
+    "safe": "Mínim segur",
+    "none": "cap",
+    "hosts": "H1 és omx-clap-host sol, H2 plugin-hostd, H3 mod-host i H4 jalv. Cada amfitrió executa les seves pròpies files, de manera que els recomptes no són una classificació d'un amfitrió respecte d'un altre.",
+    "footer": "Taules per període: execucions {runs}. Nivell de maquinari, preliminar."
   },
   "back": "Tots els bancs de proves",
   "footer": "Execucions {runs}. Nivell de maquinari, provisional."
