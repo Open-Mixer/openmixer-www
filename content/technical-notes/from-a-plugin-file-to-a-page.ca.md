@@ -87,6 +87,26 @@ cost de cada fila i la disposició per a les pàgines. Abans d'inserir un plugin
 costarà la cadena. Res no es calcula dues vegades: el descriptor per als paràmetres, el registre per a les xifres,
 l'empremta per al permís, la disposició per a les pàgines.
 
+### Cada artefacte a través del lector del seu responsable
+
+La interfície no guarda cap còpia del que han escrit les etapes ni cap codi propi que en llegeixi els fitxers. Llegeix
+cadascun a través del lector que en distribueix el responsable, tots en Python:
+
+- **El dimoni.** Cada línia cap a plugin-hostd i cada resposta seva passen pel client de plugin-hostd,
+  `plugin_hostd_protocol`, que codifica i interpreta el protocol tal com el declara la seva taula instal·lada.
+- **El registre.** La qualificació d'una fila del menú la dona el lector de registres de plugin-db, `plugin_db.query`; el
+  motiu d'un veredicte, `plugin_db.why`.
+- **El descriptor.** La interfície pregunta al dimoni quin fitxer conté el descriptor del plugin (`descriptor_get`): el
+  del seu escaneig, o una descripció que fa la mateixa interfície quan el dimoni no en té cap. omx-panel en disposa les
+  pàgines a partir d'aquest fitxer.
+- **La posició d'un control.** On queda un potenciòmetre per a un valor, tant en dibuixar-lo com en moure'l, és la llei
+  de posició d'omx-contract, llegida amb el seu lector d'escales, `omx_contract_scale`.
+- **El que diu una resposta.** El codi d'un responsable es mostra en la llengua de l'aparell, la que indiquen `LC_ALL`,
+  `LC_MESSAGES` o `LANG`: el client de plugin-hostd llegeix la frase del catàleg instal·lat del responsable, els motius de
+  plugin-db passen pel lector de catàlegs d'omx-contract i un codi sense entrada mostra la seva frase original en anglès.
+
+Quan un responsable canvia les seves dades o el seu lector, la interfície el segueix sense cap canvi propi.
+
 A l'aparell, el menú de plugins: cada fila amb el seu nivell, la latència (mostres mesurades i declarades), la seguretat
 en temps real i el cost:
 
