@@ -41,24 +41,10 @@ const envColumns = computed(() => [
 ]);
 
 const install = computed(() => [
-  `# ${t('docsMcp.install.top')}`,
-  'pnpm -r --filter "@openmixer/mcp-server..." build',
-  '',
   `# ${t('docsMcp.install.stdio')}`,
   'omx-mcp',
 ]);
 
-const SKILLS = [
-  'design-first',
-  'design-decision',
-  'false-signals',
-  'round-trip-proof',
-  'openmixer-dev-discipline',
-  'lane-discipline',
-  'settle-gate',
-] as const;
-
-const skills = computed(() => SKILLS.map((name) => ({ name, blurb: t(`docsMcp.skills.${name}`) })));
 </script>
 
 <template>
@@ -75,7 +61,6 @@ const skills = computed(() => SKILLS.map((name) => ({ name, blurb: t(`docsMcp.sk
         <div class="space-y-4 text-base leading-relaxed text-ink-dim">
           <p v-html="t('docsMcp.s1.p1')" />
           <CodeBlock :lines="install" />
-          <p v-html="t('docsMcp.s1.p2')" />
           <RefTable :columns="envColumns" :rows="mcpTools.env" />
         </div>
       </div>
@@ -123,25 +108,5 @@ const skills = computed(() => SKILLS.map((name) => ({ name, blurb: t(`docsMcp.sk
       </div>
     </section>
 
-    <section>
-      <div class="mx-auto max-w-4xl px-6 py-16">
-        <SectionHead eyebrow="04" :title="t('docsMcp.s4.title')">
-          <p class="mt-4 max-w-3xl text-base leading-relaxed text-ink-dim">
-            {{ t('docsMcp.s4.p1') }}
-          </p>
-        </SectionHead>
-        <dl>
-          <div v-for="s in skills" :key="s.name" class="border-t border-edge py-6 first:border-t-0 first:pt-0">
-            <dt>
-              <span class="font-display text-lg font-semibold tracking-tight text-ink">{{ s.name }}</span>
-            </dt>
-            <dd class="mt-2 text-base leading-relaxed text-ink-dim">{{ s.blurb }}</dd>
-          </div>
-        </dl>
-        <p class="mt-8 text-sm leading-relaxed text-ink-faint">
-          {{ t('docsMcp.s4.p2') }}
-        </p>
-      </div>
-    </section>
   </div>
 </template>
