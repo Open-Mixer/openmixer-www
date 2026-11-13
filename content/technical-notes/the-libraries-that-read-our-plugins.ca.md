@@ -291,11 +291,11 @@ const clap_plugin_t *delay = f->create_plugin(f, host, "org.openmixer.delay");
 - plugin-qualify esmenta un lector en Python de les xifres dels registres per a Zynthian (`tools/record_figures.py`) que
   no existeix: no hi ha cap lector en Python de registres ni del fitxer d'empremtes.
 - Els mòduls de Python d'omx-contract no són a `sys.path`; cada programa els carrega pel seu fitxer, com ho fa el
-  `text.py` de plugin-db. omx-contract#28 en fa un paquet, `python3-omx-contract` (`import omx_contract.catalog`).
-- Tres tipus de nom amb què un client compara encara no són constants del lector del seu responsable, de manera que el fork de
-  Zynthian els escriu com a text en unes poques línies llistades, cadascuna amb la seva incidència: quins refusos són
-  transitoris (plugin-hostd-protocol#23), els verbs i els codis de resposta al client en Python
-  (plugin-hostd-protocol#24) i els motius d'agrupació de `grouping.json` (plugin-hostd#67).
+  `text.py` de plugin-db. Ja s'està fent un paquet, `python3-omx-contract` (`import omx_contract.catalog`).
+- Tres tipus de nom amb què un client compara encara no són constants del lector del seu responsable, de manera que el
+  fork de Zynthian els escriu com a text en unes poques línies llistades, cadascuna amb la incidència del responsable:
+  quins refusos són transitoris (plugin-hostd-protocol), els verbs i els codis de resposta al client en Python
+  (plugin-hostd-protocol) i els motius d'agrupació de `grouping.json` (plugin-hostd).
 - L'exportació `/validate` d'omx-contract, el seu `omx_contract.py` generat i el `readDistributedLayer` de plugin-qualify
   no tenen cap exemple als seus repositoris.
 - Els bessons en TypeScript d'omx-dsp i el client en TypeScript de plugin-hostd només són a npm, no als paquets rpm ni
