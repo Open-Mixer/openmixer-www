@@ -1,9 +1,9 @@
 {
   "meta": {
-    "generatedAt": "2026-11-14T09:38:05.000Z",
+    "generatedAt": "2026-11-14T14:39:28.000Z",
     "sourceRowCount": 258,
     "sourceTravelCount": 64,
-    "totalCodes": 229
+    "totalCodes": 230
   },
   "sections": [
     {
@@ -1323,6 +1323,12 @@
         },
         {
           "code": "plugin.linked-descriptor.unread",
+          "doc": "No parameters — the sentence is fixed text.",
+          "paramType": "NoMessageParams",
+          "params": []
+        },
+        {
+          "code": "eq.band-cap-reached",
           "doc": "No parameters — the sentence is fixed text.",
           "paramType": "NoMessageParams",
           "params": []
