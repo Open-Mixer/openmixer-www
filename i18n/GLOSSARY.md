@@ -94,7 +94,6 @@ reasons):
 | recall | scene recall key |
 | render | render key |
 | reset | reset key |
-| RME | manufacturer name |
 | RMS | detector/model class |
 | rotary | effect name |
 | RTA | real-time analyser abbreviation |
@@ -105,7 +104,6 @@ reasons):
 | ST | stereo abbreviation; also the semitone mark on a transpose ({n} st) |
 | sys | CPU system time |
 | TAME | the console's TAME control |
-| TotalMix | product name |
 | tremolo | effect name |
 | trim | input trim, said as is |
 | TRK | track abbreviation |
