@@ -95,8 +95,8 @@
     "shots": {
       "slot": "Screenshot to come, after {after}.",
       "menu": {
-        "alt": "The Zynthian plugin menu sorted by qualification tier, with each plugin's latency, real-time safety and cost",
-        "caption": "The plugin menu, sorted by qualification tier"
+        "alt": "Zynthian's Reverb menu sorted by qualification tier: each plugin followed by its tier, whether it shares a worker and whether its latency is within the line",
+        "caption": "The plugin menu sorted by qualification tier, each row's tier read from its qualification record through plugin-db"
       },
       "page": {
         "alt": "The controller page of MDA Piano in Zynthian: its list of pages on the left and four dials on the right",
