@@ -9,7 +9,7 @@
 //   consoleTravelSheet() from packages/core/dist — per-field ranges, enums and per-instance limits
 //                                         (needs @freemixer/core built in the checkout)
 //   generated/engine-ui-rows.json        — every addressable row, its fields and a live sample,
-//                                         written by a booted console: `pnpm --filter @freemixer/server corpus`
+//                                         written by a booted console: `pnpm --filter "@*/server" corpus`
 //   packages/core/src/message-code.ts    — every refusal/undo-label code, doc'd in TSDoc
 //   packages/core/src/message-codes-listed.ts — the list of codes message-code.ts spreads in
 //
@@ -57,11 +57,11 @@ if (!existsSync(resolve(src, MESSAGE_CODE))) {
 // A checkout is here, so a missing input is a refusal: publishing the old snapshot from a
 // checkout that cannot produce a new one reads exactly like a regeneration that worked.
 if (!existsSync(resolve(src, CORE_DIST))) {
-  console.error(`[gen-rest-reference] ${src} has no ${CORE_DIST}: build core there (pnpm -r --filter "@freemixer/server..." build)`);
+  console.error(`[gen-rest-reference] ${src} has no ${CORE_DIST}: build core there (pnpm -r --filter "@*/server..." build)`);
   process.exit(1);
 }
 if (!existsSync(resolve(src, ROWS))) {
-  console.error(`[gen-rest-reference] ${src} has no ${ROWS}: produce it there (pnpm --filter @freemixer/server corpus)`);
+  console.error(`[gen-rest-reference] ${src} has no ${ROWS}: produce it there (pnpm --filter "@*/server" corpus)`);
   process.exit(1);
 }
 
