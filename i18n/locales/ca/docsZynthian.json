@@ -165,7 +165,7 @@
       "title": "Les xifres principals.",
       "intro": "Mesurat en una Raspberry Pi 5 amb Zynthian, amb una RME Babyface Pro com a interfície d'àudio i JACK amb prioritat de temps real 70 i 3 períodes, el paràmetre del mateix Zynthian. Llegit digitalment al servidor JACK i als seus ports. plugin-hostd 0.18.0 i omx-clap-host 0.29.0 contra mod-host 0.10.9, l'amfitrió de les cadenes d'efectes de Zynthian i de MOD-UI, a més de jalv 1.6.9, que fa córrer un plugin per procés:",
       "more": "Totes les taules i el mètode",
-      "footer": "Raspberry Pi 5 amb Zynthian, RME Babyface Pro · JACK prioritat 70, 3 períodes · 48 i 96 kHz, 128 i 256 mostres · llegit digitalment al servidor JACK i als ports · plugin-hostd 0.18.0 (protocol 0.3.0), omx-clap-host 0.29.0, omx-plugins 0.18.0, mod-host 0.10.9, jalv 1.6.9 · 5 de novembre del 2026 · qualificació: plugin-qualify 0.18.5, registres omx-qualification-rpi5-zynthian-vangelis 2026110101, 1 de novembre del 2026",
+      "footer": "Raspberry Pi 5 amb Zynthian, RME Babyface Pro · JACK prioritat 70, 3 períodes · 48 i 96 kHz, 128 i 256 mostres · llegit digitalment al servidor JACK i als ports · plugin-hostd 0.18.0 (protocol 0.3.0), omx-clap-host 0.29.0, omx-plugins 0.18.0, mod-host 0.10.9, jalv 1.6.9 · 5 de novembre del 2026 · qualificació: plugin-qualify 0.18.5, registres omx-qualification-rpi5-zynthian-vangelis 2026110101, 1 de novembre del 2026 · el llaç analògic XLR OUT 1/2 -> XLR IN 1/2 mesurat digitalment, mai escoltat: Zynthian openmixer 7bb95064, plugin-hostd 0.20.6, jackd 1.9.22, 14 de novembre de 2026",
       "bench": "Els bancs de proves, fila per fila"
     },
     "status": {
@@ -173,7 +173,7 @@
       "open": {
         "title": "Encara obert",
         "menu": "Cadenes fetes des del menú de Zynthian amb l'agrupació activada, mesurades com es van mesurar les cadenes del dimoni.",
-        "listen": "Una prova d'escolta a través de la interfície d'àudio: fins ara les xifres es llegeixen digitalment als ports de JACK.",
+        "listen": "Una prova d'escolta a través de la interfície d'àudio: el llaç XLR OUT 1/2 -> XLR IN 1/2 s'ha mesurat digitalment (nivell, THD+N, latència, balanç, a les xifres), mai escoltat.",
         "presets": "La versió CLAP de Surge XT: un preset que ha desat encara no es torna a carregar; a més, la seva carpeta de plugins no es pot fixar amb els paràmetres de fixació de Zynthian. Llistar i carregar els presets de cada instrument des del menú de Zynthian.",
         "snapshot": "L'anada i tornada d'una instantània que conté un instrument de plugin-hostd.",
         "mixbus": "Cadenes de Mixbus i espais en paral·lel mesurats amb el mesclador del mateix Zynthian al camí, a l'aparell."
