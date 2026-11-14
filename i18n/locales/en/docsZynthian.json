@@ -165,7 +165,7 @@
       "title": "The headline figures.",
       "intro": "Measured on a Raspberry Pi 5 running Zynthian, with an RME Babyface Pro as its audio interface and JACK at real-time priority 70 with 3 periods, Zynthian's own setting. Read digitally at the JACK server and its ports. plugin-hostd 0.18.0 and omx-clap-host 0.29.0 against mod-host 0.10.9, the host behind Zynthian's effect chains and MOD-UI, and jalv 1.6.9, which runs one plugin per process:",
       "more": "Every table and the method",
-      "footer": "Raspberry Pi 5 running Zynthian, RME Babyface Pro · JACK priority 70, 3 periods · 48 and 96 kHz, 128 and 256 frames · read digitally at the JACK server and ports · plugin-hostd 0.18.0 (protocol 0.3.0), omx-clap-host 0.29.0, omx-plugins 0.18.0, mod-host 0.10.9, jalv 1.6.9 · 5 November 2026 · qualification: plugin-qualify 0.18.5, records omx-qualification-rpi5-zynthian-vangelis 2026110101, 1 November 2026",
+      "footer": "Raspberry Pi 5 running Zynthian, RME Babyface Pro · JACK priority 70, 3 periods · 48 and 96 kHz, 128 and 256 frames · read digitally at the JACK server and ports · plugin-hostd 0.18.0 (protocol 0.3.0), omx-clap-host 0.29.0, omx-plugins 0.18.0, mod-host 0.10.9, jalv 1.6.9 · 5 November 2026 · qualification: plugin-qualify 0.18.5, records omx-qualification-rpi5-zynthian-vangelis 2026110101, 1 November 2026 · the analog loop XLR OUT 1/2 -> XLR IN 1/2 measured digitally, never heard: Zynthian openmixer 7bb95064, plugin-hostd 0.20.6, jackd 1.9.22, 14 November 2026",
       "bench": "The benchmarks, row by row"
     },
     "status": {
@@ -173,7 +173,7 @@
       "open": {
         "title": "Still open",
         "menu": "Chains built from Zynthian's menu with grouping on, measured as the daemon's chains were.",
-        "listen": "A listening test through the audio interface: the figures so far are read digitally at the JACK ports.",
+        "listen": "A listening test through the audio interface: the loop XLR OUT 1/2 -> XLR IN 1/2 has been measured digitally (level, THD+N, latency, balance, in the figures), never heard.",
         "presets": "Surge XT's CLAP build: a preset it saved does not load back yet, and its plugin folder cannot be pinned under Zynthian's pin settings. Preset listing and loading from Zynthian's menu for every instrument.",
         "snapshot": "The round trip of a snapshot that holds a plugin-hostd instrument.",
         "mixbus": "Mixbus chains and parallel slots measured with Zynthian's own mixer in the path on the device."

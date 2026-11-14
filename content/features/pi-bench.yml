@@ -47,3 +47,15 @@ proof:
     with: plugin-hostd 0.18.0, omx-clap-host 0.29.0, mod-host 0.10.9, jalv 1.6.9
     en: "The floor: 64 frames at 48 kHz has xruns on every host with no plugin loaded, so it is the device's limit. At 96 kHz, 128 frames runs with no xrun on omx-clap-host, plugin-hostd and mod-host with no plugin; jalv has no host without a plugin. Keep the third period: with two, the heavier sets read higher on omx-clap-host and mod-host."
     ca: "El límit: a 48 kHz, 64 mostres tenen xruns a tots els amfitrions sense cap plugin carregat, de manera que és el límit de l'aparell. A 96 kHz, 128 mostres corren sense xruns a omx-clap-host, plugin-hostd i mod-host sense cap plugin; jalv no té amfitrió sense plugin. Val la pena mantenir el tercer període: amb dos, els conjunts més pesats donen més càrrega a omx-clap-host i a mod-host."
+  - kind: bench
+    rate: 48 kHz, 256 frames
+    figure: true
+    with: RME Babyface Pro, jackd 1.9.22, Zynthian openmixer 7bb95064, plugin-hostd 0.20.6
+    en: "Hardware tier, measured digitally through the analog loop and never heard: with XLR OUT 1/2 looped into XLR IN 1/2 (48V off, gain 0), a 1 kHz tone at -20 dBFS played into a chain's strip comes back at -14.4 dBFS on both channels, THD+N 0.0038 % (-88 dB, 20 Hz to 20 kHz), noise floor -110 dBFS, round trip 842 samples (17.5 ms) at 3 periods, channel balance 0.04 dB."
+    ca: "Nivell maquinari, mesurat digitalment a través del llaç analògic i mai escoltat: amb XLR OUT 1/2 connectades a XLR IN 1/2 (48V apagat, guany 0), un to d'1 kHz a -20 dBFS enviat a la tira d'una cadena torna a -14,4 dBFS als dos canals, THD+N 0,0038 % (-88 dB, de 20 Hz a 20 kHz), soroll de fons -110 dBFS, anada i tornada 842 mostres (17,5 ms) amb 3 períodes, balanç entre canals 0,04 dB."
+  - kind: bench
+    rate: 96 kHz, 256 frames
+    figure: true
+    with: RME Babyface Pro, jackd 1.9.22, Zynthian openmixer 7bb95064, plugin-hostd 0.20.6
+    en: "The same loop at 96 kHz, measured digitally and never heard: the tone comes back at -14.3 dBFS, THD+N 0.0038 % (-88 dB), noise floor -106 dBFS over the wider band, round trip 804 samples (8.4 ms), channel balance 0.04 dB; the polarity is kept at both rates."
+    ca: "El mateix llaç a 96 kHz, mesurat digitalment i mai escoltat: el to torna a -14,3 dBFS, THD+N 0,0038 % (-88 dB), soroll de fons -106 dBFS en la banda més ampla, anada i tornada 804 mostres (8,4 ms), balanç entre canals 0,04 dB; la polaritat es manté a totes dues freqüències."
