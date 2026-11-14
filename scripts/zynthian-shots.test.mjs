@@ -2,7 +2,8 @@
 // Copyright (C) 2026 Pau Aliagas <linuxnow@gmail.com>
 // The Zynthian docs page carries the seven acceptance shots of 2026-11-13, each where its text is (queue row 12):
 // app/data/zynthian-shots.json lists s1..s7; a shot taken is a file under public/docs/zynthian/shots/, one still to come
-// (s1 after plugin-qualify 0.20.5, s4 after zynthian-ui#30) is a marked slot. Every shot has its words in English and
+// a marked slot saying what it waits for. All seven are taken (s1 and s4 on the Pi after plugin-qualify#77 and
+// zynthian-ui#40). Every shot has its words in English and
 // Catalan, the page places each once, and the four older pictures it borrowed from a technical note are gone from it.
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
@@ -18,11 +19,11 @@ const IDS = ['s1', 's2', 's3', 's4', 's5', 's6', 's7'];
 
 const shots = () => JSON.parse(read(MANIFEST)).shots;
 
-test('the page lists the seven shots s1..s7, s1 and s4 still to come', () => {
+test('the page lists the seven shots s1..s7, every one taken', () => {
   assert.ok(existsSync(join(ROOT, MANIFEST)), `${MANIFEST} is there`);
   const s = shots();
   assert.deepEqual(s.map((x) => x.id), IDS);
-  assert.deepEqual(s.filter((x) => x.file === null).map((x) => x.id), ['s1', 's4'], 's1 and s4 are slots');
+  assert.deepEqual(s.filter((x) => x.file === null).map((x) => x.id), [], 'no shot is a slot');
   for (const x of s.filter((x) => x.file === null)) assert.ok(x.after, `${x.id} says what it waits for`);
 });
 
