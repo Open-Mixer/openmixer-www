@@ -381,9 +381,7 @@
     },
     {
       "id": "presets",
-      "pages": [
-        "/docs/manual/presets"
-      ]
+      "pages": []
     },
     {
       "id": "curves-meters",
@@ -416,9 +414,7 @@
     },
     {
       "id": "clock",
-      "pages": [
-        "/docs/troubleshooting/clock-master-profile"
-      ]
+      "pages": []
     },
     {
       "id": "streams",
@@ -448,9 +444,7 @@
     },
     {
       "id": "how-changes-land",
-      "pages": [
-        "/docs/architecture/how-changes-land"
-      ]
+      "pages": []
     }
   ]
 }

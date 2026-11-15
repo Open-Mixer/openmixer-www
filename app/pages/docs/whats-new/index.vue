@@ -61,7 +61,8 @@ useSeoMeta({
         <article v-for="g in consoleGroups" :key="g.id" :id="`console-${g.id}`" class="border-l-2 border-edge-strong pl-5">
           <h3 class="font-display text-xl font-semibold tracking-tight text-ink">{{ t(`whatsNew.console.${g.id}.title`) }}</h3>
           <p class="mt-2 text-base leading-relaxed text-ink-dim">{{ t(`whatsNew.console.${g.id}.summary`) }}</p>
-          <p class="mt-2 text-sm text-ink-dim">
+          <!-- a group whose page has not landed yet (its console PR is still open) names none -->
+          <p v-if="g.pages.length > 0" class="mt-2 text-sm text-ink-dim">
             {{ t('whatsNew.index.pages') }}:
             <template v-for="(p, i) in g.pages" :key="p"><a :href="sitePath(p)" class="text-accent hover:underline">{{ p }}</a><span v-if="i < g.pages.length - 1">, </span></template>
           </p>
