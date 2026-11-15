@@ -1,8 +1,8 @@
 {
-  "doc": "What is new on Zynthian: one entry per high-level change, in the order the index shows them. page: true has a page of its own at /docs/zynthian-whats-new/<id>, with its words in i18n zynthianWhatsNew.changes.<id>; link names the existing page that already covers it. status coming: described as not working on Zynthian yet. shots name pictures in shots below. prs: every merged pull request of the change, <repo>#<number> of the Open-Mixer organisation; together they hold every pull request merged into the Zynthian work since the first Zynthian page.",
+  "doc": "What is new: the Zynthian half, one entry per high-level change, in the order the index shows them. page: true has a page of its own at /docs/whats-new/<id>, with its words in i18n whatsNew.changes.<id>; link names the existing page that already covers it. status coming: described as not working on Zynthian yet. shots name pictures in shots below. prs: every merged pull request of the change, <repo>#<number> of the Open-Mixer organisation; together they hold every pull request merged into the Zynthian work since the first Zynthian page. console: the console half, one entry per group of changes since openmixer 0.2.0, each with the pages of the console's documentation that explain it (its pull requests are in the console's own repository).",
   "shots": {
     "curves-eq8": null,
-    "drawbars": null,
+    "drawbars": "/docs/zynthian/whats-new/drawbars.png",
     "xy": null,
     "language": "/docs/zynthian/shots/s4-catalan-cost-line.png"
   },
@@ -364,6 +364,90 @@
         "zynthian-sys#10",
         "zynthian-sys#11",
         "zynthian-ui#41"
+      ]
+    }
+  ],
+  "console": [
+    {
+      "id": "hosting",
+      "pages": [
+        "/docs/manual/plugins",
+        "/docs/admin/ports",
+        "/docs/admin",
+        "/docs/architecture/technical-manual"
+      ]
+    },
+    {
+      "id": "presets",
+      "pages": [
+        "/docs/manual/presets"
+      ]
+    },
+    {
+      "id": "curves-meters",
+      "pages": [
+        "/docs/architecture/libraries",
+        "/docs/architecture/engine-and-libraries",
+        "/docs/manual/eq-dynamics",
+        "/docs/manual/metering-latency"
+      ]
+    },
+    {
+      "id": "languages",
+      "pages": [
+        "/docs/manual/look#language",
+        "/docs/rest/refusal-codes"
+      ]
+    },
+    {
+      "id": "web-surface",
+      "pages": [
+        "/docs/manual/menus#on-a-narrow-screen-the-menu-cap",
+        "/docs/manual/plugins"
+      ]
+    },
+    {
+      "id": "control24",
+      "pages": [
+        "/docs/control24"
+      ]
+    },
+    {
+      "id": "clock",
+      "pages": [
+        "/docs/troubleshooting/clock-master-profile"
+      ]
+    },
+    {
+      "id": "streams",
+      "pages": [
+        "/docs/architecture/overview",
+        "/docs/rest"
+      ]
+    },
+    {
+      "id": "assistant",
+      "pages": [
+        "/docs/mcp"
+      ]
+    },
+    {
+      "id": "packaging",
+      "pages": [
+        "/docs/install",
+        "/docs/install/packages"
+      ]
+    },
+    {
+      "id": "rta-design",
+      "pages": [
+        "/docs/manual/rta"
+      ]
+    },
+    {
+      "id": "how-changes-land",
+      "pages": [
+        "/docs/architecture/how-changes-land"
       ]
     }
   ]

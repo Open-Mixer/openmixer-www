@@ -1,23 +1,27 @@
 {
-  "zynthianWhatsNew": {
+  "whatsNew": {
     "seo": {
-      "title": "What is new on Zynthian",
-      "description": "Every change OpenMixer brought to Zynthian, in plain words: what it is, where it appears, what you do and what you see, with the pull requests behind it."
+      "title": "What is new",
+      "description": "Every change OpenMixer brought, to Zynthian and to the console, in plain words, with the pages that explain each one and, for Zynthian, the pull requests behind it."
     },
     "hero": {
-      "eyebrow": "Zynthian",
-      "title": "What is new on Zynthian",
-      "lede": "Every change OpenMixer brought to Zynthian, one paragraph each. A change with a page of its own says what it is, where it appears, what you do and what you see, with pictures from a Raspberry Pi 5 running the Open-Mixer fork. A change an existing page already covers links there. Every merged pull request of the work is listed under its change."
+      "eyebrow": "OpenMixer",
+      "title": "What is new",
+      "lede": "Every change OpenMixer brought, in two halves. On Zynthian, one paragraph per change: a change with a page of its own says what it is, where it appears, what you do and what you see, with pictures from a Raspberry Pi 5 running the Open-Mixer fork, and every merged pull request is listed under its change. On the console, one paragraph per group of changes since openmixer 0.2.0, with the pages that explain it."
     },
     "index": {
       "readPage": "Read the page",
       "coveredBy": "Covered by",
       "prs": "Pull requests",
       "coming": "Not on Zynthian yet",
-      "count": "{n} pull requests"
+      "count": "{n} pull requests",
+      "zynthian": "On Zynthian",
+      "console": "On the console",
+      "consoleLede": "The console's changes since openmixer 0.2.0, the last published release, one paragraph per group, each with the pages of the console's documentation that explain it.",
+      "pages": "Pages"
     },
     "page": {
-      "back": "What is new on Zynthian",
+      "back": "What is new",
       "what": "What it is",
       "where": "Where it appears",
       "do": "What you do",
@@ -34,7 +38,7 @@
       },
       "drawbars": {
         "alt": "setBfree's drawbars on Zynthian's drawbar screen",
-        "caption": "An organ's drawbars: drag one, or slide across to set several in one stroke."
+        "caption": "An organ's drawbars on a Raspberry Pi 5: one stroke across the last six set them all to 4."
       },
       "xy": {
         "alt": "Zynthian's XY screen setting two controls at once",
@@ -160,6 +164,56 @@
         "title": "How we work: checks on every change",
         "summary": "Quick checks on every pull request, the heavy runs on release tags, and commit messages checked before they land.",
         "what": "Every pull request runs the quick checks; the heavy runs happen on release tags and on demand. Builds use as many jobs as their share of the machine allows, package-manager calls have a time limit, commit messages are checked, build artifacts are kept for a set time, and an issue is closed by hand once its fix is proven."
+      }
+    },
+    "console": {
+      "hosting": {
+        "title": "Plugin hosting: one host for CLAP and LV2, three more omx effects, measured costs",
+        "summary": "Every plugin insert now runs in one host, CLAP directly and LV2 through its adapter (mod-host is retired), and the omx ducker, doubler and tone join the effects you can add from the picker."
+      },
+      "presets": {
+        "title": "Presets: a desk-wide preset library",
+        "summary": "Presets now live in a desk-wide library outside every session, saved in each plugin's own format, so LV2 presets you save are standard bundles other LV2 hosts can open."
+      },
+      "curves-meters": {
+        "title": "Curves, meters and panels drawn from the shared libraries",
+        "summary": "EQ, gate and compressor curves, meter ballistics, units and plugin panels now come from the shared omx-dsp, omx-panel and omx-contract libraries, so the console, Zynthian and any other host draw them identically."
+      },
+      "languages": {
+        "title": "Languages and coded messages",
+        "summary": "Languages arrive as installable packs read at run time, and every refusal, warning and fault reaches the surface as a code worded in your language, never as English text."
+      },
+      "web-surface": {
+        "title": "Web surface: menus and editing fixes",
+        "summary": "On a narrow screen the header's menus fold into one MENU cap that opens each menu as its own submenu, quickly, and FX tiles open on the first tap."
+      },
+      "control24": {
+        "title": "Control|24: all 24 strips",
+        "summary": "A Digidesign Control|24 now drives all 24 of its strips from the console's strip order, a page of 24 at a time."
+      },
+      "clock": {
+        "title": "Audio graph and clock robustness",
+        "summary": "A desktop sound-settings profile switch can no longer take the clock-master interface out of its pro-audio profile at boot, and the console asks for it back while running."
+      },
+      "streams": {
+        "title": "Streams and the REST API",
+        "summary": "A stream subscriber can ask for lossless deltas (deltas=1) instead of whole bodies on large rows such as the edit history, and every row now declares its wire shape."
+      },
+      "assistant": {
+        "title": "Assistant (MCP server)",
+        "summary": "The MCP server answers project questions from its corpus, starts cold within 10 s, and its HTTP entry binds loopback with an optional bearer token."
+      },
+      "packaging": {
+        "title": "Packaging, releases and the Open-Mixer name",
+        "summary": "The project now publishes as OpenMixer from the Open-Mixer organisation, with packages built and install-tested on Fedora 44 and 45 and every library dependency held between a floor and a ceiling."
+      },
+      "rta-design": {
+        "title": "RTA on Zynthian (design only)",
+        "summary": "The design for an analyser on Zynthian, drawn by the same renderer as the console, is settled; the analyser bands moving into omx-dsp are still in review."
+      },
+      "how-changes-land": {
+        "title": "How a change reaches the console: settle, verify and deploy gates",
+        "summary": "Every change now reaches the console through checked lanes and signed settles: a scan for private references in every message, library pins at the served version, a verification reused only for the exact same tree, temporary files cleaned up, and a deploy that checks what it installs."
       }
     }
   }

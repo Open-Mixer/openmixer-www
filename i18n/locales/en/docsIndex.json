@@ -135,9 +135,9 @@
         "title": "Zynthian: plugin-hostd as its plugin host",
         "body": "Zynthian running its LV2 and CLAP plugins under plugin-hostd: what it is, the headline figures with their date, and where the changes to Zynthian stand."
       },
-      "zynthianWhatsNew": {
-        "title": "What is new on Zynthian",
-        "body": "Every change OpenMixer brought to Zynthian, one paragraph each, with a page and Pi pictures for each and every pull request behind it."
+      "whatsNew": {
+        "title": "What is new",
+        "body": "Every change OpenMixer brought, to Zynthian and to the console, one paragraph each, with the pages that explain it."
       }
     },
     "faq": {

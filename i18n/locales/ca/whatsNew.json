@@ -1,23 +1,27 @@
 {
-  "zynthianWhatsNew": {
+  "whatsNew": {
     "seo": {
-      "title": "Què hi ha de nou a Zynthian",
-      "description": "Cada canvi que OpenMixer ha portat a Zynthian, en paraules planeres: què és, on surt, què hi fas i què hi veus, amb les peticions d'integració que hi ha al darrere."
+      "title": "Què hi ha de nou",
+      "description": "Cada canvi que ha portat OpenMixer, a Zynthian i a la consola, en paraules planeres, amb les pàgines que expliquen cadascun i, per a Zynthian, les peticions d'integració que hi ha al darrere."
     },
     "hero": {
-      "eyebrow": "Zynthian",
-      "title": "Què hi ha de nou a Zynthian",
-      "lede": "Cada canvi que OpenMixer ha portat a Zynthian, un paràgraf per canvi. Un canvi amb pàgina pròpia diu què és, on surt, què hi fas i què hi veus, amb imatges d'una Raspberry Pi 5 amb el fork d'Open-Mixer. Un canvi que ja explica una altra pàgina hi enllaça. Cada petició d'integració acceptada de la feina surt sota el seu canvi."
+      "eyebrow": "OpenMixer",
+      "title": "Què hi ha de nou",
+      "lede": "Cada canvi que ha portat OpenMixer, en dues meitats. A Zynthian, un paràgraf per canvi: un canvi amb pàgina pròpia diu què és, on surt, què hi fas i què hi veus, amb imatges d'una Raspberry Pi 5 amb el fork d'Open-Mixer i cada petició d'integració acceptada surt sota el seu canvi. A la consola, un paràgraf per grup de canvis des d'openmixer 0.2.0, amb les pàgines que l'expliquen."
     },
     "index": {
       "readPage": "Llegeix la pàgina",
       "coveredBy": "L'explica",
       "prs": "Peticions d'integració",
       "coming": "Encara no a Zynthian",
-      "count": "{n} peticions d'integració"
+      "count": "{n} peticions d'integració",
+      "zynthian": "A Zynthian",
+      "console": "A la consola",
+      "consoleLede": "Els canvis de la consola des d'openmixer 0.2.0, l'última versió publicada, un paràgraf per grup, cadascun amb les pàgines de la documentació de la consola que l'expliquen.",
+      "pages": "Pàgines"
     },
     "page": {
-      "back": "Què hi ha de nou a Zynthian",
+      "back": "Què hi ha de nou",
       "what": "Què és",
       "where": "On surt",
       "do": "Què hi fas",
@@ -34,7 +38,7 @@
       },
       "drawbars": {
         "alt": "Els tiradors de setBfree a la pantalla de tiradors de Zynthian",
-        "caption": "Els tiradors d'un orgue: arrossega'n un o llisca de costat per posar-ne uns quants d'un sol traç."
+        "caption": "Les barres d'un orgue en una Raspberry Pi 5: un sol traç sobre les sis últimes les posa totes a 4."
       },
       "xy": {
         "alt": "La pantalla XY de Zynthian movent dos controls alhora",
@@ -160,6 +164,56 @@
         "title": "Com treballem: comprovacions a cada canvi",
         "summary": "Comprovacions ràpides a cada petició d'integració, les proves pesades a les etiquetes de versió i els missatges dels commits comprovats abans d'entrar.",
         "what": "Cada petició d'integració passa les comprovacions ràpides; les proves pesades es fan a les etiquetes de versió i quan es demanen. Les compilacions fan servir tantes tasques com els permet la seva part de la màquina, les crides al gestor de paquets tenen un temps límit, es comproven els missatges dels commits, els artefactes de compilació es guarden un temps fixat i una incidència es tanca a mà quan se n'ha demostrat l'arranjament."
+      }
+    },
+    "console": {
+      "hosting": {
+        "title": "Allotjament de connectors: un sol amfitrió per a CLAP i LV2, tres efectes omx més, costos mesurats",
+        "summary": "Cada insert de connector s'executa ara en un sol amfitrió, CLAP directament i LV2 a través del seu adaptador (mod-host es retira) i l'omx ducker, el doubler i el tone s'afegeixen als efectes que pots triar."
+      },
+      "presets": {
+        "title": "Programes: una biblioteca de programes de tota la taula",
+        "summary": "Els programes viuen ara en una biblioteca de tota la taula fora de cada sessió, desats en el format propi de cada connector, de manera que els programes LV2 que desis són paquets estàndard que altres amfitrions LV2 poden obrir."
+      },
+      "curves-meters": {
+        "title": "Corbes, mesuradors i panells dibuixats per les biblioteques compartides",
+        "summary": "Les corbes d'EQ, de porta i de compressor, la balística dels mesuradors, les unitats i els panells dels connectors surten ara de les biblioteques compartides omx-dsp, omx-panel i omx-contract, perquè la consola, Zynthian i qualsevol altre amfitrió els dibuixin igual."
+      },
+      "languages": {
+        "title": "Llengües i missatges amb codi",
+        "summary": "Les llengües arriben com a paquets instal·lables que es llegeixen en temps d'execució i cada refús, avís o fallada arriba a la superfície com un codi redactat en la teva llengua, mai com a text en anglès."
+      },
+      "web-surface": {
+        "title": "Superfície web: menús i arranjaments d'edició",
+        "summary": "En una pantalla estreta els menús de la capçalera es pleguen en una sola tecla MENU que obre cada menú com un submenú propi, de pressa i les rajoles d'efectes s'obren al primer toc."
+      },
+      "control24": {
+        "title": "Control|24: les 24 tires",
+        "summary": "Una Digidesign Control|24 ara mou les seves 24 tires seguint l'ordre de tires de la consola, una pàgina de 24 cada cop."
+      },
+      "clock": {
+        "title": "Robustesa del graf d'àudio i del rellotge",
+        "summary": "Un canvi de perfil a la configuració de so del sistema ja no pot treure la interfície mestra del rellotge del seu perfil professional en arrencar i la consola el torna a demanar mentre funciona."
+      },
+      "streams": {
+        "title": "Fluxos i l'API REST",
+        "summary": "Un subscriptor d'un flux pot demanar deltes sense pèrdues (deltas=1) en lloc de cossos sencers en files grans com l'historial d'edició i cada fila declara ara la forma que té al fil."
+      },
+      "assistant": {
+        "title": "Assistent (servidor MCP)",
+        "summary": "El servidor MCP respon preguntes sobre el projecte a partir del seu corpus, arrenca en fred en menys de 10 s i la seva entrada HTTP escolta en local amb un testimoni portador opcional."
+      },
+      "packaging": {
+        "title": "Paquets, versions i el nom Open-Mixer",
+        "summary": "El projecte es publica ara com a OpenMixer des de l'organització Open-Mixer, amb paquets construïts i provats en instal·lació a Fedora 44 i 45 i cada dependència de biblioteca mantinguda entre un mínim i un màxim."
+      },
+      "rta-design": {
+        "title": "RTA a Zynthian (només el disseny)",
+        "summary": "El disseny d'un analitzador a Zynthian, dibuixat pel mateix renderitzador que la consola, està decidit; les bandes de l'analitzador que passen a omx-dsp encara estan en revisió."
+      },
+      "how-changes-land": {
+        "title": "Com arriba un canvi a la consola: portes de consolidació, verificació i desplegament",
+        "summary": "Cada canvi arriba ara a la consola per carrils comprovats i consolidacions signades: una cerca de referències privades a cada missatge, biblioteques fixades a la versió servida, una verificació reutilitzada només per a l'arbre exacte, fitxers temporals netejats i un desplegament que comprova el que instal·la."
       }
     }
   }
