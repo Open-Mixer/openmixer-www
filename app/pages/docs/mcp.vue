@@ -61,6 +61,7 @@ const install = computed(() => [
         <div class="space-y-4 text-base leading-relaxed text-ink-dim">
           <p v-html="t('docsMcp.s1.p1')" />
           <CodeBlock :lines="install" />
+          <p v-html="t('docsMcp.s1.p2')" />
           <RefTable :columns="envColumns" :rows="mcpTools.env" />
         </div>
       </div>
