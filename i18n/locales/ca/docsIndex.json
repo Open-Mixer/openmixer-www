@@ -134,6 +134,10 @@
       "zynthian": {
         "title": "Zynthian: plugin-hostd com a amfitrió de plugins",
         "body": "Zynthian executant els seus plugins LV2 i CLAP sota plugin-hostd: què és, les xifres principals amb la seva data i on són els canvis a Zynthian."
+      },
+      "whatsNew": {
+        "title": "Què hi ha de nou",
+        "body": "Cada canvi que ha portat OpenMixer, a Zynthian i a la consola, un paràgraf per canvi, amb les pàgines que l'expliquen."
       }
     },
     "faq": {
