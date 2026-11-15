@@ -1,0 +1,166 @@
+{
+  "zynthianWhatsNew": {
+    "seo": {
+      "title": "Què hi ha de nou a Zynthian",
+      "description": "Cada canvi que OpenMixer ha portat a Zynthian, en paraules planeres: què és, on surt, què hi fas i què hi veus, amb les peticions d'integració que hi ha al darrere."
+    },
+    "hero": {
+      "eyebrow": "Zynthian",
+      "title": "Què hi ha de nou a Zynthian",
+      "lede": "Cada canvi que OpenMixer ha portat a Zynthian, un paràgraf per canvi. Un canvi amb pàgina pròpia diu què és, on surt, què hi fas i què hi veus, amb imatges d'una Raspberry Pi 5 amb el fork d'Open-Mixer. Un canvi que ja explica una altra pàgina hi enllaça. Cada petició d'integració acceptada de la feina surt sota el seu canvi."
+    },
+    "index": {
+      "readPage": "Llegeix la pàgina",
+      "coveredBy": "L'explica",
+      "prs": "Peticions d'integració",
+      "coming": "Encara no a Zynthian",
+      "count": "{n} peticions d'integració"
+    },
+    "page": {
+      "back": "Què hi ha de nou a Zynthian",
+      "what": "Què és",
+      "where": "On surt",
+      "do": "Què hi fas",
+      "sees": "Què hi veus",
+      "notYet": "Encara no",
+      "prs": "Les peticions d'integració que explica aquesta pàgina",
+      "noPrs": "Encara no se n'ha acceptat cap: aquesta pàgina diu què ve.",
+      "coming": "Encara no a Zynthian"
+    },
+    "shots": {
+      "curves-eq8": {
+        "alt": "omx eq8 a Zynthian: la pantalla pròpia del connector amb la corba de resposta damunt dels controls de les bandes",
+        "caption": "omx eq8 en una Raspberry Pi 5: la corba de resposta dibuixada a partir dels valors actuals del connector."
+      },
+      "drawbars": {
+        "alt": "Els tiradors de setBfree a la pantalla de tiradors de Zynthian",
+        "caption": "Els tiradors d'un orgue: arrossega'n un o llisca de costat per posar-ne uns quants d'un sol traç."
+      },
+      "xy": {
+        "alt": "La pantalla XY de Zynthian movent dos controls alhora",
+        "caption": "La pantalla XY: un punt, dos controls."
+      },
+      "language": {
+        "alt": "Una pantalla de Zynthian en català",
+        "caption": "La línia de cost d'un connector, en català."
+      }
+    },
+    "changes": {
+      "curves": {
+        "title": "Corbes a la pantalla del connector",
+        "summary": "Un equalitzador d'una cadena de Zynthian té una pantalla pròpia que dibuixa la seva corba de resposta i la corba segueix cada canvi que hi fas.",
+        "what": "Un connector que declara una corba, com la resposta en freqüència d'omx eq8, té una pantalla pròpia dibuixada pel renderitzador de panells d'OpenMixer. La corba no és una imatge: plugin-hostd la calcula a partir dels valors actuals del connector cada cop que es dibuixa.",
+        "where": "A la pantalla de control de la cadena, a les pàgines pròpies del connector.",
+        "do": "Gira el guany, la freqüència o l'amplada d'una banda amb els comandaments: la corba es torna a dibuixar amb el valor que poses.",
+        "sees": "Les seccions del connector i els seus controls, amb la corba dibuixada al damunt.",
+        "notYet": "La corba de transferència del compressor (omx comp) encara no es dibuixa a Zynthian. Arriba quan omx-panel llegeixi el panell propi del compressor damunt de la descripció que en fa plugin-hostd."
+      },
+      "drawbars-xy": {
+        "title": "Els tiradors i la pantalla XY responen als mateixos tocs",
+        "summary": "Els tiradors d'orgue i la pantalla XY ara responen als mateixos tocs, amb els mateixos temps, que tots els panells d'OpenMixer.",
+        "what": "La pantalla de tiradors de Zynthian (la de setBfree i la de qualsevol orgue amb tiradors) i la seva pantalla XY ara llegeixen els teus tocs amb l'únic vocabulari de gestos d'OpenMixer. Zynthian conserva el seu dibuix: només ha canviat què vol dir cada toc.",
+        "where": "La pantalla de tiradors d'un orgue i la pantalla XY que mou dos controls alhora.",
+        "do": "Tiradors: arrossega un tirador amunt o avall; llisca de costat per posar-ne uns quants d'un sol traç (cadascun pren l'alçada que té sota el dit i els que travesses entremig el segueixen); un doble toc torna un tirador al seu valor per defecte; la roda o les fletxes mouen el seleccionat a passos. Una pulsació llarga es reconeix i de moment no fa res als tiradors. XY: arrossega el punt; un doble toc el torna al seu valor per defecte; una pulsació llarga surt de la pantalla; les fletxes el mouen a passos.",
+        "sees": "Els mateixos tiradors i el mateix punt XY d'abans, que es mouen com espera el dit."
+      },
+      "meters": {
+        "title": "Els mesuradors propis d'un connector",
+        "summary": "Els mesuradors propis d'un connector, com la reducció de guany d'un compressor, són de camí a la seva pantalla: la banda del panell està a punt i encara no es dibuixen a Zynthian.",
+        "what": "Un connector pot declarar mesuradors: omx comp declara la reducció de guany i els nivells d'entrada, de sortida i de la clau. Zynthian pren els mesuradors que declara el panell del connector o els que descriu plugin-hostd quan el panell no els llista i dibuixa cadascun amb les lectures que envia plugin-hostd.",
+        "notYet": "Avui a Zynthian no es dibuixa cap mesurador de connector: la versió de plugin-hostd que hi ha instal·lada encara no passa els mesuradors d'un connector a la pantalla. Aquesta pàgina tindrà la seva imatge quan ho faci."
+      },
+      "rta": {
+        "title": "Un analitzador d'espectre a la pantalla del connector",
+        "summary": "Un analitzador d'espectre en temps real a la pantalla del connector, abans i després del connector i la diferència: arriba aviat.",
+        "what": "omx-rta-read llegeix l'espectre que rep un connector, el que torna i la diferència entre tots dos, per a la pantalla pròpia del connector. Mesurat en una Raspberry Pi 5, un lector costa entre un 0,6 i un 3,4 per cent d'un nucli, sense cap tall.",
+        "notYet": "Arriba a Zynthian amb les properes versions d'omx-dsp i d'omx-panel i un canvi a zynthian-ui. Llavors aquesta pàgina el mostrarà."
+      },
+      "panels": {
+        "title": "Panells a partir del que declara el connector",
+        "summary": "Les pàgines d'un connector surten del que declara el connector: els seus paràmetres de camí i de text, el sentit de cada control i cap pàgina inventada per a un connector com Surge XT."
+      },
+      "restart": {
+        "title": "Una cadena desada torna sencera després de reiniciar",
+        "summary": "Reinicia Zynthian i una cadena allotjada per plugin-hostd torna com la vas deixar, amb les rutes MIDI i la seva tira al mesclador.",
+        "what": "Una cadena de connectors de plugin-hostd es desa encara que un dels connectors no s'hagi pogut construir, conserva les rutes MIDI i una cadena que sona recupera la seva tira al mesclador.",
+        "do": "Res de nou: reinicia o apaga i encén la Pi.",
+        "sees": "La cadena al mesclador amb la seva tira i els connectors al seu lloc."
+      },
+      "names": {
+        "title": "Cadenes i connectors amb el nom del connector",
+        "summary": "Una cadena mostra els seus connectors pel seu nom i JACK sap de quin connector és cada port allotjat.",
+        "what": "Una cadena llista els seus connectors de plugin-hostd pel seu nom. El client JACK de cada connector allotjat porta el connector i la instància a les metadades de JACK i una etiqueta que no canvia quan el procés del connector torna a arrencar.",
+        "where": "A la llista de processadors de la cadena i a qualsevol eina de JACK que llegeixi metadades, com un patchbay."
+      },
+      "updates": {
+        "title": "Les actualitzacions surten d'etiquetes de versió signades",
+        "summary": "Actualitzar Zynthian instal·la les etiquetes de versió signades d'OpenMixer i la comprovació d'actualitzacions només ofereix el que l'actualització instal·laria.",
+        "what": "update_zynthian.sh pren les etiquetes de versió signades d'OpenMixer; el camí antic que seguia l'últim commit ja no hi és. La comprovació d'actualitzacions del menú només n'ofereix una quan hi ha una etiqueta que l'actualitzador instal·laria. La imatge es construeix a partir dels forks d'Open-Mixer.",
+        "where": "La comprovació d'actualitzacions i l'actualització al menú d'administració de Zynthian."
+      },
+      "language": {
+        "title": "Zynthian en la llengua de l'aparell",
+        "summary": "El que diuen les biblioteques d'OpenMixer a Zynthian es llegeix en la llengua de l'aparell, el català inclòs.",
+        "what": "Els missatges i les frases dels connectors de les biblioteques d'OpenMixer es llegeixen en la llengua que té l'aparell. Cada llengua és un paquet de llengua i hi ha un catàleg en català. Les biblioteques porten les eines amb què les tradueixen els seus responsables.",
+        "where": "Els missatges que dona plugin-hostd i les frases dels connectors als menús."
+      },
+      "presets": {
+        "title": "Programes que es tornen a carregar",
+        "summary": "Els programes CLAP de Surge XT a Zynthian, els programes d'usuari LV2 desats com a paquets de programes, un programa que has desat es torna a carregar i un refús clar quan un programa no s'hi pot aplicar."
+      },
+      "plugin-paths": {
+        "title": "Connectors trobats on els instal·len les distribucions",
+        "summary": "plugin-hostd busca on les distribucions posen els connectors i on els guarda Zynthian, diu on busca, llegeix connectors CLAP dins de paquets i pren la versió LV2 més nova."
+      },
+      "qualification": {
+        "title": "La qualificació dels connectors, llegida del magatzem del sistema",
+        "summary": "Els menús llegeixen la qualificació de cada connector del magatzem del sistema que omple la sincronització i una sincronització desactivada ja no falla."
+      },
+      "workers": {
+        "title": "Cada connector s'executa tancat",
+        "summary": "Cada connector s'executa en un procés que no pot guanyar privilegis ni arribar al dimoni.",
+        "what": "Un procés de treball de plugin-hostd s'executa amb no_new_privs, sense els descriptors oberts del dimoni i sota un filtre seccomp que denega les crides al sistema que un connector no té per què fer. Un connector que peta o es porta malament es queda dins del seu procés.",
+        "do": "Res: tots els connectors que allotja plugin-hostd s'executen així."
+      },
+      "properties": {
+        "title": "Propietats dels connectors i refusos que diuen si cal tornar-hi",
+        "summary": "El protocol de plugin-hostd llegeix i posa les propietats d'un connector i un refús diu si és passatger.",
+        "what": "El protocol fa arribar property_list, property_info, property_get i property_set a una instància d'un connector, amb els valors de text entre cometes. Ara un refús diu si és passatger, perquè un controlador sàpiga quan té sentit tornar-ho a provar.",
+        "where": "En el que la interfície de Zynthian, MOD-UI o qualsevol altre controlador pot demanar a plugin-hostd."
+      },
+      "measured": {
+        "title": "Mesurat a la Pi",
+        "summary": "Les xifres de les pàgines de Zynthian s'han mesurat en una Raspberry Pi 5.",
+        "what": "El banc de proves de plugin-hostd per freqüència i període, amb el mínim segur de cada freqüència; la memòria d'un connector com a RSS i PSS; la seguretat en temps real fil per fil; els instruments i el grup de fils als nuclis de la Pi; el bucle analògic a través d'una interfície RME a 48 i 96 kHz; i el controlador de memòria actiu des de l'arrencada, perquè es pugui mesurar la memòria d'un connector.",
+        "where": "Els bancs de proves provisionals de Zynthian i les notes sobre instruments en una Pi 5 i sobre com es jutja la memòria d'un connector."
+      },
+      "vangelis": {
+        "title": "El fork segueix el vangelis de Zynthian",
+        "summary": "El fork d'Open-Mixer de zynthian-sys segueix el vangelis de Zynthian, amb les receptes d'actualització reescrites i el seu servidor websocket."
+      },
+      "libraries": {
+        "title": "Un sol vocabulari: Zynthian llegeix les biblioteques d'OpenMixer",
+        "summary": "zynthian-ui ja no escriu la seva còpia de les paraules del protocol, els codis, els documents d'escaneig, la llei de posició, els gestos o les ranures de comparació: els llegeix del client Python de plugin-hostd, d'omx-contract i d'omx-panel, que instal·la zynthian-sys."
+      },
+      "releases": {
+        "title": "DEB al costat dels RPM, un sol canal",
+        "summary": "Cada biblioteca d'OpenMixer publica DEB al costat dels seus RPM des d'un sol canal i les compilacions normals no prenen mai el repositori de proves."
+      },
+      "testing": {
+        "title": "Com es prova el motor",
+        "summary": "Un model d'amenaces escrit, un fuzzing que demostra que troba el que ha de trobar i proves que es veu que fallen quan el codi es trenca.",
+        "what": "El motor té un model d'amenaces; el seu fuzzing es demostra amb sabotatges i se'n guarden els registres i la cobertura; es comproven els noms dels programes; les autoproves són més ràpides; i els sabotatges mostren que una prova falla quan el codi que vigila es trenca."
+      },
+      "name": {
+        "title": "FreeMixer ara és Open-Mixer i OpenMixer",
+        "summary": "L'organització és Open-Mixer i el producte OpenMixer, a cada paquet i a cada pàgina.",
+        "what": "L'organització de GitHub que era FreeMixer és Open-Mixer i el producte és OpenMixer. S'han canviat de nom tots els paquets, biblioteques i pàgines."
+      },
+      "how-we-work": {
+        "title": "Com treballem: comprovacions a cada canvi",
+        "summary": "Comprovacions ràpides a cada petició d'integració, les proves pesades a les etiquetes de versió i els missatges dels commits comprovats abans d'entrar.",
+        "what": "Cada petició d'integració passa les comprovacions ràpides; les proves pesades es fan a les etiquetes de versió i quan es demanen. Les compilacions fan servir tantes tasques com els permet la seva part de la màquina, les crides al gestor de paquets tenen un temps límit, es comproven els missatges dels commits, els artefactes de compilació es guarden un temps fixat i una incidència es tanca a mà quan se n'ha demostrat l'arranjament."
+      }
+    }
+  }
+}

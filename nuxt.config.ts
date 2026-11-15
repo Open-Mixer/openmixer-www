@@ -25,7 +25,13 @@ const projectRoutes: string[] = existsSync(dataFile('projects-index.json'))
       p.pages.map((pg) => `/projects/${p.repo}${pg.slug ? `/${pg.slug}` : ''}`),
     )
   : [];
-const pageRoutes = ['/technical-notes', '/projects', ...noteRoutes, ...projectRoutes];
+// What is new on Zynthian: a page per change that has one (app/data/zynthian-whats-new.json, page: true)
+const whatsNewRoutes: string[] = existsSync(dataFile('zynthian-whats-new.json'))
+  ? (JSON.parse(readFileSync(dataFile('zynthian-whats-new.json'), 'utf8')).changes as { id: string; page?: boolean }[])
+      .filter((c) => c.page)
+      .map((c) => `/docs/zynthian-whats-new/${c.id}`)
+  : [];
+const pageRoutes = ['/technical-notes', '/projects', ...noteRoutes, ...projectRoutes, '/docs/zynthian-whats-new', ...whatsNewRoutes];
 
 /**
  * The site's languages. English is the default and has no prefix; Catalan lives under /ca/.

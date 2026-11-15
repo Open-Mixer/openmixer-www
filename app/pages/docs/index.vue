@@ -138,6 +138,9 @@ const faqGroups = computed(() =>
           <LinkCard :title="t('docsIndex.technical.zynthian.title')" :href="sitePath('/docs/zynthian')" label="/docs/zynthian">
             <p>{{ t('docsIndex.technical.zynthian.body') }}</p>
           </LinkCard>
+          <LinkCard :title="t('docsIndex.technical.zynthianWhatsNew.title')" :href="sitePath('/docs/zynthian-whats-new')" label="/docs/zynthian-whats-new">
+            <p>{{ t('docsIndex.technical.zynthianWhatsNew.body') }}</p>
+          </LinkCard>
         </div>
       </div>
     </section>

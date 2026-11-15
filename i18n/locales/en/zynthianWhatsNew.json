@@ -1,0 +1,166 @@
+{
+  "zynthianWhatsNew": {
+    "seo": {
+      "title": "What is new on Zynthian",
+      "description": "Every change OpenMixer brought to Zynthian, in plain words: what it is, where it appears, what you do and what you see, with the pull requests behind it."
+    },
+    "hero": {
+      "eyebrow": "Zynthian",
+      "title": "What is new on Zynthian",
+      "lede": "Every change OpenMixer brought to Zynthian, one paragraph each. A change with a page of its own says what it is, where it appears, what you do and what you see, with pictures from a Raspberry Pi 5 running the Open-Mixer fork. A change an existing page already covers links there. Every merged pull request of the work is listed under its change."
+    },
+    "index": {
+      "readPage": "Read the page",
+      "coveredBy": "Covered by",
+      "prs": "Pull requests",
+      "coming": "Not on Zynthian yet",
+      "count": "{n} pull requests"
+    },
+    "page": {
+      "back": "What is new on Zynthian",
+      "what": "What it is",
+      "where": "Where it appears",
+      "do": "What you do",
+      "sees": "What you see",
+      "notYet": "Not yet",
+      "prs": "The pull requests this page covers",
+      "noPrs": "None merged yet: this page says what is coming.",
+      "coming": "Not on Zynthian yet"
+    },
+    "shots": {
+      "curves-eq8": {
+        "alt": "omx eq8 on Zynthian: the plugin's own screen with its response curve above the band controls",
+        "caption": "omx eq8 on a Raspberry Pi 5: the response curve drawn from the plugin's current settings."
+      },
+      "drawbars": {
+        "alt": "setBfree's drawbars on Zynthian's drawbar screen",
+        "caption": "An organ's drawbars: drag one, or slide across to set several in one stroke."
+      },
+      "xy": {
+        "alt": "Zynthian's XY screen setting two controls at once",
+        "caption": "The XY screen: one point, two controls."
+      },
+      "language": {
+        "alt": "A Zynthian screen in Catalan",
+        "caption": "The cost line of a plugin, in Catalan."
+      }
+    },
+    "changes": {
+      "curves": {
+        "title": "Curves on the plugin's screen",
+        "summary": "An equaliser on a Zynthian chain has a screen of its own that draws its response curve, and the curve follows every change you make.",
+        "what": "A plugin that declares a curve, such as the frequency response of omx eq8, gets a screen of its own, drawn by OpenMixer's panel renderer. The curve is not a picture: plugin-hostd computes it from the plugin's current settings each time it is drawn.",
+        "where": "On the chain's control screen, on the plugin's own pages.",
+        "do": "Turn a band's gain, frequency or width with the knobs: the curve is drawn again from the value you set.",
+        "sees": "The plugin's sections and their controls, with the curve drawn above them.",
+        "notYet": "The compressor's transfer curve (omx comp) is not drawn on Zynthian yet. It comes when omx-panel reads the compressor's own panel over the description plugin-hostd writes of it."
+      },
+      "drawbars-xy": {
+        "title": "Drawbars and the XY screen answer the same touches",
+        "summary": "The organ drawbars and the XY screen now answer the same touches, with the same timings, as every OpenMixer panel.",
+        "what": "Zynthian's drawbar screen (setBfree's, and any organ with drawbars) and its XY screen now read your touches through OpenMixer's one gesture vocabulary. Zynthian's own drawing is kept: only what a touch means changed.",
+        "where": "The drawbar screen of an organ, and the XY screen that sets two controls at once.",
+        "do": "Drawbars: drag a drawbar up or down; slide sideways to set several in one stroke (each takes the height under your finger, and the ones you pass over in between follow); double-tap a drawbar to put it back to its default; the wheel or the arrow keys step the selected one. A long press is recognised, and does nothing on the drawbars yet. XY: drag the point; double-tap puts it back to its default; a long press leaves the screen; the arrow keys step it.",
+        "sees": "The same drawbars and the same XY point as before, moving the way a finger expects."
+      },
+      "meters": {
+        "title": "A plugin's own meters",
+        "summary": "A plugin's own meters, such as a compressor's gain reduction, are on their way to its screen: everything is in place on the panel side, and they are not drawn on Zynthian yet.",
+        "what": "A plugin can declare meters: omx comp declares its gain reduction and its input, output and key levels. Zynthian takes the meters a plugin's panel declares, or the ones plugin-hostd describes when the panel does not list them, and draws each from the readings plugin-hostd sends.",
+        "notYet": "On Zynthian today no plugin meter is drawn: the plugin-hostd release installed there does not pass a plugin's meters on to the screen yet. This page gets its picture when it does."
+      },
+      "rta": {
+        "title": "A spectrum analyser on the plugin's screen",
+        "summary": "A real-time spectrum analyser on the plugin's screen, before and after the plugin and the difference: coming.",
+        "what": "omx-rta-read reads the spectrum a plugin receives and the one it gives back, and the difference between them, for the plugin's own screen. Measured on a Raspberry Pi 5, one reader costs between 0.6 and 3.4 percent of one core, without a single dropout.",
+        "notYet": "It reaches Zynthian with the next omx-dsp and omx-panel releases and a zynthian-ui change. This page then shows it."
+      },
+      "panels": {
+        "title": "Plugin panels from the plugin's own declaration",
+        "summary": "A plugin's pages come from what the plugin declares: its path and text parameters, the meaning of each control, and no invented pages for a plugin such as Surge XT."
+      },
+      "restart": {
+        "title": "A saved chain comes back whole after a restart",
+        "summary": "Restart Zynthian and a chain hosted by plugin-hostd comes back as you left it, with its MIDI routing and its mixer strip.",
+        "what": "A chain of plugin-hostd plugins is saved even when one of its plugins could not be built, it keeps its MIDI routing, and a chain that makes sound gets its strip in the mixer back.",
+        "do": "Nothing new: restart, or switch the Pi off and on.",
+        "sees": "The chain in the mixer with its strip, and its plugins in place."
+      },
+      "names": {
+        "title": "Chains and plugins named by the plugin",
+        "summary": "A chain shows its plugins by their own names, and JACK knows which plugin each hosted port belongs to.",
+        "what": "A chain lists its plugin-hostd plugins by their names. Each hosted plugin's JACK client carries its plugin and its instance in JACK metadata, and a label that stays the same when the plugin's worker starts again.",
+        "where": "In the chain's list of processors, and in any JACK tool that reads metadata, such as a patchbay."
+      },
+      "updates": {
+        "title": "Updates come from signed release tags",
+        "summary": "Updating Zynthian installs OpenMixer's signed release tags, and the update check offers only what the update would take.",
+        "what": "update_zynthian.sh takes OpenMixer's signed release tags; the old path that followed the latest commit is gone. The update check in the menu offers an update only when there is a tag the updater would install. The image is built from the Open-Mixer forks.",
+        "where": "The update check and the update in Zynthian's admin menu."
+      },
+      "language": {
+        "title": "Zynthian in the device's language",
+        "summary": "What the OpenMixer libraries say on Zynthian is read in the device's language, Catalan included.",
+        "what": "The messages and the plugin sentences of the OpenMixer libraries are read in the language the device is set to. Each language is one language pack, and a Catalan catalog is in. The libraries ship the tools their owners translate with.",
+        "where": "The messages plugin-hostd gives and the plugin sentences in the menus."
+      },
+      "presets": {
+        "title": "Presets that load back",
+        "summary": "Surge XT's CLAP presets on Zynthian, LV2 user presets saved as preset bundles, a preset you saved loads back, and a clear refusal when a preset does not apply."
+      },
+      "plugin-paths": {
+        "title": "Plugins found where distributions install them",
+        "summary": "plugin-hostd looks where distributions put plugins and where Zynthian keeps them, says what it searches, reads CLAP plugins in bundles and takes the newest LV2 version."
+      },
+      "qualification": {
+        "title": "Plugin qualification read from the system store",
+        "summary": "The menus read each plugin's qualification from the system store the sync fills, and a disabled sync no longer fails."
+      },
+      "workers": {
+        "title": "Each plugin runs locked down",
+        "summary": "Each plugin runs in a worker that cannot gain privileges or reach the daemon.",
+        "what": "A plugin-hostd worker runs with no_new_privs, without the daemon's open descriptors, and under a seccomp filter that denies the system calls a plugin has no business making. A plugin that crashes or misbehaves stays inside its worker.",
+        "do": "Nothing: every plugin hosted by plugin-hostd runs this way."
+      },
+      "properties": {
+        "title": "Plugin properties, and refusals that say whether to try again",
+        "summary": "plugin-hostd's protocol reads and sets a plugin's properties, and a refusal says whether it is passing.",
+        "what": "The protocol relays property_list, property_info, property_get and property_set to a plugin instance, with text values quoted. A refusal now says whether it is transient, so a controller knows when trying again makes sense.",
+        "where": "In what Zynthian's interface, MOD-UI or any other controller can ask plugin-hostd."
+      },
+      "measured": {
+        "title": "Measured on the Pi",
+        "summary": "The figures behind the Zynthian pages were measured on a Raspberry Pi 5.",
+        "what": "plugin-hostd's bench by rate and period, with each rate's safe minimum; a plugin's memory as RSS and PSS; real-time safety thread by thread; instruments and the thread pool on the Pi's cores; the analog loop through an RME interface at 48 and 96 kHz; and the memory controller on at boot, so a plugin's memory can be measured.",
+        "where": "The interim Zynthian benchmarks, and the notes on instruments on a Pi 5 and on how a plugin's memory is judged."
+      },
+      "vangelis": {
+        "title": "The fork follows Zynthian vangelis",
+        "summary": "The Open-Mixer fork of zynthian-sys follows Zynthian's vangelis, with its rewritten update recipes and its websocket server."
+      },
+      "libraries": {
+        "title": "One vocabulary: Zynthian reads the OpenMixer libraries",
+        "summary": "zynthian-ui no longer writes its own copy of the protocol words, codes, scan documents, position law, gestures or compare slots: it reads them from plugin-hostd's Python client, omx-contract and omx-panel, which zynthian-sys installs."
+      },
+      "releases": {
+        "title": "DEBs beside RPMs, one channel",
+        "summary": "Every OpenMixer library ships DEBs beside its RPMs from the one channel, and ordinary builds never take the staging repository."
+      },
+      "testing": {
+        "title": "How the engine is tested",
+        "summary": "A written threat model, fuzzing that is proven to find what it is meant to find, and tests that are shown to fail when the code is broken.",
+        "what": "The engine has a threat model; its fuzzing is proven by sabotage, and its records and coverage are kept; patch names are checked; the self-tests are faster; and sabotage arms show that a test fails when the code it guards is broken."
+      },
+      "name": {
+        "title": "FreeMixer is now Open-Mixer and OpenMixer",
+        "summary": "The organisation is Open-Mixer and the product OpenMixer, in every package and on every page.",
+        "what": "The GitHub organisation that was FreeMixer is Open-Mixer, and the product is OpenMixer. Every package, library and page was renamed."
+      },
+      "how-we-work": {
+        "title": "How we work: checks on every change",
+        "summary": "Quick checks on every pull request, the heavy runs on release tags, and commit messages checked before they land.",
+        "what": "Every pull request runs the quick checks; the heavy runs happen on release tags and on demand. Builds use as many jobs as their share of the machine allows, package-manager calls have a time limit, commit messages are checked, build artifacts are kept for a set time, and an issue is closed by hand once its fix is proven."
+      }
+    }
+  }
+}
