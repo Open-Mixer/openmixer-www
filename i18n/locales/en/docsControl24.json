@@ -16,9 +16,10 @@
       "p3": "The 7-second interval and a port at 10 Mbit/s half duplex were measured on a ProControl, the Control{'|'}24's sibling of the same generation. A modern network card cabled straight to the desk may not settle on that link mode, and a cheap unmanaged 10/100 switch between the two does."
     },
     "share": {
-      "title": "It can share a network with the web UI.",
-      "p1": "A switch forwards a DigiNet frame like any other Ethernet frame, so the desk can sit on the same segment as the tablets and laptops that open the web UI. Machines that speak only IP ignore an EtherType they do not know. Apart from the desk's broadcast announce, a switch delivers DigiNet frames only to the console host's port, because they are addressed to its MAC.",
-      "p2": "The frames are small: libdiginet puts at most 48 commands and 314 bytes in one, and paces display writes 2 ms apart."
+      "title": "It needs a network interface of its own.",
+      "p1": "The desk talks over a 10 Mb/s half-duplex link. REAC's discovery goes out as bursts of broadcast frames, about 800 full-size frames at a time, untagged and on every VLAN sub-interface of the interface it runs on. On a shared wire, one burst fills the desk's link for about a second, and the desk stops answering. It does not come back by itself while the bursts go on.",
+      "p2": "So give the desk a wired interface that carries nothing else; a USB network adapter is fine. In <code class=\"font-mono text-sm text-ink\">~/.config/reac-pw/reac-pw.conf</code>, name that interface in a <code class=\"font-mono text-sm text-ink\">[segment …]</code> section with <code class=\"font-mono text-sm text-ink\">ignore = yes</code>, and restart reac-pw: its log then says the interface is not sniffed, not served and not minted. Power-cycle the desk once on that quiet link.",
+      "p3": "The frames themselves are small: libdiginet puts at most 48 commands and 314 bytes in one, and paces display writes 2 ms apart."
     },
     "needs": {
       "title": "What the network needs.",
@@ -28,7 +29,7 @@
       },
       "vlan": {
         "head": "The untagged (native) VLAN of the host's port.",
-        "body": "The desk sends plain frames with no VLAN tag. Put it on the untagged VLAN of the switch port the host is on, and use the host's plain interface, not a VLAN sub-interface."
+        "body": "The desk sends plain frames with no VLAN tag. Use the plain interface of its own NIC, not a VLAN sub-interface."
       },
       "wired": {
         "head": "A cable from the desk to the host.",
@@ -36,8 +37,13 @@
       },
       "reac": {
         "head": "Not on the REAC stagebox link.",
-        "body": "The interface that carries the REAC stageboxes carries their audio and nothing else. The desk goes on another interface of the host."
+        "body": "Not on the interface that carries the REAC stageboxes, and not on a VLAN of it: a VLAN on the same cable carries the same discovery bursts. The desk goes on its own interface, switched off in reac-pw."
       }
+    },
+    "faders": {
+      "title": "Faders follow the console.",
+      "p1": "A desk fader follows the console's fader position, not the scale printed beside it. Its full travel is the console's full range: the bottom stop is the console's bottom, and the top stop its top. Read the level in the web UI or on the scribble strip.",
+      "p2": "A fader that will not reach the bottom (or the top) at its stop is a hardware fault: a worn or dirty track stops short. The console does not stretch or calibrate a fader to make up for it. Clean the fader, or have it repaired."
     },
     "security": {
       "title": "Security.",

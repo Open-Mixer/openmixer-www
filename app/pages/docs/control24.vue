@@ -75,7 +75,8 @@ const firstLook = computed(() => [
         <SectionHead eyebrow="02" :title="t('docsControl24.share.title')" />
         <div class="space-y-4 text-base leading-relaxed text-ink-dim">
           <p>{{ t('docsControl24.share.p1') }}</p>
-          <p>{{ t('docsControl24.share.p2') }}</p>
+          <p v-html="t('docsControl24.share.p2')" />
+          <p>{{ t('docsControl24.share.p3') }}</p>
         </div>
       </div>
     </section>
@@ -94,7 +95,17 @@ const firstLook = computed(() => [
 
     <section class="border-b border-edge bg-surface/40">
       <div class="mx-auto max-w-4xl px-6 py-16">
-        <SectionHead eyebrow="04" :title="t('docsControl24.security.title')" />
+        <SectionHead eyebrow="04" :title="t('docsControl24.faders.title')" />
+        <div class="space-y-4 text-base leading-relaxed text-ink-dim">
+          <p>{{ t('docsControl24.faders.p1') }}</p>
+          <p>{{ t('docsControl24.faders.p2') }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-b border-edge">
+      <div class="mx-auto max-w-4xl px-6 py-16">
+        <SectionHead eyebrow="05" :title="t('docsControl24.security.title')" />
         <div class="space-y-4 text-base leading-relaxed text-ink-dim">
           <p>{{ t('docsControl24.security.p1') }}</p>
           <p>{{ t('docsControl24.security.p2') }}</p>
@@ -103,9 +114,9 @@ const firstLook = computed(() => [
       </div>
     </section>
 
-    <section class="border-b border-edge">
+    <section class="border-b border-edge bg-surface/40">
       <div class="mx-auto max-w-4xl px-6 py-16">
-        <SectionHead eyebrow="05" :title="t('docsControl24.install.title')" />
+        <SectionHead eyebrow="06" :title="t('docsControl24.install.title')" />
         <p class="mb-6 text-base leading-relaxed text-ink-dim">{{ t('docsControl24.install.intro') }}</p>
         <div class="overflow-hidden rounded-lg border border-edge bg-surface">
           <UTabs
@@ -142,7 +153,7 @@ const firstLook = computed(() => [
 
     <section>
       <div class="mx-auto max-w-4xl px-6 py-16">
-        <SectionHead eyebrow="06" :title="t('docsControl24.status.title')" />
+        <SectionHead eyebrow="07" :title="t('docsControl24.status.title')" />
         <div class="flex gap-3 border-l-2 border-edge-strong pl-4 text-base leading-relaxed text-ink-dim">
           <StatusTag state="building" />
           <div class="space-y-4">

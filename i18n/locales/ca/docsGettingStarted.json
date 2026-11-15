@@ -17,7 +17,7 @@
     "s1": {
       "title": "Engegueu la taula i la superfície.",
       "p1": "Dos processos, dos terminals. El servidor és la taula: és el propietari del mix i no necessita cap fitxer de configuració per arrencar. La superfície és una pàgina web normal; no té cap privilegi respecte a qualsevol altre client que més endavant es connecti al mateix servidor.",
-      "p2": "El servidor de desenvolupament mostra l'adreça que cal obrir, normalment <code class=\"font-mono text-ink-dim\">http://localhost:3000</code>. La superfície no porta l'adreça de la taula escrita al codi: descobreix el punt d'accés a partir de l'origen que l'ha servida, de manera que la mateixa compilació funciona des d'un mòbil a la mateixa xarxa sense haver de tornar-la a compilar."
+      "p2": "En una consola instal·lada, obriu la seva adreça https, <code class=\"font-mono text-ink-dim\">https://&lt;host&gt;:8443/</code>, la que mostra el diàleg Quant a. Allà la consola parla HTTP/2, que porta tots els valors en directe de la superfície per una sola connexió i un mòbil o una tauleta a la mateixa xarxa obre la mateixa adreça. L'adreça normal del servidor de desenvolupament (normalment <code class=\"font-mono text-ink-dim\">http://localhost:3000</code>) només serveix per fer una ullada a la mateixa màquina de desenvolupament: amb HTTP/1.1 normal, un navegador obre com a màxim sis connexions a una adreça, la superfície necessita més fluxos en directe que això i els seus panells deixen d'actualitzar-se. La superfície no porta l'adreça de la consola escrita al codi: descobreix el punt d'accés a partir de l'origen que l'ha servida."
     },
     "s2": {
       "title": "Mireu la capçalera abans de tocar cap fader.",
