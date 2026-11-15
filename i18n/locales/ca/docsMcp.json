@@ -26,7 +26,8 @@
     },
     "s1": {
       "title": "Com s'executa.",
-      "p1": "<code class=\"font-mono text-sm text-ink\">omx-mcp</code> parla MCP per stdio: un client MCP engega el procés i s'hi comunica per la canonada. No hi ha cap port ni cap dimoni, ni res que calgui deixar en marxa."
+      "p1": "<code class=\"font-mono text-sm text-ink\">omx-mcp</code> parla MCP per stdio: un client MCP engega el procés i s’hi comunica per la canonada. D’aquesta manera no hi ha cap port ni cap dimoni, ni res que calgui deixar en marxa.",
+      "p2": "Per a un client que no pot engegar un procés, <code class=\"font-mono text-sm text-ink\">omx-mcp-http</code> serveix les mateixes eines per l’HTTP Streamable d’MCP. Escolta a loopback tret que <code class=\"font-mono text-sm text-ink\">MCP_HOST</code> indiqui una altra adreça, al port que indica <code class=\"font-mono text-sm text-ink\">MCP_PORT</code>. Amb <code class=\"font-mono text-sm text-ink\">MCP_TOKEN</code> definit, es refusa qualsevol petició sense aquest testimoni bearer. Fora de loopback i sense testimoni, arrenca sense les eines que escriuen i ho diu en arrencar: qui arribi al port pot llegir la consola, però ningú no la pot canviar."
     },
     "s2": {
       "title": "{count} eines, en dues famílies.",

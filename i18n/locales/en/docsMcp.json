@@ -26,7 +26,8 @@
     },
     "s1": {
       "title": "Running it.",
-      "p1": "<code class=\"font-mono text-sm text-ink\">omx-mcp</code> speaks MCP over stdio: an MCP client starts the process and talks to it over the pipe. There is no port, no daemon and nothing to leave running."
+      "p1": "<code class=\"font-mono text-sm text-ink\">omx-mcp</code> speaks MCP over stdio: an MCP client starts the process and talks to it over the pipe. That way there is no port, no daemon and nothing to leave running.",
+      "p2": "For a client that cannot start a process, <code class=\"font-mono text-sm text-ink\">omx-mcp-http</code> serves the same tools over MCP’s Streamable HTTP. It listens on loopback unless <code class=\"font-mono text-sm text-ink\">MCP_HOST</code> names another address, on the port <code class=\"font-mono text-sm text-ink\">MCP_PORT</code> names. With <code class=\"font-mono text-sm text-ink\">MCP_TOKEN</code> set, a request without that bearer token is refused. Off loopback with no token, it starts without the tools that write and says so at start: anyone who can reach the port can read the console, and nobody can change it."
     },
     "s2": {
       "title": "{count} tools, in two families.",
