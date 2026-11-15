@@ -1,9 +1,9 @@
 {
   "doc": "What is new: the Zynthian half, one entry per high-level change, in the order the index shows them. page: true has a page of its own at /docs/whats-new/<id>, with its words in i18n whatsNew.changes.<id>; link names the existing page that already covers it. status coming: described as not working on Zynthian yet. shots name pictures in shots below. prs: every merged pull request of the change, <repo>#<number> of the Open-Mixer organisation; together they hold every pull request merged into the Zynthian work since the first Zynthian page. console: the console half, one entry per group of changes since openmixer 0.2.0, each with the pages of the console's documentation that explain it (its pull requests are in the console's own repository).",
   "shots": {
-    "curves-eq8": null,
+    "curves-eq8": "/docs/zynthian/whats-new/curves-eq8.png",
     "drawbars": "/docs/zynthian/whats-new/drawbars.png",
-    "xy": null,
+    "xy": "/docs/zynthian/whats-new/xy.png",
     "language": "/docs/zynthian/shots/s4-catalan-cost-line.png"
   },
   "changes": [
@@ -17,7 +17,8 @@
       "prs": [
         "omx-panel#1",
         "omx-plugins#6",
-        "zynthian-ui#48"
+        "zynthian-ui#48",
+        "zynthian-ui#49"
       ]
     },
     {
@@ -29,7 +30,8 @@
         "xy"
       ],
       "prs": [
-        "zynthian-ui#43"
+        "zynthian-ui#43",
+        "zynthian-ui#50"
       ]
     },
     {

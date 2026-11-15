@@ -34,7 +34,7 @@
     "shots": {
       "curves-eq8": {
         "alt": "omx eq8 a Zynthian: la pantalla pròpia del connector amb la corba de resposta damunt dels controls de les bandes",
-        "caption": "omx eq8 en una Raspberry Pi 5: la corba de resposta dibuixada a partir dels valors actuals del connector."
+        "caption": "omx eq8 en una Raspberry Pi 5: la banda 1 activada a +15 dB cap a 1,26 kHz i la corba dibuixada amb aquests valors."
       },
       "drawbars": {
         "alt": "Els tiradors de setBfree a la pantalla de tiradors de Zynthian",
@@ -42,7 +42,7 @@
       },
       "xy": {
         "alt": "La pantalla XY de Zynthian movent dos controls alhora",
-        "caption": "La pantalla XY: un punt, dos controls."
+        "caption": "La pantalla XY en una Raspberry Pi 5: la freqüència de la banda 1 en horitzontal, la seva amplada en vertical i l'indicació al peu."
       },
       "language": {
         "alt": "Una pantalla de Zynthian en català",
@@ -55,7 +55,7 @@
         "summary": "Un equalitzador d'una cadena de Zynthian té una pantalla pròpia que dibuixa la seva corba de resposta i la corba segueix cada canvi que hi fas.",
         "what": "Un connector que declara una corba, com la resposta en freqüència d'omx eq8, té una pantalla pròpia dibuixada pel renderitzador de panells d'OpenMixer. La corba no és una imatge: plugin-hostd la calcula a partir dels valors actuals del connector cada cop que es dibuixa.",
         "where": "A la pantalla de control de la cadena, a les pàgines pròpies del connector.",
-        "do": "Gira el guany, la freqüència o l'amplada d'una banda amb els comandaments: la corba es torna a dibuixar amb el valor que poses.",
+        "do": "Gira el guany, la freqüència o l'amplada d'una banda amb els controls que hi ha al costat del panell: la corba es torna a dibuixar amb el valor que poses. Els controls dibuixats dins del panell mostren els valors; no es giren tocant-los.",
         "sees": "Les seccions del connector i els seus controls, amb la corba dibuixada al damunt.",
         "notYet": "La corba de transferència del compressor (omx comp) encara no es dibuixa a Zynthian. Arriba quan omx-panel llegeixi el panell propi del compressor damunt de la descripció que en fa plugin-hostd."
       },

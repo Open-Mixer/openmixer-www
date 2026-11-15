@@ -34,15 +34,15 @@
     "shots": {
       "curves-eq8": {
         "alt": "omx eq8 on Zynthian: the plugin's own screen with its response curve above the band controls",
-        "caption": "omx eq8 on a Raspberry Pi 5: the response curve drawn from the plugin's current settings."
+        "caption": "omx eq8 on a Raspberry Pi 5: band 1 turned on at +15 dB around 1.26 kHz, and the curve drawn from those settings."
       },
       "drawbars": {
         "alt": "setBfree's drawbars on Zynthian's drawbar screen",
         "caption": "An organ's drawbars on a Raspberry Pi 5: one stroke across the last six set them all to 4."
       },
       "xy": {
-        "alt": "Zynthian's XY screen setting two controls at once",
-        "caption": "The XY screen: one point, two controls."
+        "alt": "Zynthian's XY screen setting an equaliser band's frequency and width at once",
+        "caption": "The XY screen on a Raspberry Pi 5: band 1's frequency across, its width up and down, and the hint at the foot."
       },
       "language": {
         "alt": "A Zynthian screen in Catalan",
@@ -55,7 +55,7 @@
         "summary": "An equaliser on a Zynthian chain has a screen of its own that draws its response curve, and the curve follows every change you make.",
         "what": "A plugin that declares a curve, such as the frequency response of omx eq8, gets a screen of its own, drawn by OpenMixer's panel renderer. The curve is not a picture: plugin-hostd computes it from the plugin's current settings each time it is drawn.",
         "where": "On the chain's control screen, on the plugin's own pages.",
-        "do": "Turn a band's gain, frequency or width with the knobs: the curve is drawn again from the value you set.",
+        "do": "Turn a band's gain, frequency or width with the controller knobs beside the panel: the curve is drawn again from the value you set. The knobs drawn inside the panel show the values; they are not turned by touch.",
         "sees": "The plugin's sections and their controls, with the curve drawn above them.",
         "notYet": "The compressor's transfer curve (omx comp) is not drawn on Zynthian yet. It comes when omx-panel reads the compressor's own panel over the description plugin-hostd writes of it."
       },
