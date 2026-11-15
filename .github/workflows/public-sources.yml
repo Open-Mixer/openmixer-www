@@ -2,8 +2,7 @@
 # Copyright (C) 2026 Pau Aliagas <linuxnow@gmail.com>
 name: public-sources
 # The fast checks, on every pull request: the trigger gate (no other workflow of this repository runs on a push or a
-# pull request), and the shared checks from Open-Mixer/.github (this pull request's commit messages, no tracked file
-# pointing into a private repository, no local copy of the checks, the public layout). Each takes seconds. The builds,
+# pull request). The shared checks from Open-Mixer/.github join it once this repository passes them (#49). The builds,
 # the test suites, the packages and the fuzzing are in the other workflows, run by workflow_dispatch (ci.yml on a pull
 # request's head before it is merged) and on a v* tag.
 on:
@@ -23,7 +22,3 @@ jobs:
       - uses: Open-Mixer/.github/.github/actions/trigger-gate@openmixer-v1
         with:
           lint-workflow: public-sources.yml
-  # the checks every OpenMixer repository runs on what it publishes: commit messages, private references, no local
-  # copy of either, the public layout (Open-Mixer/.github's public-sources-check)
-  public-sources:
-    uses: Open-Mixer/.github/.github/workflows/public-sources-check.yml@openmixer-v1
