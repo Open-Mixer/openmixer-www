@@ -9,7 +9,7 @@
 # it checks that repository out with PAGES_TOKEN and scripts/deploy-root.sh replaces
 # only the top-level paths listed in deploy/site-owns.txt, refuses a change that
 # reaches anything else (rpm/, deb/, .nojekyll, README.md above all), and commits
-# and pushes to its main. A pull request runs the same steps as a dry run.
+# and pushes to its main. A dispatch on any other branch runs the same steps as a dry run.
 #
 # THE COMMIT IS SIGNED with SITE_GPG_KEY, a signing key whose public half is on the
 # committer's GitHub account, so GitHub shows it verified. Without that secret the
@@ -46,30 +46,24 @@
 # third of its pages looks exactly like a site that never had them. The root keeps serving the
 # previous commit while a run is red.
 #
-# TRIGGER. Push to main plus dispatch; a pull request runs as a dry run. openmixer's dispatch-only law
-# (docs/design/specs/2026-09-02-delivery-pipeline.md §0) binds the workflows that
-# publish PACKAGES and IMAGES, and its own gate names the static-site workflow as
-# the single exception — "publishes a static site to Pages on push to main. It
-# touches no package, no repo tree and no image ... and retriggering it is not a
-# publish anyone has to decide about" (packages/server/src/workflow-trigger-
-# conformance.test.ts, NAMED_EXCEPTIONS). This is that workflow, in the site's own
-# repository. It now commits into the Pages repository that also carries the
-# package trees, and the guard in scripts/deploy-root.sh is what keeps it from
-# touching them.
+# TRIGGER. workflow_dispatch only: no build runs on a push or a pull request by itself. A dispatch on main
+# publishes; a dispatch on any other branch runs the same steps as a dry run, which is how a pull request's head
+# is checked before its merge (gh workflow run pages.yml --ref <branch>). The site is published by dispatching on
+# main after a merge that changes it, or after a new documentation tree is pinned. The fast checks run on every pull
+# request from public-sources.yml. It commits into the Pages repository that also carries the package trees, and the
+# guard in scripts/deploy-root.sh is what keeps it from touching them.
 name: pages
 
 on:
-  push:
-    branches: [main]
-  pull_request:
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: pages-${{ github.event_name == 'pull_request' && github.ref || 'publish' }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  # the publish on main is one queue and never cancelled; a dry run of a branch is replaced by a newer one
+  group: pages-${{ github.ref == 'refs/heads/main' && 'publish' || github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
   build:
@@ -77,7 +71,7 @@ jobs:
     timeout-minutes: 20
     env:
       NUXT_APP_BASE_URL: /
-      PUBLISH: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/main' }}
+      PUBLISH: ${{ github.ref == 'refs/heads/main' }}
     defaults:
       run:
         working-directory: openmixer-www
@@ -155,7 +149,7 @@ jobs:
           PUBLIC_GUARD_LIST: ${{ runner.temp }}/public-guard.json
 
       # The root site, with the package repositories in it. The token is only needed to
-      # push; a pull request reads the public repository without it.
+      # push; a dry run reads the public repository without it.
       - uses: actions/checkout@v4
         with:
           repository: Open-Mixer/open-mixer.github.io
@@ -177,7 +171,7 @@ jobs:
           git config user.signingkey "$fpr"
           git config commit.gpgsign true
 
-      - name: Deploy into the root Pages repository (dry run on a pull request)
+      - name: Deploy into the root Pages repository (dry run off main)
         run: |
           export SITE_REVISION=${GITHUB_SHA::9}
           if [ "$PUBLISH" = true ]; then
