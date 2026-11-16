@@ -1,8 +1,8 @@
 {
   "meta": {
-    "generatedAt": "2026-11-15T06:06:06.000Z",
-    "generatedCount": 2195,
-    "documentedCount": 2014
+    "generatedAt": "2026-11-15T22:51:49.000Z",
+    "generatedCount": 2190,
+    "documentedCount": 2009
   },
   "curated": [
     {
@@ -365,12 +365,6 @@
         },
         {
           "kind": "Function",
-          "name": "aggregateSpectrumBands",
-          "package": "@freemixer/core",
-          "summary": "Reduce `high` (and `low`, where a band is under the crossover) to `nBands` log-spaced bands."
-        },
-        {
-          "kind": "Function",
           "name": "alignCorrection",
           "package": "@freemixer/core",
           "summary": "The correction a fit implies for THIS channel, against the line it already holds."
@@ -518,12 +512,6 @@
           "name": "balanceGains",
           "package": "@freemixer/core",
           "summary": "The L/R gain a `pan` position acts as a **balance** on a *stereo* signal (a linked stereo strip — M32 / Roland model)."
-        },
-        {
-          "kind": "Function",
-          "name": "bandFMax",
-          "package": "@freemixer/core",
-          "summary": "The highest frequency worth drawing at `sampleRate`: the cap, or Nyquist where that is lower."
         },
         {
           "kind": "Function",
@@ -2005,7 +1993,7 @@
           "kind": "Function",
           "name": "fftSizeForRate",
           "package": "@freemixer/core",
-          "summary": "The RTA FFT length for `rate` — the TypeScript mirror of its source's `omx_rta_fft_size_for`: the smallest power of two whose bins are at or under RTA_TARGET_BIN_HZ (44.1/48 kHz → 8192, 88.2/96 kHz → 16384, 176.4/192 …"
+          "summary": "What the console keeps of the spectrum-band reduction: the COARSENING of an already-banded reading."
         },
         {
           "kind": "Function",
@@ -2347,7 +2335,7 @@
           "kind": "Function",
           "name": "hzToBin",
           "package": "@freemixer/core",
-          "summary": "The (fractional) bin holding `hz` in a transform of `fftSize` at `sampleRate`."
+          "summary": "What the console keeps of the spectrum-band reduction: the COARSENING of an already-banded reading."
         },
         {
           "kind": "Function",
@@ -3026,12 +3014,6 @@
           "name": "linearOfPosition",
           "package": "@freemixer/core",
           "summary": "The inverse of positionOfLinear — a surface position as a linear amplitude."
-        },
-        {
-          "kind": "Function",
-          "name": "lowTierGainDb",
-          "package": "@freemixer/core",
-          "summary": "The dB correction that level-matches a LOW-tier band to the HIGH tier's reference (issue #97)."
         },
         {
           "kind": "Function",
@@ -5078,12 +5060,6 @@
           "name": "specOfLimit",
           "package": "@freemixer/core",
           "summary": "A DECLARED TRAVEL as the ParamSpec a control renders — the one direction between the two shapes."
-        },
-        {
-          "kind": "Function",
-          "name": "spectrumBandCentres",
-          "package": "@freemixer/core",
-          "summary": "The band tiling every consumer shares: `nBands` log-spaced bands from `fMin` to `fMax`, each answered by its GEOMETRIC centre."
         },
         {
           "kind": "Function",
@@ -9438,13 +9414,7 @@
           "kind": "Interface",
           "name": "SpectrumBand",
           "package": "@freemixer/core",
-          "summary": "One log-spaced band."
-        },
-        {
-          "kind": "Interface",
-          "name": "SpectrumBandOptions",
-          "package": "@freemixer/core",
-          "summary": "What aggregateSpectrumBands may be asked to vary; everything else is declared above."
+          "summary": "One log-spaced band: its geometric centre (Hz), the RMS across its bins and its loudest bin (dBFS)."
         },
         {
           "kind": "Interface",
@@ -9456,7 +9426,7 @@
           "kind": "Interface",
           "name": "SpectrumTierInput",
           "package": "@freemixer/core",
-          "summary": "One tier of a reading: the magnitudes, and the transform that produced them."
+          "summary": "One tier of a reading: the linear magnitudes (bin 0 = DC) and the transform that produced them."
         },
         {
           "kind": "Interface",
@@ -11729,7 +11699,7 @@
           "kind": "Type",
           "name": "MagnitudeSeries",
           "package": "@freemixer/core",
-          "summary": "A magnitude series as any consumer receives it: the addon hands bins over as ONE `Float32Array` (2026-08-29 — a JS array built one property set per bin was ~10 % of the engine's CPU), and the wire, a test or the offli…"
+          "summary": "A magnitude series as a consumer receives it: one `Float32Array` from a native reader, or a plain array from the wire, a test or an offline synth."
         },
         {
           "kind": "Type",

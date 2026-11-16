@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-11-15T06:06:06.000Z",
-    "sourceRowCount": 258,
+    "generatedAt": "2026-11-15T22:51:49.000Z",
+    "sourceRowCount": 259,
     "sourceTravelCount": 64
   },
   "families": [
@@ -5436,395 +5436,9 @@
       ]
     },
     {
-      "slug": "clock",
-      "root": "/clock",
-      "count": 8,
-      "groups": [
-        {
-          "label": "(clock itself)",
-          "rows": [
-            {
-              "path": "/clock",
-              "example": "/clock",
-              "writable": false,
-              "demand": false,
-              "instances": 1,
-              "fields": [
-                {
-                  "name": "quantum",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "quantumNotApplied",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "rate",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "requestedQuantum",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "supportedRates",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                }
-              ],
-              "sample": {
-                "quantum": 1024,
-                "quantumNotApplied": false,
-                "rate": 48000,
-                "requestedQuantum": null,
-                "supportedRates": [
-                  44100,
-                  48000,
-                  88200,
-                  96000
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "label": "devices",
-          "rows": [
-            {
-              "path": "/clock/devices",
-              "example": "/clock/devices",
-              "writable": false,
-              "demand": false,
-              "instances": 1,
-              "fields": [
-                {
-                  "name": "devices",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "driverNode",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "graphRate",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                }
-              ],
-              "sample": {
-                "devices": [],
-                "driverNode": "",
-                "graphRate": 48000
-              }
-            },
-            {
-              "path": "/clock/devices/{name}",
-              "example": "/clock/devices/1",
-              "writable": false,
-              "demand": false,
-              "instances": 0,
-              "fields": [],
-              "sample": null
-            }
-          ]
-        },
-        {
-          "label": "force",
-          "rows": [
-            {
-              "path": "/clock/force",
-              "example": "/clock/force",
-              "writable": true,
-              "demand": false,
-              "instances": 1,
-              "fields": [
-                {
-                  "name": "rate",
-                  "writable": true,
-                  "limit": null,
-                  "values": [
-                    0,
-                    44100,
-                    48000,
-                    88200,
-                    96000,
-                    176400,
-                    192000
-                  ],
-                  "perInstance": false
-                },
-                {
-                  "name": "rateNotApplied",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                }
-              ],
-              "sample": {
-                "rate": null,
-                "rateNotApplied": false
-              }
-            }
-          ]
-        },
-        {
-          "label": "ownership",
-          "rows": [
-            {
-              "path": "/clock/ownership",
-              "example": "/clock/ownership",
-              "writable": true,
-              "demand": false,
-              "instances": 1,
-              "fields": [
-                {
-                  "name": "designatedReference",
-                  "writable": true,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "freeRunOverride",
-                  "writable": true,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "role",
-                  "writable": true,
-                  "limit": null,
-                  "values": [
-                    "master",
-                    "follower"
-                  ],
-                  "perInstance": false
-                }
-              ],
-              "sample": {
-                "designatedReference": "",
-                "freeRunOverride": false,
-                "role": "master"
-              }
-            },
-            {
-              "path": "/clock/ownership/reference",
-              "example": "/clock/ownership/reference",
-              "writable": false,
-              "demand": false,
-              "instances": 1,
-              "fields": [
-                {
-                  "name": "designated",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "eligible",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "flagged",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "lockDetail",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "missing",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "override",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "paceLocked",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "paceOwner",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "rates",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "reason",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                },
-                {
-                  "name": "reference",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                }
-              ],
-              "sample": {
-                "designated": false,
-                "eligible": false,
-                "flagged": true,
-                "lockDetail": {
-                  "code": "clock.lock.master",
-                  "params": {}
-                },
-                "missing": null,
-                "override": false,
-                "paceLocked": false,
-                "paceOwner": "",
-                "rates": [
-                  44100,
-                  48000,
-                  96000
-                ],
-                "reason": {
-                  "code": "clock.pace.no-hardware",
-                  "params": {}
-                },
-                "reference": null
-              }
-            }
-          ]
-        },
-        {
-          "label": "references",
-          "rows": [
-            {
-              "path": "/clock/references",
-              "example": "/clock/references",
-              "writable": false,
-              "demand": false,
-              "instances": 1,
-              "fields": [
-                {
-                  "name": "references",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                }
-              ],
-              "sample": {
-                "references": [
-                  {
-                    "driving": false,
-                    "grade": "synthetic",
-                    "id": "Dummy-Driver",
-                    "label": "Dummy-Driver",
-                    "priority": 200000,
-                    "why": "software-driver"
-                  },
-                  {
-                    "driving": false,
-                    "grade": "synthetic",
-                    "id": "Freewheel-Driver",
-                    "label": "Freewheel-Driver",
-                    "priority": 190000,
-                    "why": "software-driver"
-                  }
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "label": "warnings",
-          "rows": [
-            {
-              "path": "/clock/warnings",
-              "example": "/clock/warnings",
-              "writable": false,
-              "demand": false,
-              "instances": 1,
-              "fields": [
-                {
-                  "name": "warnings",
-                  "writable": false,
-                  "limit": null,
-                  "values": null,
-                  "perInstance": false
-                }
-              ],
-              "sample": {
-                "warnings": [
-                  {
-                    "detailCode": {
-                      "code": "clock.pace.no-hardware",
-                      "params": {}
-                    },
-                    "id": "clock:unqualified-master",
-                    "titleCode": {
-                      "code": "clock.unqualified-master.title",
-                      "params": {}
-                    }
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
       "slug": "surface",
       "root": "/surface",
-      "count": 8,
+      "count": 9,
       "groups": [
         {
           "label": "autodetect",
@@ -5880,6 +5494,38 @@
                 }
               ],
               "sample": {
+                "running": false
+              }
+            }
+          ]
+        },
+        {
+          "label": "control24",
+          "rows": [
+            {
+              "path": "/surface/control24",
+              "example": "/surface/control24",
+              "writable": true,
+              "demand": false,
+              "instances": 1,
+              "fields": [
+                {
+                  "name": "enabled",
+                  "writable": true,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "running",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                }
+              ],
+              "sample": {
+                "enabled": false,
                 "running": false
               }
             }
@@ -6296,6 +5942,392 @@
               ],
               "sample": {
                 "touched": false
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "clock",
+      "root": "/clock",
+      "count": 8,
+      "groups": [
+        {
+          "label": "(clock itself)",
+          "rows": [
+            {
+              "path": "/clock",
+              "example": "/clock",
+              "writable": false,
+              "demand": false,
+              "instances": 1,
+              "fields": [
+                {
+                  "name": "quantum",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "quantumNotApplied",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "rate",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "requestedQuantum",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "supportedRates",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                }
+              ],
+              "sample": {
+                "quantum": 1024,
+                "quantumNotApplied": false,
+                "rate": 48000,
+                "requestedQuantum": null,
+                "supportedRates": [
+                  44100,
+                  48000,
+                  88200,
+                  96000
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "devices",
+          "rows": [
+            {
+              "path": "/clock/devices",
+              "example": "/clock/devices",
+              "writable": false,
+              "demand": false,
+              "instances": 1,
+              "fields": [
+                {
+                  "name": "devices",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "driverNode",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "graphRate",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                }
+              ],
+              "sample": {
+                "devices": [],
+                "driverNode": "",
+                "graphRate": 48000
+              }
+            },
+            {
+              "path": "/clock/devices/{name}",
+              "example": "/clock/devices/1",
+              "writable": false,
+              "demand": false,
+              "instances": 0,
+              "fields": [],
+              "sample": null
+            }
+          ]
+        },
+        {
+          "label": "force",
+          "rows": [
+            {
+              "path": "/clock/force",
+              "example": "/clock/force",
+              "writable": true,
+              "demand": false,
+              "instances": 1,
+              "fields": [
+                {
+                  "name": "rate",
+                  "writable": true,
+                  "limit": null,
+                  "values": [
+                    0,
+                    44100,
+                    48000,
+                    88200,
+                    96000,
+                    176400,
+                    192000
+                  ],
+                  "perInstance": false
+                },
+                {
+                  "name": "rateNotApplied",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                }
+              ],
+              "sample": {
+                "rate": null,
+                "rateNotApplied": false
+              }
+            }
+          ]
+        },
+        {
+          "label": "ownership",
+          "rows": [
+            {
+              "path": "/clock/ownership",
+              "example": "/clock/ownership",
+              "writable": true,
+              "demand": false,
+              "instances": 1,
+              "fields": [
+                {
+                  "name": "designatedReference",
+                  "writable": true,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "freeRunOverride",
+                  "writable": true,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "role",
+                  "writable": true,
+                  "limit": null,
+                  "values": [
+                    "master",
+                    "follower"
+                  ],
+                  "perInstance": false
+                }
+              ],
+              "sample": {
+                "designatedReference": "",
+                "freeRunOverride": false,
+                "role": "master"
+              }
+            },
+            {
+              "path": "/clock/ownership/reference",
+              "example": "/clock/ownership/reference",
+              "writable": false,
+              "demand": false,
+              "instances": 1,
+              "fields": [
+                {
+                  "name": "designated",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "eligible",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "flagged",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "lockDetail",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "missing",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "override",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "paceLocked",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "paceOwner",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "rates",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "reason",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                },
+                {
+                  "name": "reference",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                }
+              ],
+              "sample": {
+                "designated": false,
+                "eligible": false,
+                "flagged": true,
+                "lockDetail": {
+                  "code": "clock.lock.master",
+                  "params": {}
+                },
+                "missing": null,
+                "override": false,
+                "paceLocked": false,
+                "paceOwner": "",
+                "rates": [
+                  44100,
+                  48000,
+                  96000
+                ],
+                "reason": {
+                  "code": "clock.pace.no-hardware",
+                  "params": {}
+                },
+                "reference": null
+              }
+            }
+          ]
+        },
+        {
+          "label": "references",
+          "rows": [
+            {
+              "path": "/clock/references",
+              "example": "/clock/references",
+              "writable": false,
+              "demand": false,
+              "instances": 1,
+              "fields": [
+                {
+                  "name": "references",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                }
+              ],
+              "sample": {
+                "references": [
+                  {
+                    "driving": false,
+                    "grade": "synthetic",
+                    "id": "Dummy-Driver",
+                    "label": "Dummy-Driver",
+                    "priority": 200000,
+                    "why": "software-driver"
+                  },
+                  {
+                    "driving": false,
+                    "grade": "synthetic",
+                    "id": "Freewheel-Driver",
+                    "label": "Freewheel-Driver",
+                    "priority": 190000,
+                    "why": "software-driver"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "warnings",
+          "rows": [
+            {
+              "path": "/clock/warnings",
+              "example": "/clock/warnings",
+              "writable": false,
+              "demand": false,
+              "instances": 1,
+              "fields": [
+                {
+                  "name": "warnings",
+                  "writable": false,
+                  "limit": null,
+                  "values": null,
+                  "perInstance": false
+                }
+              ],
+              "sample": {
+                "warnings": [
+                  {
+                    "detailCode": {
+                      "code": "clock.pace.no-hardware",
+                      "params": {}
+                    },
+                    "id": "clock:unqualified-master",
+                    "titleCode": {
+                      "code": "clock.unqualified-master.title",
+                      "params": {}
+                    }
+                  }
+                ]
               }
             }
           ]
