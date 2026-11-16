@@ -1,0 +1,16 @@
+{
+  "doc": "The shots of the panels, curves and analyser page, each placed with <PanelShot id> where its text is. file is the picture under public/, or null for a shot still to come, with after naming what it waits for. source says where it was captured. key names its words in i18n docsPanelsCurves.shots.",
+  "shots": [
+    { "id": "m1", "file": "/docs/panels/shots/modgui-comp-vintage.webp", "key": "compVintage", "source": "mod-ui 1.15.0 in a container (omx-plugins#71)" },
+    { "id": "m2", "file": "/docs/panels/shots/modgui-comp-console.webp", "key": "compConsole", "source": "mod-ui 1.15.0 in a container (omx-plugins#71)" },
+    { "id": "m3", "file": "/docs/panels/shots/modgui-comp-3d.webp", "key": "comp3d", "source": "mod-ui 1.15.0 in a container (omx-plugins#71)" },
+    { "id": "m4", "file": "/docs/panels/shots/modgui-comp-live-switch-vintage.webp", "key": "lookSwitch", "source": "mod-ui 1.15.0 in a container (omx-plugins#71)" },
+    { "id": "m5", "file": "/docs/panels/shots/modgui-comp-live-vintage-needles.webp", "key": "needles", "source": "mod-ui 1.15.0 in a container (omx-plugins#71)" },
+    { "id": "m6", "file": "/docs/panels/shots/modgui-strip-vintage-easy.webp", "key": "stripEasy", "source": "mod-ui 1.15.0 in a container (omx-plugins#71)" },
+    { "id": "m7", "file": "/docs/panels/shots/modgui-strip-vintage-advanced.webp", "key": "stripAdvanced", "source": "mod-ui 1.15.0 in a container (omx-plugins#71)" },
+    { "id": "c1", "file": null, "key": "eqCurve", "after": "the console capture of the EQ curve" },
+    { "id": "c2", "file": null, "key": "compCurve", "after": "the console capture of the compressor's transfer curve" },
+    { "id": "r1", "file": null, "key": "analyser", "after": "the console capture of the analyser" },
+    { "id": "r2", "file": null, "key": "spectrumUnder", "after": "omx-panel 0.13.8 and zynthian-ui#46/#51" }
+  ]
+}

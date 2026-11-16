@@ -1,0 +1,113 @@
+{
+  "docsPanelsCurves": {
+    "seo": {
+      "title": "Panels, curves and the analyser — OpenMixer",
+      "description": "How an OpenMixer plugin looks in MOD's pedalboard, what its curves draw, and how to read the analyser: real screenshots, no mock-ups."
+    },
+    "hero": {
+      "eyebrow": "User docs",
+      "title": "Panels, curves and the analyser",
+      "lede": "Each OpenMixer plugin draws its own panel: a pedal in MOD's pedalboard, the same groups on the console and on Zynthian. This page shows what you see and how to read it. Every picture is a screenshot of the real thing. A section whose feature has not shipped yet shows a marked empty frame instead."
+    },
+    "draft": "Draft: these MOD pedal screenshots come from the pull request that adds the looks (omx-plugins#71). This page is published when that work merges.",
+    "modgui": {
+      "title": "The MOD pedal",
+      "intro": "In MOD's pedalboard (mod-ui), each OpenMixer plugin is a pedal. Its face is drawn from the plugin's own description: one framed section per group of controls, each with its name in the corner, and the meters at the bottom.",
+      "looks": {
+        "title": "Three looks",
+        "text": "Every pedal comes in three looks: vintage, a cream face with silver knobs, which is the default; console, the dark face of the OpenMixer console; and 3D, with raised sections. The three small buttons in the pedal's header, V, C and 3D, switch the look while it plays. The pedal keeps its size and its connections; only the drawing changes."
+      },
+      "needles": {
+        "title": "Needle meters",
+        "text": "The METERS section shows needle meters with their scale printed on each face: gain reduction from −60 to 0 dB, input and output level from −60 to +6 dBFS, and the key level from −60 to 0 dBFS. The needles move with the plugin's own meter outputs."
+      },
+      "tiers": {
+        "title": "Easy and Advanced",
+        "text": "A pedal can show its Easy controls or all of them. Easy keeps what you reach for on every channel: trim, the filters, the gate's threshold and range, each band's frequency and gain, and the compressor's threshold, ratio and makeup. Advanced adds the rest: the gate's attack, release, hold and knee, each band's type and Q, the filter slopes, and the stage order."
+      },
+      "matrix": {
+        "title": "The EQ is a row of columns",
+        "text": "In the EQ section each band is a column, from low to high: HPF on the left, then bands 1 to 4, then LPF on the right. Each column stacks the same controls in the same order: on/off at the head, then type or slope, frequency, gain and Q. The curve above the columns draws the whole EQ, the HPF and LPF roll-offs included."
+      }
+    },
+    "curves": {
+      "title": "The curves",
+      "intro": "A curve shows what a processor does to the sound, drawn from its settings. In the MOD pedal it is marked “modelled”: it is computed from the knobs, not measured from the audio.",
+      "eq": {
+        "title": "The EQ curve",
+        "text": "Frequency runs left to right, from low to high; gain runs up and down, with 0 dB in the middle. Each band bends the line where its frequency is, by its gain, as wide as its Q. The HPF and LPF are drawn as the curve's two ends: the line falls away below the HPF and above the LPF. On the console each band has a dot on the curve that you drag: sideways for frequency, up and down for gain."
+      },
+      "comp": {
+        "title": "The compressor's transfer curve",
+        "text": "The input level runs left to right and the output level bottom to top. Below the threshold the line rises one for one: nothing is changed. Above it the line bends flatter by the ratio, so a louder input comes out less loud; the knee rounds the corner. Turn the threshold, ratio, knee or makeup knob and the curve moves with it."
+      },
+      "time": {
+        "title": "Delays and reverbs",
+        "text": "A display of how a delay or a reverb answers over time is not part of any shipped plugin yet. This section waits for it."
+      }
+    },
+    "rta": {
+      "title": "The analyser",
+      "console": {
+        "title": "On the console",
+        "text": "Meters ▸ Analyzer shows the live spectrum of the source you choose: frequency left to right, level up and down, with a tilt reference to compare against, the peak readout, and the controls for the trace."
+      },
+      "under": {
+        "title": "The spectrum under a curve",
+        "text": "A curve panel can also draw the measured spectrum under its curve, so you see what the EQ is working on. This waits for omx-panel 0.13.8 and its Zynthian side."
+      }
+    },
+    "zynthian": {
+      "title": "On Zynthian",
+      "text": "Zynthian draws the same groups on its touch screen. Its own pages, with screenshots from the Pi, are in the Zynthian guide.",
+      "link": "The Zynthian guide"
+    },
+    "shots": {
+      "slot": "Screenshot to come: it waits for {after}.",
+      "compVintage": {
+        "alt": "The omx comp pedal in the vintage look in MOD's pedalboard: a cream face with the compressor's curve, eight knobs, the key and duck sections and four needle meters.",
+        "caption": "omx comp, vintage look, Advanced. mod-ui 1.15.0."
+      },
+      "compConsole": {
+        "alt": "The same omx comp pedal in the console look: a dark face.",
+        "caption": "The same pedal in the console look."
+      },
+      "comp3d": {
+        "alt": "The same omx comp pedal in the 3D look, with raised sections.",
+        "caption": "The same pedal in the 3D look."
+      },
+      "lookSwitch": {
+        "alt": "The omx comp pedal after a click on the V button in its header.",
+        "caption": "After a click on V in the header: the look changes while the pedal plays; size and connections stay."
+      },
+      "needles": {
+        "alt": "The omx comp pedal with its four needle meters deflected.",
+        "caption": "The needle meters moving. Here the meter outputs were driven from the page, not by audio."
+      },
+      "stripEasy": {
+        "alt": "The omx strip pedal in its Easy view: input, filters, gate, an EQ with columns HPF, 1 to 4 and LPF, and the compressor.",
+        "caption": "omx strip, Easy: the EQ as columns, HPF first and LPF last."
+      },
+      "stripAdvanced": {
+        "alt": "The omx strip pedal in its Advanced view, with every control of each section and the stage order.",
+        "caption": "omx strip, Advanced: every control, each band's column the same from top to bottom."
+      },
+      "eqCurve": {
+        "alt": "The console's EQ curve with its band dots.",
+        "caption": "The console's EQ: drag a band's dot on the curve."
+      },
+      "compCurve": {
+        "alt": "The console's compressor transfer curve with its gain-reduction readout.",
+        "caption": "The console's compressor: the transfer curve and the gain reduction."
+      },
+      "analyser": {
+        "alt": "The console's analyser showing a live spectrum.",
+        "caption": "Meters ▸ Analyzer: the live spectrum of the chosen source."
+      },
+      "spectrumUnder": {
+        "alt": "An EQ curve panel with the measured spectrum drawn under the curve.",
+        "caption": "The measured spectrum under an EQ curve."
+      }
+    }
+  }
+}

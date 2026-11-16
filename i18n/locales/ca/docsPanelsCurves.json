@@ -1,0 +1,113 @@
+{
+  "docsPanelsCurves": {
+    "seo": {
+      "title": "Panells, corbes i l'analitzador — OpenMixer",
+      "description": "Com es veu un connector d'OpenMixer al pedaler de MOD, què dibuixen les seves corbes i com es llegeix l'analitzador: captures reals, sense maquetes."
+    },
+    "hero": {
+      "eyebrow": "Documentació d'usuari",
+      "title": "Panells, corbes i l'analitzador",
+      "lede": "Cada connector d'OpenMixer dibuixa el seu propi panell: un pedal al pedaler de MOD; els mateixos grups a la consola i a Zynthian. Aquesta pàgina ensenya què hi veus i com llegir-ho. Cada imatge és una captura de l'element real. Una secció la funció de la qual encara no s'ha publicat mostra un marc buit marcat."
+    },
+    "draft": "Esborrany: aquestes captures del pedal de MOD vénen de la petició d'integració que hi afegeix els aspectes (omx-plugins#71). La pàgina es publica quan aquesta feina s'integra.",
+    "modgui": {
+      "title": "El pedal de MOD",
+      "intro": "Al pedaler de MOD (mod-ui), cada connector d'OpenMixer és un pedal. La seva cara es dibuixa a partir de la descripció del mateix connector: una secció emmarcada per a cada grup de controls, amb el nom a la cantonada. Els mesuradors són a baix.",
+      "looks": {
+        "title": "Tres aspectes",
+        "text": "Cada pedal té tres aspectes: vintage, una cara de color crema amb poms platejats, que és el predeterminat; consola, la cara fosca de la consola OpenMixer; i 3D, amb les seccions en relleu. Els tres botonets de la capçalera del pedal, V, C i 3D, canvien l'aspecte mentre sona. El pedal manté la mida i les connexions; només canvia el dibuix."
+      },
+      "needles": {
+        "title": "Mesuradors d'agulla",
+        "text": "La secció METERS mostra mesuradors d'agulla amb l'escala impresa a cada esfera: reducció de guany de −60 a 0 dB, nivell d'entrada i de sortida de −60 a +6 dBFS; nivell de la clau de −60 a 0 dBFS. Les agulles es mouen amb les sortides de mesura del mateix connector."
+      },
+      "tiers": {
+        "title": "Fàcil i Avançat",
+        "text": "Un pedal pot mostrar els controls Fàcils o tots. Fàcil deixa el que fas servir a cada canal: el retall, els filtres, el llindar i el rang de la porta, la freqüència i el guany de cada banda; el llindar, la relació i el guany de compensació del compressor. Avançat hi afegeix la resta: l'atac, l'alliberament, la retenció i el genoll de la porta, el tipus i la Q de cada banda, els pendents dels filtres i l'ordre de les etapes."
+      },
+      "matrix": {
+        "title": "L'EQ és una fila de columnes",
+        "text": "A la secció EQ, cada banda és una columna, de greu a agut: HPF a l'esquerra, després les bandes 1 a 4 i LPF a la dreta. Cada columna apila els mateixos controls en el mateix ordre: activació a dalt, després tipus o pendent, freqüència, guany i Q. La corba de sobre les columnes dibuixa tota l'EQ, amb les caigudes de l'HPF i de l'LPF."
+      }
+    },
+    "curves": {
+      "title": "Les corbes",
+      "intro": "Una corba mostra què fa un processador al so, dibuixada a partir dels seus ajustos. Al pedal de MOD hi posa «modelled»: es calcula a partir dels poms, no es mesura a partir de l'àudio.",
+      "eq": {
+        "title": "La corba de l'EQ",
+        "text": "La freqüència va d'esquerra a dreta, de greu a agut; el guany va amunt i avall, amb 0 dB al mig. Cada banda doblega la línia on hi ha la seva freqüència, tant com el seu guany i tan ample com la seva Q. L'HPF i l'LPF es dibuixen com els dos extrems de la corba: la línia cau per sota de l'HPF i per sobre de l'LPF. A la consola cada banda té un punt a la corba que arrossegues: de costat per a la freqüència, amunt i avall per al guany."
+      },
+      "comp": {
+        "title": "La corba de transferència del compressor",
+        "text": "El nivell d'entrada va d'esquerra a dreta i el de sortida de baix a dalt. Per sota del llindar la línia puja un a un: no es canvia res. Per sobre, la línia es fa més plana segons la relació, de manera que una entrada més forta surt menys forta; el genoll arrodoneix el canvi. Gira el pom de llindar, relació, genoll o compensació i la corba es mou amb ell."
+      },
+      "time": {
+        "title": "Retards i reverberacions",
+        "text": "Encara cap connector publicat no té una pantalla de com respon un retard o una reverberació al llarg del temps. Aquesta secció l'espera."
+      }
+    },
+    "rta": {
+      "title": "L'analitzador",
+      "console": {
+        "title": "A la consola",
+        "text": "Meters ▸ Analyzer mostra l'espectre en directe de la font que triïs: freqüència d'esquerra a dreta, nivell amunt i avall, amb una referència d'inclinació per comparar, la lectura del pic i els controls del traç."
+      },
+      "under": {
+        "title": "L'espectre sota una corba",
+        "text": "Un panell amb corba també pot dibuixar l'espectre mesurat sota la corba, perquè vegis sobre què treballa l'EQ. Això espera omx-panel 0.13.8 i la seva part de Zynthian."
+      }
+    },
+    "zynthian": {
+      "title": "A Zynthian",
+      "text": "Zynthian dibuixa els mateixos grups a la seva pantalla tàctil. Les seves pàgines, amb captures de la Pi, són a la guia de Zynthian.",
+      "link": "La guia de Zynthian"
+    },
+    "shots": {
+      "slot": "Captura pendent: espera {after}.",
+      "compVintage": {
+        "alt": "El pedal omx comp amb l'aspecte vintage al pedaler de MOD: una cara crema amb la corba del compressor, vuit poms, les seccions de clau i de ducking i quatre mesuradors d'agulla.",
+        "caption": "omx comp, aspecte vintage, Avançat. mod-ui 1.15.0."
+      },
+      "compConsole": {
+        "alt": "El mateix pedal omx comp amb l'aspecte consola: una cara fosca.",
+        "caption": "El mateix pedal amb l'aspecte consola."
+      },
+      "comp3d": {
+        "alt": "El mateix pedal omx comp amb l'aspecte 3D, amb les seccions en relleu.",
+        "caption": "El mateix pedal amb l'aspecte 3D."
+      },
+      "lookSwitch": {
+        "alt": "El pedal omx comp després de clicar el botó V de la capçalera.",
+        "caption": "Després de clicar V a la capçalera: l'aspecte canvia mentre el pedal sona; la mida i les connexions es mantenen."
+      },
+      "needles": {
+        "alt": "El pedal omx comp amb els quatre mesuradors d'agulla desviats.",
+        "caption": "Els mesuradors d'agulla en moviment. Aquí les sortides de mesura es van moure des de la pàgina, no amb àudio."
+      },
+      "stripEasy": {
+        "alt": "El pedal omx strip a la vista Fàcil: entrada, filtres, porta, una EQ amb columnes HPF, 1 a 4 i LPF; el compressor.",
+        "caption": "omx strip, Fàcil: l'EQ en columnes, HPF primer i LPF l'últim."
+      },
+      "stripAdvanced": {
+        "alt": "El pedal omx strip a la vista Avançada, amb tots els controls de cada secció i l'ordre de les etapes.",
+        "caption": "omx strip, Avançat: tots els controls, cada columna de banda igual de dalt a baix."
+      },
+      "eqCurve": {
+        "alt": "La corba de l'EQ de la consola amb els punts de les bandes.",
+        "caption": "L'EQ de la consola: arrossega el punt d'una banda sobre la corba."
+      },
+      "compCurve": {
+        "alt": "La corba de transferència del compressor de la consola amb la lectura de la reducció de guany.",
+        "caption": "El compressor de la consola: la corba de transferència i la reducció de guany."
+      },
+      "analyser": {
+        "alt": "L'analitzador de la consola amb un espectre en directe.",
+        "caption": "Meters ▸ Analyzer: l'espectre en directe de la font triada."
+      },
+      "spectrumUnder": {
+        "alt": "Un panell de corba d'EQ amb l'espectre mesurat dibuixat sota la corba.",
+        "caption": "L'espectre mesurat sota una corba d'EQ."
+      }
+    }
+  }
+}
