@@ -38,7 +38,7 @@ test('an empty site names every id as not served', () => {
 
 test('every named id served as JSON at its address is green', () => {
   const files = {};
-  for (const { at } of namedIds(sources)) files[at] = '{"$id":"x"}';
+  for (const { at, id } of namedIds(sources)) files[at] = JSON.stringify({ $id: id });
   assert.deepEqual(check(site(files), sources), []);
 });
 
@@ -54,7 +54,7 @@ test('an id that does not sit at its own address is named, whatever is served', 
   const bad = structuredClone(sources);
   bad.sources[0].files[0].id = 'https://openmixer.org/schema/omx-contract/main/omx-contract.schema.json';
   const files = {};
-  for (const { at } of namedIds(sources)) files[at] = '{}';
+  for (const { at, id } of namedIds(sources)) files[at] = JSON.stringify({ $id: id });
   const problems = check(site(files), bad);
   assert.equal(problems.length, 1);
   assert.match(problems[0], /does not sit at its own address/);
@@ -64,4 +64,24 @@ test('a sources file that names no id is red, not an empty pass', () => {
   const problems = check(site(), { base: 'https://openmixer.org/schema/', sources: [] });
   assert.equal(problems.length, 1);
   assert.match(problems[0], /names no schema id/);
+});
+
+test('a served file whose own $id is not its listed id is named (the 3.19.1 file says /main/)', () => {
+  const files = {};
+  for (const { at, id } of namedIds(sources)) files[at] = JSON.stringify({ $id: id });
+  const first = namedIds(sources)[0];
+  files[first.at] = JSON.stringify({ $id: 'https://openmixer.org/schema/omx-contract/main/omx-contract.schema.json' });
+  const problems = check(site(files), sources);
+  assert.equal(problems.length, 1);
+  assert.match(problems[0], /its own \$id/);
+  assert.match(problems[0], new RegExp(first.id.replace(/[.]/g, '\\.')));
+});
+
+test('a served file with no $id at all is named too', () => {
+  const files = {};
+  for (const { at, id } of namedIds(sources)) files[at] = JSON.stringify({ $id: id });
+  files[namedIds(sources)[1].at] = '{}';
+  const problems = check(site(files), sources);
+  assert.equal(problems.length, 1);
+  assert.match(problems[0], /its own \$id/);
 });

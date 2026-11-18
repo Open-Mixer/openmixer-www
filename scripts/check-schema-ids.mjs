@@ -6,7 +6,7 @@
 // https://openmixer.org/schema/<path> resolves only if public/schema/<path> is in the generated site.
 //
 // Usage: node scripts/check-schema-ids.mjs [--root <dir, default public>] [--sources <file, default deploy/schema-sources.json>]
-// Exit 0 every id is served as a parseable JSON file whose address is the id; 1 at least one is not (each named);
+// Exit 0 every id is served as a parseable JSON file at its address whose own $id equals the id; 1 at least one is not (each named);
 // 2 usage or an unreadable sources file.
 
 import { existsSync, readFileSync, statSync } from 'node:fs';
@@ -38,11 +38,15 @@ export function check(root, sources) {
       problems.push(`${repo}: ${id} is not served (no ${join(root, 'schema', at)})`);
       continue;
     }
+    let doc;
     try {
-      JSON.parse(readFileSync(file, 'utf8'));
+      doc = JSON.parse(readFileSync(file, 'utf8'));
     } catch (e) {
       problems.push(`${repo}: ${id} is served but is not JSON (${e.message})`);
+      continue;
     }
+    // the served file must be the one it is listed as: its own $id is the id the owners name
+    if (doc?.$id !== id) problems.push(`${repo}: ${id} is served but its own $id is ${JSON.stringify(doc?.$id)}`);
   }
   return problems;
 }
