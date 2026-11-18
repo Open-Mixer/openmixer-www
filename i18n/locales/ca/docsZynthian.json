@@ -121,6 +121,22 @@
       "restart": {
         "alt": "La mateixa cadena després d'un reinici: MDA Piano, omx eq8 i omx comp tornen a ser al seu lloc",
         "caption": "La cadena després d'un reinici, amb tots els processadors"
+      },
+      "menuVintage": {
+        "alt": "El menú principal de Zynthian amb l'aspecte vintage: rajoles fosques, marc de selecció taronja",
+        "caption": "El menú principal amb l'aspecte vintage"
+      },
+      "menuStock": {
+        "alt": "El menú principal de Zynthian amb l'aspecte estàndard: rajoles grises, marc de selecció groc",
+        "caption": "El mateix menú principal amb l'aspecte estàndard"
+      },
+      "controlVintage": {
+        "alt": "La pantalla de controls de MDA Piano amb l'aspecte vintage: llista de pàgines a l'esquerra, potenciòmetres i un interruptor de panell a la dreta",
+        "caption": "La pantalla de controls amb l'aspecte vintage: els controls es dibuixen com a potenciòmetres de panell"
+      },
+      "controlStock": {
+        "alt": "La pantalla de controls de MDA Piano amb l'aspecte estàndard: llista de pàgines a l'esquerra, dials d'arc vermell a la dreta",
+        "caption": "La mateixa pantalla de controls amb l'aspecte estàndard"
       }
     },
     "voices": {
@@ -228,6 +244,12 @@
       "title": "Les biblioteques que llegeixen els nostres plugins.",
       "p1": "Cada responsable distribueix el lector del que escriu, en els llenguatges des dels quals es llegeix: C, TypeScript (o JavaScript) i Python. El fork llegeix les dades de cada responsable a través d'aquests lectors i no en guarda cap còpia: el client de plugin-hostd per al dimoni, el lector de plugin-db per als registres, els lectors d'omx-contract per a les frases i les escales, omx-panel per a les pàgines i els gestos.",
       "more": "Per a cada responsable i cada llenguatge: què cal instal·lar, el punt d'entrada i una crida, copiada de cada repositori"
+    },
+    "look": {
+      "title": "L'aspecte: vintage per defecte, estàndard quan el trieu",
+      "p1": "El zynthian-ui d'Open-Mixer dibuixa les pantalles de Zynthian amb l'aspecte propi de la consola: panells foscos, taronja per al que està actiu; i els controls dibuixats amb el renderitzador d'omx-panel com a petits potenciòmetres i interruptors de panell. És el valor per defecte del fork. L'aspecte estàndard és el dibuix de Zynthian, píxel a píxel, que es pot continuar triant.",
+      "p2": "L'aspecte és una sola crida a omx-ui-look.sh de zynthian-sys: escriu a zynthian_envars.sh els colors i el tipus de lletra de l'aspecte triat juntament amb ZYNTHIAN_UI_LOOK, que diu com es dibuixen els controls. La pàgina de configuració web de Zynthian per a la interfície també ofereix el preset.",
+      "p3": "La interfície llegeix tots dos en arrencar, per tant reinicieu-la després del canvi. Les imatges següents són les mateixes dues pantalles amb cada aspecte, preses en una Raspberry Pi 5."
     }
   }
 }
