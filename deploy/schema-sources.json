@@ -1,0 +1,24 @@
+{
+  "about": "The released JSON Schema files the site serves under https://openmixer.org/schema/. Each source is one published package at one pinned version, with its integrity (sha512, as the npm registry states it). scripts/fetch-schemas.mjs fetches each package at build time and places each file at public/schema/<at>; scripts/check-schema-ids.mjs asserts every id named here is served. Nothing here is a copy of a schema: the files are not committed. Read by scripts/fetch-schemas.mjs and scripts/check-schema-ids.mjs only.",
+  "base": "https://openmixer.org/schema/",
+  "sources": [
+    {
+      "repo": "omx-contract",
+      "package": "@openmixer/omx-contract",
+      "version": "3.19.1",
+      "integrity": "sha512-TQlWpFb10L5U+jVQZKPtDXPo6q51+N0nwsRUc7pv1/KUqOo/ljDDWlJG405VsLD8BZwSGeCmaPFeQ6z/HpSMYQ==",
+      "files": [
+        {
+          "from": "schema/omx-contract.schema.json",
+          "at": "omx-contract/v3/omx-contract.schema.json",
+          "id": "https://openmixer.org/schema/omx-contract/v3/omx-contract.schema.json"
+        },
+        {
+          "from": "shapes/travel.schema.json",
+          "at": "omx-contract/v3/shapes/travel.schema.json",
+          "id": "https://openmixer.org/schema/omx-contract/v3/shapes/travel.schema.json"
+        }
+      ]
+    }
+  ]
+}
