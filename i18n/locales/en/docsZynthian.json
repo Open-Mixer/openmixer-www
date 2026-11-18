@@ -121,6 +121,22 @@
       "restart": {
         "alt": "The same chain after a restart: MDA Piano, omx eq8 and omx comp back in their places",
         "caption": "The chain after a restart, every processor back"
+      },
+      "menuVintage": {
+        "alt": "Zynthian's main menu in the vintage look: dark tiles, orange selection frame",
+        "caption": "The main menu in the vintage look"
+      },
+      "menuStock": {
+        "alt": "Zynthian's main menu in the stock look: grey tiles, yellow selection frame",
+        "caption": "The same main menu in the stock look"
+      },
+      "controlVintage": {
+        "alt": "The control screen of MDA Piano in the vintage look: page list on the left, panel knobs and a switch on the right",
+        "caption": "The control screen in the vintage look: the controllers are drawn as panel knobs"
+      },
+      "controlStock": {
+        "alt": "The control screen of MDA Piano in the stock look: page list on the left, red arc dials on the right",
+        "caption": "The same control screen in the stock look"
       }
     },
     "voices": {
@@ -228,6 +244,12 @@
       "title": "The libraries that read our plugins.",
       "p1": "Each owner ships the reader of what it writes, in the languages it is read from: C, TypeScript or JavaScript, and Python. The fork reads every owner's data through those readers and keeps no copy of its own: plugin-hostd's client for the daemon, plugin-db's reader for the records, omx-contract's readers for sentences and scales, omx-panel for pages and gestures.",
       "more": "Per owner and per language: what to install, the entry point and one call, copied from each repository"
+    },
+    "look": {
+      "title": "The look: vintage by default, stock when you choose it",
+      "p1": "Open-Mixer's zynthian-ui draws Zynthian's screens in the console's own look: dark panels, orange for what is on, and the controller widgets drawn through omx-panel's renderer as small panel knobs and switches. It is the default of the fork. Stock is Zynthian's own drawing, to the pixel, and stays selectable.",
+      "p2": "The look is two settings in zynthian_envars.sh: the colours and font of a look file, and ZYNTHIAN_UI_LOOK, which says how the controller widgets are drawn. Zynthian's web configuration page for the UI shows the individual colours only; it has no preset choice yet, so the switch is the zynthian-sys script and the variable:",
+      "p3": "The user interface reads both when it starts, so restart it after the change. The pictures below are the same two screens in each look, taken on a Raspberry Pi 5."
     }
   }
 }
