@@ -248,7 +248,7 @@
     "look": {
       "title": "L'aspecte: vintage per defecte, estàndard quan el trieu",
       "p1": "El zynthian-ui d'Open-Mixer dibuixa les pantalles de Zynthian amb l'aspecte propi de la consola: panells foscos, taronja per al que està actiu; i els controls dibuixats amb el renderitzador d'omx-panel com a petits potenciòmetres i interruptors de panell. És el valor per defecte del fork. L'aspecte estàndard és el dibuix de Zynthian, píxel a píxel, que es pot continuar triant.",
-      "p2": "L'aspecte són dos paràmetres a zynthian_envars.sh: els colors i el tipus de lletra d'un fitxer d'aspecte; i ZYNTHIAN_UI_LOOK, que diu com es dibuixen els controls. La pàgina de configuració web de Zynthian per a la interfície només mostra els colors un per un; encara no té cap tria de preset, de manera que el canvi es fa amb l'script de zynthian-sys i la variable:",
+      "p2": "L'aspecte és una sola crida a omx-ui-look.sh de zynthian-sys: escriu a zynthian_envars.sh els colors i el tipus de lletra de l'aspecte triat juntament amb ZYNTHIAN_UI_LOOK, que diu com es dibuixen els controls. La pàgina de configuració web de Zynthian per a la interfície també ofereix el preset.",
       "p3": "La interfície llegeix tots dos en arrencar, per tant reinicieu-la després del canvi. Les imatges següents són les mateixes dues pantalles amb cada aspecte, preses en una Raspberry Pi 5."
     }
   }

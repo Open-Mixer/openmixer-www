@@ -32,14 +32,9 @@ const poolOptions = [
 ];
 
 /** The test plugin's mean block cost with the helper threads off and on, 48 kHz, 256 frames. */
-/** The look is the colours of a look file and ZYNTHIAN_UI_LOOK; the user interface reads both at start. */
+/** The look is one call: its colours and ZYNTHIAN_UI_LOOK come from the look file; the user interface reads them at start. */
 const lookLines = [
-  '# vintage (the fork\'s default)',
-  '/zynthian/zynthian-sys/sbin/omx-ui-look.sh openmixer-vintage',
-  'sed -i \'s/^export ZYNTHIAN_UI_LOOK=.*/export ZYNTHIAN_UI_LOOK="vintage"/\' /zynthian/config/zynthian_envars.sh',
-  '# stock',
-  '/zynthian/zynthian-sys/sbin/omx-ui-look.sh stock',
-  'sed -i \'s/^export ZYNTHIAN_UI_LOOK=.*/export ZYNTHIAN_UI_LOOK="stock"/\' /zynthian/config/zynthian_envars.sh',
+  '/zynthian/zynthian-sys/sbin/omx-ui-look.sh openmixer-vintage   # or: stock',
   'systemctl restart zynthian',
 ];
 

@@ -248,7 +248,7 @@
     "look": {
       "title": "The look: vintage by default, stock when you choose it",
       "p1": "Open-Mixer's zynthian-ui draws Zynthian's screens in the console's own look: dark panels, orange for what is on, and the controller widgets drawn through omx-panel's renderer as small panel knobs and switches. It is the default of the fork. Stock is Zynthian's own drawing, to the pixel, and stays selectable.",
-      "p2": "The look is two settings in zynthian_envars.sh: the colours and font of a look file, and ZYNTHIAN_UI_LOOK, which says how the controller widgets are drawn. Zynthian's web configuration page for the UI shows the individual colours only; it has no preset choice yet, so the switch is the zynthian-sys script and the variable:",
+      "p2": "The look is one call of zynthian-sys's omx-ui-look.sh: it writes the colours and font of the chosen look into zynthian_envars.sh together with ZYNTHIAN_UI_LOOK, which says how the controller widgets are drawn. Zynthian's web configuration page for the UI also offers the preset.",
       "p3": "The user interface reads both when it starts, so restart it after the change. The pictures below are the same two screens in each look, taken on a Raspberry Pi 5."
     }
   }
