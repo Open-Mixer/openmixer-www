@@ -3,7 +3,7 @@ Use plugin-hostd in your own host
 
 This page takes a Debian machine (Raspberry Pi OS, Zynthian, Debian 13 trixie, arm64) from nothing to a
 plugin running under plugin-hostd, driven over its socket, in nine commands, and then runs an LV2 plugin the same way in eight more. CI runs every command below, as written, in
-a clean Debian container on Debian 13, on arm64; a step that stops working fails that job.
+a clean Debian 13 container; a step that stops working fails that job.
 
 The plugin is a CLAP effect from the `omx-plugins-clap` package, so nothing else has to be installed to try it. Any
 host that already speaks mod-host's socket protocol can send the same lines.
@@ -29,7 +29,7 @@ send "param_get 0 1"   # resp 0 8.0000
 
 What each step did:
 
-1. `curl` fetches the repository key of the FreeMixer channel. It signs every package we publish.
+1. `curl` fetches the repository key of the OpenMixer channel. It signs every package we publish.
 2. The `echo` adds the channel for your Debian release (`trixie` is published).
 3. `apt-get install` takes the daemon, the CLAP worker `omx-clap-host`, a set of CLAP plugins to try, and JACK. On a
    machine that already runs JACK (Zynthian does) leave `jackd2` out.
