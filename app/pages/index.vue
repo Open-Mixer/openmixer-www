@@ -80,7 +80,7 @@ const native = computed(() =>
 const tiers = computed(() =>
   ([
     { id: 'native', formats: [], status: 'live', tone: 'live', featured: false },
-    { id: 'open', formats: ['LV2 · libomx-clap-lv2', 'CLAP · libomx-clap-core'], status: 'liveLv2', tone: 'live', featured: false },
+    { id: 'open', formats: ['LV2 · libomx-clap-lv2', 'CLAP · libomx-clap'], status: 'liveLv2', tone: 'live', featured: false },
     { id: 'hostd', formats: [], status: 'released', tone: 'rel', featured: true },
   ] as const satisfies readonly { tone: Tone }[]).map((tier) => ({
     n: t(`home.tiers.${tier.id}.n`),

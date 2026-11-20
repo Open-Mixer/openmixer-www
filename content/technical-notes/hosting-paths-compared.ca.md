@@ -13,7 +13,7 @@ order: 140
 | mod-host | mod-host 0.10.6 (el paquet de la distribució), la versió LV2, un client JACK per plugin |
 | omx-clap-host | la versió CLAP, un client JACK per plugin |
 | l'adaptador | el mateix omx-clap-host, la versió LV2 a través de libomx-clap-lv2 |
-| CLAP dins del procés | la versió CLAP dins de la crida de procés d'un filtre PipeWire natiu, a través de libomx-clap-core |
+| CLAP dins del procés | la versió CLAP dins de la crida de procés d'un filtre PipeWire natiu, a través de libomx-clap |
 | LV2 dins del procés | la versió LV2 de la mateixa manera, oberta a través de libomx-clap-lv2 |
 
 Aleshores omx-clap-host no podia carregar tot sol un plugin LV2, de manera que el camí de l'adaptador carregava els plugins
