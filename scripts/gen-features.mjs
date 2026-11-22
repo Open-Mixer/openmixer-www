@@ -26,8 +26,10 @@
 //
 // A record that has a card and no `state` is a card only: manual [] and public false.
 //
-// The records are the public projection of the console's own feature records; `--sync <checkout>`
-// copies them from <checkout>/docs/features/. Two files are generated and committed, like the API
+// The records are the public projection of the console's comparison records; `--sync <checkout>`
+// copies them from <checkout>/docs/compare/<id>.yml, each held to the schema the checkout ships beside
+// them (docs/compare/record.schema.json). A checkout without docs/compare is refused; the console's
+// docs/features/ is its feature registry, another schema, and is never read. Two files are generated and committed, like the API
 // reference, so the CI run needs no checkout:
 //
 //   app/data/features.json   the states the features page reads (app/pages/features.vue)
@@ -44,6 +46,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parse as parseYaml, stringify as stringifyYaml } from 'yaml';
+import Ajv2020 from 'ajv/dist/2020.js';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 export const STATES = ['building', 'measured', 'live'];
@@ -251,6 +254,43 @@ const recordFiles = (dir) =>
     .sort()
     .map((f) => ({ file: `content/features/${f}`, text: readFileSync(join(dir, f), 'utf8') }));
 
+/** Where a console checkout keeps the comparison records, and the schema it ships for them. */
+export const CHECKOUT_RECORDS = 'docs/compare';
+export const CHECKOUT_SCHEMA = 'docs/compare/record.schema.json';
+
+/**
+ * A console checkout's comparison records, each validated against the checkout's own schema, then
+ * reduced to the public keys and read as site records. Returns { records, problems }; a checkout
+ * without docs/compare or without its schema is a problem, never a fallback to another directory.
+ */
+export function readCheckout(src) {
+  const from = join(src, CHECKOUT_RECORDS);
+  if (!existsSync(from)) return { records: [], problems: [`${from}: ${CHECKOUT_RECORDS} does not exist; the comparison records are not in that checkout`] };
+  const schemaFile = join(src, CHECKOUT_SCHEMA);
+  if (!existsSync(schemaFile)) return { records: [], problems: [`${schemaFile}: ${CHECKOUT_SCHEMA} does not exist; the checkout ships no schema for its records`] };
+  const validate = new Ajv2020({ allErrors: true, strict: true }).compile(JSON.parse(readFileSync(schemaFile, 'utf8')));
+  const problems = [];
+  const files = [];
+  for (const f of readdirSync(from).filter((n) => n.endsWith('.yml')).sort()) {
+    const text = readFileSync(join(from, f), 'utf8');
+    const name = `${CHECKOUT_RECORDS}/${f}`;
+    let r;
+    try {
+      r = parseYaml(text);
+    } catch (e) {
+      problems.push(`${name}: not YAML (${e.message.split('\n')[0]})`);
+      continue;
+    }
+    if (!validate(r)) {
+      for (const e of validate.errors ?? []) problems.push(`${name}: ${e.instancePath || '/'} ${e.message ?? ''}`.trim());
+      continue;
+    }
+    files.push({ file: `content/features/${f}`, text: projection(text) });
+  }
+  if (problems.length) return { records: [], problems };
+  return readRecords(files);
+}
+
 function load() {
   const dir = join(root, 'content/features');
   const { records, problems } = readRecords(existsSync(dir) ? recordFiles(dir) : []);
@@ -310,13 +350,7 @@ function outputs({ records, base }) {
 function main(argv) {
   const sync = argv.indexOf('--sync');
   if (sync >= 0) {
-    const src = resolve(argv[sync + 1] ?? '');
-    const from = join(src, 'docs/features');
-    if (!existsSync(from)) {
-      console.error(`[gen-features] ${from} does not exist; the records are not in that checkout`);
-      return 1;
-    }
-    const { records, problems } = readRecords(recordFiles(from).map((f) => ({ ...f, text: projection(f.text) })));
+    const { records, problems } = readCheckout(resolve(argv[sync + 1] ?? ''));
     if (problems.length) return fail(problems);
     mkdirSync(join(root, 'content/features'), { recursive: true });
     for (const r of records) {
