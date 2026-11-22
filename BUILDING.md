@@ -80,7 +80,8 @@ list. It is generated: the manual pages of the feature records (`content/feature
 general pages in `deploy/public-docs.base.txt`. Edit those, run `npm run features:gen` and commit the
 result; `npm run features:verify` (run by every build and by CI) fails on a hand edit or a stale copy.
 The same records give the state of each feature on the features page. `node scripts/gen-features.mjs
---sync <checkout>` copies the records from the console's `docs/features/`.
+--sync <checkout>` copies the records from the console's `docs/compare/`, each validated against the
+`docs/compare/record.schema.json` that checkout ships; a checkout without `docs/compare` is refused.
 The tree is built on a sparse copy of the checkout that holds only those pages (the docs
 build bundles every markdown file it can see, so on the whole checkout it shipped the private
 design notes, 2026-10-01); a new page in the openmixer repo stays private until it is added to
