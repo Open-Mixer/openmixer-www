@@ -174,3 +174,58 @@ test('--verify on the tree: hand-written card text in a page or a message file i
   writeFileSync(cards, readFileSync(cards, 'utf8').replace('"released"', '"merged"'));
   assert.match(verify(dir).stderr, /feature-cards\.json is stale or was edited by hand/);
 });
+
+// --sync reads the console's comparison records from <checkout>/docs/compare/<id>.yml and holds each
+// to the schema the checkout itself ships beside them, docs/compare/record.schema.json. The console's
+// docs/features/ is its feature registry, another schema: a checkout without docs/compare is refused
+// by name, never read from docs/features.
+import { readCheckout } from './gen-features.mjs';
+
+const COMPARE_SCHEMA = {
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
+  type: 'object',
+  additionalProperties: false,
+  required: ['id', 'title', 'state'],
+  properties: {
+    id: { type: 'string', pattern: '^[a-z0-9][a-z0-9-]*$' },
+    title: { type: 'string', minLength: 1 },
+    state: { type: 'string', enum: ['live', 'measured', 'building'] },
+    manual: { type: 'array', items: { type: 'string', pattern: '^docs/manual/[a-z0-9-]+\\.md$' }, uniqueItems: true },
+    public: { type: 'boolean' },
+  },
+};
+
+/** A scratch checkout: comparison records in docs/compare (with or without the schema), or in docs/features. */
+function checkout({ dir = 'docs/compare', schema = true, records = { align: 'id: align\ntitle: Smart alignment\nstate: live\nmanual:\n  - docs/manual/alignment.md\npublic: true\n' } } = {}) {
+  const co = mkdtempSync(join(tmpdir(), 'omx-www-co-'));
+  mkdirSync(join(co, dir), { recursive: true });
+  for (const [id, text] of Object.entries(records)) writeFileSync(join(co, dir, `${id}.yml`), text);
+  if (schema && dir === 'docs/compare') writeFileSync(join(co, dir, 'record.schema.json'), JSON.stringify(COMPARE_SCHEMA));
+  return co;
+}
+
+test('--sync reads the comparison records from docs/compare, validated by the schema the checkout ships', () => {
+  const { records, problems } = readCheckout(checkout());
+  assert.deepEqual(problems, []);
+  assert.deepEqual(records.map((r) => `${r.id}:${r.state}`), ['align:live']);
+  assert.deepEqual(records[0].manual, ['docs/manual/alignment.md']);
+});
+
+test("--sync refuses a record the checkout's own schema refuses, naming the file", () => {
+  const co = checkout({ records: { align: 'id: align\ntitle: Smart alignment\nstate: shipped\nmanual: []\npublic: true\n' } });
+  assert.match(readCheckout(co).problems.join('\n'), /docs\/compare\/align\.yml: .*state/);
+  const extra = checkout({ records: { align: 'id: align\ntitle: Smart alignment\nstate: live\nmanual: []\npublic: true\nrows: []\n' } });
+  assert.match(readCheckout(extra).problems.join('\n'), /docs\/compare\/align\.yml: .*additional properties/);
+});
+
+test('--sync refuses, by name, a checkout without docs/compare, and never falls back to docs/features', () => {
+  const old = checkout({ dir: 'docs/features' });
+  const { records, problems } = readCheckout(old);
+  assert.deepEqual(records, []);
+  assert.match(problems.join('\n'), /docs\/compare does not exist/);
+  assert.doesNotMatch(problems.join('\n'), /docs\/features\/align/);
+});
+
+test('--sync refuses a checkout whose docs/compare carries no record.schema.json', () => {
+  assert.match(readCheckout(checkout({ schema: false })).problems.join('\n'), /docs\/compare\/record\.schema\.json does not exist/);
+});
