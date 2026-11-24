@@ -24,6 +24,12 @@ const switches = [
   'grouping on',
 ];
 
+/** An install older than plugin-qualify 0.21.2: its qualify.conf still names qualification_dir, which the sync refuses. */
+const storeFix = [
+  "sudo sed -i '/^qualification_dir /d' /etc/omx/qualify.conf",
+  'sudo systemctl start plugin-qualify-sync.service',
+];
+
 const poolOptions = [
   '# omx-clap-host: helper threads for the plugins that split their voices into tasks',
   'omx-clap-host --thread-pool=qualified   # the default',
@@ -106,6 +112,10 @@ useSeoMeta({
           <h3 class="pt-4 font-display text-lg font-semibold text-ink">{{ t('docsZynthian.install.switch.title') }}</h3>
           <p>{{ t('docsZynthian.install.switch.p1') }}</p>
           <CodeBlock :lines="switches" />
+          <h3 id="qualification-store" class="pt-4 font-display text-lg font-semibold text-ink">{{ t('docsZynthian.install.store.title') }}</h3>
+          <p>{{ t('docsZynthian.install.store.p1') }}</p>
+          <CodeBlock :lines="storeFix" />
+          <p>{{ t('docsZynthian.install.store.p2') }}</p>
         </div>
       </div>
     </section>
