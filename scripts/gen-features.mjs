@@ -21,7 +21,7 @@
 //             to-confirm: the console state was never confirmed by the owner; it is shown as such, not guessed.
 //   proof     [{ kind: bench | test, with, rate?, figure?, en, ca }]   `with` names the versions the figure was
 //             read with; a bench names its rate; a text that names mod-host or jalv names both
-//   detail    the page that explains it: /notes/<slug>, /docs/<page>[#id] or /benchmarks
+//   detail    the page that explains it: /technical-notes/<slug>, /docs/<page>[#id] or /benchmarks
 //   shelved   true: the card is kept in its record but shown on no page (work that is not planned yet)
 //
 // A record that has a card and no `state` is a card only: manual [] and public false.
@@ -54,7 +54,7 @@ export const EXT = ['confirmed', 'surfaces', 'detail', 'card', 'proof', 'shelved
 export const SURFACES = ['console', 'zynthian', 'libraries'];
 export const SURFACE_STATES = ['released', 'merged', 'coming', 'to-confirm', 'none'];
 const CARD_KEYS = ['title', 'line', 'text'];
-const DETAIL = /^\/(?:notes\/[a-z0-9-]+|docs\/[a-z0-9-]+(?:#[a-z0-9-]+)?|benchmarks)$/;
+const DETAIL = /^\/(?:technical-notes\/[a-z0-9-]+|docs\/[a-z0-9-]+(?:#[a-z0-9-]+)?|benchmarks)$/;
 const ID = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const PAGE = /^docs\/manual\/[a-z0-9][a-z0-9/-]*\.md$/;
 export const MARK = '#@ feature-pages';
@@ -144,7 +144,7 @@ export function cardProblems(file, r) {
     }
     if (SURFACES.every((k) => s[k]?.state === 'none')) bad('every surface is none; a card applies somewhere');
   }
-  if (!textOk(r.detail) || !DETAIL.test(r.detail)) bad('detail must be /notes/<slug>, /docs/<page>[#id] or /benchmarks');
+  if (!textOk(r.detail) || !DETAIL.test(r.detail)) bad('detail must be /technical-notes/<slug>, /docs/<page>[#id] or /benchmarks');
   if (!Array.isArray(r.proof)) bad('proof must be a list (empty when there is none)');
   else {
     r.proof.forEach((p, i) => {
@@ -271,9 +271,9 @@ export function detailProblems(records, exists) {
   const out = [];
   for (const r of records.filter((x) => x.card && typeof x.detail === 'string')) {
     const [path] = r.detail.split('#');
-    const m = /^\/(notes|docs)\/(.+)$/.exec(path);
+    const m = /^\/(technical-notes|docs)\/(.+)$/.exec(path);
     const ok = m
-      ? m[1] === 'notes'
+      ? m[1] === 'technical-notes'
         ? LANGS.every((l) => exists(`content/technical-notes/${m[2]}.${l}.md`))
         : exists(`app/pages/docs/${m[2]}.vue`)
       : exists('app/pages/benchmarks');

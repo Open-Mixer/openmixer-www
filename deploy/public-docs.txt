@@ -124,10 +124,13 @@ architecture/decisions/0019-cue-solo-monitor-bus-never-the-mains.md
 architecture/decisions/0020-plugin-tiers-fixed-by-measured-latency.md
 architecture/decisions/0021-fx-send-return-channels-native-delay-reverb.md
 architecture/decisions/README.md
+architecture/engine-and-libraries.md
 architecture/index.md
+architecture/libraries.md
 architecture/native-dsp-vs-modhost-inserts.md
 architecture/one-summing-bus.md
 architecture/overview.md
+architecture/plugin-panels.md
 architecture/row-grammar-and-conformance.md
 architecture/technical-manual.md
 

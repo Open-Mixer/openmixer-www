@@ -17,7 +17,7 @@
     "s1": {
       "title": "Start the console and the surface.",
       "p1": "Two processes, two terminals. The server is the console — it owns the mix and needs no configuration file to come up. The surface is a plain web page; nothing about it is privileged over any other client that will later connect to the same server.",
-      "p2": "The dev server prints the address to open — typically <code class=\"font-mono text-ink-dim\">http://localhost:3000</code>. The surface does not hardcode the console's address: it discovers the endpoint from the origin that served it, so the same build works from a phone on the same network without being rebuilt for it."
+      "p2": "On an installed console, open its https address, <code class=\"font-mono text-ink-dim\">https://&lt;host&gt;:8443/</code>, the one its About dialog shows. There the console speaks HTTP/2, which carries every live value of the surface over one connection, and a phone or tablet on the same network opens the same address. The dev server's plain address (typically <code class=\"font-mono text-ink-dim\">http://localhost:3000</code>) is for a quick look on the development machine only: over plain HTTP/1.1 a browser opens at most six connections to one address, the surface needs more live streams than that, and its panels stop updating. The surface does not hardcode the console's address: it discovers the endpoint from the origin that served it."
     },
     "s2": {
       "title": "Check the header before you touch a fader.",

@@ -6,7 +6,7 @@
  */
 import notesIndex from '~/data/notes-index.json';
 
-definePageMeta({ path: '/notes' });
+definePageMeta({ path: '/technical-notes' });
 
 const { t, locale } = useI18n();
 const sitePath = useSitePath();
@@ -35,7 +35,7 @@ const groups = computed(() => {
       <div class="mx-auto max-w-6xl px-6 py-14">
         <SectionHead :title="g.title" />
         <div class="grid gap-5 sm:grid-cols-2">
-          <LinkCard v-for="n in g.notes" :key="n.slug" :title="n.title" :href="sitePath(`/notes/${n.slug}`)" :label="`/notes/${n.slug}`">
+          <LinkCard v-for="n in g.notes" :key="n.slug" :title="n.title" :href="sitePath(`/technical-notes/${n.slug}`)" :label="`/technical-notes/${n.slug}`">
             <p>{{ n.summary }}</p>
           </LinkCard>
         </div>

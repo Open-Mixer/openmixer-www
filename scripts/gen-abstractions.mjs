@@ -35,12 +35,41 @@ const CATALOG_KINDS = new Set([128, 256, 2097152, 64, 8]);
 // reproduce docs/design/*, plans, ledgers or findings files. Strip a citation's path
 // down to a neutral phrase rather than the summary's whole clause, so the sentence
 // a reader sees still parses.
+// The same holds for an issue of the console's repository (`repo#123`) and for a source file it names: a citation
+// between parentheses goes whole, a bare one goes with its comma, and the sentence is tidied after.
+const SOURCE_FILE = String.raw`[\w./-]+\.(?:vue|ts|tsx|mts|mjs|js|c|h)`;
 function redactInternalRefs(text) {
   return text
     .replace(/`docs\/design\/[^`]*`/g, '`an internal spec`')
     .replace(/`~\/Devel\/[^`]*`/g, '`an internal checkout`')
     .replace(/(?<!`)docs\/design\/\S+/g, 'an internal spec')
-    .replace(/(?<!`)~\/Devel\/\S+/g, 'an internal checkout');
+    .replace(/(?<!`)~\/Devel\/\S+/g, 'an internal checkout')
+    // a specification cited by its dated file name, with or without its directory or extension
+    .replace(/`(?:spec\s+)?(?:[\w./-]*\/)?\d{4}-\d{2}-\d{2}-[\w-]+(?:\.md)?`/gi, '`an internal spec`')
+    .replace(/\b(?:spec\s+)?\d{4}-\d{2}-\d{2}-[a-z0-9-]+(?:\.md)?\b/gi, 'an internal spec')
+    .replace(/\bruling \d{4}-\d{2}-\d{2}\b/gi, 'a decision')
+    // a type written with its module (import('./x.js').T) keeps the type and drops the module's path
+    .replace(/import\(\s*['"][^'"]+['"]\s*\)\./g, '')
+    // a path into the source tree, backticked or bare
+    .replace(/`(?:packages|docs|harness|ops)\/[^`]*`/g, 'its source')
+    .replace(/\b(?:packages|docs|harness|ops)\/[\w./-]+/g, 'its source')
+    .replace(/\s*\([^()]*\b[\w.-]+#\d+\b[^()]*\)/g, '')
+    .replace(/,?\s*\b[\w.-]+#\d+\b/g, '')
+    .replace(new RegExp('\\s*\\(`' + SOURCE_FILE + '`\\)', 'g'), '')
+    .replace(new RegExp('`' + SOURCE_FILE + '`', 'g'), 'its source')
+    // a bare file name of the source tree keeps its name and loses its extension
+    .replace(/\b([\w-]+)\.(?:vue|ts|tsx|mts|mjs|c|h)\b/g, '$1')
+    .replace(/\(\s*[;,]?\s*\)/g, '')
+    .replace(/\s+([.,;])/g, '$1')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+}
+
+// A curated item is published as its name and what it is for; a path stays in the source tree it names.
+function publicGroup(g) {
+  const out = { label: g.label, items: g.items.map((it) => ({ name: it.name, ...(it.summary ? { summary: redactInternalRefs(it.summary) } : {}) })) };
+  if (g.summary) out.summary = redactInternalRefs(g.summary);
+  return out;
 }
 
 function firstSentence(comment) {
@@ -70,10 +99,11 @@ function crawl(model) {
       const comment = commentOf(node);
       const summary = firstSentence(comment);
       const file = node.sources && node.sources[0] ? `${node.sources[0].fileName}:${node.sources[0].line}` : '';
-      const entry = { kind: KIND_NAME[node.kind], name: node.name, package: nextPkg || pkg, file, summary };
+      // the file goes only to the gap report, which is never published
+      const entry = { kind: KIND_NAME[node.kind], name: node.name, package: nextPkg || pkg, summary };
       generated.push(entry);
       if (!summary) {
-        gaps.push({ ...entry, size: (node.children || []).length });
+        gaps.push({ ...entry, file, size: (node.children || []).length });
       }
     }
     for (const child of node.children || []) walk(child, nextPkg);
@@ -123,7 +153,7 @@ function main() {
       generatedCount: generated.length,
       documentedCount: generated.length - gaps.length,
     },
-    curated: curated.groups,
+    curated: curated.groups.map(publicGroup),
     generated: generatedGroups,
   };
   writeFileSync(outPath, JSON.stringify(out, null, 2));

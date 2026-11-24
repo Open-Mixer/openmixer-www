@@ -13,7 +13,7 @@ surfaces:
   console:
     state: released
     version: plugin-qualify 0.18.5
-detail: /notes/from-a-plugin-file-to-a-page
+detail: /technical-notes/from-a-plugin-file-to-a-page
 card:
   en:
     title: Every plugin measured on your device

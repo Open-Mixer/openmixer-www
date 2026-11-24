@@ -46,15 +46,15 @@ a set of notes while it measures, so the cost is the cost with those voices soun
 
 A verdict for each host follows: suitable, isolated (it runs in a worker of its own and is never grouped), or unsuitable.
 Kars is rated suitable for omx-clap-host, real-time safe under a parameter sweep and under notes, hosted isolated. The Pi's
-figures are in [plugin-hostd on a Raspberry Pi 5](/notes/plugin-hostd-on-a-raspberry-pi-5), and Surge XT's in
-[Instruments on a Pi 5](/notes/instruments-on-a-pi-5).
+figures are in [plugin-hostd on a Raspberry Pi 5](/technical-notes/plugin-hostd-on-a-raspberry-pi-5), and Surge XT's in
+[Instruments on a Pi 5](/technical-notes/instruments-on-a-pi-5).
 
 ## 3. Pins
 
 **Owner:** plugin-qualify. **Writes:** `/var/lib/omx/qualified.pins`, one line per plugin.
 
 From the records, one line per plugin says what plugin-hostd may host and how (see
-[Pins on first use](/notes/pins-on-first-use)). The daemon loads the pins as its only source of permission, and its
+[Pins on first use](/technical-notes/pins-on-first-use)). The daemon loads the pins as its only source of permission, and its
 planner reads them to group workers and to place them on cores. An instrument is never put into a chain's shared worker,
 so a fault or a late buffer in a voice cannot reach the effects after it.
 
@@ -70,7 +70,7 @@ keeps the layout scheme and hash it was judged against.
 The layout turns a descriptor's parameters into pages: sections become groups, and every control gets a stable key. The
 same layout drives the engine's controller pages in Zynthian, the MOD GUI generated for MOD-UI, and the bundle that adds
 groups to third-party LV2 plugins (see [Why most LV2 plugins on a Zynthian need inferred port
-groups](/notes/why-lv2-plugins-on-zynthian-need-inferred-port-groups)).
+groups](/technical-notes/why-lv2-plugins-on-zynthian-need-inferred-port-groups)).
 
 Kars has one group of three knobs, and so one page, "Controls". An effect lays out differently: OpenMixer's equaliser
 puts each band on a page of its own.

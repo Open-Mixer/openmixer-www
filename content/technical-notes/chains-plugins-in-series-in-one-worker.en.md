@@ -10,7 +10,7 @@ order: 40
 
 omx-clap-host gives every plugin its own JACK client, and every client is a node of the graph with its own wake-up per
 cycle. Most of a cycle's time goes on those wake-ups, not on the plugins (see
-[One JACK client for a chain](/notes/one-jack-client-for-a-chain)). A strip that runs four plugins in series wakes four
+[One JACK client for a chain](/technical-notes/one-jack-client-for-a-chain)). A strip that runs four plugins in series wakes four
 nodes. omx-clap-host can run a chain of plugins in one client and call them in order inside one process callback; it must
 be told which instances form a chain and in what order, and the daemon must put them in one worker.
 

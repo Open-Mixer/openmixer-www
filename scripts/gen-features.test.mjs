@@ -102,7 +102,7 @@ const card = (over = {}) => ({
   id: 'x',
   card: { en: { title: 'A title', line: 'A line.', text: 'A longer paragraph here.' }, ca: { title: 'Un títol', line: 'Una línia.', text: 'Un paràgraf més llarg aquí.' } },
   surfaces: { console: { state: 'none' }, zynthian: { state: 'released', version: 'plugin-hostd 0.19.0' }, libraries: { state: 'none' } },
-  detail: '/notes/a-note',
+  detail: '/technical-notes/a-note',
   proof: [],
   ...over,
 });
@@ -129,7 +129,7 @@ test('each bad card is refused', () => {
 });
 
 test('card text written by hand outside the records is refused', () => {
-  const { records } = readRecords([{ file: 'content/features/x.yml', text: `id: x\ntitle: X\nmanual: []\npublic: false\nsurfaces:\n  console: {state: none}\n  zynthian: {state: released, version: plugin-hostd 0.19.0}\n  libraries: {state: none}\ndetail: /notes/a-note\ncard:\n  en: {title: A title here, line: A line of words., text: A longer paragraph here.}\n  ca: {title: Un títol aquí, line: Una línia de paraules., text: Un paràgraf més llarg aquí.}\nproof: []\n` }]);
+  const { records } = readRecords([{ file: 'content/features/x.yml', text: `id: x\ntitle: X\nmanual: []\npublic: false\nsurfaces:\n  console: {state: none}\n  zynthian: {state: released, version: plugin-hostd 0.19.0}\n  libraries: {state: none}\ndetail: /technical-notes/a-note\ncard:\n  en: {title: A title here, line: A line of words., text: A longer paragraph here.}\n  ca: {title: Un títol aquí, line: Una línia de paraules., text: Un paràgraf més llarg aquí.}\nproof: []\n` }]);
   assert.equal(handTextProblems(records, [{ file: 'app/pages/x.vue', text: '<p>nothing</p>' }]).length, 0);
   assert.match(handTextProblems(records, [{ file: 'app/pages/x.vue', text: '<p>A longer paragraph here.</p>' }]).join(), /repeats card\.en\.text of the record x/);
   assert.match(handTextProblems(records, [{ file: 'i18n/locales/ca/m.json', text: '{"a":"Una línia de paraules."}' }]).join(), /repeats card\.ca\.line/);
@@ -138,7 +138,7 @@ test('card text written by hand outside the records is refused', () => {
 });
 
 test('a detail link must reach a page', () => {
-  const r = [{ id: 'x', card: {}, detail: '/notes/gone' }];
+  const r = [{ id: 'x', card: {}, detail: '/technical-notes/gone' }];
   assert.match(detailProblems(r, () => false).join(), /not a page of the site/);
   assert.deepEqual(detailProblems(r, () => true), []);
 });

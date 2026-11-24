@@ -5,7 +5,7 @@
  * scripts/gen-pages.mjs renders from content/notes/<slug>.<lang>.md; the page loads that note alone.
  */
 const route = useRoute();
-definePageMeta({ path: '/notes/:slug' });
+definePageMeta({ path: '/technical-notes/:slug' });
 
 const { t, locale } = useI18n();
 const sitePath = useSitePath();
@@ -54,7 +54,7 @@ useSeoMeta({
             <li v-for="h in note.toc" :key="h.id"><a :href="`#${h.id}`" class="text-ink-dim hover:text-accent">{{ h.title }}</a></li>
           </ul>
           <p class="mt-8 text-sm">
-            <NuxtLink :to="sitePath('/notes')" class="text-accent hover:underline">{{ t('notes.page.all') }}</NuxtLink>
+            <NuxtLink :to="sitePath('/technical-notes')" class="text-accent hover:underline">{{ t('notes.page.all') }}</NuxtLink>
           </p>
         </nav>
       </div>

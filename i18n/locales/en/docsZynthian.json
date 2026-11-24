@@ -95,8 +95,8 @@
     "shots": {
       "slot": "Screenshot to come, after {after}.",
       "menu": {
-        "alt": "The Zynthian plugin menu sorted by qualification tier, with each plugin's latency, real-time safety and cost",
-        "caption": "The plugin menu, sorted by qualification tier"
+        "alt": "Zynthian's Reverb menu sorted by qualification tier: each plugin followed by its tier, whether it shares a worker and whether its latency is within the line",
+        "caption": "The plugin menu sorted by qualification tier, each row's tier read from its qualification record through plugin-db"
       },
       "page": {
         "alt": "The controller page of MDA Piano in Zynthian: its list of pages on the left and four dials on the right",
@@ -165,7 +165,7 @@
       "title": "The headline figures.",
       "intro": "Measured on a Raspberry Pi 5 running Zynthian, with an RME Babyface Pro as its audio interface and JACK at real-time priority 70 with 3 periods, Zynthian's own setting. Read digitally at the JACK server and its ports. plugin-hostd 0.18.0 and omx-clap-host 0.29.0 against mod-host 0.10.9, the host behind Zynthian's effect chains and MOD-UI, and jalv 1.6.9, which runs one plugin per process:",
       "more": "Every table and the method",
-      "footer": "Raspberry Pi 5 running Zynthian, RME Babyface Pro · JACK priority 70, 3 periods · 48 and 96 kHz, 128 and 256 frames · read digitally at the JACK server and ports · plugin-hostd 0.18.0 (protocol 0.3.0), omx-clap-host 0.29.0, omx-plugins 0.18.0, mod-host 0.10.9, jalv 1.6.9 · 5 November 2026 · qualification: plugin-qualify 0.18.5, records omx-qualification-rpi5-zynthian-vangelis 2026110101, 1 November 2026",
+      "footer": "Raspberry Pi 5 running Zynthian, RME Babyface Pro · JACK priority 70, 3 periods · 48 and 96 kHz, 128 and 256 frames · read digitally at the JACK server and ports · plugin-hostd 0.18.0 (protocol 0.3.0), omx-clap-host 0.29.0, omx-plugins 0.18.0, mod-host 0.10.9, jalv 1.6.9 · 5 November 2026 · qualification: plugin-qualify 0.18.5, records omx-qualification-rpi5-zynthian-vangelis 2026110101, 1 November 2026 · the analog loop XLR OUT 1/2 -> XLR IN 1/2, +9.5 dB loop gain at 48 and 96 kHz: Zynthian openmixer 7bb95064, plugin-hostd 0.20.6, jackd 1.9.22, 14 November 2026",
       "bench": "The benchmarks, row by row"
     },
     "status": {
@@ -173,7 +173,7 @@
       "open": {
         "title": "Still open",
         "menu": "Chains built from Zynthian's menu with grouping on, measured as the daemon's chains were.",
-        "listen": "A listening test through the audio interface: the figures so far are read digitally at the JACK ports.",
+        "listen": "A listening test through the audio interface: the loop XLR OUT 1/2 -> XLR IN 1/2 is in the figures (level, THD+N, latency, balance); nobody has listened to it yet.",
         "presets": "Surge XT's CLAP build: a preset it saved does not load back yet, and its plugin folder cannot be pinned under Zynthian's pin settings. Preset listing and loading from Zynthian's menu for every instrument.",
         "snapshot": "The round trip of a snapshot that holds a plugin-hostd instrument.",
         "mixbus": "Mixbus chains and parallel slots measured with Zynthian's own mixer in the path on the device."
@@ -182,7 +182,7 @@
     },
     "series": {
       "title": "Where the changes to Zynthian stand.",
-      "forks": "The engine and the system changes are carried on Open-Mixer's forks of zynthian-ui and zynthian-sys. In zynthian-ui: the plugin-hostd engine, plugin-hostd by default with a snapshot converter, menus from qualification, chains from the daemon's planner. The fork reads every owner's library and keeps no copy of their data: it speaks to the daemon through plugin-hostd's Python client, reads the records through plugin-db's reader, the position law and the sentences through omx-contract's readers, and the gesture words and compare slots from omx-panel. What remains is on the owners' side: three kinds of name the fork still writes as text, on a few listed lines that each name their issue, until their readers expose them as constants: which refusals are transient, the verbs and the reply codes (in plugin-hostd-protocol) and the grouping reasons (in plugin-hostd). In zynthian-sys: the OpenMixer repository, plugin-hostd as the mod-host of MOD-UI, MOD GUIs from omx-panel, OpenMixer in the default install. Merged and open pull requests are listed on each fork.",
+      "forks": "The engine and the system changes are carried on Open-Mixer's forks of zynthian-ui and zynthian-sys. In zynthian-ui: the plugin-hostd engine, plugin-hostd by default with a snapshot converter, menus from qualification, chains from the daemon's planner. The fork reads every owner's library and keeps no copy of their data: it speaks to the daemon through plugin-hostd's Python client, reads the records through plugin-db's reader, the position law and the sentences through omx-contract's readers, and the gesture words and compare slots from omx-panel. Those last names now exist as constants on the owners' main branches: which refusals are transient, the verbs and the reply codes (in plugin-hostd-protocol) and the grouping reasons (in plugin-hostd). The fork switches to them once plugin-hostd-protocol 0.5.10 is released and its floor moves; a refusal that leaves no mark on the plugin, such as a pin refused for failed checks, gets its own class, ruled for 0.5.11. Three more kinds of name are filed with their owners: omx-panel's gesture words and widget keys, omx-dsp's band role prefix and omx-contract's position-law names. In zynthian-sys: the OpenMixer repository, plugin-hostd as the mod-host of MOD-UI, MOD GUIs from omx-panel, OpenMixer in the default install. Merged and open pull requests are listed on each fork.",
       "upstream": "Upstream, one change is proposed so far: building MOD-UI's environment on Python 3.13, in zynthian-sys. The rest has not been proposed to Zynthian's maintainers yet."
     },
     "read": {

@@ -18,7 +18,7 @@
           "state": "none"
         }
       },
-      "detail": "/notes/the-grouping-planner",
+      "detail": "/technical-notes/the-grouping-planner",
       "card": {
         "en": {
           "title": "See the cost before you add",
@@ -49,7 +49,7 @@
           "state": "none"
         }
       },
-      "detail": "/notes/why-lv2-plugins-on-zynthian-need-inferred-port-groups",
+      "detail": "/technical-notes/why-lv2-plugins-on-zynthian-need-inferred-port-groups",
       "card": {
         "en": {
           "title": "Pages named for what they hold",
@@ -82,7 +82,7 @@
           "version": "plugin-hostd 0.16.0"
         }
       },
-      "detail": "/notes/one-worker-per-chain-or-one-process-per-plugin",
+      "detail": "/technical-notes/one-worker-per-chain-or-one-process-per-plugin",
       "card": {
         "en": {
           "title": "A crash stays in one plugin",
@@ -121,7 +121,7 @@
           "state": "none"
         }
       },
-      "detail": "/notes/from-a-plugin-file-to-a-page",
+      "detail": "/technical-notes/from-a-plugin-file-to-a-page",
       "card": {
         "en": {
           "title": "Easy page, and A/B/C/D to compare",
@@ -193,7 +193,7 @@
           "version": "plugin-hostd 0.16.0"
         }
       },
-      "detail": "/notes/the-grouping-planner",
+      "detail": "/technical-notes/the-grouping-planner",
       "card": {
         "en": {
           "title": "A chain in one worker",
@@ -274,7 +274,7 @@
           "state": "coming"
         }
       },
-      "detail": "/notes/the-lv2-adapter-against-mod-host-and-jalv",
+      "detail": "/technical-notes/the-lv2-adapter-against-mod-host-and-jalv",
       "card": {
         "en": {
           "title": "LV2 plugins on one adapter",
@@ -402,7 +402,7 @@
           "state": "none"
         }
       },
-      "detail": "/notes/audio-layouts-and-how-the-host-judges-the-fit",
+      "detail": "/technical-notes/audio-layouts-and-how-the-host-judges-the-fit",
       "card": {
         "en": {
           "title": "Mono effects in a stereo chain",
@@ -640,7 +640,7 @@
           "state": "none"
         }
       },
-      "detail": "/notes/plugin-hostd-on-a-raspberry-pi-5",
+      "detail": "/technical-notes/plugin-hostd-on-a-raspberry-pi-5",
       "card": {
         "en": {
           "title": "Lighter on a Pi 5",
@@ -685,6 +685,22 @@
           "with": "plugin-hostd 0.18.0, omx-clap-host 0.29.0, mod-host 0.10.9, jalv 1.6.9",
           "en": "The floor: 64 frames at 48 kHz has xruns on every host with no plugin loaded, so it is the device's limit. At 96 kHz, 128 frames runs with no xrun on omx-clap-host, plugin-hostd and mod-host with no plugin; jalv has no host without a plugin. Keep the third period: with two, the heavier sets read higher on omx-clap-host and mod-host.",
           "ca": "El límit: a 48 kHz, 64 mostres tenen xruns a tots els amfitrions sense cap plugin carregat, de manera que és el límit de l'aparell. A 96 kHz, 128 mostres corren sense xruns a omx-clap-host, plugin-hostd i mod-host sense cap plugin; jalv no té amfitrió sense plugin. Val la pena mantenir el tercer període: amb dos, els conjunts més pesats donen més càrrega a omx-clap-host i a mod-host."
+        },
+        {
+          "kind": "bench",
+          "rate": "48 kHz, 256 frames",
+          "figure": true,
+          "with": "RME Babyface Pro, jackd 1.9.22, Zynthian openmixer 7bb95064, plugin-hostd 0.20.6",
+          "en": "Hardware tier, through the analog loop: XLR OUT 1/2 to XLR IN 1/2 (48V off, gain 0), +9.5 dB loop gain at 48 and 96 kHz. A 1 kHz tone played into a chain's strip leaves MAIN at -23.9 dBFS and comes back at -14.4 dBFS on both channels, THD+N 0.0038 % (-88 dB, 20 Hz to 20 kHz), noise floor -110 dBFS, round trip 842 samples (17.5 ms) at 3 periods, channel balance 0.04 dB.",
+          "ca": "Nivell maquinari, a través del llaç analògic: XLR OUT 1/2 a XLR IN 1/2 (48V apagat, guany 0), guany del llaç +9,5 dB a 48 i 96 kHz. Un to d'1 kHz enviat a la tira d'una cadena surt de MAIN a -23,9 dBFS i torna a -14,4 dBFS als dos canals, THD+N 0,0038 % (-88 dB, de 20 Hz a 20 kHz), soroll de fons -110 dBFS, anada i tornada 842 mostres (17,5 ms) amb 3 períodes, balanç entre canals 0,04 dB."
+        },
+        {
+          "kind": "bench",
+          "rate": "96 kHz, 256 frames",
+          "figure": true,
+          "with": "RME Babyface Pro, jackd 1.9.22, Zynthian openmixer 7bb95064, plugin-hostd 0.20.6",
+          "en": "The same loop at 96 kHz, +9.5 dB loop gain: the tone comes back at -14.3 dBFS, THD+N 0.0038 % (-88 dB), noise floor -106 dBFS over the wider band, round trip 804 samples (8.4 ms), channel balance 0.04 dB; the polarity is kept at both rates.",
+          "ca": "El mateix llaç a 96 kHz, guany del llaç +9,5 dB: el to torna a -14,3 dBFS, THD+N 0,0038 % (-88 dB), soroll de fons -106 dBFS en la banda més ampla, anada i tornada 804 mostres (8,4 ms), balanç entre canals 0,04 dB; la polaritat es manté a totes dues freqüències."
         }
       ]
     },
@@ -736,7 +752,7 @@
           "version": "plugin-hostd 0.16.0"
         }
       },
-      "detail": "/notes/pins-on-first-use",
+      "detail": "/technical-notes/pins-on-first-use",
       "card": {
         "en": {
           "title": "What loads is what was measured",
@@ -806,7 +822,7 @@
           "state": "none"
         }
       },
-      "detail": "/notes/from-a-plugin-file-to-a-page",
+      "detail": "/technical-notes/from-a-plugin-file-to-a-page",
       "card": {
         "en": {
           "title": "Menus that tell you what is safe",
@@ -1010,7 +1026,7 @@
           "version": "plugin-qualify 0.18.5"
         }
       },
-      "detail": "/notes/from-a-plugin-file-to-a-page",
+      "detail": "/technical-notes/from-a-plugin-file-to-a-page",
       "card": {
         "en": {
           "title": "Every plugin measured on your device",
@@ -1050,7 +1066,7 @@
           "version": "plugin-hostd 0.16.0"
         }
       },
-      "detail": "/notes/plugins-that-change-a-callee-saved-register",
+      "detail": "/technical-notes/plugins-that-change-a-callee-saved-register",
       "card": {
         "en": {
           "title": "A plugin that breaks the rules is isolated",
@@ -1101,8 +1117,8 @@
           "rate": "48000 and 96000 Hz, 128 frames",
           "figure": true,
           "with": "omx-clap-core 0.30.4 (main, 234813ad8e), plugin-hostd 0.19.1, samplv1 1.3.1, mod-host v0.10.6-595-g6c1cdd8 (Zynthian's build)",
-          "en": "On a Raspberry Pi 5, measured digitally, samplv1 goes from silence to -9.6 dBFS after a note on once its sample is set with patch_set, at 48000 and at 96000 Hz with 128 frames. mod-host v0.10.6-595-g6c1cdd8 (Zynthian's build) gives -9.6 dBFS for the same file at 48000 Hz. jalv was not measured for this figure. The installed omx-clap-core 0.30.2 answers the verb with -902 and stays silent.",
-          "ca": "En una Raspberry Pi 5, mesurat digitalment, samplv1 passa del silenci a -9,6 dBFS després d'una nota un cop la mostra s'ha posat amb patch_set, a 48000 i a 96000 Hz amb 128 mostres. mod-host v0.10.6-595-g6c1cdd8 (compilació de Zynthian) dóna -9,6 dBFS amb el mateix fitxer a 48000 Hz. jalv no s'ha mesurat per a aquesta xifra. L'omx-clap-core 0.30.2 instal·lat respon el verb amb -902 i es queda en silenci."
+          "en": "On a Raspberry Pi 5, measured digitally, samplv1 goes from silence to -9.6 dBFS after a note on once its sample is set with patch_set, at 48000 and at 96000 Hz with 128 frames. mod-host v0.10.6-595-g6c1cdd8 (Zynthian's build) gives -9.6 dBFS for the same file at 48000 Hz. jalv was not measured for this figure. Before 0.30.4, omx-clap-host had no patch_set: it answered with its \"not implemented\" reply (-902) and samplv1 stayed silent; 0.30.4 added patch_set/patch_get.",
+          "ca": "En una Raspberry Pi 5, mesurat digitalment, samplv1 passa del silenci a -9,6 dBFS després d'una nota un cop la mostra s'ha posat amb patch_set, a 48000 i a 96000 Hz amb 128 mostres. mod-host v0.10.6-595-g6c1cdd8 (compilació de Zynthian) dóna -9,6 dBFS amb el mateix fitxer a 48000 Hz. jalv no s'ha mesurat per a aquesta xifra. Abans de la 0.30.4, omx-clap-host no tenia patch_set: responia amb la seva resposta de «no implementat» (-902) i samplv1 es quedava en silenci; la 0.30.4 va afegir patch_set/patch_get."
         },
         {
           "kind": "bench",
@@ -1163,7 +1179,7 @@
           "version": "omx-clap-host 0.27.0"
         }
       },
-      "detail": "/notes/instruments-on-a-pi-5",
+      "detail": "/technical-notes/instruments-on-a-pi-5",
       "card": {
         "en": {
           "title": "Big synths use all four cores",

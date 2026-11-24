@@ -2,11 +2,9 @@
 
 /**
  * Paths on this site that are NOT translated and have no /ca/ copy: the documentation tree
- * published from the openmixer repo (`scripts/build-docs-tree.mjs`), the typedoc tree and
- * the OpenAPI file. Must match DOCS_TREE_SECTIONS in nuxt.config.ts.
+ * published from the openmixer repo (`scripts/build-docs-tree.mjs`) and the OpenAPI file. Must match DOCS_TREE_SECTIONS in nuxt.config.ts.
  */
 const UNLOCALIZED = [
-  /^\/api-docs(\/|$)/,
   /^\/openapi\.json$/,
   /^\/docs\/(install|manual|hardware|admin|troubleshooting|architecture)(\/|$)/,
 ];

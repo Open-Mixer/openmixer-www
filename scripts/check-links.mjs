@@ -3,7 +3,7 @@
 //
 // Checks that every internal link in the generated site resolves to a file that
 // was actually written. `nuxt generate` fails on a broken ROUTE, but a link to a
-// path no page claims — a mistyped /docs/rest/{family}, an /api-docs/ page that
+// path no page claims — a mistyped /docs/rest/{family}, a page that
 // moved, an anchor into a chapter that was renamed — prerenders fine and 404s in
 // a browser. External links are listed, not fetched: the site is built and served
 // on machines with no internet, so a network check would fail for the wrong reason.

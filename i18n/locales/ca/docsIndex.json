@@ -71,10 +71,6 @@
       "eyebrow": "Documentació tècnica",
       "title": "Referència per a desenvolupadors i integradors.",
       "intro": "Generada a partir del contracte de la mateixa taula en execució, no escrita a mà: cada document porta la seva data i no pot descriure cap control que el servidor no serveixi de debò.",
-      "api": {
-        "title": "Referència de l'API",
-        "body": "TSDoc de {'@'}openmixer/core i de la interfície pública del servidor, generat amb typedoc."
-      },
       "rest": {
         "title": "Referència REST",
         "body": "{count} files adreçables, amb els seus camps, rangs i codis de rebuig."
@@ -138,6 +134,10 @@
       "zynthian": {
         "title": "Zynthian: plugin-hostd com a amfitrió de plugins",
         "body": "Zynthian executant els seus plugins LV2 i CLAP sota plugin-hostd: què és, les xifres principals amb la seva data i on són els canvis a Zynthian."
+      },
+      "whatsNew": {
+        "title": "Què hi ha de nou",
+        "body": "Cada canvi que ha portat OpenMixer, a Zynthian i a la consola, un paràgraf per canvi, amb les pàgines que l'expliquen."
       }
     },
     "faq": {

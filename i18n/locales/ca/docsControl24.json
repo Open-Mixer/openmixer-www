@@ -16,9 +16,10 @@
       "p3": "L'interval de 7 segons i un port a 10 Mbit/s semidúplex es van mesurar en una ProControl, la germana de la Control{'|'}24 de la mateixa generació. Una targeta de xarxa moderna connectada directament a la taula pot no acabar d'acordar aquest mode d'enllaç; un switch 10/100 senzill i no gestionable entre totes dues ho resol."
     },
     "share": {
-      "title": "Pot compartir la xarxa amb la interfície web.",
-      "p1": "Un switch reenvia una trama DigiNet com qualsevol altra trama Ethernet, de manera que la taula pot estar al mateix segment que les tauletes i els portàtils que obren la interfície web. Les màquines que només parlen IP ignoren un EtherType que no coneixen. Tret de l'anunci de difusió de la taula, el switch només lliura les trames DigiNet al port de l'ordinador de la taula de mescles, perquè van adreçades a la seva MAC.",
-      "p2": "Les trames són petites: libdiginet hi posa com a màxim 48 ordres i 314 bytes i espaia 2 ms les escriptures a les pantalles."
+      "title": "Necessita una interfície de xarxa pròpia.",
+      "p1": "La taula parla per un enllaç de 10 Mb/s semidúplex. El descobriment de REAC surt en ràfegues de trames de difusió, unes 800 trames de mida completa cada vegada, sense etiqueta i per cada subinterfície VLAN de la interfície on funciona. En un cable compartit, una ràfega omple l'enllaç de la taula durant un segon aproximadament i la taula deixa de respondre. No torna sola mentre continuen les ràfegues.",
+      "p2": "Per això, doneu a la taula una interfície amb cable que no porti res més; un adaptador de xarxa USB va bé. A <code class=\"font-mono text-sm text-ink\">~/.config/reac-pw/reac-pw.conf</code>, poseu aquesta interfície en una secció <code class=\"font-mono text-sm text-ink\">[segment …]</code> amb <code class=\"font-mono text-sm text-ink\">ignore = yes</code> i reinicieu reac-pw: el seu registre diu llavors que la interfície no s'escolta, no se serveix i no s'hi creen subinterfícies. Apagueu i engegueu la taula una vegada en aquest enllaç tranquil.",
+      "p3": "Les trames en si són petites: libdiginet hi posa com a màxim 48 ordres i 314 bytes i espaia 2 ms les escriptures a les pantalles."
     },
     "needs": {
       "title": "Què necessita la xarxa.",
@@ -28,7 +29,7 @@
       },
       "vlan": {
         "head": "La VLAN sense etiquetar (nativa) del port de l'ordinador.",
-        "body": "La taula envia trames sense etiqueta VLAN. Poseu-la a la VLAN sense etiquetar del port del switch on hi ha l'ordinador i feu servir la interfície normal de l'ordinador, no una subinterfície VLAN."
+        "body": "La taula envia trames sense etiqueta VLAN. Feu servir la interfície normal de la seva pròpia targeta de xarxa, no una subinterfície VLAN."
       },
       "wired": {
         "head": "Un cable de la taula a l'ordinador.",
@@ -36,8 +37,13 @@
       },
       "reac": {
         "head": "No a l'enllaç REAC dels stageboxes.",
-        "body": "La interfície que porta els stageboxes REAC porta el seu àudio i res més. La taula va en una altra interfície de l'ordinador."
+        "body": "Ni a la interfície que porta els stageboxes REAC ni a una VLAN d'aquesta: una VLAN al mateix cable porta les mateixes ràfegues de descobriment. La taula va a la seva pròpia interfície, desactivada a reac-pw."
       }
+    },
+    "faders": {
+      "title": "Els faders segueixen la taula de mescles.",
+      "p1": "Un fader de la taula segueix la posició del fader de la consola, no l'escala impresa al costat. Tot el recorregut és tot el rang de la consola: el tope de baix és el mínim de la consola i el de dalt, el màxim. Llegiu el nivell a la interfície web o a la pantalla de la tira.",
+      "p2": "Un fader que no arriba a baix (o a dalt) al seu tope té una avaria de maquinari: una pista gastada o bruta s'atura abans. La consola no estira ni calibra un fader per compensar-ho. Netegeu el fader o feu-lo reparar."
     },
     "security": {
       "title": "Seguretat.",

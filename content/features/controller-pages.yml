@@ -11,7 +11,7 @@ surfaces:
     version: zynthian-ui omx-track 2026110701
   console:
     state: none
-detail: /notes/why-lv2-plugins-on-zynthian-need-inferred-port-groups
+detail: /technical-notes/why-lv2-plugins-on-zynthian-need-inferred-port-groups
 card:
   en:
     title: Pages named for what they hold

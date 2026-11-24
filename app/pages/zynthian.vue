@@ -59,7 +59,7 @@ useSeoMeta({
         <p class="mt-6 flex flex-wrap gap-x-6 text-base">
           <NuxtLink :to="sitePath('/benchmarks')" class="text-accent hover:underline">{{ t('docsZynthian.figures.bench') }}</NuxtLink>
           <NuxtLink :to="sitePath('/benchmarks/zynthian-interim')" class="text-accent hover:underline">{{ t('zynthianHome.interim') }}</NuxtLink>
-          <NuxtLink :to="sitePath('/notes')" class="text-accent hover:underline">{{ t('zynthianHome.notes') }}</NuxtLink>
+          <NuxtLink :to="sitePath('/technical-notes')" class="text-accent hover:underline">{{ t('zynthianHome.notes') }}</NuxtLink>
         </p>
         <p class="mt-8 font-mono text-xs leading-relaxed text-ink-faint">{{ t('docsZynthian.figures.footer') }}</p>
       </div>

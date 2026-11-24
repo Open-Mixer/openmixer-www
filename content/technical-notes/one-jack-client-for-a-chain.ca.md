@@ -11,7 +11,7 @@ order: 130
 omx-clap-host dona a cada plugin el seu propi client JACK i cada client és un node del graf amb el seu propi despertar a
 cada cicle. La pregunta era si N plugins en sèrie en un sol client són idèntics bit a bit als mateixos N plugins en N
 clients enllaçats en sèrie i si les xifres del banc de proves milloren sense que res empitjori. És la mesura que hi ha
-darrere de la cadena de la biblioteca de l'amfitrió (vegeu la [nota de les cadenes](/ca/notes/chains-plugins-in-series-in-one-worker)
+darrere de la cadena de la biblioteca de l'amfitrió (vegeu la [nota de les cadenes](/ca/technical-notes/chains-plugins-in-series-in-one-worker)
 per a com la fa servir plugin-hostd).
 
 ## Com corre la cadena
@@ -107,7 +107,7 @@ Amb quatre plugins (omx-eq8, omx-comp, omx-deesser, omx-delay, CLAP):
 ## El que no s'ha mesurat
 
 El contenidor no tenia `/dev/cpu_dma_latency`, de manera que no hi havia cap retenció dels estats de repòs de la CPU (vegeu
-[Estats de repòs de la CPU i allotjament de plugins](/ca/notes/cpu-idle-states-and-plugin-hosting)) i el seu límit de temps
+[Estats de repòs de la CPU i allotjament de plugins](/ca/technical-notes/cpu-idle-states-and-plugin-hosting)) i el seu límit de temps
 real era 0, de manera que els fils de PipeWire corrien amb `SCHED_OTHER`: les xifres són més grans i amb més soroll que les
 d'un graf en temps real, igual per a les dues branques. Si una part de l'estalvi és la sortida de l'estat de repòs queda
 obert fins que el mateix banc de proves corri en una màquina amb el dispositiu, a cada nivell de retenció.

@@ -38,7 +38,7 @@ test('a checkout without core built is refused, naming the build', () => {
   try {
     const r = run(dir);
     assert.equal(r.status, 1);
-    assert.match(r.stderr, /packages\/core\/dist\/index\.js.*@freemixer\/server\.\.\." build/);
+    assert.match(r.stderr, /packages\/core\/dist\/index\.js.*@\*\/server\.\.\." build/);
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
@@ -49,7 +49,7 @@ test('a checkout without the row corpus is refused, naming the corpus command', 
   try {
     const r = run(dir);
     assert.equal(r.status, 1);
-    assert.match(r.stderr, /generated\/engine-ui-rows\.json.*pnpm --filter @freemixer\/server corpus/);
+    assert.match(r.stderr, /generated\/engine-ui-rows\.json.*pnpm --filter "@\*\/server" corpus/);
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }

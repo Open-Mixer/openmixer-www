@@ -10,7 +10,7 @@ order: 40
 
 omx-clap-host dona a cada plugin el seu propi client JACK i cada client és un node del graf amb el seu propi despertar a
 cada cicle. La major part del temps d'un cicle se'n va en aquests despertars, no pas en els plugins (vegeu
-[Un sol client JACK per a una cadena](/ca/notes/one-jack-client-for-a-chain)). Un canal amb quatre plugins en sèrie
+[Un sol client JACK per a una cadena](/ca/technical-notes/one-jack-client-for-a-chain)). Un canal amb quatre plugins en sèrie
 desperta quatre nodes. omx-clap-host pot fer córrer una cadena de plugins en un sol client i cridar-los en ordre dins d'una
 sola crida de procés; cal dir-li quines instàncies formen una cadena i en quin ordre i el dimoni les ha de posar en un sol
 worker.

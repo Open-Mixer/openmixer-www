@@ -13,7 +13,7 @@ surfaces:
   console:
     state: released
     version: omx-clap-host 0.27.0
-detail: /notes/instruments-on-a-pi-5
+detail: /technical-notes/instruments-on-a-pi-5
 card:
   en:
     title: Big synths use all four cores

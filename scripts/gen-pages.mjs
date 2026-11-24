@@ -3,7 +3,7 @@
 //
 // Renders the site's markdown pages to the data the app reads:
 //
-//   content/technical-notes/<slug>.<lang>.md     -> app/data/notes/<slug>.json, notes-index.json        the technical notes, /notes/<slug>
+//   content/technical-notes/<slug>.<lang>.md     -> app/data/notes/<slug>.json, notes-index.json        the technical notes, /technical-notes/<slug>
 //   content/projects/<repo>/...        -> app/data/projects/<repo>.json, projects-index.json  each project's documents, /projects/<repo>/<page>
 //
 // A note is written here, in English and in Catalan: the two files of a slug must both be there, carry a
@@ -349,8 +349,8 @@ const { projects, errors: e2 } = renderProjects();
 const errors = [...e1, ...e2];
 // every link a note or a document makes to a note or a project page names one that is published
 const pagesKnown = new Set([
-  ...notes.en.map((n) => `/notes/${n.slug}`),
-  '/notes',
+  ...notes.en.map((n) => `/technical-notes/${n.slug}`),
+  '/technical-notes',
   '/projects',
   ...projects.flatMap((p) => p.pages.map((pg) => `/projects/${p.repo}${pg.slug ? `/${pg.slug}` : ''}`)),
 ]);

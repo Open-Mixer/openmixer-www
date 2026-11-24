@@ -8,7 +8,7 @@ order: 100
 
 plugin-hostd runs a chain in one worker process (grouped) or each plugin in a worker of its own. Zynthian's own hosts sit at
 either end: jalv runs one process per plugin, mod-host every plugin in one process. The figures are in
-[plugin-hostd on a Raspberry Pi 5](/notes/plugin-hostd-on-a-raspberry-pi-5) and on the [benchmarks page](/benchmarks); they
+[plugin-hostd on a Raspberry Pi 5](/technical-notes/plugin-hostd-on-a-raspberry-pi-5) and on the [benchmarks page](/benchmarks); they
 measure the daemon directly on a private JACK graph, not through Zynthian's engine.
 
 ```figure
@@ -33,7 +33,7 @@ shared
   20 s, against 84 099 with one worker per plugin and 72 292 under mod-host.
 - **Crash containment.** A lost worker is restarted by the daemon with the links it made itself, in about 340 ms; jalv and
   mod-host lose the process and nothing brings the plugin back. Inside a chain, a member that aborts leaves the others
-  playing (see [Chains](/notes/chains-plugins-in-series-in-one-worker)). Links made from outside, as Zynthian's routing is,
+  playing (see [Chains](/technical-notes/chains-plugins-in-series-in-one-worker)). Links made from outside, as Zynthian's routing is,
   are not restored by the daemon.
 
 ## What it costs

@@ -12,7 +12,7 @@ surfaces:
     version: zynthian-ui omx-track 2026110701
   console:
     state: none
-detail: /notes/audio-layouts-and-how-the-host-judges-the-fit
+detail: /technical-notes/audio-layouts-and-how-the-host-judges-the-fit
 card:
   en:
     title: Mono effects in a stereo chain

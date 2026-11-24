@@ -186,7 +186,7 @@ La mateixa càrrega DSP als dos amfitrions i entre 43 i 44 MB menys de memòria 
 a programes JACK propis, com els fa córrer Zynthian, sense cap dels dos amfitrions: ZynAddSubFX amb Analog Pad 1 a 0,6 / 1,6
 / 2,6 %, 90 MB; sfizz amb el piano Salamander a 0,9 / 2,9 / 5,1 %, de 86 a 119 MB. Cap dels cinc no ofereix un grup de fils.
 Una repetició d'Odin 2 a plugin-hostd amb una nota va tenir un xrun. Com fan servir els nuclis els instruments és a
-[Instruments en una Pi 5](/ca/notes/instruments-on-a-pi-5).
+[Instruments en una Pi 5](/ca/technical-notes/instruments-on-a-pi-5).
 
 ### On se'n va el temps de la cadena
 

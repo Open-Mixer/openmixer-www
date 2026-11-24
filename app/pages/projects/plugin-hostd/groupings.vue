@@ -46,7 +46,7 @@ const MODES: { key: ModeKey; figure: 'individual' | 'shared' | 'chain' | 'chain-
   { key: 'shared', figure: 'shared', tags: ['a', 'b'], tally: ['a', 'b', 'c'], tradeoff: true },
   { key: 'chain', figure: 'chain', tags: ['a'], tally: ['a', 'b', 'c'], tradeoff: true },
   { key: 'chainAdd', figure: 'chain-add', tags: ['a'], tally: ['a', 'b'], tradeoff: false },
-  { key: 'plan', figure: 'plan', tags: ['a'], tally: [], small: true, tradeoff: true, more: '/notes/the-grouping-planner' },
+  { key: 'plan', figure: 'plan', tags: ['a'], tally: [], small: true, tradeoff: true, more: '/technical-notes/the-grouping-planner' },
   { key: 'pool', figure: 'pool', tags: ['a'], tally: [], tradeoff: true, more: '/projects/plugin-hostd/placement' },
 ];
 

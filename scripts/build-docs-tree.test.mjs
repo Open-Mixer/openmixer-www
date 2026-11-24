@@ -64,6 +64,8 @@ test('a tree built for this base and this list is published', () => {
     assert.ok(existsSync(join(f.dist, '_docs_nuxt/app.js')), "the docs build's assets are on the site");
     assert.equal(readFileSync(join(f.dist, 'index.html'), 'utf8'), '<html>site</html>', "the site's own home page is kept");
     assert.equal(JSON.parse(readFileSync(join(f.dist, '_docs_nuxt/source.json'), 'utf8')).revision, 'abc1234');
+    // the published manifest names the revision, never the private repository it came from
+    assert.doesNotMatch(readFileSync(join(f.dist, '_docs_nuxt/source.json'), 'utf8'), /repository|Open-Mixer\/openmixer/);
   } finally {
     rmSync(f.root, { recursive: true, force: true });
   }

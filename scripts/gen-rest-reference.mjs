@@ -9,7 +9,7 @@
 //   consoleTravelSheet() from packages/core/dist — per-field ranges, enums and per-instance limits
 //                                         (needs @freemixer/core built in the checkout)
 //   generated/engine-ui-rows.json        — every addressable row, its fields and a live sample,
-//                                         written by a booted console: `pnpm --filter @freemixer/server corpus`
+//                                         written by a booted console: `pnpm --filter "@*/server" corpus`
 //   packages/core/src/message-code.ts    — every refusal/undo-label code, doc'd in TSDoc
 //   packages/core/src/message-codes-listed.ts — the list of codes message-code.ts spreads in
 //
@@ -21,6 +21,8 @@
 //   app/data/rest-reference.json
 //   app/data/refusal-codes.json
 
+import { publicSample } from './public-provenance.mjs';
+import { listedCodesOf } from './listed-codes.mjs';
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { resolve, dirname } from 'node:path';
@@ -55,11 +57,11 @@ if (!existsSync(resolve(src, MESSAGE_CODE))) {
 // A checkout is here, so a missing input is a refusal: publishing the old snapshot from a
 // checkout that cannot produce a new one reads exactly like a regeneration that worked.
 if (!existsSync(resolve(src, CORE_DIST))) {
-  console.error(`[gen-rest-reference] ${src} has no ${CORE_DIST}: build core there (pnpm -r --filter "@freemixer/server..." build)`);
+  console.error(`[gen-rest-reference] ${src} has no ${CORE_DIST}: build core there (pnpm -r --filter "@*/server..." build)`);
   process.exit(1);
 }
 if (!existsSync(resolve(src, ROWS))) {
-  console.error(`[gen-rest-reference] ${src} has no ${ROWS}: produce it there (pnpm --filter @freemixer/server corpus)`);
+  console.error(`[gen-rest-reference] ${src} has no ${ROWS}: produce it there (pnpm --filter "@*/server" corpus)`);
   process.exit(1);
 }
 
@@ -106,12 +108,7 @@ function parseMessageCode(text, listedText) {
   // The listed codes live in their own union-merged file since 2026-10-19
   // (LISTED_MESSAGE_CODES, which message-code.ts spreads into its typed list); an older checkout
   // still carries them inline as LISTED_CODES.
-  const listedCodes = listedText
-    ? extractArrayStrings(listedText, /export const LISTED_MESSAGE_CODES = \[/)
-    : extractArrayStrings(text, /const LISTED_CODES = \[/);
-  if (listedCodes.length === 0) {
-    throw new Error('message-code: no listed codes found (neither LISTED_MESSAGE_CODES nor LISTED_CODES)');
-  }
+  const listedCodes = listedCodesOf(listedText, text);
   const undoSetParams = extractArrayStrings(text, /const UNDO_SET_PARAMS = \[/);
   const undoSetCodes = undoSetParams.map((p) => `undo.label.set.${p}`);
 
@@ -319,7 +316,7 @@ function buildRestReference(travelSheet, rowsDoc) {
       demand: !!demand[row.path],
       instances: row.instances || 0,
       fields,
-      sample: row.sample || null,
+      sample: publicSample(row.sample || null),
     };
     if (!families.has(family)) families.set(family, new Map());
     const groups = families.get(family);

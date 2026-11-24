@@ -271,16 +271,16 @@ function buildFromCheckout() {
     execFileSync(command, args, { cwd: stage, stdio: 'inherit', env: { ...process.env, ...env } });
 
   // `website` has no package.json edge to another workspace package (the strata,
-  // `2026-08-26-dependency-model.md`), so `--filter '@freemixer/website...'` selects it alone. What
+  // `2026-08-26-dependency-model.md`), so `--filter '@*/website...'` (any scope) selects it alone. What
   // `pregenerate` reads of the rest of the checkout is source, not a built dist: the feature
   // declarations come from core's import-free `feature-declaration.ts` (openmixer#176). So nothing
-  // else is installed or built: no closure build, which reached @freemixer/declarations, whose
+  // else is installed or built: no closure build, which reached the declarations package, whose
   // build needs the -devel headers a docs runner does not have. Node, pnpm and git are the whole
   // toolchain (scripts/build-docs-tree-clean.test.mjs builds it in a clean fedora:44).
-  const CLOSURE_FILTERS = ['--filter', '@freemixer/website...'];
+  const CLOSURE_FILTERS = ['--filter', '@*/website...'];
   run('pnpm', ['install', '--frozen-lockfile', ...CLOSURE_FILTERS]);
   // `generate` builds the site, with its own base URL and assets dir.
-  run('pnpm', ['--filter', '@freemixer/website', 'generate'], {
+  run('pnpm', ['--filter', '@*/website', 'generate'], {
     NUXT_APP_BASE_URL: baseURL,
     NUXT_APP_BUILD_ASSETS_DIR: DOCS_ASSETS_DIR,
   });
@@ -348,7 +348,7 @@ function emitTree({ built, revision }) {
     cpSync(built, join(out, 'public'), { recursive: true });
     writeFileSync(
       join(out, TREE_META),
-      `${JSON.stringify({ repository: 'Open-Mixer/openmixer', revision, baseURL, listHash, pages: allow.pages.length, builtAt: stamp }, null, 2)}\n`,
+      `${JSON.stringify({ revision, baseURL, listHash, pages: allow.pages.length, builtAt: stamp }, null, 2)}\n`,
     );
     mkdirSync(dirname(emitTo), { recursive: true });
     tarReproducible(emitTo, out, [TREE_META, 'public'], stamp);
@@ -450,7 +450,6 @@ writeFileSync(
   join(dist, MANIFEST),
   `${JSON.stringify(
     {
-      repository: 'Open-Mixer/openmixer',
       revision,
       from: treeDir ? 'docs tree' : 'checkout',
       publishedAt: tree.builtAt ?? stampFor(src),

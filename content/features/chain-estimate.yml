@@ -12,7 +12,7 @@ surfaces:
     version: zynthian-ui omx-track 2026110701
   console:
     state: none
-detail: /notes/the-grouping-planner
+detail: /technical-notes/the-grouping-planner
 card:
   en:
     title: See the cost before you add

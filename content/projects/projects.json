@@ -161,6 +161,15 @@
           "src": "BUILDING.md"
         }
       ]
+    },
+    {
+      "repo": "omx-formats",
+      "commit": "2a0cf09a276831076f40f18fc58d845a7e4a3800",
+      "pages": [
+        {
+          "src": "README.md"
+        }
+      ]
     }
   ]
 }
