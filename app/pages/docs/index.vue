@@ -88,6 +88,11 @@ const faqGroups = computed(() =>
           <LinkCard :title="t('docsIndex.tech.projects.title')" :href="sitePath('/projects')" label="/projects">
             <p>{{ t('docsIndex.tech.projects.body') }}</p>
           </LinkCard>
+          <!-- Written by Open-Mixer/.github's docs-publish.yml at each release tag, not by this
+               build: a full URL, like the package repositories', so the link check lists it. -->
+          <LinkCard :title="t('docsIndex.tech.reference.title')" href="https://www.openmixer.org/reference/" label="/reference/">
+            <p>{{ t('docsIndex.tech.reference.body') }}</p>
+          </LinkCard>
           <LinkCard :title="t('docsIndex.tech.notes.title')" :href="sitePath('/technical-notes')" label="/technical-notes">
             <p>{{ t('docsIndex.tech.notes.body') }}</p>
           </LinkCard>

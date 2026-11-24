@@ -95,6 +95,10 @@
         "title": "La documentació dels projectes",
         "body": "El README, la guia de compilació i les referències de cada projecte: les biblioteques, els plugins, l'amfitrió de plugins i el seu protocol."
       },
+      "reference": {
+        "title": "La referència generada de cada versió",
+        "body": "La referència de l'API que cada biblioteca, cada plugin i l'amfitrió de plugins generen en publicar una versió: un arbre per versió a /reference/<repositori>/<versió>/ i la més nova a latest/."
+      },
       "notes": {
         "title": "Notes tècniques",
         "body": "Com s'han mesurat i decidit les parts: la qualificació, l'amfitrió de plugins, Zynthian en una Pi 5, el nucli de l'amfitrió."

@@ -95,6 +95,10 @@
         "title": "The projects' documentation",
         "body": "Each project's README, build guide and references: the libraries, the plugins, the plugin host and its protocol."
       },
+      "reference": {
+        "title": "Each release's generated reference",
+        "body": "The API reference every library, plugin and the plugin host generate at a release, one tree per version under /reference/<repository>/<version>/ and the newest at latest/."
+      },
       "notes": {
         "title": "Technical notes",
         "body": "How the parts were measured and decided: qualification, the plugin host, Zynthian on a Pi 5, the host core."
