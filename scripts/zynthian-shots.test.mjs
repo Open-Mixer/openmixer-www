@@ -15,11 +15,11 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
 const MANIFEST = 'app/data/zynthian-shots.json';
 const PAGE = 'app/pages/docs/zynthian.vue';
-const IDS = ['s1', 's2', 's3', 's4', 's5', 's6', 's7'];
+const IDS = ['s1', 's2', 's3', 's4', 's5', 's6', 's7', 's8', 's9', 's10', 's11'];
 
 const shots = () => JSON.parse(read(MANIFEST)).shots;
 
-test('the page lists the seven shots s1..s7, every one taken', () => {
+test('the page lists the eleven shots s1..s11, every one taken', () => {
   assert.ok(existsSync(join(ROOT, MANIFEST)), `${MANIFEST} is there`);
   const s = shots();
   assert.deepEqual(s.map((x) => x.id), IDS);
@@ -29,7 +29,7 @@ test('the page lists the seven shots s1..s7, every one taken', () => {
 
 test('each shot taken is a file the site serves', () => {
   for (const x of shots().filter((x) => x.file !== null)) {
-    assert.match(x.file, /^\/docs\/zynthian\/shots\/s[0-9]-[a-z0-9-]+\.(png|webp)$/, `${x.id}: ${x.file}`);
+    assert.match(x.file, /^\/docs\/zynthian\/shots\/s[0-9]+-[a-z0-9-]+\.(png|webp)$/, `${x.id}: ${x.file}`);
     assert.ok(existsSync(join(ROOT, 'public', x.file)), `${x.id}: public${x.file} is there`);
   }
 });
@@ -66,6 +66,7 @@ test('the page places each shot once, where its text is', () => {
   after('s3', "t('docsZynthian.use.strip.p1')");
   after('s7', "t('docsZynthian.use.restore.p1')");
   after('s4', "t('docsZynthian.languages.codes')");
+  for (const id of ['s8', 's9', 's10', 's11']) after(id, "t('docsZynthian.look.p3')");
 });
 
 test('the pictures borrowed from the technical note are gone from the page', () => {

@@ -32,6 +32,12 @@ const poolOptions = [
 ];
 
 /** The test plugin's mean block cost with the helper threads off and on, 48 kHz, 256 frames. */
+/** The look is one call: its colours and ZYNTHIAN_UI_LOOK come from the look file; the user interface reads them at start. */
+const lookLines = [
+  '/zynthian/zynthian-sys/sbin/omx-ui-look.sh openmixer-vintage   # or: stock',
+  'systemctl restart zynthian',
+];
+
 const poolRows = [
   { voices: '8', off: '527.9', on: '155.9', gain: '3.4x' },
   { voices: '24', off: '1583.4', on: '418.7', gain: '3.8x' },
@@ -126,6 +132,17 @@ useSeoMeta({
           <p>{{ t('docsZynthian.use.restore.p1') }}</p>
           <ZynthianShot id="s7" />
           <p><a href="https://github.com/Open-Mixer/zynthian-ui/blob/openmixer/docs/mixer-strip-on-restore.md" class="text-accent hover:underline">{{ t('docsZynthian.use.restore.more') }}</a></p>
+          <h3 id="look" class="pt-2 font-display text-lg font-semibold text-ink">{{ t('docsZynthian.look.title') }}</h3>
+          <p>{{ t('docsZynthian.look.p1') }}</p>
+          <p>{{ t('docsZynthian.look.p2') }}</p>
+          <CodeBlock :lines="lookLines" />
+          <p>{{ t('docsZynthian.look.p3') }}</p>
+          <div class="grid gap-5 sm:grid-cols-2">
+            <ZynthianShot id="s8" />
+            <ZynthianShot id="s9" />
+            <ZynthianShot id="s10" />
+            <ZynthianShot id="s11" />
+          </div>
           <h3 class="pt-2 font-display text-lg font-semibold text-ink">{{ t('docsZynthian.mixbus.title') }}</h3>
           <p>{{ t('docsZynthian.mixbus.p1') }}</p>
           <ol class="list-decimal space-y-2 pl-6">
