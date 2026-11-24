@@ -15,6 +15,7 @@ headings.json
 img
 api-docs
 openapi.json
+schema
 docs
 manual
 faq
