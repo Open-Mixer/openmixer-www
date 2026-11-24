@@ -29,6 +29,24 @@
           "id": "https://openmixer.org/schema/omx-contract/v3/shapes/travel.schema.json"
         }
       ]
+    },
+    {
+      "repo": "omx-panel",
+      "package": "@openmixer/omx-panel",
+      "version": "0.16.0",
+      "integrity": "sha512-gv6e9P9734RJM5CJw7cQaJQVZIvnZghCfOP0KgIFULo5tGDSEBoOemN+MlON6XQ4I/sB7V7UL3gTJt8w9i8eKQ==",
+      "files": [
+        {
+          "from": "dist/schema/panel.schema.json",
+          "at": "omx-panel/panel.schema.json",
+          "id": "https://openmixer.org/schema/omx-panel/panel.schema.json"
+        },
+        {
+          "from": "dist/schema/skin-package.schema.json",
+          "at": "omx-panel/skin-package.schema.json",
+          "id": "https://openmixer.org/schema/omx-panel/skin-package.schema.json"
+        }
+      ]
     }
   ]
 }
