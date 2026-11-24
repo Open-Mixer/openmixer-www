@@ -1,6 +1,7 @@
 # The top-level paths of https://open-mixer.github.io/ that this site owns. The deploy
 # (scripts/deploy-root.sh) replaces exactly these in Open-Mixer/open-mixer.github.io and
-# nothing else; the package workflows own rpm/, deb/, the keys and .nojekyll.
+# nothing else; the package workflows own rpm/, deb/, the keys and .nojekyll, and
+# Open-Mixer/.github's docs-publish.yml owns reference/ (scripts/deploy-root.sh refuses it here).
 # A build that produces a top-level path missing here fails the deploy: add it here, on
 # purpose, in a reviewed change.
 index.html

@@ -7,7 +7,7 @@
 #   scripts/deploy-root.sh <site-dir> <pages-checkout> [--publish]
 #
 # Only the top-level paths listed in deploy/site-owns.txt are replaced. Everything else in
-# the checkout (rpm/, deb/, staging/, the keys, .nojekyll, README.md) is left alone, and the staged
+# the checkout (rpm/, deb/, staging/, reference/, the keys, .nojekyll, README.md) is left alone, and the staged
 # change is checked before anything is committed: a path outside the list, or any change
 # under a package path, stops the deploy.
 #
@@ -30,8 +30,10 @@ git -C "$pages" rev-parse --git-dir >/dev/null || die "$pages is not a git check
 mapfile -t owns < <(grep -v '^\s*\(#\|$\)' "$owns_file")
 [ "${#owns[@]}" -gt 0 ] || die "empty allow-list"
 
-# Paths the package workflows write, or that the Pages host needs. Never the site's.
-protected_re='^(rpm|deb|staging)(/|$)|^\.nojekyll$|^README\.md$|^\.git(hub)?(/|$)|^CNAME$|\.repo$|\.asc$|RPM-GPG-KEY'
+# Paths the package workflows write, the generated reference Open-Mixer/.github's
+# docs-publish.yml writes (reference/<repo>/<version>/), or that the Pages host needs.
+# Never the site's.
+protected_re='^(rpm|deb|staging|reference)(/|$)|^\.nojekyll$|^README\.md$|^\.git(hub)?(/|$)|^CNAME$|\.repo$|\.asc$|RPM-GPG-KEY'
 
 for name in "${owns[@]}"; do
   [[ "$name" =~ $protected_re ]] && die "allow-list names a protected path: $name"
@@ -65,8 +67,8 @@ if [ -n "$bad" ]; then
   echo "$bad" | head -20 >&2
   die "the change touches paths the site does not own (above); nothing was committed"
 fi
-if ! git -C "$pages" diff --cached --quiet -- rpm deb staging .nojekyll README.md; then
-  die "the change touches rpm/, deb/, staging/, .nojekyll or README.md; nothing was committed"
+if ! git -C "$pages" diff --cached --quiet -- rpm deb staging reference .nojekyll README.md; then
+  die "the change touches rpm/, deb/, staging/, reference/, .nojekyll or README.md; nothing was committed"
 fi
 
 if git -C "$pages" diff --cached --quiet; then

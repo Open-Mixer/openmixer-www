@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-// Proves the deploy leaves the package paths alone: rpm/, deb/ and staging/ (the staging
-// channel of a release wave) are never the site's, whatever the allow-list or the build say.
+// Proves the deploy leaves the paths other workflows write alone: rpm/, deb/, staging/ (the
+// staging channel of a release wave) and reference/ (every repository's generated reference,
+// written by Open-Mixer/.github's docs-publish.yml) are never the site's, whatever the
+// allow-list or the build say.
 // Run: node --test scripts/
 
 import { test } from 'node:test';
@@ -12,7 +14,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const script = join(dirname(fileURLToPath(import.meta.url)), 'deploy-root.sh');
-const PACKAGE_PATHS = ['rpm', 'deb', 'staging'];
+const PACKAGE_PATHS = ['rpm', 'deb', 'staging', 'reference'];
 
 // A copy of the script beside its own allow-list, a built site and a pages checkout that
 // already serves one file under each package path.
@@ -65,7 +67,7 @@ test('a plain deploy replaces the site and leaves every package path as it was',
   for (const path of PACKAGE_PATHS) assert.equal(readFileSync(served(pages, path), 'utf8'), `${path} package\n`);
 });
 
-test('the last check before the commit names staging beside rpm and deb', () => {
+test('the last check before the commit names staging and reference beside rpm and deb', () => {
   const text = readFileSync(script, 'utf8');
   const line = text.split('\n').find((l) => l.includes('diff --cached --quiet -- '));
   assert.ok(line, 'the check exists');
