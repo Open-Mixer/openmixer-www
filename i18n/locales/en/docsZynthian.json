@@ -123,20 +123,20 @@
         "caption": "The chain after a restart, every processor back"
       },
       "menuVintage": {
-        "alt": "Zynthian's main menu in the vintage look: dark tiles, orange selection frame",
-        "caption": "The main menu in the vintage look"
+        "alt": "Zynthian's main menu in the vintage skin: dark tiles, orange selection frame",
+        "caption": "The main menu in the vintage skin"
       },
       "menuStock": {
-        "alt": "Zynthian's main menu in the stock look: grey tiles, yellow selection frame",
-        "caption": "The same main menu in the stock look"
+        "alt": "Zynthian's main menu in the stock skin: grey tiles, yellow selection frame",
+        "caption": "The same main menu in the stock skin"
       },
       "controlVintage": {
-        "alt": "The control screen of MDA Piano in the vintage look: page list on the left, panel knobs and a switch on the right",
-        "caption": "The control screen in the vintage look: the controllers are drawn as panel knobs"
+        "alt": "The control screen of MDA Piano in the vintage skin: page list on the left, panel knobs and a switch on the right",
+        "caption": "The control screen in the vintage skin: the controllers are drawn as panel knobs"
       },
       "controlStock": {
-        "alt": "The control screen of MDA Piano in the stock look: page list on the left, red arc dials on the right",
-        "caption": "The same control screen in the stock look"
+        "alt": "The control screen of MDA Piano in the stock skin: page list on the left, red arc dials on the right",
+        "caption": "The same control screen in the stock skin"
       }
     },
     "voices": {
@@ -246,10 +246,10 @@
       "more": "Per owner and per language: what to install, the entry point and one call, copied from each repository"
     },
     "look": {
-      "title": "The look: vintage by default, stock when you choose it",
-      "p1": "Open-Mixer's zynthian-ui draws Zynthian's screens in the console's own look: dark panels, orange for what is on, and the controller widgets drawn through omx-panel's renderer as small panel knobs and switches. It is the default of the fork. Stock is Zynthian's own drawing, to the pixel, and stays selectable.",
-      "p2": "The look is one call of zynthian-sys's omx-ui-look.sh: it writes the colours and font of the chosen look into zynthian_envars.sh together with ZYNTHIAN_UI_LOOK, which says how the controller widgets are drawn. Zynthian's web configuration page for the UI also offers the preset.",
-      "p3": "The user interface reads both when it starts, so restart it after the change. The pictures below are the same two screens in each look, taken on a Raspberry Pi 5."
+      "title": "The skin: vintage by default, stock when you choose it",
+      "p1": "How Zynthian's screens are drawn is a skin. A skin chooses how each kind of control is drawn, a knob, a switch, a meter, and the colours and font it is painted with; it never changes which controls there are, their order or their pages. Vintage is a skin, and the one a fresh install selects: dark panels, orange for what is on, and the controllers drawn as small panel knobs and switches. Stock is another skin, Zynthian's own drawing to the pixel, and stays selectable.",
+      "p2": "The skin is one call of zynthian-sys's omx-ui-look.sh: it writes the colours and font of the chosen skin into zynthian_envars.sh together with ZYNTHIAN_UI_LOOK, which names the skin the controllers are drawn in. Zynthian's web configuration page for the UI also offers each skin as a preset.",
+      "p3": "The user interface reads both when it starts, so restart it after the change. The pictures below are the same two screens in each skin, taken on a Raspberry Pi 5."
     }
   }
 }
