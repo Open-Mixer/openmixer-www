@@ -276,7 +276,7 @@ function buildFromCheckout() {
   // declarations come from core's import-free `feature-declaration.ts` (openmixer#176). So nothing
   // else is installed or built: no closure build, which reached the declarations package, whose
   // build needs the -devel headers a docs runner does not have. Node, pnpm and git are the whole
-  // toolchain (scripts/build-docs-tree-clean.test.mjs builds it in a clean fedora:44).
+  // toolchain (scripts/build-docs-tree-clean.test.mjs builds it in a clean fedora:45).
   const CLOSURE_FILTERS = ['--filter', '@*/website...'];
   run('pnpm', ['install', '--frozen-lockfile', ...CLOSURE_FILTERS]);
   // `generate` builds the site, with its own base URL and assets dir.

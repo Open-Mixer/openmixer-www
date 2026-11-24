@@ -2,13 +2,14 @@
 //
 // The BUILD half of build-docs-tree.mjs needs nothing but Node, pnpm and git: the site reads the
 // feature declarations from the openmixer checkout's source (openmixer#176), so the build installs
-// and generates @freemixer/website alone. Building catalog's closure reached @freemixer/declarations,
+// and generates the website package alone (`@*/website`, any scope). Building catalog's closure reached the
+// declarations package,
 // whose build runs the protocol generator and the omx-contract render and needs the -devel headers:
 // a docs build failed on a runner without them (www-docs-pin run 43483010929).
 //
-// - static, always: the build installs @freemixer/website alone and runs no closure build.
+// - static, always: the build installs the website package alone and runs no closure build.
 // - the clean container, when OPENMIXER_SRC names an openmixer checkout and podman is there: in
-//   fedora:44 with Node 24 (and its ICU data), npm, pnpm and git only (no C toolchain, no -devel package), the build
+//   fedora:45 with Node 26 (and its ICU data), npm, pnpm and git only (no C toolchain, no -devel package), the build
 //   emits a docs tree with the manual in it. PUBLIC_GUARD_LIST names the private list, as for any build.
 //
 // Run: node --test scripts/build-docs-tree-clean.test.mjs
@@ -25,9 +26,9 @@ import { fileURLToPath } from 'node:url';
 const www = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const script = readFileSync(join(www, 'scripts/build-docs-tree.mjs'), 'utf8');
 
-test('the docs build installs and generates @freemixer/website alone, with no closure build', () => {
+test('the docs build installs and generates the website package alone, with no closure build', () => {
   const filters = /const CLOSURE_FILTERS = \[([^\]]*)\]/.exec(script)?.[1] ?? '';
-  assert.match(filters, /'--filter', '@freemixer\/website\.\.\.'/);
+  assert.match(filters, /'--filter', '@\*\/website\.\.\.'/);
   assert.doesNotMatch(filters, /catalog|core|declarations/, `the install selects more than the website: ${filters}`);
   assert.doesNotMatch(script, /run\('pnpm', \['-r'[^\]]*'build'\]\)/, 'a closure build is still run');
 });
@@ -37,14 +38,14 @@ const guard = process.env.PUBLIC_GUARD_LIST;
 const podman = spawnSync('podman', ['--version']).status === 0;
 const why = !src ? 'OPENMIXER_SRC is not set' : !guard ? 'PUBLIC_GUARD_LIST is not set' : !podman ? 'no podman' : '';
 
-test('the docs build succeeds in a clean fedora:44 with no toolchain and no -devel package', { skip: why || false, timeout: 1_800_000 }, () => {
+test('the docs build succeeds in a clean fedora:45 with no toolchain and no -devel package', { skip: why || false, timeout: 1_800_000 }, () => {
   const out = mkdtempSync(join(tmpdir(), 'docs-tree-clean-'));
   const pm = JSON.parse(readFileSync(join(src, 'package.json'), 'utf8')).packageManager ?? 'pnpm@10';
   const inside = [
     'set -euo pipefail',
-    // Node 24, as the site's CI; full-i18n is Node's ICU data (without it Intl.Segmenter, which nuxt
+    // Node 26, the floor everywhere; full-i18n is Node's ICU data (without it Intl.Segmenter, which nuxt
     // generate calls, segfaults in Fedora's libnode), not a toolchain
-    'dnf -y -q install --setopt=install_weak_deps=False nodejs24 nodejs24-npm nodejs24-full-i18n git-core >/dev/null',
+    'dnf -y -q install --setopt=install_weak_deps=False nodejs26 nodejs26-npm nodejs26-full-i18n git-core >/dev/null',
     `npm install -g -s ${pm} >/dev/null`,
     // the point of the test: nothing that compiles C, no -devel header
     'for p in gcc gcc-c++ make pipewire-devel; do ! rpm -q "$p" >/dev/null 2>&1 || { echo "the image has $p"; exit 9; }; done',
@@ -52,7 +53,7 @@ test('the docs build succeeds in a clean fedora:44 with no toolchain and no -dev
     'OPENMIXER_SRC=/src PUBLIC_GUARD_LIST=/guard.json NODE_AUTH_TOKEN=unused node scripts/build-docs-tree.mjs --emit /out/tree.tar.gz',
   ].join('\n');
   const r = spawnSync('podman', ['run', '--rm', '-v', `${www}:/www-ro:ro,Z`, '-v', `${resolve(src)}:/src:ro,Z`,
-    '-v', `${resolve(www, guard)}:/guard.json:ro,Z`, '-v', `${out}:/out:Z`, 'registry.fedoraproject.org/fedora:44', 'bash', '-c', inside],
+    '-v', `${resolve(www, guard)}:/guard.json:ro,Z`, '-v', `${out}:/out:Z`, 'registry.fedoraproject.org/fedora:45', 'bash', '-c', inside],
     { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
   try {
     assert.equal(r.status, 0, `the clean build failed (rc ${r.status}):\n${(r.stdout + r.stderr).slice(-3000)}`);
