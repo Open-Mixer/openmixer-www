@@ -38,6 +38,7 @@ const siteChapters = computed(() =>
     ['pluginsShipped', '/docs/plugins-shipped'],
     ['pluginsThirdParty', '/docs/plugins-third-party'],
     ['pluginsPanels', '/docs/plugins-panels'],
+    ['panelsCurves', '/docs/panels-curves'],
     ['pluginsNames', '/docs/plugins-names'],
     ['groupedVsProcesses', '/docs/grouped-vs-processes'],
     ['reacRole', '/docs/reac-role'],

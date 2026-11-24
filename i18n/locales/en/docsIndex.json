@@ -42,6 +42,10 @@
         "title": "A panel for any plugin",
         "blurb": "How omx-panel draws a MOD GUI, controller pages and a host layout from what a plugin declares."
       },
+      "panelsCurves": {
+        "title": "Panels, curves and the analyser",
+        "blurb": "What a plugin's pedal shows, how to read its curves, and the analyser, with real screenshots."
+      },
       "pluginsNames": {
         "title": "Names reference",
         "blurb": "Repository, pkg-config, RPM, DEB and npm names of every piece you can use on its own."
