@@ -222,7 +222,7 @@ Els registres de qualificació i el fitxer d'empremtes que llegeix el dimoni.
 
 | llenguatge | instal·lació | punt d'entrada |
 |---|---|---|
-| TypeScript | npm `@openmixer/plugin-qualify`; el porta el paquet `plugin-qualify` | `parsePinLine`, `pinLine`; `recordFigures`; `readDistributedLayer` |
+| TypeScript | npm `@openmixer/plugin-qualify`; el porta el paquet `plugin-qualify` | `parsePinLine`, `pinLine`; `recordFigures` |
 | dades | `plugin-qualify` les escriu, `plugin-qualification-records` les distribueix | `/var/lib/omx/qualified.pins`, `/var/lib/omx/qualification/`, `/usr/share/omx/qualification/` |
 
 Una línia d'empremta, de `src/pins-file.test.ts:89`:
@@ -237,7 +237,7 @@ Les xifres d'un registre, de `src/record-figures.test.ts:28`:
 const figures = recordFigures(rec, 48000, 128);
 ```
 
-`readDistributedLayer`: cap exemple al repositori. No hi ha cap lector en Python de registres ni del fitxer d'empremtes.
+Els registres mateixos són al magatzem de qualificació, `/var/lib/omx/qualification/qualification.sqlite` en una instal·lació de sistema, que plugin-qualify llegeix amb `plugin-qualification-db` i escriu amb `plugin-qualification-db-write` (tots dos de plugin-db-qualification). Aquest paquet no té cap lector en Python de registres ni del fitxer d'empremtes.
 
 ## omx-panel
 
@@ -296,7 +296,6 @@ const clap_plugin_t *delay = f->create_plugin(f, host, "org.openmixer.delay");
   fork de Zynthian els escriu com a text en unes poques línies llistades, cadascuna amb la incidència del responsable:
   quins refusos són transitoris (plugin-hostd-protocol), els verbs i els codis de resposta al client en Python
   (plugin-hostd-protocol) i els motius d'agrupació de `grouping.json` (plugin-hostd).
-- L'exportació `/validate` d'omx-contract, el seu `omx_contract.py` generat i el `readDistributedLayer` de plugin-qualify
-  no tenen cap exemple als seus repositoris.
+- L'exportació `/validate` d'omx-contract i el seu `omx_contract.py` generat no tenen cap exemple al seu repositori.
 - Els bessons en TypeScript d'omx-dsp i el client en TypeScript de plugin-hostd només són a npm, no als paquets rpm ni
   deb; el bessó en TypeScript de plugin-db és privat.
