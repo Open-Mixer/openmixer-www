@@ -5,13 +5,23 @@
     {
       "repo": "omx-contract",
       "package": "@openmixer/omx-contract",
-      "version": "3.19.1",
-      "integrity": "sha512-TQlWpFb10L5U+jVQZKPtDXPo6q51+N0nwsRUc7pv1/KUqOo/ljDDWlJG405VsLD8BZwSGeCmaPFeQ6z/HpSMYQ==",
+      "version": "3.21.0",
+      "integrity": "sha512-WegzhmYzxsMksfp3iq8bSQEarPhoHV/QHsNvJsy5wMxBFzvZkG4RYUEdUSkbMXLupQwK0byJooSPeUmIGIGlqQ==",
       "files": [
         {
           "from": "schema/omx-contract.schema.json",
           "at": "omx-contract/v3/omx-contract.schema.json",
           "id": "https://openmixer.org/schema/omx-contract/v3/omx-contract.schema.json"
+        },
+        {
+          "from": "schema/domain.schema.json",
+          "at": "omx-contract/v3/domain.schema.json",
+          "id": "https://openmixer.org/schema/omx-contract/v3/domain.schema.json"
+        },
+        {
+          "from": "share/omx-contract/omx-vocabulary.schema.json",
+          "at": "omx-contract/v3/omx-vocabulary.schema.json",
+          "id": "https://openmixer.org/schema/omx-contract/v3/omx-vocabulary.schema.json"
         },
         {
           "from": "shapes/travel.schema.json",
