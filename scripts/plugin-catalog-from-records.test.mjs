@@ -57,7 +57,7 @@ function fixture() {
   const dir = mkdtempSync(join(tmpdir(), 'catalog-gen-'));
   const set = join(dir, 'records/rpi5/demo');
   mkdirSync(set, { recursive: true });
-  const probe = JSON.stringify({ grid: [{ rate: 48000, quantum: 512, cost: { unit: 'ns-per-sample' } }] });
+  const probe = JSON.stringify({ format: 'plugin-hostd.probe-output', formatVersion: '2.0', grid: [{ rate: 48000, quantum: 512, cost: { unit: 'nsPerSample' } }] });
   writeFileSync(join(set, 'urn_demo@1.0-aaaaaaaaaaaa.default.probe.json'), probe);
   writeFileSync(join(set, 'urn_demo@1.0-aaaaaaaaaaaa.default.qualification.json'), JSON.stringify({
     schema: 'plugin-qualify.qualification-record/1',
@@ -106,15 +106,29 @@ test('the data is written, --verify passes on it and fails when the data or the 
   assert.equal(JSON.parse(readFileSync(join(site, 'plugin-catalog/pin.json'), 'utf8')).commit, git('rev-parse', 'HEAD').trim());
 });
 
-test('a probe output that does not state ns-per-sample is refused', () => {
+/** The fixture with its probe output replaced by `doc`, run to --sync. */
+function withProbe(doc) {
   const { dir, run, git } = fixture();
-  const f = join(dir, 'records/rpi5/demo/urn_demo@1.0-aaaaaaaaaaaa.default.probe.json');
-  writeFileSync(f, JSON.stringify({ grid: [{ rate: 48000, quantum: 512, cost: { unit: 'cycles' } }] }));
+  writeFileSync(join(dir, 'records/rpi5/demo/urn_demo@1.0-aaaaaaaaaaaa.default.probe.json'), JSON.stringify(doc));
   git('add', '-A');
-  git('commit', '-q', '-m', 'unit');
-  const r = run('--sync', git('rev-parse', 'HEAD').trim());
-  assert.equal(r.status, 1);
-  assert.match(r.stderr, /ns-per-sample/);
+  git('commit', '-q', '-m', 'probe');
+  return run('--sync', git('rev-parse', 'HEAD').trim());
+}
+
+test('a probe output that does not state nsPerSample is refused, and so is the format 1 word ns-per-sample', () => {
+  for (const unit of ['cycles', 'ns-per-sample']) {
+    const r = withProbe({ format: 'plugin-hostd.probe-output', formatVersion: '2.0', grid: [{ rate: 48000, quantum: 512, cost: { unit } }] });
+    assert.equal(r.status, 1, unit);
+    assert.match(r.stderr, /is not stated in nsPerSample by the probe output/);
+  }
+});
+
+test('a probe output of format 1 is refused: the records are read re-cut to format 2, never in both spellings', () => {
+  for (const formatVersion of ['1.4', undefined, '3.0']) {
+    const r = withProbe({ format: 'plugin-hostd.probe-output', formatVersion, grid: [{ rate: 48000, quantum: 512, cost: { unit: 'nsPerSample' } }] });
+    assert.equal(r.status, 1, String(formatVersion));
+    assert.match(r.stderr, /its probe output is format .*, not 2\.x/);
+  }
 });
 
 test('--sync wants a full commit', () => {

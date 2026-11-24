@@ -51,6 +51,10 @@ const COMPARISON_SUMMARY_SCHEMA = 'plugin-qualify.comparison-summary/1';
 export const OUR_HOSTS = ['omx-clap-host', 'plugin-hostd'];
 export const REFERENCE_HOSTS = ['mod-host', 'jalv'];
 const COMPARE_HOSTS = [...OUR_HOSTS, ...REFERENCE_HOSTS];
+// Probe output format 2 (Open-Mixer/plugin-hostd#269): the cost unit is omx-contract's RESOURCE_UNITS id nsPerSample,
+// where format 1 wrote ns-per-sample. Only format 2 is read: the records are re-cut to it, never read in both spellings.
+const PROBE_FORMAT_VERSION = /^2\.[0-9]+$/;
+const PROBE_COST_UNIT = 'nsPerSample';
 const RECORD_SCHEMA = 'plugin-qualify.qualification-record/1';
 const PROVENANCE_SCHEMA = 'plugin-qualify.distributed-provenance/1';
 const TIER_KEY = { 'in-process': 'inProcess', isolated: 'isolated' };
@@ -122,7 +126,7 @@ function cells(rec, probe, where) {
     const c = g.cost;
     if (c && out.cpu === null) {
       const pg = (probe.grid ?? []).find((x) => x.rate === g.rate && x.quantum === g.quantum);
-      if (pg?.cost?.unit !== 'ns-per-sample') fail(where, `its cost at ${g.rate}/${g.quantum} is not stated in ns-per-sample by the probe output`);
+      if (pg?.cost?.unit !== PROBE_COST_UNIT) fail(where, `its cost at ${g.rate}/${g.quantum} is not stated in ${PROBE_COST_UNIT} by the probe output`);
       if (!(c.percentile?.p === 95)) fail(where, 'its cost has no 95th percentile');
       out.cpu = { rate: g.rate, quantum: g.quantum, median: c.median, p95: c.percentile.value };
     }
@@ -247,6 +251,7 @@ export function readSet(dir, label) {
     const rec = JSON.parse(readFileSync(join(dir, name), 'utf8'));
     if (rec.schema !== RECORD_SCHEMA) fail(where, `schema is ${JSON.stringify(rec.schema)}`);
     const probe = JSON.parse(readFileSync(join(dir, rec.probe.file), 'utf8'));
+    if (!PROBE_FORMAT_VERSION.test(String(probe.formatVersion))) fail(where, `its probe output is format ${JSON.stringify(probe.formatVersion)}, not 2.x`);
     const offer = name.slice(0, -RECORD.length).split('.').pop();
     const { verdict, tiers, reason } = recordVerdict(rec, where);
     const key = `${rec.plugin.format}\u0000${rec.plugin.id}`;
