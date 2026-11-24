@@ -38,8 +38,8 @@
         "p1": "Three settings, each undone by setting it back:"
       },
       "store": {
-        "title": "An install older than plugin-qualify 0.21.2",
-        "p1": "plugin-qualify keeps its records in the qualification store, /var/lib/omx/qualification/qualification.sqlite, and has no qualification_dir setting any more. The installer writes /etc/omx/qualify.conf once and an upgrade leaves it as it is, so a Pi installed earlier still names qualification_dir there and the qualification sync refuses to run: it says qualify.conf:12: qualification_dir is not a setting, and exits 2. Remove the line by hand, as root, and start the sync again:",
+        "title": "A qualify.conf that still carries qualification_dir",
+        "p1": "From plugin-qualify 0.21.2 on, the records are in the qualification store, /var/lib/omx/qualification/qualification.sqlite, and qualification_dir is not a setting any more. The installer writes /etc/omx/qualify.conf once and an upgrade leaves it as it is, so any install whose qualify.conf still has a qualification_dir line keeps it, and the qualification sync refuses to run. It prints plugin-qualify-sync: /etc/omx/qualify.conf:12: qualification_dir is not a setting (the number is the line's) and exits 2. Remove the line by hand, as root, and start the sync again:",
         "p2": "The records an older qualification_dir holds are not read, imported or removed: the sync starts its state afresh and goes through every plugin again, in the background."
       }
     },

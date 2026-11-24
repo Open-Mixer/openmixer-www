@@ -24,7 +24,7 @@ const switches = [
   'grouping on',
 ];
 
-/** An install older than plugin-qualify 0.21.2: its qualify.conf still names qualification_dir, which the sync refuses. */
+/** A qualify.conf that still names qualification_dir, which plugin-qualify-sync refuses from 0.21.2 on. */
 const storeFix = [
   "sudo sed -i '/^qualification_dir /d' /etc/omx/qualify.conf",
   'sudo systemctl start plugin-qualify-sync.service',

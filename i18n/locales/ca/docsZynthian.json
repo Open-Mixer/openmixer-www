@@ -38,8 +38,8 @@
         "p1": "Tres paràmetres; cadascun es desfà tornant-lo al valor d'abans:"
       },
       "store": {
-        "title": "Una instal·lació anterior a plugin-qualify 0.21.2",
-        "p1": "plugin-qualify desa els registres al magatzem de qualificació (/var/lib/omx/qualification/qualification.sqlite) i ja no té el paràmetre qualification_dir. L'instal·lador escriu /etc/omx/qualify.conf una sola vegada i una actualització el deixa tal com és; per tant, una Pi instal·lada abans encara hi anomena qualification_dir i la sincronització de la qualificació es nega a funcionar: diu qualify.conf:12: qualification_dir is not a setting i surt amb el codi 2. Com a root, esborreu la línia a mà i torneu a engegar la sincronització:",
+        "title": "Un qualify.conf que encara porta qualification_dir",
+        "p1": "A partir de plugin-qualify 0.21.2 els registres són al magatzem de qualificació (/var/lib/omx/qualification/qualification.sqlite) i qualification_dir ja no és cap paràmetre. L'instal·lador escriu /etc/omx/qualify.conf una sola vegada i una actualització el deixa tal com és; per tant, qualsevol instal·lació amb una línia qualification_dir al qualify.conf la conserva i la sincronització de la qualificació es nega a funcionar. Mostra plugin-qualify-sync: /etc/omx/qualify.conf:12: qualification_dir is not a setting (el número és el de la línia) i surt amb el codi 2. Com a root, esborreu la línia a mà i torneu a engegar la sincronització:",
         "p2": "Els registres que conté un qualification_dir antic no es llegeixen, no s'importen ni s'esborren: la sincronització comença el seu estat de nou i torna a passar per tots els plugins, en segon pla."
       }
     },

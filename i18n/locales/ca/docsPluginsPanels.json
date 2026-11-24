@@ -15,7 +15,7 @@
       "modgui": "una <strong>MOD GUI</strong>, el format que dibuixen MOD i Zynthian;",
       "controller": "pàgines per a un controlador, vuit controls per pàgina;",
       "host": "una disposició per a un host que dibuixa el seu propi panell.",
-      "look": "Cada panell es dibuixa amb el skin que té triat el seu amfitrió: vintage (el que tria una instal·lació nova) o el pla."
+      "look": "Cada panell es dibuixa amb el skin que té triat el seu amfitrió: default, 3d o vintage (el que tria una instal·lació nova); a Zynthian, també stock."
     },
     "steps": {
       "title": "Els tres passos.",

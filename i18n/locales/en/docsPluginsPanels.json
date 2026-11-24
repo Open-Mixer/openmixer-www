@@ -15,7 +15,7 @@
       "modgui": "a <strong>MOD GUI</strong>, the format MOD and Zynthian draw;",
       "controller": "pages for a controller, eight controls to a page;",
       "host": "a layout for a host that draws its own panel.",
-      "look": "Every panel is drawn in the skin its host is set to: vintage, the skin a fresh install selects, or the flat one."
+      "look": "Every panel is drawn in the skin its host is set to: default, 3d or vintage (the one a fresh install selects), and on Zynthian also stock."
     },
     "steps": {
       "title": "The three steps.",
