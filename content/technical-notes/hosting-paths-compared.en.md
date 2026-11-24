@@ -13,7 +13,7 @@ order: 140
 | mod-host | mod-host 0.10.6 (the distribution's package), the LV2 build, one JACK client per plugin |
 | omx-clap-host | the CLAP build, one JACK client per plugin |
 | the adapter | the same omx-clap-host, the LV2 build through libomx-clap-lv2 |
-| in-process CLAP | the CLAP build in a native PipeWire filter's process callback, through libomx-clap-core |
+| in-process CLAP | the CLAP build in a native PipeWire filter's process callback, through libomx-clap |
 | in-process LV2 | the LV2 build the same way, opened through libomx-clap-lv2 |
 
 At the time, omx-clap-host could not load an LV2 plugin by itself, so the adapter path loaded the LV2 plugins through a

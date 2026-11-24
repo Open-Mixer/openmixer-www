@@ -114,9 +114,9 @@ The CLAP host library, the LV2 adapter, and the tables of its codes for a progra
 
 | language | install | entry point |
 |---|---|---|
-| C | `omx-clap-core` + `-devel` / `libomx-clap-core1` + `-dev` | `<omx-clap-host/clap_host.h>`: `omx_clap_host_config_default`, `omx_clap_host_configure`, `omx_clap_host_open`, `omx_clap_host_activate`, `omx_clap_host_close` |
+| C | `omx-clap-libs` + `omx-clap-devel` / `libomx-clap1` + `libomx-clap-dev` | `<omx-clap-host/clap_host.h>`: `omx_clap_host_config_default`, `omx_clap_host_configure`, `omx_clap_host_open`, `omx_clap_host_activate`, `omx_clap_host_close` |
 | C, LV2 | `omx-clap-lv2-devel` / `libomx-clap-lv2-dev` | `<omx_clap_lv2.h>` |
-| JavaScript | `omx-clap-core` / `libomx-clap-core1` | `omx-clap-core-vocabulary.js`, `omx-clap-core-hosting.js` in `pkg-config --variable=tsdir omx-clap-core` |
+| JavaScript | `omx-clap-libs` / `libomx-clap1` | `omx-clap-vocabulary.js`, `omx-clap-hosting.js` in `pkg-config --variable=tsdir omx-clap` |
 
 From `tests/active_race_test.c:66-68,77,83`:
 

@@ -52,9 +52,9 @@ const PIECES = [
   },
   {
     repo: 'omx-clap-core',
-    pkgconfig: ['omx-clap-core', 'omx-clap-lv2'],
-    rpm: ['omx-clap-host', 'omx-clap-core', 'omx-clap-core-devel', 'omx-clap-lv2-devel', 'omx-clap-core-contract', 'omx-clap-host-tests'],
-    deb: ['omx-clap-host', 'libomx-clap-core1', 'libomx-clap-core-dev', 'libomx-clap-lv2-dev', 'omx-clap-core-contract', 'omx-clap-host-tests'],
+    pkgconfig: ['omx-clap', 'omx-clap-lv2'],
+    rpm: ['omx-clap-host', 'omx-clap-libs', 'omx-clap-devel', 'omx-clap-lv2-devel', 'omx-clap-contract', 'omx-clap-host-tests'],
+    deb: ['omx-clap-host', 'libomx-clap1', 'libomx-clap-dev', 'libomx-clap-lv2-dev', 'omx-clap-contract', 'omx-clap-host-tests'],
     npm: [],
   },
   {
