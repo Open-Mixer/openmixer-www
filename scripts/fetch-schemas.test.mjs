@@ -25,7 +25,10 @@ function packageTgz(files) {
   return readFileSync(tgz);
 }
 
-const BODY = { 'schema/omx-contract.schema.json': '{"$id":"https://openmixer.org/schema/omx-contract/main/x"}', 'shapes/travel.schema.json': '{"t":1}' };
+const BODY = {
+  'schema/omx-contract.schema.json': '{"$id":"https://openmixer.org/schema/omx-contract/v3/omx-contract.schema.json"}',
+  'shapes/travel.schema.json': '{"$id":"https://openmixer.org/schema/omx-contract/v3/shapes/travel.schema.json","t":1}',
+};
 
 function sources(buf) {
   return {
@@ -62,7 +65,7 @@ test('a verified tarball places each pinned file where the check looks for it', 
 
 test('a tarball whose integrity is not the pinned one is refused and places nothing', async () => {
   const buf = packageTgz(BODY);
-  const other = packageTgz({ ...BODY, 'shapes/travel.schema.json': '{"t":2}' });
+  const other = packageTgz({ ...BODY, 'schema/omx-contract.schema.json': '{"t":2}' });
   const site = mkdtempSync(join(tmpdir(), 'site-'));
   await assert.rejects(
     fetchSchemas({ sources: sources(buf), site, fetchTarball: async () => other }),
@@ -82,8 +85,25 @@ test('a package without a pinned file is refused and places nothing', async () =
 });
 
 test('a sources file that pins no file is refused, not an empty site', async () => {
-  const buf = packageTgz(BODY);
+  const buf = packageTgz({ 'README.json': '{}' });
   const site = mkdtempSync(join(tmpdir(), 'site-'));
   const empty = { base: 'https://openmixer.org/schema/', sources: [{ repo: 'x', package: 'x', version: '1.0.0', integrity: integrityOf(buf), files: [] }] };
   await assert.rejects(fetchSchemas({ sources: empty, site, fetchTarball: async () => buf }), /pins no file/);
+});
+
+test('a package that names a schema id under the base which no pinned file serves is refused and places nothing', async () => {
+  const buf = packageTgz({ ...BODY, 'schema/domain.schema.json': '{"$id":"https://openmixer.org/schema/omx-contract/v3/domain.schema.json"}' });
+  const site = mkdtempSync(join(tmpdir(), 'site-'));
+  await assert.rejects(
+    fetchSchemas({ sources: sources(buf), site, fetchTarball: async () => buf }),
+    /schema\/domain\.schema\.json declares https:\/\/openmixer\.org\/schema\/omx-contract\/v3\/domain\.schema\.json, which no pinned file serves; refused/,
+  );
+  assert.equal(existsSync(join(site, 'schema')), false);
+});
+
+test('an id outside the base, or a JSON file that is no schema, does not need a pin', async () => {
+  const buf = packageTgz({ ...BODY, 'contract.d/param/param.json': '{"$id":"https://openmixer.org/contract/param"}', 'data.json': '[1,2]', 'broken.json': '{' });
+  const site = mkdtempSync(join(tmpdir(), 'site-'));
+  const placed = await fetchSchemas({ sources: sources(buf), site, fetchTarball: async () => buf });
+  assert.equal(placed.length, 2);
 });

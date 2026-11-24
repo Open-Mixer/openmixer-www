@@ -7,14 +7,17 @@
 // package/ tree to public/schema/<at>. Nothing is committed: public/schema/ is generated, and this script is the only
 // writer of it.
 //
+// A package that DECLARES a schema id under the base (a JSON file's top-level `$id`) which no pinned file serves is
+// refused: every id we publish must resolve, so a release that adds a schema needs its row here before the site builds.
+//
 // Usage: node scripts/fetch-schemas.mjs [--root <dir, default public>] [--sources <file, default deploy/schema-sources.json>]
 // Exit 0 every pinned file is placed; 1 a refusal (integrity, a missing file, a failed fetch); 2 usage.
 
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
-import { copyFileSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync, existsSync } from 'node:fs';
+import { copyFileSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { dirname, join, resolve, sep } from 'node:path';
+import { dirname, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -28,6 +31,28 @@ export function tarballUrl(source, registry = 'https://registry.npmjs.org') {
 
 export function integrityOf(buf) {
   return 'sha512-' + createHash('sha512').update(buf).digest('base64');
+}
+
+// Every top-level `$id` under `base` that a JSON file of the unpacked package declares, as { file, id }.
+export function declaredIds(dir, base) {
+  const out = [];
+  const walk = (d) => {
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      const p = join(d, e.name);
+      if (e.isDirectory()) walk(p);
+      else if (e.isFile() && e.name.endsWith('.json')) {
+        let doc;
+        try {
+          doc = JSON.parse(readFileSync(p, 'utf8'));
+        } catch {
+          continue; // not JSON: it declares nothing
+        }
+        if (typeof doc?.$id === 'string' && doc.$id.startsWith(base)) out.push({ file: relative(dir, p).split(sep).join('/'), id: doc.$id });
+      }
+    }
+  };
+  walk(dir);
+  return out.sort((a, b) => (a.file < b.file ? -1 : 1));
 }
 
 async function defaultFetch(source) {
@@ -58,6 +83,9 @@ export async function fetchSchemas({ sources, site, fetchTarball = defaultFetch 
         if (!existsSync(from)) throw new Error(`${src.package}@${src.version}: no ${f.from} in the package; refused`);
         staged.push({ from, to: join(schemaDir, f.at) });
       }
+      const pinned = new Set((src.files ?? []).map((f) => f.id));
+      for (const { file, id } of declaredIds(join(dir, 'package'), sources.base))
+        if (!pinned.has(id)) throw new Error(`${src.package}@${src.version}: ${file} declares ${id}, which no pinned file serves; refused`);
     }
     if (staged.length === 0) throw new Error('the sources file pins no file: nothing to place');
     rmSync(schemaDir, { recursive: true, force: true });
