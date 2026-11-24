@@ -24,3 +24,7 @@ dist
 /app/data/notes-index.json
 /app/data/projects-index.json
 .dotgithub/
+
+# The released schema files the site serves under /schema/ (scripts/fetch-schemas.mjs, from deploy/schema-sources.json,
+# at predev/prebuild/pregenerate). Generated and never committed: the pinned package is the source.
+/public/schema/

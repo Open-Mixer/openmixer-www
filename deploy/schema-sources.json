@@ -1,0 +1,52 @@
+{
+  "about": "The released JSON Schema files the site serves under https://openmixer.org/schema/. Each source is one published package at one pinned version, with its integrity (sha512, as the npm registry states it). scripts/fetch-schemas.mjs fetches each package at build time and places each file at public/schema/<at>; scripts/check-schema-ids.mjs asserts every id named here is served. Nothing here is a copy of a schema: the files are not committed. Read by scripts/fetch-schemas.mjs and scripts/check-schema-ids.mjs only.",
+  "base": "https://openmixer.org/schema/",
+  "sources": [
+    {
+      "repo": "omx-contract",
+      "package": "@openmixer/omx-contract",
+      "version": "3.21.0",
+      "integrity": "sha512-WegzhmYzxsMksfp3iq8bSQEarPhoHV/QHsNvJsy5wMxBFzvZkG4RYUEdUSkbMXLupQwK0byJooSPeUmIGIGlqQ==",
+      "files": [
+        {
+          "from": "schema/omx-contract.schema.json",
+          "at": "omx-contract/v3/omx-contract.schema.json",
+          "id": "https://openmixer.org/schema/omx-contract/v3/omx-contract.schema.json"
+        },
+        {
+          "from": "schema/domain.schema.json",
+          "at": "omx-contract/v3/domain.schema.json",
+          "id": "https://openmixer.org/schema/omx-contract/v3/domain.schema.json"
+        },
+        {
+          "from": "share/omx-contract/omx-vocabulary.schema.json",
+          "at": "omx-contract/v3/omx-vocabulary.schema.json",
+          "id": "https://openmixer.org/schema/omx-contract/v3/omx-vocabulary.schema.json"
+        },
+        {
+          "from": "shapes/travel.schema.json",
+          "at": "omx-contract/v3/shapes/travel.schema.json",
+          "id": "https://openmixer.org/schema/omx-contract/v3/shapes/travel.schema.json"
+        }
+      ]
+    },
+    {
+      "repo": "omx-panel",
+      "package": "@openmixer/omx-panel",
+      "version": "0.16.0",
+      "integrity": "sha512-gv6e9P9734RJM5CJw7cQaJQVZIvnZghCfOP0KgIFULo5tGDSEBoOemN+MlON6XQ4I/sB7V7UL3gTJt8w9i8eKQ==",
+      "files": [
+        {
+          "from": "dist/schema/panel.schema.json",
+          "at": "omx-panel/panel.schema.json",
+          "id": "https://openmixer.org/schema/omx-panel/panel.schema.json"
+        },
+        {
+          "from": "dist/schema/skin-package.schema.json",
+          "at": "omx-panel/skin-package.schema.json",
+          "id": "https://openmixer.org/schema/omx-panel/skin-package.schema.json"
+        }
+      ]
+    }
+  ]
+}
