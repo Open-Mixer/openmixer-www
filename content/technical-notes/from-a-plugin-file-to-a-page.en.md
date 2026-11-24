@@ -36,8 +36,9 @@ parameter reference from it.
 
 ## 2. Qualify
 
-**Owner:** plugin-qualify. **Writes:** the qualification record, `<plugin>@<version>-<hash>.<offer>.qualification.json`,
-with the probe output it judged beside it, under `/var/lib/omx/qualification`.
+**Owner:** plugin-qualify. **Writes:** the qualification record, into the qualification store,
+`/var/lib/omx/qualification/qualification.sqlite` on a system install. The record names the probe output it judged and its
+checksum; no copy of the probe output is kept.
 
 The probe runs the plugin at every cell of a grid (44.1, 48, 96 and 192 kHz times blocks of 128, 256, 512 and 1024
 frames) and writes the record: the checksums of the binary's files, the cost per block, declared and measured latency,

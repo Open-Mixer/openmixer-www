@@ -37,9 +37,9 @@ el descriptor, el paquet LV2, els paràmetres CLAP i la referència de paràmetr
 
 ## 2. Qualificar
 
-**Responsable:** plugin-qualify. **Escriu:** el registre de qualificació,
-`<plugin>@<version>-<hash>.<offer>.qualification.json`, amb la sortida de la sonda que ha jutjat al costat, a
-`/var/lib/omx/qualification`.
+**Responsable:** plugin-qualify. **Escriu:** el registre de qualificació, al magatzem de qualificació,
+`/var/lib/omx/qualification/qualification.sqlite` en una instal·lació de sistema. El registre anomena la sortida de la
+sonda que ha jutjat i la seva suma de verificació; no se'n guarda cap còpia.
 
 La sonda fa córrer el plugin a cada cel·la d'una graella (44,1, 48, 96 i 192 kHz per blocs de 128, 256, 512 i 1024
 mostres) i n'escriu el registre: els resums dels fitxers del binari, el cost per bloc, la latència declarada i la mesurada,

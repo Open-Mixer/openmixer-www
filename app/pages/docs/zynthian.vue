@@ -24,6 +24,12 @@ const switches = [
   'grouping on',
 ];
 
+/** A qualify.conf that still names qualification_dir, which plugin-qualify-sync refuses from 0.21.2 on. */
+const storeFix = [
+  "sudo sed -i '/^qualification_dir /d' /etc/omx/qualify.conf",
+  'sudo systemctl start plugin-qualify-sync.service',
+];
+
 const poolOptions = [
   '# omx-clap-host: helper threads for the plugins that split their voices into tasks',
   'omx-clap-host --thread-pool=qualified   # the default',
@@ -32,7 +38,7 @@ const poolOptions = [
 ];
 
 /** The test plugin's mean block cost with the helper threads off and on, 48 kHz, 256 frames. */
-/** The look is one call: its colours and ZYNTHIAN_UI_LOOK come from the look file; the user interface reads them at start. */
+/** The skin is one call: its colours and ZYNTHIAN_UI_LOOK come from the skin's file; the user interface reads them at start. */
 const lookLines = [
   '/zynthian/zynthian-sys/sbin/omx-ui-look.sh openmixer-vintage   # or: stock',
   'systemctl restart zynthian',
@@ -106,6 +112,10 @@ useSeoMeta({
           <h3 class="pt-4 font-display text-lg font-semibold text-ink">{{ t('docsZynthian.install.switch.title') }}</h3>
           <p>{{ t('docsZynthian.install.switch.p1') }}</p>
           <CodeBlock :lines="switches" />
+          <h3 id="qualification-store" class="pt-4 font-display text-lg font-semibold text-ink">{{ t('docsZynthian.install.store.title') }}</h3>
+          <p>{{ t('docsZynthian.install.store.p1') }}</p>
+          <CodeBlock :lines="storeFix" />
+          <p>{{ t('docsZynthian.install.store.p2') }}</p>
         </div>
       </div>
     </section>

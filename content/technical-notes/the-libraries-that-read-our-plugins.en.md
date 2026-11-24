@@ -221,7 +221,7 @@ The qualification records and the pins file the daemon reads.
 
 | language | install | entry point |
 |---|---|---|
-| TypeScript | npm `@openmixer/plugin-qualify`; the `plugin-qualify` package carries it | `parsePinLine`, `pinLine`; `recordFigures`; `readDistributedLayer` |
+| TypeScript | npm `@openmixer/plugin-qualify`; the `plugin-qualify` package carries it | `parsePinLine`, `pinLine`; `recordFigures` |
 | data | `plugin-qualify` writes, `plugin-qualification-records` ships | `/var/lib/omx/qualified.pins`, `/var/lib/omx/qualification/`, `/usr/share/omx/qualification/` |
 
 A pin line, from `src/pins-file.test.ts:89`:
@@ -236,7 +236,7 @@ A record's figures, from `src/record-figures.test.ts:28`:
 const figures = recordFigures(rec, 48000, 128);
 ```
 
-`readDistributedLayer`: no example in the repository. There is no Python reader of records or of the pins file.
+The records themselves are in the qualification store, `/var/lib/omx/qualification/qualification.sqlite` on a system install, which plugin-qualify reads through `plugin-qualification-db` and writes through `plugin-qualification-db-write` (both plugin-db-qualification). There is no Python reader of records or of the pins file in this package.
 
 ## omx-panel
 
@@ -294,7 +294,6 @@ const clap_plugin_t *delay = f->create_plugin(f, host, "org.openmixer.delay");
   writes them as text on a few listed lines, each naming the owner's issue: which refusals are transient
   (plugin-hostd-protocol), the verbs and the reply codes in the Python client (plugin-hostd-protocol) and the grouping
   reasons of `grouping.json` (plugin-hostd).
-- omx-contract's `/validate` export, its generated `omx_contract.py` and plugin-qualify's `readDistributedLayer` have
-  no example in their repositories.
+- omx-contract's `/validate` export and its generated `omx_contract.py` have no example in their repository.
 - omx-dsp's TypeScript twins and plugin-hostd's TypeScript client are on npm only, not in the rpm or deb packages;
   plugin-db's TypeScript twin is private.
