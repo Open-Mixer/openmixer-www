@@ -25,6 +25,7 @@
     },
     "variant": {
       "H2_chain-add": "plugin-hostd, afegits en una sola cadena",
+      "H2_pool-add": "plugin-hostd, tots els plugins afegits a un sol treballador",
       "H2_chain": "plugin-hostd, cadena muntada després d'afegir",
       "H2_individual": "plugin-hostd, un treballador per plugin",
       "H2_plan": "plugin-hostd, un worker per segment planificat",
