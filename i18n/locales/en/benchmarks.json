@@ -25,6 +25,7 @@
     },
     "variant": {
       "H2_chain-add": "plugin-hostd, added into one chain",
+      "H2_pool-add": "plugin-hostd, every plugin added into one worker",
       "H2_chain": "plugin-hostd, chain built after the adds",
       "H2_individual": "plugin-hostd, one worker per plugin",
       "H2_plan": "plugin-hostd, one worker per planned segment",

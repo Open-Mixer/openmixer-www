@@ -10,7 +10,7 @@
 
 export type HostId = 'H1' | 'H2' | 'H3' | 'H4';
 export type MachineClass = 'rpi5' | 'desk' | 'ci';
-export type Mode = 'individual' | 'chain' | 'chain-add' | 'shared-process' | 'plan' | 'pool';
+export type Mode = 'individual' | 'chain' | 'chain-add' | 'pool-add' | 'shared-process' | 'plan' | 'pool';
 
 export interface BenchScenario {
   readonly id: string;
@@ -166,7 +166,7 @@ export interface Variant {
 
 export const variantKey = (v: { readonly host: HostId; readonly mode?: Mode | '' }): string => `${v.host}|${v.mode ?? ''}`;
 
-const VARIANT_ORDER: readonly string[] = ['H2|chain-add', 'H2|chain', 'H1|shared-process', 'H3|shared-process', 'H2|individual', 'H2|', 'H1|', 'H3|', 'H4|'];
+const VARIANT_ORDER: readonly string[] = ['H2|chain-add', 'H2|pool-add', 'H2|chain', 'H1|shared-process', 'H3|shared-process', 'H2|individual', 'H2|', 'H1|', 'H3|', 'H4|'];
 
 /** The columns of a family: every host and mode a row of it was measured in (or failed in), in a fixed order. */
 export function variants(run: BenchRun, id: string): Variant[] {
