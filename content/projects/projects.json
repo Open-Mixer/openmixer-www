@@ -2,7 +2,7 @@
   "projects": [
     {
       "repo": "omx-dsp",
-      "commit": "c2962d89035b9abe51f9f7175a13e0aebf54eded",
+      "commit": "4eb9848367f9ae11d5c90922be8667b943750ce4",
       "pages": [
         {
           "src": "README.md"
@@ -14,7 +14,7 @@
     },
     {
       "repo": "omx-contract",
-      "commit": "c241fd47a68d4de548a1cd415f967b211da6475e",
+      "commit": "8acb8e5aa0a284b3a601d168ea827c48aecb2ca5",
       "pages": [
         {
           "src": "README.md"
@@ -23,7 +23,7 @@
     },
     {
       "repo": "omx-clap-core",
-      "commit": "587201ce6003e3b311f820beab3e2619ff4bef0a",
+      "commit": "67e7304806914bec1b7ce4200eee52b08207dc22",
       "pages": [
         {
           "src": "README.md"
@@ -35,7 +35,7 @@
     },
     {
       "repo": "omx-plugins",
-      "commit": "6d452d917352f7134be9937c71f6ecc89d43b916",
+      "commit": "ed4d40624f3eef7df3d58be68c104029832e0e2c",
       "pages": [
         {
           "src": "README.md"
@@ -44,7 +44,7 @@
     },
     {
       "repo": "omx-panel",
-      "commit": "e915e372d68e4ef02bc74b911ed67fe3469b80de",
+      "commit": "c4634b92c6078442cdfd453fc8ae17eeb6096b45",
       "pages": [
         {
           "src": "README.md"
@@ -74,7 +74,7 @@
     },
     {
       "repo": "plugin-hostd",
-      "commit": "a73969e2d024bab73a955c3f260154bdd241255f",
+      "commit": "84b7f4e48229210be5cf6488cdbaf9bd5a5213a3",
       "pages": [
         {
           "src": "README.md"
@@ -101,7 +101,7 @@
     },
     {
       "repo": "plugin-hostd-protocol",
-      "commit": "5e12b959fa098ee4800a4a8485d5c6ce1ffada2c",
+      "commit": "949623b5cff78c9a299b82c83a454b19cbc16e28",
       "pages": [
         {
           "src": "README.md"
@@ -113,7 +113,7 @@
     },
     {
       "repo": "plugin-qualify",
-      "commit": "949bed5011c9f3660cacb211725aea4647a0072d",
+      "commit": "68328dc65cd06517b59476379aa13b7159857c6f",
       "pages": [
         {
           "src": "README.md"
@@ -122,7 +122,7 @@
     },
     {
       "repo": "libdiginet",
-      "commit": "084e09f8eaea72a275f583b8ae148b565aa6a548",
+      "commit": "4333bb3d140d79bf166bc77e9166a7374691f0fe",
       "pages": [
         {
           "src": "README.md"
@@ -140,7 +140,7 @@
     },
     {
       "repo": "libsurface",
-      "commit": "a1f337eaafad7faa65f2331027ef2f6aea44d556",
+      "commit": "0be1b5e0a0585e403c698730e06f1e0cb5180be8",
       "pages": [
         {
           "src": "README.md"
@@ -152,7 +152,7 @@
     },
     {
       "repo": "libmackie",
-      "commit": "3f45d99be73faaa3f2b103c300c42748cd719d99",
+      "commit": "967230d4ae267b6aa9fa707a582a6b635724a16f",
       "pages": [
         {
           "src": "README.md"
@@ -164,7 +164,7 @@
     },
     {
       "repo": "omx-formats",
-      "commit": "2a0cf09a276831076f40f18fc58d845a7e4a3800",
+      "commit": "83e47e69f1dbd78b6423b9d272119b6387a68efc",
       "pages": [
         {
           "src": "README.md"

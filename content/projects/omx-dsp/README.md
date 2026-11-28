@@ -22,8 +22,8 @@ sudo dnf install omx-dsp-devel
 Debian trixie, arm64 (also Raspberry Pi OS and Zynthian):
 
 ```
-curl -fsSLO https://www.openmixer.org/deb/openmixer-release.deb && sudo apt install ./openmixer-release.deb
-sudo apt install libomxdsp-dev
+cd /tmp && curl -fsSLO https://www.openmixer.org/deb/openmixer-release.deb && sudo apt install ./openmixer-release.deb
+sudo apt update && sudo apt install libomxdsp-dev
 ```
 
 ## Start
@@ -43,8 +43,11 @@ Test builds use `omxdsp-contracts` (or `omxdsp-tsan`) in place of `omxdsp`.
 
 <https://www.openmixer.org/projects/omx-dsp>, `man omx-dsp-copy-check`, and in this repository: how the
 kernels are tested, the three library flavours and the copy check for consumers
-([docs/overview.md](docs/overview.md)); building from source and running the tests
-([BUILDING.md](BUILDING.md)).
+([docs/overview.md](docs/overview.md)); the generic face a host runs any served kernel through, from the
+kernel's descriptor ([docs/generic-face.md](docs/generic-face.md)); building from source and running the tests
+([BUILDING.md](BUILDING.md)). Every public declaration of the installed headers is documented with
+Doxygen, held by `make docs-check` against `docs/doxygen-baseline.txt`, the rows still undocumented,
+which only shrinks (BUILDING.md).
 
 ## Licence
 

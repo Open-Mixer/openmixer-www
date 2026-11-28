@@ -2,68 +2,58 @@
 <!-- Copyright (C) 2026 Pau Aliagas <linuxnow@gmail.com> -->
 # omx-contract
 
-The FreeMixer declarations as data: what a value may be (a travel, a default, a kernel constant, a list),
-written once as JSON, checked by a JSON Schema and rendered into the languages that read it. The mixer
-engine, the DSP library and the plugins all take their ranges, defaults and constants from the same
-definitions, so a knob means the same thing on the console, in a plugin and in a test.
-
-- One declaration per value, validated against a closed schema. This package holds the schema, the one tool,
-  and the facts no single package owns (`data/`: the sample rates, the readout rate, the parameter scales, the measurement, resource and machine-class words, and the whole LV2 and CLAP vocabulary mapped, laid out by [docs/data-layout.md](docs/data-layout.md)); a package that implements a definition ships its own file into the
-  contract directory ([docs/contract-dir.md](docs/contract-dir.md)): omx-dsp its kernels and design constants,
-  omx-clap-core its hosting limits.
-- Renders for C (a header), TypeScript and resolved JSON, each held equal to the data by CI.
-- Semantic versioning enforced by a check: a change that narrows a declaration needs a major bump, one that adds
-  or widens needs a minor ([what the check judges](docs/kernel-files.md#what-semver-judges)).
+The OpenMixer declarations as data: what a value may be (a travel, a default, a kernel constant, a list),
+written once as JSON, checked by a JSON Schema and rendered into the languages that read it (a C header,
+TypeScript, resolved JSON). The mixer engine, the DSP library and the plugins all take their ranges, defaults and
+constants from the same definitions, so a knob means the same thing on the console, in a plugin and in a test.
 
 ## Install
 
-Fedora 44:
+Fedora 45, x86_64:
 
 ```
 sudo dnf install https://www.openmixer.org/rpm/openmixer-release.noarch.rpm
 sudo dnf install omx-contract-devel
 ```
 
-Debian bookworm and trixie (also Raspberry Pi OS and Zynthian):
+Debian trixie, arm64 (also Raspberry Pi OS and Zynthian):
 
 ```
-curl -fsSLO https://www.openmixer.org/deb/openmixer-release.deb && sudo apt install ./openmixer-release.deb
-sudo apt install libomx-contract-dev
+cd /tmp && curl -fsSLO https://www.openmixer.org/deb/openmixer-release.deb && sudo apt install ./openmixer-release.deb
+sudo apt update && sudo apt install libomx-contract-dev
 ```
 
-The development package pulls in omx-contract-data, the files a program reads at run time (the contract directory,
-the schema and the resolved json); a program that only reads them at run time requires omx-contract-data alone.
+JavaScript and TypeScript: `npm install @openmixer/omx-contract` (the CLI is `omx-contract`).
 
-JavaScript and TypeScript projects (the `ts` render is the main export, the CLI is `omx-contract`):
+Python: `python3-omx-contract` (rpm and deb), the package `omx_contract` with the catalog, scale and CLAP readers.
 
-```
-npm install @openmixer/omx-contract
-```
-
-Every GitHub release also carries the `npm pack` tarball, the RPMs and the debs.
-
-## Use
-
-Include the C header and read the constants by name:
+## Start
 
 ```c
 #include <omxcontract/omx_contract_limits.h>
 ```
 
 ```
-pkg-config --cflags omx-contract
+cc -c app.c $(pkg-config --cflags omx-contract)
+omx-contract render --target json --installed     # every declaration in the contract directory
 ```
 
-Pin one version and build against its renders instead of keeping a copy: the installed package at exactly
-that version (`pkg-config --exact-version=2.20.0 omx-contract`), else the npm tarball, unpacked, and
-`omx-contract render --target c --out build/omx-contract/include`. A kernel's controls and readouts, in their
-order, are in the json render of the contract directory (`omx-contract render --target json --installed`); how a declaration is written is in
-[docs/kernel-files.md](docs/kernel-files.md), and what a readout is in [docs/readouts.md](docs/readouts.md). The hosting limits, the refusal codes and the `clap_host_limits.h` rendered from them are in [docs/hosting.md](docs/hosting.md). How an owner's own header is spelled by a `render` word in its file is in [docs/render.md](docs/render.md). The curve kinds a panel draws, the axes each is drawn on, and the frequency grid an EQ curve is sampled on are in [docs/curves.md](docs/curves.md). How a package installs its own definitions into the contract directory, and how a reader reads them, is in [docs/contract-dir.md](docs/contract-dir.md). How a plugin, ours or anyone's, is described in the same words (controls, ports, instruments, what it needs from a host) is in [docs/descriptors.md](docs/descriptors.md).
+```python
+import omx_contract.catalog
+import omx_contract.scale
 
-## Building
+ca = omx_contract.catalog.load_catalog("plugin-db", "ca")   # an owner's installed Catalan catalog
+omx_contract.scale.scale_position({"scale": "log", "min": 20, "max": 20000}, 1000)   # 0.5663
+```
 
-See [BUILDING.md](BUILDING.md).
+## Documentation
 
-## License
+<https://www.openmixer.org/projects/omx-contract>, `man omx-contract`, and in this repository: what the package
+holds, pinning a version and where each subject is ([docs/overview.md](docs/overview.md)); building
+([BUILDING.md](BUILDING.md)). The installed C headers are documented for doxygen, every public declaration from the
+item that declares it; `make doxygen-check` holds the undocumented ones to a baseline that only shrinks
+([docs/render.md](docs/render.md) "Documentation").
 
-GPL-3.0-or-later. JSON cannot carry an SPDX comment; every data file is covered by `LICENSE`.
+## Licence
+
+GPL-3.0-or-later. See [LICENSE](LICENSE).

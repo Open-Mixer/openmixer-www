@@ -9,7 +9,7 @@ graph as a client of its own. It is for controllers, mixers and stage rigs on Li
 already talk to mod-host and want CLAP plugins beside their LV2 ones.
 
 An LV2 plugin runs natively, through lilv in the host's own process, mapped by the LV2 adapter
-(`libomx-clap-lv2`). The CLAP hosting core is a library of its own, `libomx-clap-core`, for
+(`libomx-clap-lv2`). The CLAP hosting core is a library of its own, `libomx-clap`, for
 programs that host CLAP plugins themselves. The host, the core and the adapter share one version.
 
 Install
@@ -25,8 +25,8 @@ Debian trixie and Raspberry Pi OS (arm64):
     cd /tmp && curl -fsSLO https://www.openmixer.org/deb/openmixer-release.deb && sudo apt install ./openmixer-release.deb
     sudo apt update && sudo apt install omx-clap-host
 
-To build on the core: `omx-clap-core-devel` (`libomx-clap-core-dev`) and
-`pkg-config --cflags --libs omx-clap-core`.
+To build on the core: `omx-clap-devel` (`libomx-clap-dev`) and
+`pkg-config --cflags --libs omx-clap`.
 
 Start
 -----
@@ -52,6 +52,19 @@ longer walk-through ([docs/overview.md](docs/overview.md)); every command
 ([docs/lv2-compatibility.md](docs/lv2-compatibility.md),
 [docs/clap-compatibility.md](docs/clap-compatibility.md)); building from source
 ([BUILDING.md](BUILDING.md)).
+
+Release steps
+-------------
+
+The domain document `contract.d/hosting/hosting.json` is the one home of the hosting codes (`HOSTING_*_CODES`, read
+by the omx-contract loader; data/ declares none of them, and the reader refuses a second copy). A code is added, changed or
+documented there, by hand, in omx-contract's one formatting (`omx-contract fmt`). Its `info.version` is `VERSION`, and an
+item added carries that version as its `x-since`. After the `VERSION` bump and before the release commit, raise
+`info.version` and commit the file; `make check-domain`, which CI runs, holds it to the newest release tag that carries it
+with omx-contract's `domain check`: a code added or removed under an unchanged version is refused by name, and so are two
+codes reordered (a new code is appended after the existing ones). Every code carries its doc. `make test-contract`
+renders `clap_host_limits.h`, the vocabulary and the TypeScript modules from it (`--with-domain`) and holds them to the
+committed files, byte for byte.
 
 Licence
 -------
