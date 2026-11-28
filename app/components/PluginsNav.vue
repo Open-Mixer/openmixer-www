@@ -1,12 +1,13 @@
 <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
 <script setup lang="ts">
 /** The pages of the plugins section, as a row of links at the foot of each one. */
-const props = defineProps<{ current: 'shipped' | 'thirdParty' | 'panels' | 'names' }>();
+const props = defineProps<{ current: 'shipped' | 'omx' | 'thirdParty' | 'panels' | 'names' }>();
 const { t } = useI18n();
 const sitePath = useSitePath();
 
 const PAGES = [
   ['shipped', '/docs/plugins-shipped'],
+  ['omx', '/docs/omx-plugins'],
   ['thirdParty', '/docs/plugins-third-party'],
   ['panels', '/docs/plugins-panels'],
   ['names', '/docs/plugins-names'],

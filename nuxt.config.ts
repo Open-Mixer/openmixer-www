@@ -31,7 +31,11 @@ const whatsNewRoutes: string[] = existsSync(dataFile('whats-new.json'))
       .filter((c) => c.page)
       .map((c) => `/docs/whats-new/${c.id}`)
   : [];
-const pageRoutes = ['/technical-notes', '/projects', ...noteRoutes, ...projectRoutes, '/docs/whats-new', ...whatsNewRoutes];
+// The plugins omx-plugins ships: a page each (app/data/omx-plugins.json, scripts/omx-plugin-pages.mjs)
+const omxPluginRoutes: string[] = existsSync(dataFile('omx-plugins.json'))
+  ? (JSON.parse(readFileSync(dataFile('omx-plugins.json'), 'utf8')).plugins as { stem: string }[]).map((p) => `/docs/omx-plugins/${p.stem}`)
+  : [];
+const pageRoutes = ['/technical-notes', '/projects', ...noteRoutes, ...projectRoutes, '/docs/whats-new', ...whatsNewRoutes, '/docs/omx-plugins', ...omxPluginRoutes];
 
 /**
  * The site's languages. English is the default and has no prefix; Catalan lives under /ca/.

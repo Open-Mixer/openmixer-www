@@ -5,6 +5,10 @@
       "title": "Què porten els paquets",
       "blurb": "Els plugins omx en LV2 i CLAP i com instal·lar-los a Fedora, Debian i Raspberry Pi OS."
     },
+    "omx": {
+      "title": "Cada plugin, una pàgina",
+      "blurb": "Què fa cada plugin omx, els seus controls i el seu panell, dibuixat a partir de la seva declaració."
+    },
     "thirdParty": {
       "title": "Plugins de tercers",
       "blurb": "Instal·lar plugins LV2 i CLAP des de la distribució i què en fa la taula."
