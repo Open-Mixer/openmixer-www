@@ -23,6 +23,19 @@ jobs:
         with:
           lint-workflow: public-sources.yml
 
+  # The site's own pages, its catalogs and its README name Open-Mixer and OpenMixer, never the former name. The project
+  # documents under content/projects are copies, each equal to its file at the commit projects.json pins, and each
+  # project's own old-name job reads the original; the what's-new entries are the site's history.
+  old-name:
+    name: no page names the former organisation
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: Open-Mixer/.github/.github/actions/old-name-check@openmixer-v1
+        with:
+          paths: app/pages app/components i18n content :!content/projects :!i18n/locales/*/whatsNew.json
+
   pr-fixes-issue:
     if: github.event_name == 'pull_request'
     permissions:

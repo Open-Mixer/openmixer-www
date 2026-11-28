@@ -36,7 +36,9 @@
     "pages:gen": "node scripts/gen-pages.mjs",
     "pages:verify": "node scripts/gen-pages.mjs --verify",
     "features:gen": "node scripts/gen-features.mjs",
-    "features:verify": "node scripts/gen-features.mjs --verify"
+    "features:verify": "node scripts/gen-features.mjs --verify",
+    "omx-plugins:gen": "node scripts/omx-plugin-pages.mjs --from",
+    "omx-plugins:verify": "node scripts/omx-plugin-pages.mjs --verify"
   },
   "dependencies": {
     "@nuxt/ui": "^4.10.0",

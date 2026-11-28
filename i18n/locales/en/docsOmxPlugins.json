@@ -1,0 +1,37 @@
+{
+  "docsOmxPlugins": {
+    "seo": {
+      "title": "Every plugin OpenMixer ships | OpenMixer",
+      "description": "Each omx plugin: what it does, its controls and its panel, drawn from its declaration."
+    },
+    "hero": {
+      "eyebrow": "Plugins | one page each",
+      "title": "Every plugin, its controls and its panel.",
+      "lede": "One page for each plugin the omx-plugins package ships. The words, the controls and the panel picture all come from the plugin's own declaration: nothing here is drawn or typed by hand."
+    },
+    "index": {
+      "title": "The plugins.",
+      "intro": "Pick a plugin to see what it does, every control it has and the panel a host draws for it.",
+      "parameters": "{n} parameters"
+    },
+    "page": {
+      "back": "All the plugins",
+      "what": "What it does",
+      "panel": "Its panel",
+      "panelNote": "This is the panel a host draws from the plugin's declaration, every control at its default. It was laid out by omx-panel and drawn by its renderer, with no host running and no screenshot.",
+      "panelAlt": "The panel of {name}, drawn from its declaration",
+      "controls": "Its controls",
+      "controlsNote": "Section by section, in the order the panel shows them. The names, units, ranges and defaults are the declaration's.",
+      "control": "Control",
+      "unit": "Unit",
+      "min": "Min",
+      "max": "Max",
+      "default": "Default",
+      "values": "Steps or values",
+      "ids": "Load it as",
+      "clap": "CLAP id",
+      "lv2": "LV2 URI",
+      "source": "Made from omx-plugins at commit {commit}."
+    }
+  }
+}

@@ -53,7 +53,7 @@
     },
     "install": {
       "title": "Install.",
-      "intro": "libdiginet is in the Open-Mixer package repositories: RPMs for Fedora (x86_64, aarch64) and DEBs for Debian bookworm and trixie (amd64, arm64). Add the repository as on the other pages and install diginet-tools, which brings the library with it.",
+      "intro": "libdiginet is in the Open-Mixer package repositories: RPMs for Fedora 45 (x86_64, aarch64) and DEBs for Debian trixie (amd64, arm64). Add the repository as on the other pages and install diginet-tools, which brings the library with it.",
       "pkgLib": "The protocol library and its transport: discovery, the session handshake, acknowledgements, keepalive and retransmit.",
       "pkgTools": "diginet-probe, the command-line tool for testing a desk.",
       "pkgDevel": "Headers, pkg-config files and the protocol grammar, for building a program on the library.",

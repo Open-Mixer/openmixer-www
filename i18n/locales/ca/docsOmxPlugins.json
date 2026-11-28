@@ -1,0 +1,37 @@
+{
+  "docsOmxPlugins": {
+    "seo": {
+      "title": "Tots els plugins que porta OpenMixer | OpenMixer",
+      "description": "Cada plugin omx: què fa, els seus controls i el seu panell, dibuixat a partir de la seva declaració."
+    },
+    "hero": {
+      "eyebrow": "Plugins | una pàgina per a cadascun",
+      "title": "Cada plugin, els seus controls i el seu panell.",
+      "lede": "Una pàgina per a cada plugin que porta el paquet omx-plugins. El text, els controls i la imatge del panell surten de la declaració del mateix plugin: aquí no hi ha res dibuixat ni escrit a mà."
+    },
+    "index": {
+      "title": "Els plugins.",
+      "intro": "Trieu un plugin per veure què fa, tots els controls que té i el panell que n'hi dibuixa un amfitrió.",
+      "parameters": "{n} paràmetres"
+    },
+    "page": {
+      "back": "Tots els plugins",
+      "what": "Què fa",
+      "panel": "El seu panell",
+      "panelNote": "Aquest és el panell que un amfitrió dibuixa a partir de la declaració del plugin, amb cada control al seu valor per defecte. L'ha distribuït omx-panel i l'ha dibuixat el seu renderitzador, sense cap amfitrió en marxa ni cap captura de pantalla.",
+      "panelAlt": "El panell de {name}, dibuixat a partir de la seva declaració",
+      "controls": "Els seus controls",
+      "controlsNote": "Secció per secció, en l'ordre en què els mostra el panell. Els noms, les unitats, els intervals i els valors per defecte són els de la declaració. El text descriptiu de cada plugin és el de la declaració, en anglès.",
+      "control": "Control",
+      "unit": "Unitat",
+      "min": "Mín.",
+      "max": "Màx.",
+      "default": "Per defecte",
+      "values": "Passos o valors",
+      "ids": "Carregueu-lo com a",
+      "clap": "Id CLAP",
+      "lv2": "URI LV2",
+      "source": "Fet a partir d'omx-plugins al commit {commit}."
+    }
+  }
+}

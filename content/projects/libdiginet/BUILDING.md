@@ -4,7 +4,7 @@ A hand-kept Makefile, no build system to configure. You need a C11 compiler and 
 Nothing else: no library outside libc.
 
 ```
-make                          # libdiginet.a, libdiginet-transport.a and tools/diginet-probe
+make                          # libdiginet.a, libdiginet-transport.a, tools/diginet-probe and tools/diginet-census
 make test                     # the unit suite, the same command CI runs
 make install PREFIX=/usr/local [DESTDIR=...]
 make clean
@@ -42,7 +42,12 @@ gives. The same file feeds the Kaitai check below, so the two readings of the gr
 drift apart.
 
 The transport suite needs no desk and no privileges. `testsupport/desk_emu.c`, installed as
-`libdiginet-emu`, is a desk emulator that speaks the protocol; `test_transport` drives a
+`libdiginet-emu` with the headers under `include/diginet/testsupport/` (`emu_pump.h` runs it
+over a descriptor on the real clock, `netns.h` makes a private network without root, and
+`emu_child.h` puts a program under test on one end of a veth pair with the emulated desk on
+the other, which is how libsurface's surface-c24 and the console's surface-native addon are
+tested; `test_emu_child` proves that harness on diginet-probe), is a desk emulator that
+speaks the protocol; `test_transport` drives a
 session against it on a virtual clock
 (minutes of desk time in milliseconds), `test_mux` drives the desk mux against two of them on
 two interfaces, and `test_fdio` does the same on the real clock over a socketpair. `test_packet` runs the real `AF_PACKET` path: it enters a user and network
@@ -55,7 +60,10 @@ that two desk emulators, one on each, come online through one mux over that one 
 
 `test_probe` runs `tools/diginet-probe` as its own process against the emulator, with the
 wire on descriptor 3 and the operator's answers on stdin, and checks both the probe's output
-and what the desk received.
+and what the desk received. `test_census` does the same with `tools/diginet-census`, the emulator
+playing the operator: the whole inventory of a Control|24 (1168 controls) in one run, then a wrong
+operator; it also reads a desk's record back when `tests/golden/census-c24.txt` exists
+(docs/census.md).
 
 ## diginet-probe
 
@@ -123,7 +131,7 @@ One source builds two shared libraries and a tool:
 | --- | --- | --- |
 | libdiginet, libdiginet-transport | `libdiginet` | `libdiginet0`, `libdiginet-transport0` |
 | headers, pkg-config, `diginet.ksy` | `libdiginet-devel` | `libdiginet-dev` |
-| `diginet-probe` | `diginet-tools` | `diginet-tools` |
+| `diginet-probe`, `diginet-census` | `diginet-tools` | `diginet-tools` |
 
 `packaging/libdiginet.spec` and `debian/` describe them; both run `make shared` and
 `make install-shared`, and `make test` against the result. The RPM gives `diginet-probe`
@@ -137,9 +145,9 @@ The version is the `VERSION` file; the sonames' majors are `DIGINET_ABI` and
 
 Set the version in `VERSION`, `include/diginet/diginet.h`, `Version:` in the spec and the top
 entry of `debian/changelog`, then tag `vX.Y.Z`. The tag runs `.github/workflows/release.yml`,
-which calls the shared `build-rpm.yml` and `build-deb.yml` workflows of FreeMixer/.github: signed
+which calls the shared `build-rpm.yml` and `build-deb.yml` workflows of Open-Mixer/.github: signed
 RPMs for Fedora 44 (x86_64, aarch64) and DEBs for Debian bookworm and trixie (amd64, arm64) are
-published to the FreeMixer channel and attached to the GitHub release. A pull request runs the
+published to the OpenMixer channel and attached to the GitHub release. A pull request runs the
 same workflows as a dry run that builds, lints and publishes nothing, then installs the packages
 it built in clean containers and builds a consumer against the development package. Git history
 is the changelog; no changelog file is kept.

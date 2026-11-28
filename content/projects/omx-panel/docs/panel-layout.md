@@ -24,41 +24,51 @@ with labelled values a `choice`, every other parameter a `travel` with the decla
 
 ## Units
 
-A control's unit is the descriptor's `travel.unit`. A role checks it against the units the
-param-contract extension serves (`tools/vocabulary.mjs`, `servedToken`): a unit's token is the LV2 unit a
-face writes for it, plugin-hostd's installed LV2 table read backwards, or the name of a unit in the
-extension's vendor block (`dBu`, `ratio`); it is served when the extension's unit table,
-`OMX_PARAM_CONTRACT_UNITS` (omx-contract's sheet, `3/omx-contract/param-contract.json` in the contract directory, omx-contract-data from 3.6.0), gives the token a value. So a unit that table or that block knows (`LUFS`, `dBu`
-among them) is checked like any other. A unit with no token there, `unknown` included, takes no role and
-is drawn as a plain number. Nothing here types a unit: the reader reads the installed table
-(`$PLUGIN_HOSTD_TABLES` stands in for it) and the installed unit sheet (`param-contract.json` in omx-contract's directory), and refuses by name when either is missing.
+A control's unit is the descriptor's `travel.unit`, read as its standard id (omx-contract's PARAM_UNITS, its param
+domain: `%` is `percent`, `dB/oct` is `dBPerOct`; sorting pass P1, M4). A role checks the id against the units the
+param-contract extension serves (`tools/vocabulary.mjs`, `servedUnit`): omx-contract's `PARAM_UNITS_CLAP_ENCODED`, of
+the same param domain, the ids `org.openmixer.param-contract/1` encodes (omx-contract-data from 3.22.0; sorting pass
+V23d, P2). So a unit that set holds (`LUFS`, `dBu`, `dBPerOct` among them) is checked like any other. A unit it does not
+hold, `unknown` included, takes no role and is drawn as a plain number. Nothing here types a unit, and nothing reads a
+code sheet or omx-clap: the reader reads the installed param domain, and refuses by name when the set is missing.
 
 The level roles (`threshold`, `ceiling`) take `dB`, `dBFS`, `dBu` and `LUFS`.
 
 ## Meanings and roles
 
-A skin binds by meaning, never by symbol. A family's roles map to the descriptor's meanings
-(`tools/vocabulary.mjs`, `meaningOfRole`, over omx-contract's closed list of meanings as its installed
-schema declares it); a role whose name is a meaning maps to it, and these are renamed:
-
-| Role | Meaning |
-|---|---|
-| `mix` | `wetDryRatio` |
-| `time` | `delay` |
-| `cutoff` | `cutoffFrequency` |
-| `band_freq`, `band_gain`, `band_q` | `frequency`, `gain`, `q` |
-| `hpf_freq`, `low_cut` | `lowCut` |
-| `lpf_freq`, `high_cut` | `highCut` |
-| `hpf_slope`, `lpf_slope` | `slope` |
-| `key_listen` | `listen` |
-
-A role with no meaning word (`band_type`, `model`, `algorithm`, `knee_start`, ...) is bound only by
-a declared panel.
+A skin binds by meaning, never by symbol. The meaning each family role plays is what the installed packages declare in
+their `roleMeanings` items (omx-contract docs/contract-dir.md, "A package's role meanings"; omx-plugins-contract installs
+omx-plugins'), read by `tools/vocabulary.mjs` (`meaningOfRole`) from the contract directories; omx-panel keeps no list
+of its own. A role is looked up, never read as a meaning: one no package declares, one declared `unknown` (`band_type`,
+`model`, `algorithm`, `knee_start`, ...) and one whose meaning the installed schema does not list play none and are
+bound only by a declared panel. A role two packages declare is refused (`contract.role.duplicate`). `omx-panel
+vocabulary` says how many roles it read. The suite reads a stand-in for the panel families' roles,
+`test/fixtures/role-meanings/panel-roles.json`, through `$OMX_ROLE_MEANINGS` (a `:` list of files holding
+`roleMeanings` items), so omx-panel builds and tests with nothing of omx-plugins.
 
 With no declared panel the roles come from the meanings: in the family the layout takes, each
 meaning that names exactly one of the family's roles plays it; an indexed role (`band_*`) takes every
 control of its meaning, in order; any other role is played by its first control, and a second is
 left unpublished, named.
+
+With a declared panel the roles are the panel's, and they back the family too (#43): a control the panel binds to a
+role, whose own meaning the descriptor leaves unstated (a scan writes `unknown`), carries the role's meaning, for the
+family check and for what the description serves as the control's meaning. A meaning the descriptor does state stays the
+descriptor's and has to agree with the role: a declared role over a control that states another meaning is left
+unpublished, named (`panel.describe.role-dropped`, "the descriptor says it means ratio, not threshold, the threshold
+role's"). So omx-comp's own panel over plugin-hostd's scan of it, every meaning `unknown`, is the dynamics family with
+its curve and its gain-reduction bar, as on the console.
+
+`--panel` takes the declared form (omx-plugins' `<stem>.decl.json`, `panel`) or the panel the plugin serves:
+`org.openmixer.panel-description/1` as `omx-clap-scan --json` prints it and `plugin-hostd-probe panel` copies it
+(`{ plugin, panel: { family, fingerprint, sections, controls, roles, displays, placementDefaults } }`, or that `panel`
+object alone). The served tables name parameters by id; `tools/panel-served.mjs` reads them as the declared form over
+the descriptor's keys (a symbol, else `p<id>`): the control rows of a section in row order, the roles, a row's widget
+other than `auto`, a visibility row as a `visibleWhen` rule over the mask's set bits, a display of source `family` as
+the section's graph. A display of source `meters` is derived from the descriptor's meters as any describe does, the
+placement defaults are the descriptor's own travel defaults, and the plugin's fingerprint is not read: describe computes
+its own. A table the scan refused, a `panel` of null and a parameter id the descriptor does not have are refused by
+name (`panel.describe.layout-invalid`). plugin-hostd stays a host that copies bytes; the panel format is this package's.
 
 A `modulation` depth is a plain amount (`none`, `pc`, `coef`) or a sweep in octaves (`oct`), as a phaser's is.
 
@@ -78,6 +88,7 @@ The family follows from the meanings, never from a guess about the plugin:
 | `delay` | `delay` | `delay`, `feedback` |
 | `reverb` | `size`, `decay` | `size`, or `decay` |
 | `pitch` | `shift` | `shift` |
+| `utility` | (any: a trim, a width control, a balancer or a clipper has no class of its own) | none: a utility is always declared |
 | `modulation` | (any: a rotor's speeds and an LFO's shape have no meaning word yet) | `rate`, `depth` |
 
 A declaration whose family none of its meanings backs is refused, naming the family and the
@@ -104,9 +115,10 @@ the switch:
 - a choice is a stepped number over its values' span. It carries one label per integer of the span only when every value is an
   integer (a sparse one, FFT sizes 128..16384, labels each integer between, up to a 16-bit span); a choice whose values lie
   between integers (0, 0.5, 1) is served unlabelled, its default rounded to an integer inside the ends;
-- a gain the band inference reads as a linear factor (a range that stays above zero), its unit unstated, is served `coef`. A refusal is `{ code, args }`: `PANEL_NO_CONTROLS`, `PANEL_FAMILY_NOT_BACKED`, `PANEL_LAYOUT_INVALID`, a bar group's
-`PANEL_BARS_*`, `PANEL_OVERRIDE_*`, `PANEL_ROLE_DROPPED`, `PANEL_SKIN_DROPPED`. The description is `null` only where no panel can be
-made (no control, an invalid layout); a family the controls do not back is `none` with its refusal.
+- a gain the band inference reads as a linear factor (a range that stays above zero), its unit unstated, is served `coef`. A refusal is `{ code, args }`: `panel.describe.no-controls`, `panel.describe.family-not-backed`, `panel.describe.family-unknown`, `panel.describe.layout-invalid`, a bar group's
+`PANEL_BARS_*`, `PANEL_OVERRIDE_*`, `panel.describe.role-dropped`, `panel.describe.skin-dropped`. The description is `null` only where no panel can be
+made (no control, an invalid layout); a family the controls do not back is `none` with its refusal, and so is a family
+an override names that is no word of `PANEL_FAMILIES` (`panel.describe.family-unknown`, naming the plugin and the word).
 
 ### The family of a plugin that declares no panel
 
@@ -150,6 +162,17 @@ A derived panel whose family has a closed form (`eq`, `dynamics`, `gate`, `drive
 form), else `modelled`, which every surface prints in the display's caption place. `basis` is a view and stays out of the canonical
 form. A declared panel's `origins` (band_freq symbol to the planter that owns the band, an authored descriptor's only) gives the role an `origin`, and a surface draws a mark there; nothing is inferred.
 
+### Displays and their axis
+
+Every display also carries its `axis`, a word of the panel domain's `PANEL_DISPLAY_AXES` (`contract.d/panel/panel.json`, since
+1.2.0): `log-frequency` (an `eq_response`: frequency in Hz on a log axis, the dB symmetric about 0), `linear` (a `transfer_curve`:
+input and output dB on one linear span; a `gain_reduction_bar` or a `meter`: its fill a linear fraction of its range) or `time` (a
+`time_response`: ms from 0, the level window from the floor). The layout gives it where it makes the display and `describe` serves
+it, so a surface reads the axis as data and never picks one by the kind's name (owner ruling: layout data comes via the
+description). A display whose axis is absent or no word of the item is refused by name: by `describe` and `describeFromStored`
+(`panel.describe.layout-invalid`), by a skin (`panel.describe.skin-dropped`, reason `axis`) and by the renderer; nothing is inferred.
+Like `basis`, `axis` is a view and stays out of the canonical form.
+
 The description also serves `easy` (the Easy controls) and its `pages`, cut after the skin applies; a control the values hide keeps its slot in a page, blank.
 
 ## Bars
@@ -166,7 +189,7 @@ A run of more than 16 is cut into runs of 16 (`MAX_BARS`). Runs over the same ba
 gains, frequencies and Qs) are one group: the run whose controls have a level meaning (`gain`) takes the bars and the others are its
 `tied`; with no meaning the first run in section order. Two runs over different bands are two groups. A declared section says
 `"bars": true` (its controls, in order, are one run; the rule's checks still apply and a failing one refuses the layout by
-`PANEL_BARS_TOO_FEW`, `_NOT_TRAVEL`, `_FACTS_DIFFER` or `_LABELS_NOT_SERIES`) or `"bars": false` (no inference there). A plugin that
+`panel.describe.bars-too-few`, `_NOT_TRAVEL`, `_FACTS_DIFFER` or `_LABELS_NOT_SERIES`) or `"bars": false` (no inference there). A plugin that
 declares no panel gets its skin package's `skin.json` section word, the same `bars`; a skin that rebuilds the sections gets its bars
 recomputed over them, a failing `true` dropped by name.
 
@@ -181,13 +204,56 @@ standard widgets, and a representation (a skin) draws it; the skins are not chos
 | `fader` | a travel the declared panel draws as a fader |
 | `switch` | a toggle; a trigger (momentary) |
 | `selector` | a choice |
-| `meter` | a read-only travel in a level unit (`dB`, `dBFS`, `dBu`, `LUFS`) |
+| `meter` | a read-only travel in a level unit (`dB`, `dBFS`, `dBTP`, `dBu`, `LUFS`, `LU`) |
 | `display` | any other read-only control |
-| `curve` | a section's graph a host computes (`eq-curve`, `dynamics-curve`, `transfer-curve`) |
+| `curve` | a section's graph a host computes (`eq-curve`, `dynamics-curve`, `transfer-curve`; `delay-taps` and `decay-envelope`, the two words of the `time_response` display) |
 | `xy` | no descriptor word names a pair of controls yet; nothing takes it |
 
-A meter carries its measurement (`peak`, `rms`, `vu`, `ppm`, `lufs`): `lufs` for a LUFS reading.
-The descriptor has no word for the others, so any other meter's measurement is `null`, not a guess.
+### Meters
+
+`describe` reads the descriptor's `meters` word (omx-contract, the first descriptor word for what a plugin publishes while it
+runs): each meter is a meter control in the description's `meters` list, in the descriptor's order, with
+`{ kind, measurement, unit, unitText, min, max, channels, symbol, held, clip }`.
+
+- `unit` is the PARAM_UNITS id. `unitText` is that id's `x-symbol`, the unit as a person reads it: a renderer's caption
+  shows it (`percent` is shown as `%`), never the id.
+
+- `kind` is `level` or `gain-reduction`; a level's `measurement` is `peak`, `true-peak`, `lufs-m`, `lufs-s`, `lufs-i` or
+  `lra` (units dBFS, dBTP, LUFS, LU), a gain reduction's is `gain-reduction` (dB). `rms`, `vu` and `ppm` are not words.
+- `held` says the plugin keeps the block value until the host reads it; a descriptor that does not say it is `false`, and
+  the meter is unheld. `clip` is a digital clip word and only a level meter in dBFS or dBTP carries it; anything else is `false`.
+- A foreign read-only control in a level unit stays a meter: `measurement` is `null` (never guessed from the unit), `held` and
+  `clip` are `false`.
+- A meter is a measurement. A meter, or a read-only control, whose meaning, symbol or name is phantom, pad or head-amp
+  state is not a meter: it is left out and reported as `panel.describe.meter-refused`.
+- A path or a text is a parameter, not a control port: an LV2 plugin's patch:writable lv2:Parameter of range atom:Path
+  or atom:String (a scan writes it under `extensions.lv2["patch:writable"]` as `{ uri, label, range }`) is served in
+  `params` as `{ kind: 'path' | 'text', symbol, name, default: '' }`, its symbol the URI's fragment, and drawn as a
+  control of the panel's last section. It is never on a surface page (a page drives a number) and stays out of the
+  fingerprint. A plugin whose only parameters are paths or texts has a panel of one section, `controls`. A patch
+  parameter of another range is not served and is reported as `panel.describe.param-unserved`.
+- A dynamics, gate, limiter or de-esser family's gain-reduction meter is its section's `gain_reduction_bar` display (source
+  `meters`, `meterIds` its index in `meters`). The transfer curve's operating point reads the level meters whose symbols
+  name the input (`in`, `input`) and the output (`out`, `output`), as `meterIds`.
+- The meters are a view: they stay out of the canonical form and the fingerprint. A description carries no ballistics: the
+  fall of a marker is the surface's, from omx-dsp's `data/primitives/meter.json`.
+
+A meter that is no control of a section is drawn by a surface in a band below the sections: the renderer as a bar and a
+peak marker over the description's range (`omx_panel_view_set_meter`), the MOD GUI as a static frame with the range and the
+unit in its caption and no live meter yet. A meter with `clip: true` wears a clip lamp at its frame's top right on every
+surface, lit by omx-dsp's clip word (`omx_meter_view_clip`, kept lit until cleared); one without never lights one. An unheld
+meter's caption ends with the panel's word `words.unheld` (docs/renderer.md, "Meters").
+
+### Words
+
+A layout and a description serve `words`, the words a surface draws of its own rather than the plugin's: the panel domain's
+`PANEL_LABELS` (`contract.d/panel/panel.json`, since 1.3.0), each as `{ labelKey, label }`, the key and its English sentence,
+by the word's title: `meters` (the meters band's title), `more` (the title of the last section a skin adds for the parameters
+its sections name nowhere), `unheld` (said in an unheld meter's caption) and `gainReduction` (a gain-reduction bar's label
+where the descriptor gives none). The keys and sentences are rendered into `schema/codes.json` and every
+`catalogs/<lang>.json` beside the codes (`tools/codes-render.mjs`), so a surface translates a word by its key as it does a
+code. No surface spells one (`test/panel-labels.test.mjs` reads their code); `describe` adds them when it serves, never from a
+stored body, and they stay out of the canonical form and the fingerprint.
 
 What a face serves keeps the extension's widget enum: `knob`, `fader` and `switch` as they are, a
 `selector` as `auto` (a CLAP selector needs `CLAP_PARAM_IS_ENUM`, which the faces do not set).
@@ -195,8 +261,12 @@ What a face serves keeps the extension's widget enum: `knob`, `fader` and `switc
 ## Sections with no declared panel
 
 Each distinct `group` path is a section, in the order its first control comes; its label is the path
-joined with ` / `, its key the path's segments in the key grammar, joined with dots. Controls with no
-group go to a section `controls`. A hidden control is left out. The layout also carries the ports: the
+joined with ` / `, its key the path's segments in the key grammar, joined with dots. The sections that are one
+repeated group (an EQ's bands and its filters) are then served as ONE section carrying the group's `matrix`
+([group-model.md](group-model.md), L7), whatever the descriptor's origin: the high-pass is its first band and the
+low-pass its last, though the plugin declares both before its bands. Controls with no
+group go to a section `controls`. A hidden control is left out, and so is a control meaning `bypass`:
+the header draws the one bypass of a panel, and the param stays served for it to set. The layout also carries the ports: the
 audio inputs and outputs with their channels, whether one is a side-chain, and the note inputs.
 
 ## Pages
@@ -213,10 +283,17 @@ emitter cuts with it too. The width is the surface's (Zynthian 4, the X-Touch an
    also sit on its remote page; a slot of no control is blank. The served description carries none.
 3. **Else the sections in their effective order** (a skin's `sections` win), each cut at the width with **a group kept whole at
    every width**: a page ends early rather than split a group, and a group longer than a page is the only one split, on pages of
-   its own, never mixed with its neighbour. A control with no group is its own. A derived page holds a control once, so the Easy
-   controls are not repeated. A section of several pages names each page by the controls it holds (`Band: Freq - Q`).
+   its own, never mixed with its neighbour. **A repeated group is cut by instance**: where a section carries a group-model
+   `matrix` (docs/group-model.md, P1), each instance is one group, its on/off first, on one page of its own; the
+   instances come in the matrix's order (an EQ's high-pass first, its bands in their number order, its low-pass last:
+   the drawing's order, the audio order untouched) and keep the same places, a place an instance has no control at left
+   blank. An instance longer than the page keeps its first `perPage` places, and each place past them is a row of the
+   aligned matrix, after the instances: that parameter of `perPage` instances a screen (`Bands: Type`, `Bands: Type 2`).
+   A control with no group is its own. A derived page holds a control once, so the Easy
+   controls are not repeated: in an instance, the slot of a control the Easy pages took stays, blank. A section of several pages names each page by the controls it holds (`Band: Freq - Q`).
 
-Every page carries `perPage` slots, a short page's last ones `null`. Below two encoders a bar group (the Bars section)
+Every page carries `perPage` slots, a short page's last ones `null`. **No screen has zero visible items**: a page whose
+every slot is blank (its controls on the Easy pages, hidden by the values, or a declared page naming none) is not cut. Below two encoders a bar group (the Bars section)
 is plain controls, one a page. `omx-panel layout --pages [--per-page N]` cuts the layout; `omx-panel describe --pages
 [--per-page N] [--skin file] [--remote file]` serves the same cut over the whole derivation, the skin applied first, as JSON
 to a surface that is not node. The page sequence of the parity fixtures is held at 4 and 8 (`test/pages-fixtures.test.mjs`).
@@ -232,7 +309,7 @@ parameter of the plugin (a choice, a toggle, or a travel with step 1), every val
 governing parameter's id) and `mask` (bit v set: shown while the value is v; `atLeast: n` sets bits n to 63), both in the
 fingerprint, and as `visibleWhen: { symbol, default }`, the governing control and its come-up value, for a renderer.
 
-The pages follow: a control the governing values hide keeps its slot, blank, so the slots after it do not move; a section whose controls are all hidden keeps its page, every slot blank.
+The pages follow: a control the governing values hide keeps its slot, blank, so the slots after it do not move; a page whose controls are all hidden is not cut (no screen has zero visible items), so a section the values empty has no page.
 `omx-panel layout --pages --value eqBands=9` cuts at those values; a governing control left out reads its come-up value.
 A host cuts again when a governing value changes (a CLAP face announces its remote-controls changed). With a strip's
 band controls in band order, five a band, a band count of 4 gives the same page boundaries as before, with no hidden band
@@ -263,6 +340,7 @@ the controls the come-up values show.
 | `delay` | `time`, `feedback`, `tone`, `mix` |
 | `reverb` | `size`, `decay`, `damping`, `mix` |
 | `pitch` | `shift`, `fine`, `mix` |
+| `utility` | `gain`, `width`, `amount`, `drive`, `ceiling`, `range` |
 
 A face can set any control that is not a reading, a trigger or a bypass. The list is a view of the panel, so it stays out of
 the canonical serialisation and the fingerprint.

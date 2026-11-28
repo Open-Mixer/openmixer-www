@@ -18,7 +18,7 @@
     "install": {
       "title": "Install.",
       "fedora": "On Fedora, install the OpenMixer release package, which adds the repository and its key, then install:",
-      "debian": "On Debian (bookworm or trixie) and Raspberry Pi OS, install the OpenMixer release package, which adds the repository and its key, then install:",
+      "debian": "On Debian trixie (amd64, arm64), Raspberry Pi OS and Zynthian, install the OpenMixer release package, which adds the repository and its key, then install:",
       "signed": "The packages and the repository metadata are signed."
     },
     "packages": {
